@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Welcome to the Insurance Company's Website";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div ng-controller="HomeController">
+    <button ng-click="addPolicy()">Add Insurance Policy</button>
+
+    <div ng-if="showForm">
+        <h4>Travel insurance</h4>
+
+        <div>
+            <form ng-repeat="r is risks">
+                <label>r.Name</label>
+                <input type="text"/>
+            </form>
+        </div>
+
+        <button>Choose another insurance</button>
+
+        <div>
+            <button ng-click="savePolicy()">Save</button>
+            <button ng-click="cancelPolicy()">Cancel</button>
+        </div>
+    </div>
+</div>
+
