@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Merchant.Tests", "Merchant.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Tests.DataAccess", "Merchant.Tests.DataAccess\Merchant.Tests.DataAccess.csproj", "{AFAA0A71-343D-4092-8D47-126E0549A319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Web", "Merchant.Web\Merchant.Web.csproj", "{6E8E26EA-21F8-409F-B26A-BE6FA816B693}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Business", "Merchant.Business\Merchant.Business.csproj", "{9DF84EF7-C382-4FEB-8981-B522467F82FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Tests.Business", "Merchant.Tests.Business\Merchant.Tests.Business.csproj", "{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,15 +27,20 @@ Global
 		{AFAA0A71-343D-4092-8D47-126E0549A319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFAA0A71-343D-4092-8D47-126E0549A319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFAA0A71-343D-4092-8D47-126E0549A319}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF84EF7-C382-4FEB-8981-B522467F82FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF84EF7-C382-4FEB-8981-B522467F82FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF84EF7-C382-4FEB-8981-B522467F82FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF84EF7-C382-4FEB-8981-B522467F82FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AFAA0A71-343D-4092-8D47-126E0549A319} = {225E3756-6C74-4A28-BB87-AB54E56CB160}
+		{30E2BCE6-7D11-4292-9DDC-B1B91B96E99A} = {225E3756-6C74-4A28-BB87-AB54E56CB160}
 	EndGlobalSection
 EndGlobal
