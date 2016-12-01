@@ -23,5 +23,12 @@ namespace Merchant.Web.Controllers
             var service = new RiskService();
             return Json(service.GetRiskByCategory(id), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetOtherCategories()
+        {
+            var service = new RiskService();
+            return Json(service., JsonRequestBehavior.AllowGet);
+        }
     }
 }

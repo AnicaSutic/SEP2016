@@ -2,6 +2,9 @@
     return ({
         getRisksByCategory : function(id) {
             return $http.get('/Risk/GetRisksByCategory/' + id);
+        },
+        getOtherCategories : function() {
+            return $http.get('/Risk/GetOtherCategories');
         }
     });
 });
