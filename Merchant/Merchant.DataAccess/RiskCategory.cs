@@ -18,7 +18,6 @@ namespace Merchant.DataAccess
         public RiskCategory()
         {
             this.Insurance = new HashSet<Insurance>();
-            this.Risk = new HashSet<Risk>();
         }
     
         public int Id { get; set; }
@@ -26,7 +25,5 @@ namespace Merchant.DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Insurance> Insurance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Risk> Risk { get; set; }
     }
 }

@@ -464,7 +464,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Insurance" Relationship="Self.Insurance_InsuranceCategory" FromRole="RiskCategory" ToRole="Insurance" />
-          <NavigationProperty Name="Risk" Relationship="Self.Risk_InsuranceCategory" FromRole="RiskCategory" ToRole="Risk" />
         </EntityType>
         <EntityType Name="RiskItem">
           <Key>

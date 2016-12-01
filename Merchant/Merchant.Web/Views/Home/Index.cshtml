@@ -6,23 +6,23 @@
 <h2>@ViewBag.Title</h2>
 
 <div ng-controller="HomeController">
-    <button ng-click="addPolicy()">Add Insurance Policy</button>
+    <button class="btn" ng-click="addPolicy()">Add Insurance Policy</button>
 
     <div ng-if="showForm">
         <h4>Travel insurance</h4>
 
-        <div>
-            <form ng-repeat="r is risks">
-                <label>r.Name</label>
-                <input type="text"/>
-            </form>
-        </div>
+        <form>
+            <div class="form-group" ng-repeat="r in risks">
+                <label>{{r.Name}}</label>
+                <input class="form-control" id="r.Id" type="text"/>
+            </div>
+        </form>
+        
+        <button class="btn" ng-click="chooseAnother()">Choose another insurance</button>
 
-        <button>Choose another insurance</button>
-
-        <div>
-            <button ng-click="savePolicy()">Save</button>
-            <button ng-click="cancelPolicy()">Cancel</button>
+        <div style="margin: 0.5em 0 0.5em 0">
+            <button class="btn" ng-click="savePolicy()">Save</button>
+            <button class="btn" ng-click="cancelPolicy()">Cancel</button>
         </div>
     </div>
 </div>

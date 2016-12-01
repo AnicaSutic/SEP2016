@@ -1,4 +1,4 @@
-﻿app.controller('HomeController', function ($scope, $window, InsuranceService) {
+﻿app.controller('HomeController', function ($scope, $window, RiskService) {
     $scope.hello = "hello";
 
     $scope.showForm = false;
@@ -14,5 +14,8 @@
         $scope.showForm = false;
     };
 
-    
+    RiskService.getRisksByCategory(1).then(function (response) {
+        console.log(response.data);
+        $scope.risks = response.data;
+    });
 });
