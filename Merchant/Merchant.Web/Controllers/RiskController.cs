@@ -27,8 +27,8 @@ namespace Merchant.Web.Controllers
         [HttpGet]
         public ActionResult GetOtherCategories()
         {
-            var service = new RiskService();
-            return Json(service., JsonRequestBehavior.AllowGet);
+            var service = new RiskCategoryService();
+            return Json(service.GetOtherRiskCategories(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -6,7 +6,7 @@
 <h2>@ViewBag.Title</h2>
 
 <div ng-controller="HomeController">
-    <button class="btn" ng-click="addPolicy()">Add Insurance Policy</button>
+    <button class="btn" ng-disabled="showForm" ng-click="addPolicy()">Add Insurance Policy</button>
 
     <div ng-if="showForm">
         <h4>Travel insurance</h4>
@@ -18,7 +18,7 @@
             </div>
         </form>
         
-        <button class="btn" ng-click="chooseAnother()">Choose another insurance</button>
+        <button class="btn" ng-disabled="showAnotherInsurance" ng-click="chooseAnother()">Choose another insurance</button>
 
         <div class="topBottomMargin" ng-if="showAnotherInsurance">
             <button class="btn btn-primary" ng-repeat="c in categories" ng-click="showInsuranceByCategory(c)">{{c.Name}}</button>
