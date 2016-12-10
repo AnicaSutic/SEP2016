@@ -20,3 +20,21 @@ textarea {
    margin: 0.5em 0 0.5em 0;
 }
 
+
+.home {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    background-image: url(images/homeimage.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height:100%;
+}
+
+.leftComercial {
+    background-color: red;
+    right:0;
+}
+

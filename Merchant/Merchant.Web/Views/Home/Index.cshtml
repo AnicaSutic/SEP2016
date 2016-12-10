@@ -3,35 +3,34 @@
     ViewBag.Title = "Welcome to the Insurance Company's Website";
 }
 
-<h2>@ViewBag.Title</h2>
+@*<h2>@ViewBag.Title</h2>*@
+<div ng-controller="HomeController" style="margin-top:5em;">
+    <div class="home">
+        @*<button class="btn" ng-disabled="showForm" ng-click="addPolicy()">Add Insurance Policy</button>
 
-<div ng-controller="HomeController">
-    <button class="btn" ng-disabled="showForm" ng-click="addPolicy()">Add Insurance Policy</button>
+            <div ng-if="showForm">
+                <h4>Travel insurance</h4>
 
-    <div ng-if="showForm">
-        <h4>Travel insurance</h4>
+                <form>
+                    <div class="form-group" ng-repeat="r in risks">
+                        <label>{{r.Name}}</label>
+                        <input class="form-control" id="r.Id" type="text"/>
+                    </div>
+                </form>
 
-        <form>
-            <div class="form-group" ng-repeat="r in risks">
-                <label>{{r.Name}}</label>
-                <input class="form-control" id="r.Id" type="text"/>
-            </div>
-        </form>
-        
-        <button class="btn" ng-disabled="showAnotherInsurance" ng-click="chooseAnother()">Choose another insurance</button>
+                <button class="btn" ng-disabled="showAnotherInsurance" ng-click="chooseAnother()">Choose another insurance</button>
 
-        <div class="topBottomMargin" ng-if="showAnotherInsurance">
-            <button class="btn btn-primary" ng-repeat="c in categories" ng-click="showInsuranceByCategory(c)">{{c.Name}}</button>
-            <button class="btn" ng-click="cancelOther()">Cancel</button>
-        </div>
+                <div class="topBottomMargin" ng-if="showAnotherInsurance">
+                    <button class="btn btn-primary" ng-repeat="c in categories" ng-click="showInsuranceByCategory(c)">{{c.Name}}</button>
+                    <button class="btn" ng-click="cancelOther()">Cancel</button>
+                </div>
 
-        <hr />
+                <hr />
 
-        <div class="topBottomMargin">
-            <button class="btn" ng-click="savePolicy()">Save</button>
-            <button class="btn" ng-click="cancelPolicy()">Cancel</button>
-        </div>
+                <div class="topBottomMargin">
+                    <button class="btn" ng-click="savePolicy()">Save</button>
+                    <button class="btn" ng-click="cancelPolicy()">Cancel</button>
+                </div>
+            </div>*@
     </div>
-
 </div>
-

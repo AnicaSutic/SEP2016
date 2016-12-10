@@ -18,6 +18,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Home Page", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Insurance calculator", "Calculator", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -28,7 +29,6 @@
 
     <div ng-app="merchantApp" class="container body-content">
         @RenderBody()
-        <hr />
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
