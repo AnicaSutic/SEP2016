@@ -133,6 +133,7 @@
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\controllers\homeController.js" />
     <Content Include="scripts\modules\app.js" />
