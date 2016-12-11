@@ -8,7 +8,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
-<body>
+<body  >
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,8 +17,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home Page", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Insurance calculator", "Calculator", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a ui-sref="home">Home Page</a>
+                <a ui-sref="insurance">Insurance</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,15 +26,17 @@
             </div>
         </div>
     </div>
+    
 
     <div ng-app="merchantApp" class="container body-content">
         @RenderBody()
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/angular-ui-module.js"></script>
+    <script src="~/scripts/angular-ui-router.js"></script>
 
     <script src="~/scripts/modules/app.js"></script>
     <script src="~/scripts/controllers/homeController.js"></script>
