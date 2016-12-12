@@ -7,9 +7,19 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/angular.js"></script>
+    <script src="~/scripts/angular-ui-module.js"></script>
+    <script src="~/scripts/angular-ui-router.js"></script>
+
+    <script src="~/scripts/modules/app.js"></script>
+    <script src="~/scripts/controllers/homeController.js"></script>
+    <script src="~/scripts/controllers/mainController.js"></script>
+    <script src="~/scripts/services/riskService.js"></script>
 </head>
-<body  >
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body ng-app="app">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,18 +38,10 @@
     </div>
     
 
-    <div ng-app="merchantApp" class="container body-content">
+    <div class="container body-content">
         @RenderBody()
     </div>
 
-    <script src="~/scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/angular.min.js"></script>
-    <script src="~/scripts/angular-ui-module.js"></script>
-    <script src="~/scripts/angular-ui-router.js"></script>
-
-    <script src="~/scripts/modules/app.js"></script>
-    <script src="~/scripts/controllers/homeController.js"></script>
-    <script src="~/scripts/services/riskService.js"></script>
+   
 </body>
 </html>

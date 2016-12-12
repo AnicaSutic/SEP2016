@@ -1,16 +1,12 @@
-﻿
+﻿(function (angular) {
+    var myController = function ($scope) {
+        $scope.message = "Hello from the controller!";
+        console.log("Usao");
 
-var app = angular.module("merchantApp",['ui.router']);
+    };
 
-app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    var routingModule = angular.module('routingModule', []);
 
-   // $urlRouterProvider.otherwise('/home');
+    var application = angular.module("app", ['routingModule', 'ui.router']);
 
-    $stateProvider
-        .state('insurance', {
-            url: '/Insurance',
-            templateUrl: '/Home/Insurance',
-            controller: 'HomeController',
-        });
-
-}]);
+})(angular);
