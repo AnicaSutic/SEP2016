@@ -1,17 +1,15 @@
-﻿var application = angular.module("app");
+﻿app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-application.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-
-    //$urlRouterProvider.otherwise('/Index');
+    //$urlRouterProvider.otherwise('/home');
     
     $stateProvider
         .state('home', {
-            url: '/Index',
+            url: '/Home'
         })
         .state('insurance', {
-            url: '/Insurance',
+            url: '/Home/Insurance',
             templateUrl: '/home/insurance',
-            controller: 'HomeController',
+            controller: 'HomeController'
         });
 
 }]);

@@ -17,7 +17,11 @@ namespace Merchant.Web.Controllers
         // GET : Insurance
         public ActionResult Insurance()
         {
-            return View("~/Views/Templates/Insurance.cshtml");
+            return PartialView();
+        }
+        public ActionResult Calculator()
+        {
+            return PartialView();
         }
     }
 }
