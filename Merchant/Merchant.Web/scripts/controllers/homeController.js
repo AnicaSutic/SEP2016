@@ -1,4 +1,5 @@
-﻿app.controller('HomeController', function ($scope, $window, RiskService) {
+﻿var app = angular.module('app');
+app.controller('HomeController', function ($scope, $window, RiskService) {
     $scope.hello = "hello";
 
     $scope.showForm = false;
