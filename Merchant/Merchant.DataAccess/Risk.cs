@@ -23,6 +23,7 @@ namespace Merchant.DataAccess
         public int Id { get; set; }
         public string Name { get; set; }
         public int InsuranceCategory_Id { get; set; }
+        public string DataType { get; set; }
     
         public virtual RiskCategory RiskCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

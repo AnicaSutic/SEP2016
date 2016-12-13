@@ -1,5 +1,4 @@
 ﻿app.controller('HomeController', function ($scope, $window, RiskService) {
-    $scope.hello = "hello";
 
     $scope.showForm = false;
     $scope.showAnotherInsurance = false;

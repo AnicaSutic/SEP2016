@@ -4,9 +4,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $locationProvider.hashPrefix('!').html5Mode(true);
 
-    $urlRouterProvider.otherwise("/Home");
+    $urlRouterProvider.otherwise("/Home/Index");
 
     $stateProvider
+        .state('home', {
+            url: '/Home/Index',
+            templateUrl: '/Home/Index'
+        })
+        .state('calculator', {
+            url: '/Home/Calculator',
+            templateUrl: '/Home/Calculator'
+        })
         .state('insurance', {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance'

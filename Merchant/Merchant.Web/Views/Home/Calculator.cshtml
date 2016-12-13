@@ -1,1 +1,14 @@
-﻿calcuator
+﻿<div ng-controller="CalculatorController">
+    <h1>Calculate the price of your insurance.</h1>
+
+    <h5>Travel insurance</h5>
+    <form>
+        <div class="form-group" ng-repeat="r in travelRisks">
+            <label>{{r.Name}}</label>
+            <input ng-if='r.DataType == "string"' class="form-control" id="r.Id" type="text" />
+            <select ng-if='r.DataType == "list"'>
+                <option value=""></option>
+            </select>
+        </div>
+    </form>
+</div>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Buyer">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,6 +99,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DataType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="InsuranceCategory_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RiskCategory">
@@ -337,8 +338,7 @@
             <End Role="RiskItem" EntitySet="RiskItem" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerchantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -456,6 +456,7 @@
           <Property Name="InsuranceCategory_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RiskCategory" Relationship="Self.Risk_InsuranceCategory" FromRole="Risk" ToRole="RiskCategory" />
           <NavigationProperty Name="RiskItem" Relationship="Self.RiskItem_Risk" FromRole="Risk" ToRole="RiskItem" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RiskCategory">
           <Key>
@@ -803,6 +804,7 @@
           <EntitySetMapping Name="Risk">
             <EntityTypeMapping TypeName="MerchantDBModel.Risk">
               <MappingFragment StoreEntitySet="Risk">
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="InsuranceCategory_Id" ColumnName="InsuranceCategory_Id" />

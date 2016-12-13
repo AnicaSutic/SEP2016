@@ -5,6 +5,9 @@
         },
         getOtherCategories : function() {
             return $http.get('/Risk/GetOtherCategories');
+        },
+        getRiskItemsForRisk: function (risk) {
+            return $http.get('/Calculator/GetRiskItemsForRisk');
         }
     });
 });

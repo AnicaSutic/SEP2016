@@ -8,17 +8,16 @@ namespace Merchant.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET : Insurance
         public ActionResult Insurance()
         {
             return PartialView();
         }
+
         public ActionResult Calculator()
         {
             return PartialView();

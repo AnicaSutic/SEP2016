@@ -152,10 +152,10 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\controllers\calculatorController.js" />
     <Content Include="scripts\controllers\homeController.js" />
     <Content Include="scripts\angular-ui-module.js" />
     <Content Include="scripts\angular-ui-router.js" />
-    <Content Include="scripts\controllers\mainController.js" />
     <Content Include="scripts\modules\app.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RiskController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,6 +203,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Calculator\" />
     <Folder Include="Views\Risk\" />
   </ItemGroup>
   <ItemGroup>
