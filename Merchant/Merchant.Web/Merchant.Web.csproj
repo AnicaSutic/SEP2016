@@ -142,9 +142,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flexslider.css" />
+    <Content Include="Content\images\button.png" />
     <Content Include="Content\images\homeimage.jpg" />
+    <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\lightbox.css" />
+    <Content Include="Content\queries.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -156,6 +162,11 @@
     <Content Include="scripts\controllers\homeController.js" />
     <Content Include="scripts\angular-ui-module.js" />
     <Content Include="scripts\angular-ui-router.js" />
+    <Content Include="scripts\jquery.fancybox.pack.js" />
+    <Content Include="scripts\jquery.fitvids.js" />
+    <Content Include="scripts\jquery.flexslider.js" />
+    <Content Include="scripts\jquery.smooth-scroll.js" />
+    <Content Include="scripts\modernizr.js" />
     <Content Include="scripts\modules\app.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -164,7 +175,9 @@
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\modules\routingModule.js" />
+    <Content Include="scripts\scripts.js" />
     <Content Include="scripts\services\riskService.js" />
+    <Content Include="scripts\waypoints.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('insurance', {
             url: '/Home/Insurance',
-            templateUrl: '/Home/Insurance'
+            templateUrl: '/Home/Insurance',
+            controller: 'HomeController'
         });
 
 });
