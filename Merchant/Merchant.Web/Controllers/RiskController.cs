@@ -11,7 +11,7 @@ namespace Merchant.Web.Controllers
 {
     public class RiskController : Controller
     {
-        // GET: Risk
+
         public ActionResult Index()
         {
             return View();
@@ -29,6 +29,19 @@ namespace Merchant.Web.Controllers
         {
             var service = new RiskCategoryService();
             return Json(service.GetOtherRiskCategories(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetRiskItemsForRisk(Risk risk)
+        {
+            var service = new RiskItemService();
+
+            var riskItems = service.GetRiskItemsByRiskId(risk.Id);
+            Dictionary<int, List<RiskItem>> riskItemsDict = new Dictionary<int, List<RiskItem>>();
+
+            riskItemsDict.Add(risk.Id, (List<RiskItem>)riskItems);
+
+            return Json(riskItemsDict, JsonRequestBehavior.AllowGet);
         }
     }
 }

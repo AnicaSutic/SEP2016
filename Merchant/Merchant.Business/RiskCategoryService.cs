@@ -18,5 +18,6 @@ namespace Merchant.Business
         {
             return _repository.Get(c => c.Name != "Travel").ToList();
         }
+        
     }
 }

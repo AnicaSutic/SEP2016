@@ -169,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RiskController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,6 +192,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
     <Content Include="Views\Home\Calculator.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
