@@ -99,7 +99,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="DataType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="InsuranceCategory_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RiskCategory">
@@ -456,7 +455,6 @@
           <Property Name="InsuranceCategory_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RiskCategory" Relationship="Self.Risk_InsuranceCategory" FromRole="Risk" ToRole="RiskCategory" />
           <NavigationProperty Name="RiskItem" Relationship="Self.RiskItem_Risk" FromRole="Risk" ToRole="RiskItem" />
-          <Property Name="DataType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RiskCategory">
           <Key>
@@ -804,7 +802,6 @@
           <EntitySetMapping Name="Risk">
             <EntityTypeMapping TypeName="MerchantDBModel.Risk">
               <MappingFragment StoreEntitySet="Risk">
-                <ScalarProperty Name="DataType" ColumnName="DataType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="InsuranceCategory_Id" ColumnName="InsuranceCategory_Id" />

@@ -13,11 +13,6 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
-        public ActionResult HomePage()
-        {
-            return PartialView();
-        }
-
         public ActionResult Insurance()
         {
             return PartialView();
