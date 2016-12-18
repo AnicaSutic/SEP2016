@@ -14,18 +14,10 @@ namespace Merchant.DataAccess
     
     public partial class RiskItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RiskItem()
-        {
-            this.PricelistItem = new HashSet<PricelistItem>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public int RiskId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PricelistItem> PricelistItem { get; set; }
         public virtual Risk Risk { get; set; }
     }
 }

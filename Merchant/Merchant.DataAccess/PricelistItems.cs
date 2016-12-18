@@ -14,17 +14,9 @@ namespace Merchant.DataAccess
     
     public partial class PricelistItems
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PricelistItems()
-        {
-            this.PricelistItem = new HashSet<PricelistItem>();
-        }
-    
         public int Id { get; set; }
         public int PricelistId { get; set; }
     
         public virtual Pricelist Pricelist { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PricelistItem> PricelistItem { get; set; }
     }
 }

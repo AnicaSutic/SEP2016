@@ -1,7 +1,9 @@
-﻿using Merchant.Business;
+﻿using Common;
+using Merchant.Business;
 using Merchant.DataAccess;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace Merchant.Web.Controllers
 {
@@ -31,6 +33,40 @@ namespace Merchant.Web.Controllers
         {
             var service = new RiskItemService();
             return Json(service.GetRiskItemsByRiskId(id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Calculate(InsuranceDTO ins)
+        {
+            decimal price = 0.0M;
+            //pricelistitem ide preko id-a riskitem-a
+            //i onda je cena onoga odabranog zapravo cena ta u pricelistitem tabeli
+            //osim ako treba da se pomnozi sa necim kao npr kod number of insurants
+            var service = new PriceListItemService();
+            var riskService = new RiskService();
+
+            //foreach(var property in ins.GetType().GetProperties())
+            //{
+            //    if(!property.Name.Equals("Duration"))
+            //    {
+            //        var p = service.GetPricelistItemByRiskItemName(riskService.GetRiskByName(property.Name).Id);
+            //        var pp = p.First().Price;
+            //        price += pp;
+            //    }
+
+            //}
+            //var durationPrice = ins.duration;
+
+            //var durationPrice = 0.0M;
+            var regionPrice = ins.Region != 0 ?service.GetPricelistItemByRiskItemId(ins.Region).First().Price : 0.0M;
+            var agePrice = ins.Age != 0 ? service.GetPricelistItemByRiskItemId(ins.Age).First().Price : 0.0M;
+            var sportPrice = ins.Sport != 0 ? service.GetPricelistItemByRiskItemId(ins.Sport).First().Price : 0.0M;
+            var valuePrice = ins.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(ins.InsuredValue).First().Price : 0.0M;
+
+            price = regionPrice + agePrice + sportPrice + valuePrice;
+
+            var totalPrice = price * decimal.Parse(ins.NumberOfInsurants);
+            return Json(totalPrice);
         }
     }
 }

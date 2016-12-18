@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Tests.Business", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Web", "Merchant.Web\Merchant.Web.csproj", "{6E8E26EA-21F8-409F-B26A-BE6FA816B693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Common", "Common\Merchant.Common.csproj", "{CD1D9F61-1BE9-487D-996C-884BA3D52597}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E8E26EA-21F8-409F-B26A-BE6FA816B693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD1D9F61-1BE9-487D-996C-884BA3D52597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD1D9F61-1BE9-487D-996C-884BA3D52597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD1D9F61-1BE9-487D-996C-884BA3D52597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD1D9F61-1BE9-487D-996C-884BA3D52597}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

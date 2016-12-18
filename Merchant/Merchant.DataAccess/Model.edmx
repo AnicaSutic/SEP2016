@@ -409,7 +409,6 @@
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="PricelistItems" Relationship="Self.PricelistItems_Pricelist" FromRole="Pricelist" ToRole="PricelistItems" />
         </EntityType>
         <EntityType Name="PricelistItem">
           <Key>
@@ -433,7 +432,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PricelistId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pricelist" Relationship="Self.PricelistItems_Pricelist" FromRole="PricelistItems" ToRole="Pricelist" />
-          <NavigationProperty Name="PricelistItem" Relationship="Self.PricelistItem_PricelistItems" FromRole="PricelistItems" ToRole="PricelistItem" />
         </EntityType>
         <EntityType Name="ResidentalBuilding">
           <Key>
@@ -454,7 +452,6 @@
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="InsuranceCategory_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RiskCategory" Relationship="Self.Risk_InsuranceCategory" FromRole="Risk" ToRole="RiskCategory" />
-          <NavigationProperty Name="RiskItem" Relationship="Self.RiskItem_Risk" FromRole="Risk" ToRole="RiskItem" />
         </EntityType>
         <EntityType Name="RiskCategory">
           <Key>
@@ -471,7 +468,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RiskId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PricelistItem" Relationship="Self.PricelistItem_RiskItem" FromRole="RiskItem" ToRole="PricelistItem" />
           <NavigationProperty Name="Risk" Relationship="Self.RiskItem_Risk" FromRole="RiskItem" ToRole="Risk" />
         </EntityType>
         <EntityType Name="Vehicle">

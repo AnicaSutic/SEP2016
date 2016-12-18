@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PriceListItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RiskCategoryService.cs" />
     <Compile Include="RiskItemService.cs" />

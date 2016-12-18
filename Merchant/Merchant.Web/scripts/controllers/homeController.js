@@ -6,6 +6,11 @@
     $scope.risks = {};
     $scope.categories = {};
 
+    $scope.sports = {};
+    $scope.values = {};
+    $scope.ages = {};
+    $scope.regions = {};
+
     /** METHODS **/
 
     $scope.addPolicy = function () {
@@ -32,4 +37,6 @@
     RiskService.getOtherCategories().then(function (response) {
         $scope.categories = response.data;
     });
+
+    
 });

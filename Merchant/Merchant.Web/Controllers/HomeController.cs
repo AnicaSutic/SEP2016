@@ -18,7 +18,7 @@ namespace Merchant.Web.Controllers
             return PartialView();
         }
 
-        public ActionResult Calculator()
+        public ActionResult CalculatePrice()
         {
             return PartialView();
         }

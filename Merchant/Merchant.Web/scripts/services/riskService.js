@@ -8,6 +8,9 @@
         },
         getRiskItemsForRisk: function (id) {
             return $http.get('/Risk/GetRiskItemsForRisk/' + id);
+        },
+        calculatePrice: function (ins) {
+            return $http.post('/Risk/Calculate', ins);
         }
     });
 });

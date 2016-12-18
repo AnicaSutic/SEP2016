@@ -9,11 +9,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('home', {
             url: '/Home/HomePage',
-            templateUrl: '/Home/HomePage'
+            templateUrl: '/Home/HomePage',
+            controller: 'HomeController'
         })
         .state('calculator', {
-            url: '/Home/Calculator',
-            templateUrl: '/Home/Calculator'
+            url: '/Home/CalculatePrice',
+            templateUrl: '/Home/CalculatePrice',
+            controller: 'CalculatorController'
         })
         .state('insurance', {
             url: '/Home/Insurance',

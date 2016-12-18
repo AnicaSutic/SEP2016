@@ -143,15 +143,55 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flexslider.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\about-bg.jpg" />
+    <Content Include="Content\images\blog\1.jpg" />
+    <Content Include="Content\images\blog\2.jpg" />
+    <Content Include="Content\images\blog\3.jpg" />
     <Content Include="Content\images\button.png" />
+    <Content Include="Content\images\contact-bg.jpg" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\features-bg.jpg" />
     <Content Include="Content\images\homeimage.jpg" />
+    <Content Include="Content\images\lightbox\close.png" />
+    <Content Include="Content\images\lightbox\loading.gif" />
+    <Content Include="Content\images\lightbox\next.png" />
+    <Content Include="Content\images\lightbox\prev.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\portfolio\1.jpg" />
+    <Content Include="Content\images\portfolio\2.jpg" />
+    <Content Include="Content\images\portfolio\3.jpg" />
+    <Content Include="Content\images\portfolio\4.jpg" />
+    <Content Include="Content\images\portfolio\5.jpg" />
+    <Content Include="Content\images\portfolio\6.jpg" />
+    <Content Include="Content\images\portfolio\7.jpg" />
+    <Content Include="Content\images\portfolio\8.jpg" />
+    <Content Include="Content\images\portfolio\portfolio-details.jpg" />
+    <Content Include="Content\images\slider\1.jpg" />
+    <Content Include="Content\images\slider\2.jpg" />
+    <Content Include="Content\images\slider\3.jpg" />
+    <Content Include="Content\images\team\1.jpg" />
+    <Content Include="Content\images\team\2.jpg" />
+    <Content Include="Content\images\team\3.jpg" />
+    <Content Include="Content\images\team\4.jpg" />
+    <Content Include="Content\images\twitter-bg.jpg" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\lightbox.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\presets\preset1.css" />
+    <Content Include="Content\presets\preset2.css" />
+    <Content Include="Content\presets\preset3.css" />
+    <Content Include="Content\presets\preset4.css" />
+    <Content Include="Content\presets\preset5.css" />
+    <Content Include="Content\presets\preset6.css" />
     <Content Include="Content\queries.css" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -162,21 +202,37 @@
     <Content Include="scripts\controllers\homeController.js" />
     <Content Include="scripts\angular-ui-module.js" />
     <Content Include="scripts\angular-ui-router.js" />
+    <Content Include="scripts\html5shiv.js" />
+    <Content Include="scripts\jquery.countTo.js" />
     <Content Include="scripts\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery.fitvids.js" />
     <Content Include="scripts\jquery.flexslider.js" />
+    <Content Include="scripts\jquery.inview.min.js" />
+    <Content Include="scripts\jquery.js" />
     <Content Include="scripts\jquery.smooth-scroll.js" />
+    <Content Include="scripts\lightbox.min.js" />
+    <Content Include="scripts\main.js" />
     <Content Include="scripts\modernizr.js" />
     <Content Include="scripts\modules\app.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\mousescroll.js" />
+    <Content Include="scripts\respond.min.js" />
     <Content Include="scripts\scripts.js" />
     <Content Include="scripts\services\riskService.js" />
+    <Content Include="scripts\smoothscroll.js" />
     <Content Include="scripts\waypoints.min.js" />
+    <Content Include="scripts\wow.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +259,7 @@
     <Content Include="Views\Templates\Insurance.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
-    <Content Include="Views\Home\Calculator.cshtml" />
+    <Content Include="Views\Home\CalculatePrice.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,6 +275,10 @@
     <Folder Include="Views\Risk\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Merchant.Common.csproj">
+      <Project>{cd1d9f61-1be9-487d-996c-884ba3d52597}</Project>
+      <Name>Merchant.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Merchant.Business\Merchant.Business.csproj">
       <Project>{9df84ef7-c382-4feb-8981-b522467f82fa}</Project>
       <Name>Merchant.Business</Name>

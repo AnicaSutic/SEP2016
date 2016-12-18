@@ -22,5 +22,10 @@ namespace Merchant.Business
         {
             return _repository.Get(r => r.RiskCategory.Id == categoryId).ToList();
         }
+
+        public Risk GetRiskByName(string name)
+        {
+            return _repository.Get(r => r.Name == name).First();
+        }
     }
 }
