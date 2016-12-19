@@ -16,7 +16,7 @@
 </head>
 <body>
     <header id="home">
-        <div class="main-nav">
+        <div class="main-nav" ng-controller="NavbarController">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,9 +31,11 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="scroll active"><a ui-sref="home">Home</a></li>
-                        <li class="scroll"><a ui-sref="insurance">Insurance packages</a></li>
-                        <li class="scroll"><a ui-sref="calculator">Calculate the price</a></li>
+                        <li class="scroll active"><a translate="home" ui-sref="home"></a></li>
+                        <li class="scroll"><a translate="insurance" ui-sref="insurance"></a></li>
+                        <li class="scroll"><a translate="calculate" ui-sref="calculator"></a></li>
+                        <li><a ng-click="changeCurrentLanguage('en')" translate="english"></a></li>
+                        <li><a ng-click="changeCurrentLanguage('sr')" translate="serbian"></a></li>
                     </ul>
                 </div>
             </div>
@@ -53,11 +55,14 @@
     <script src="~/scripts/angular.js"></script>
     <script src="~/scripts/angular-ui-module.js"></script>
     <script src="~/scripts/angular-ui-router.js"></script>
+    <script src="~/scripts/angular-sanitize.js"></script>
+    <script src="~/scripts/angular-translate.js"></script>
     <script src="~/scripts/modernizr-2.6.2.js"></script>
     <script src="~/scripts/waypoints.min.js"></script>
 
     <script src="~/scripts/modules/app.js"></script>
     <script src="~/scripts/controllers/homeController.js"></script>
+    <script src="~/scripts/controllers/navbarController.js"></script>
     <script src="~/scripts/controllers/calculatorController.js"></script>
     <script src="~/scripts/services/riskService.js"></script>
 </body>
