@@ -171,11 +171,10 @@ section {
 
 .carousel-fade .carousel-inner .item {
   opacity: 0;
-  -webkit-transition-property: opacity;
   transition-property: opacity;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 2037px;
+  height: 900px;
 }
 
 .carousel-fade .carousel-inner .item:after {
