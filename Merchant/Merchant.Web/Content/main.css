@@ -132,6 +132,7 @@ section {
 #home-slider {
   overflow: hidden;
   position: relative;
+  display: block;
 }
 
 #home-slider .caption {
