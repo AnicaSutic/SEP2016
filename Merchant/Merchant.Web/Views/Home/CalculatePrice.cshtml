@@ -1,45 +1,54 @@
-﻿<div ng-controller="CalculatorController">
-    <h1>Calculate the price of your insurance.</h1>
-    <h3 class="topBottomMargin">Travel insurance</h3>
-    <br/>
-    <form class="form-group">
-        @*<div class="form-group" ng-repeat="r in travelRisks">
-            <label>{{r.Name}}</label>
-            <input ng-if='r.DataType == "string"' class="form-control" id="r.Id" type="text" />
-            <select ng-if='r.DataType == "list"' id="r.Id" ng-repeat="ri in travelRiskItems">
-                <option value="ri.Id">{{ri.Name}}</option>
-            </select>
-        </div>*@
-        <label>Insurance duration</label>
-        <input class="form-control" type="text" ng-model="Insurance.Duration"/><br />
-        <label>Region</label>
-        <select class="form-control" ng-model="Insurance.Region">
-            <option ng-repeat="r in regions" value="{{r.Id}}">{{r.Name}}</option>
-        </select><br />
-        <label>Number of insurants</label>
-        <input class="form-control" type="text" ng-model="Insurance.NumberOfInsurants" /><br />
-        <label>Age</label>
-        <select class="form-control" ng-model="Insurance.Age">
-            <option ng-repeat="a in ages" value="{{a.Id}}">{{a.Name}}</option>
-        </select><br />
-        <label>Sport?</label>
-        <input type="checkbox" ng-model="isChecked" /><br/>
-        <select class="form-control" ng-show="isChecked" ng-model="Insurance.Sport">
-            <option ng-repeat="s in sports" value="{{s.Id}}">{{s.Name}}</option>
-        </select><br />
-        <label>Insured value</label>
-        <select class="form-control" ng-model="Insurance.InsuredValue">
-            <option ng-repeat="v in values" value="{{v.Id}}">{{v.Name}}</option>
-        </select>
-    </form>
-    <div class="topBottomMargin">
-        <button class="btn btn-default" ng-click="calculate()">Calculate</button>
-    </div>
+﻿@*<section class="testimonials">*@
+<style type="text/css">
+    .form-control {
+        width:30em;
+    }
+</style>
     <div>
-        <h3>Total price: {{price}} euros</h3>
-    </div>
-</div>
-
-<script>
-    $(window).scrollTop($('#mainDiv').offset().top);
-</script>
+        <div>
+            <div class="col-md-12">
+                <div ng-controller="CalculatorController">
+                    <h1 translate="calculatePrice"></h1>
+                    <h3 translate="travelInsurance" class="topBottomMargin"></h3>
+                    <br />
+                    <form>
+                        <label translate="duration"></label>
+                        <div>
+                            <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="event.startDate"
+                                   is-open="sd.opened" datepicker-options="dateOptions" close-text="Zatvori"
+                                   current-text="Danas" clear-text="Obriši" />
+                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()">Otvori kalendar</button>
+                        </div>
+                        <br />
+                        <label translate="region"></label>
+                        <select class="form-control" ng-model="Insurance.Region">
+                            <option ng-repeat="r in regions" value="{{r.Id}}">{{r.Name}}</option>
+                        </select><br />
+                        <label translate="number"></label>
+                        <input class="form-control" type="text" ng-model="Insurance.NumberOfInsurants" /><br />
+                        <label translate="age"></label>
+                        <select class="form-control" ng-model="Insurance.Age">
+                            <option ng-repeat="a in ages" value="{{a.Id}}">{{a.Name}}</option>
+                        </select><br />
+                        <label translate="sport">?</label>
+                        <input type="checkbox" ng-model="isChecked" /><br />
+                        <select class="form-control" ng-show="isChecked" ng-model="Insurance.Sport">
+                            <option ng-repeat="s in sports" value="{{s.Id}}">{{s.Name}}</option>
+                        </select><br />
+                        <label translate="value"></label>
+                        <select class="form-control" ng-model="Insurance.InsuredValue">
+                            <option ng-repeat="v in values" value="{{v.Id}}">{{v.Name}}</option>
+                        </select>
+                    </form>
+                    <div class="topBottomMargin">
+                        <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
+                    </div>
+                    <div ng-if="price != 0.0">
+                        <h3 translate="total">: {{price}} </h3> 
+                        @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+@*</section>*@
