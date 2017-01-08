@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class InsuranceDTO
+    public class InsuranceDto
     {
-        public string Duration { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int Region { get; set; }
         public string NumberOfInsurants { get; set; }
         public int Age { get; set; }

@@ -14,16 +14,7 @@ namespace Merchant.DataAccess
     
     public partial class RiskCategory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RiskCategory()
-        {
-            this.Insurance = new HashSet<Insurance>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Insurance> Insurance { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Merchant.DataAccess
         public System.DateTime EndDate { get; set; }
         public decimal Price { get; set; }
         public int InsurancePolicyId { get; set; }
-        public int PersonsId { get; set; }
+        public int InsurantsId { get; set; }
         public int VehicleId { get; set; }
         public int ResidentalBuildingId { get; set; }
     

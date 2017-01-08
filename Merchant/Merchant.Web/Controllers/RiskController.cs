@@ -4,6 +4,7 @@ using Merchant.DataAccess;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using Merchant.Business.Rules;
 
 namespace Merchant.Web.Controllers
 {
@@ -36,7 +37,7 @@ namespace Merchant.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Calculate(InsuranceDTO ins)
+        public ActionResult Calculate(InsuranceDto ins)
         {
             decimal price = 0.0M;
             //pricelistitem ide preko id-a riskitem-a
@@ -58,12 +59,20 @@ namespace Merchant.Web.Controllers
             //var durationPrice = ins.duration;
 
             //var durationPrice = 0.0M;
-            var regionPrice = ins.Region != 0 ?service.GetPricelistItemByRiskItemId(ins.Region).First().Price : 0.0M;
-            var agePrice = ins.Age != 0 ? service.GetPricelistItemByRiskItemId(ins.Age).First().Price : 0.0M;
-            var sportPrice = ins.Sport != 0 ? service.GetPricelistItemByRiskItemId(ins.Sport).First().Price : 0.0M;
-            var valuePrice = ins.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(ins.InsuredValue).First().Price : 0.0M;
+            //var regionPrice = ins.Region != 0 ?service.GetPricelistItemByRiskItemId(ins.Region).First().Price : 0.0M;
+            //var agePrice = ins.Age != 0 ? service.GetPricelistItemByRiskItemId(ins.Age).First().Price : 0.0M;
+            //var sportPrice = ins.Sport != 0 ? service.GetPricelistItemByRiskItemId(ins.Sport).First().Price : 0.0M;
+            //var valuePrice = ins.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(ins.InsuredValue).First().Price : 0.0M;
 
-            price = regionPrice + agePrice + sportPrice + valuePrice;
+            //price = regionPrice + agePrice + sportPrice + valuePrice;
+
+            //
+            PriceCalculator calculator = new PriceCalculator();
+            PriceDto priceDto = new PriceDto();
+            priceDto.Price = 2000.0M;
+            priceDto.Coefficient = 0.5M;
+
+            price = calculator.GetCalculatedPrice(priceDto);
 
             var totalPrice = price * decimal.Parse(ins.NumberOfInsurants);
             return Json(totalPrice);

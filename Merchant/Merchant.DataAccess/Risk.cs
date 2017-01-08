@@ -16,7 +16,7 @@ namespace Merchant.DataAccess
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int InsuranceCategory_Id { get; set; }
+        public int RiskCategoryId { get; set; }
     
         public virtual RiskCategory RiskCategory { get; set; }
     }

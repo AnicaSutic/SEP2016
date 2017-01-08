@@ -30,6 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="drools-3.0, Version=0.0.0.0, Culture=neutral">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools-3.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="drools-dep, Version=0.0.0.0, Culture=neutral">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools-dep.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="drools.dotnet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools.dotnet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IKVM.GNU.Classpath, Version=0.28.0.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\IKVM.GNU.Classpath.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IKVM.Runtime, Version=0.28.0.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\IKVM.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,12 +65,22 @@
     <Compile Include="RiskCategoryService.cs" />
     <Compile Include="RiskItemService.cs" />
     <Compile Include="RiskService.cs" />
+    <Compile Include="Rules\PriceCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Merchant.Common.csproj">
+      <Project>{CD1D9F61-1BE9-487D-996C-884BA3D52597}</Project>
+      <Name>Merchant.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Merchant.DataAccess\Merchant.DataAccess.csproj">
       <Project>{b6402105-95c3-4c8b-baf8-6c07e59f40f2}</Project>
       <Name>Merchant.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Rules\PriceByDaysRule.drl" />
+    <None Include="Rules\PriceCalculatingRule.drl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

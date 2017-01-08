@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c7c57424989745ed810139f1d5cfe5d9" Name="Diagram1">
-        <EntityTypeShape EntityType="MerchantDBModel.Buyer" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+      <Diagram DiagramId="0bcac98812c749afa0e54b87876d9eaa" Name="Diagram1">
+        <EntityTypeShape EntityType="MerchantDBModel.Buyer" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MerchantDBModel.Insurance" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.InsurancePolicy" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.Insurants" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.Person" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.Pricelist" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.PricelistItem" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.PricelistItems" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.ResidentalBuilding" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.Risk" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.RiskCategory" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.RiskItem" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MerchantDBModel.Vehicle" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.InsurancePolicy" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.Insurants" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.Person" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.Pricelist" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.PricelistItem" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.PricelistItems" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.ResidentalBuilding" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.Risk" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.RiskCategory" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.RiskItem" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MerchantDBModel.Vehicle" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
         <AssociationConnector Association="MerchantDBModel.InsurancePolicy_Buyer" ManuallyRouted="false" />
         <AssociationConnector Association="MerchantDBModel.Insurance_InsuranceCategory" ManuallyRouted="false" />
         <AssociationConnector Association="MerchantDBModel.Insurance_InsurancePolicy" ManuallyRouted="false" />

@@ -14,18 +14,6 @@ namespace Merchant.DataAccess
     
     public partial class Insurants
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Insurants()
-        {
-            this.Insurance = new HashSet<Insurance>();
-            this.Person = new HashSet<Person>();
-        }
-    
         public int Id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Insurance> Insurance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
     }
 }

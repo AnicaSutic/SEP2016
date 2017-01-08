@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Merchant.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Merchant.DataAccess.Repository
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        internal MerchantDBEntities Context;
+        internal MerchantDBEntities1 Context;
         internal DbSet<TEntity> DbSet;
 
-        public GenericRepository(MerchantDBEntities context)
+        public GenericRepository(MerchantDBEntities1 context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();

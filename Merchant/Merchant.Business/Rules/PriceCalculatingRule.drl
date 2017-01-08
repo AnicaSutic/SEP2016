@@ -1,0 +1,9 @@
+﻿package Merchant.Business.Rules
+
+rule "CalculatePrice"
+    when
+        dto : PriceDto( Price > 0 )
+    then
+        dto.CalculatedPrice = dto.Price * dto.Coefficient;
+        modify(dto);
+end

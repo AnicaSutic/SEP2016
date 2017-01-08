@@ -4,7 +4,7 @@ namespace Merchant.DataAccess.Repository
 {
     public class UnitOfWork : IDisposable
     {
-        private MerchantDBEntities _context = new MerchantDBEntities();
+        private MerchantDBEntities1 _context = new MerchantDBEntities1();
         private GenericRepository<Buyer> _buyerRepository;
         private GenericRepository<Insurance> _insuranceRepository;
 

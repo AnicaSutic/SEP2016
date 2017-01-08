@@ -31,9 +31,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="scroll active"><a translate="home" ui-sref="home"></a></li>
-                        <li class="scroll"><a translate="insurance" ui-sref="insurance"></a></li>
-                        <li class="scroll"><a translate="calculate" ui-sref="calculator"></a></li>
+                        <li class="scroll"><a translate="insurance" ui-sref="calculator"></a></li>
                         <li><a ng-click="changeCurrentLanguage('en')" translate="english"></a></li>
                         <li><a ng-click="changeCurrentLanguage('sr')" translate="serbian"></a></li>
                     </ul>
@@ -41,7 +39,7 @@
             </div>
         </div><!--/#main-nav-->
     </header><!--/#home-->
-   
+
     <div id="mainDiv" class="topBottomMargin" ui-view>
         @RenderBody()
     </div>

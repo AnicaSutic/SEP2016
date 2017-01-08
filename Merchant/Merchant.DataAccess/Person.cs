@@ -15,13 +15,13 @@ namespace Merchant.DataAccess
     public partial class Person
     {
         public int Id { get; set; }
-        public int PersonsId { get; set; }
+        public int InsurantsId { get; set; }
         public int Name { get; set; }
         public int Surname { get; set; }
         public string IdentificationNumber { get; set; }
-        public string NumberOfPasport { get; set; }
+        public string PassportNumber { get; set; }
         public string Address { get; set; }
-        public string Telefon { get; set; }
+        public string TelephoneNumber { get; set; }
     
         public virtual Insurants Insurants { get; set; }
     }

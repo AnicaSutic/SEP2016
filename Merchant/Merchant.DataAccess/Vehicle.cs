@@ -14,12 +14,6 @@ namespace Merchant.DataAccess
     
     public partial class Vehicle
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Vehicle()
-        {
-            this.Insurance = new HashSet<Insurance>();
-        }
-    
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Type { get; set; }
@@ -29,8 +23,5 @@ namespace Merchant.DataAccess
         public string OwnerName { get; set; }
         public string OwnerSurname { get; set; }
         public string OwnerIdentificationNumber { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Insurance> Insurance { get; set; }
     }
 }
