@@ -41,7 +41,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             calc: "Calculate",
             total: "Total price",
             calculatePrice: "Calculate the price of your insurance.",
-            travelInsurance: "Travel insurance"
+            travelInsurance: "Travel insurance",
+            errReg: "You must select region!",
+            errNumReq: "You must enter number!",
+            errNumMin: "Number of person must be more the zero!",
+            errAge: "You must select age!",
+            errSport: "You must select sport!",
+            errValue: "You must select value!"
         };
     var ser =
         {
@@ -61,7 +67,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             calc: "Izračunaj",
             total: "Ukupna cena",
             calculatePrice: "Izračunajte cenu vašeg osiguranja",
-            travelInsurance: "Putno osiguranje"
+            travelInsurance: "Putno osiguranje",
+            errReg: "Morate selektovati region!",
+            errNumReq: "Unesite broj osoba!",
+            errNumMin: "Minimalan broj osoba 1!",
+            errAge: "Morate selektovati starost!",
+            errSport: "Morate selektovati sport!",
+            errValue: "Morate selektovati vrednost"
 
         };
 
