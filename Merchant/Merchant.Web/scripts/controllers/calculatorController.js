@@ -15,25 +15,27 @@
         Age: 0,
         Sport: 0
     };
-
+    $scope.num = "jsaiocjsoij";
     $scope.sports = {};
     $scope.values = {};
     $scope.ages = {};
     $scope.regions = {};
 
+    
+
     RiskService.getRisksByCategory(1).then(function (response) {
         $scope.travelRisks = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(1).then(function (response) {
+    RiskService.getRiskItemsForRisk(4).then(function (response) {
         $scope.sports = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(2).then(function (response) {
+    RiskService.getRiskItemsForRisk(1).then(function (response) {
         $scope.regions = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(4).then(function (response) {
+    RiskService.getRiskItemsForRisk(3).then(function (response) {
         $scope.ages = response.data;
     });
 
@@ -42,7 +44,7 @@
     });
 
     $scope.calculate = function () {
-
+       
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
@@ -50,6 +52,8 @@
             $scope.price = response.data;
         });
     };
+
+    
 
     /** DATEPICKER **/
 

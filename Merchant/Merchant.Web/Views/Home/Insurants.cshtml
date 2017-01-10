@@ -1,0 +1,37 @@
+﻿
+<style type="text/css">
+    .form-control {
+    width: 30%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    }
+    
+</style>
+<div>
+    <div>
+        <div class="col-md-12">
+            <div ng-controller="CalculatorController">
+                <h1 translate="details"></h1>
+                <form name="frm">
+                    <label translate="name"></label>
+                    <input class="form-control" type="text" name="name" required  /><br />
+                    
+                    <label translate="surname"></label>
+                    <input class="form-control" type="text" name="surname" required /><br />
+                    
+                  
+                    <label translate="jmbg"></label>
+                    <input class="form-control" type="text" name="jmbg" required min="13"/><br />
+                    
+                    <label translate="address"></label>
+                    <input class="form-control" type="text" name="address" required /><br />
+
+                    <label translate="telNumber"></label>
+                    <input class="form-control" type="text" name="telNumber" required /><br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

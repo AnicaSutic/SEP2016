@@ -21,6 +21,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
             controller: 'HomeController'
+        })
+        .state('insurants', {
+            url: '/Home/Insurants',
+            templateUrl: '/Home/Insurants',
+            controller: 'CalculatorController'
         });
 
     var eng =
@@ -40,6 +45,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             value: "Insured value",
             calc: "Calculate",
             total: "Total price",
+            openCal: "Open calendar",
             calculatePrice: "Calculate the price of your insurance.",
             travelInsurance: "Travel insurance",
             errReg: "You must select region!",
@@ -47,7 +53,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errNumMin: "Number of person must be more the zero!",
             errAge: "You must select age!",
             errSport: "You must select sport!",
-            errValue: "You must select value!"
+            errValue: "You must select value!",
+            next: "Next",
+            details: "Details about insurants",
+            name: "Name",
+            errName: "You must enter name!",
+            surname: "Surname",
+            errSurname: "You muste enter surname!",
+            jmbg: "Unique personal number",
+            errJmbg: "You must enter personal number!",
+            errJmbgL: "Personal number must contain 13 digits!",
+            address: "Address",
+            telNumber: "Phone number"
         };
     var ser =
         {
@@ -66,6 +83,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             value: "Osiguravajuća vrednost",
             calc: "Izračunaj",
             total: "Ukupna cena",
+            openCal: "Otvori kalendar",
             calculatePrice: "Izračunajte cenu vašeg osiguranja",
             travelInsurance: "Putno osiguranje",
             errReg: "Morate selektovati region!",
@@ -73,7 +91,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errNumMin: "Minimalan broj osoba 1!",
             errAge: "Morate selektovati starost!",
             errSport: "Morate selektovati sport!",
-            errValue: "Morate selektovati vrednost"
+            errValue: "Morate selektovati vrednost",
+            next: "Nastavi dalje",
+            details: "Podaci o osiguranicima",
+            name: "Ime",
+            errName: "Morate uneti ime!",
+            surname: "Prezime",
+            errSurname: "Morate uneti prezime!",
+            jmbg: "JMBG",
+            errJmbg: "Morate uneti JMBG!",
+            errJmbgL: "JMBG mora sadržati 13 cifara!",
+            address: "Adresa",
+            telNumber: "Telefon number"
 
         };
 

@@ -27,5 +27,10 @@ namespace Merchant.Web.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Insurants()
+        {
+            return PartialView();
+        }
     }
 }

@@ -1,7 +1,11 @@
 ﻿@*<section class="testimonials">*@
 <style type="text/css">
     .form-control {
-        width:30em;
+    width: 30%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
     }
 </style>
 
@@ -18,21 +22,21 @@
                             <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="event.startDate"
                                    is-open="sd.opened" datepicker-options="dateOptions" close-text="Zatvori"
                                    current-text="Danas" clear-text="Obriši" />
-                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()">Otvori kalendar</button>
+                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()" translate="openCal"></button>
                         </div>
                         <br />
                         <label translate="region"></label>
-                        <select class="form-control" name ="region" required ng-model="Insurance.Region">
+                        <select class="form-control" name="region" required="required" ng-model="Insurance.Region">
                             <option ng-repeat="r in regions" value="{{r.Id}}">{{r.Name}}</option>
                         </select><br />
                         <div ng-show="form.region.$touched">
-                            <span  style="color:red; display: block" translate="errReg"></span>
+                            <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>
                         </div>
-                        <label translate="number"></label> 
+                        <label translate="number"></label>
                         @*promenjen type u number*@
                         <input class="form-control" type="number" name="number" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
                         <div ng-show="form.number.$touched">
-                            <span ng-show="form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
+                            <span ng-show="form.$submited || form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
                             <span ng-show="form.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
                         </div>
                         <label translate="age"></label>
@@ -44,7 +48,7 @@
                         </div>
                         <label translate="sport">?</label>
                         <input type="checkbox" ng-model="isChecked" /><br />
-                        <select class="form-control" name = "sport"ng-show="isChecked" required ng-model="Insurance.Sport">
+                        <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport">
                             <option ng-repeat="s in sports" value="{{s.Id}}">{{s.Name}}</option>
                         </select><br />
                         <div ng-show="form.sport.$touched">
@@ -57,15 +61,18 @@
                         <div ng-show="form.value.$touched">
                             <span ng-show="form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
                         </div>
+
+                        <div class="topBottomMargin">
+                            <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
+                        </div>
+                        <div ng-if="price != 0.0">
+                            <h3 translate="total">: {{price}} </h3>
+                            @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
+                        </div>
+                        <a ui-sref="insurants">
+                            <button type="submit" ng-click="formDetails()" class="btn btn-default" translate="next"></button>
+                        </a>
                     </form>
-                    <div class="topBottomMargin">
-                        <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
-                    </div>
-                    <div ng-if="price != 0.0">
-                        <h3 translate="total">: {{price}} </h3> 
-                        @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
