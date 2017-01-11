@@ -9,14 +9,13 @@
     }
 </style>
 
-    <div>
         <div>
             <div class="col-md-12">
                 <div ng-controller="CalculatorController">
                     <h1 translate="calculatePrice"></h1>
                     <h3 translate="travelInsurance" class="topBottomMargin"></h3>
                     <br />
-                    <form name="form">
+                    <form name="form"  novalidate>
                         <label translate="duration"></label>
                         <div>
                             <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="event.startDate"
@@ -25,13 +24,13 @@
                             <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()" translate="openCal"></button>
                         </div>
                         <br />
+
                         <label translate="region"></label>
                         <select class="form-control" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
-                            <option value="" ng-selected="selected">Select Region</option>
-                        </select><br />
-                        
+                            <option value="" ng-selected="selected" translate="selReg"></option>
+                        </select><br /> 
                             <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>
-                    
+                        
                         <label translate="number"></label>
                         @*promenjen type u number*@
                         <input class="form-control" type="number" name="number" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
@@ -39,27 +38,27 @@
                             <span ng-show="form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
                             <span ng-show="form.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
                         </div>
+                        
                         <label translate="age"></label>
                         <select class="form-control" name="age" ng-model="Insurance.Age" required" ng-options="a.Id as a.Name for a in ages">
-                            <option value="" ng-selected="selected">Select Age</option>
+                            <option ng-selected="selected" translate="selAge"></option>
                         </select><br />
                             <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
+                        
                         <label translate="sport">?</label>
                         <input type="checkbox" ng-model="isChecked" /><br />
-                        <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport">
-                            <option ng-repeat="s in sports" value="{{s.Id}}">{{s.Name}}</option>
+                        
+                        <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
+                            <option value="" ng-selected="selected" translate="selSport"></option>
                         </select><br />
-                        <div ng-show="form.sport.$touched">
-                            <span ng-show="form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>
-                        </div>
+                            <span ng-show="form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>          
+                        
                         <label translate="value"></label>
-                        <select class="form-control" name="value" ng-model="Insurance.InsuredValue">
-                            <option ng-repeat="v in values" value="{{v.Id}}">{{v.Name}}</option>
-                        </select>
-                        <div ng-show="form.value.$touched">
+                        <select class="form-control" name="value" ng-model="Insurance.InsuredValue" ng-options="v.Id as v.Name for v in values">   
+                            <option value="" ng-selected="selected" translate="selValue"></option>
+                        </select><br /> 
                             <span ng-show="form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
-                        </div>
-
+                        
                         <div class="topBottomMargin">
                             <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
                         </div>
@@ -67,8 +66,9 @@
                             <h3 translate="total">: {{price}} </h3>
                             @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                         </div>
+                        
                         <a ui-sref="insurants">
-                            <button type="submit" ng-disabled="form.$invalid" ng-click="formDetails()" class="btn btn-default" translate="next"></button>
+                            <button type="submit"  class="btn btn-default" translate="next"></button>
                         </a>
                     </form>
                 </div>

@@ -52,7 +52,10 @@
         });
     };
 
-   
+    $scope.formDetails = function () {
+        console.log(form.number);
+    };
+
     /** DATEPICKER **/
 
     $scope.inlineOptions = {
