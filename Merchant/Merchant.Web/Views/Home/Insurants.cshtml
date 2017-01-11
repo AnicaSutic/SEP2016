@@ -9,27 +9,44 @@
     }
     
 </style>
+
+
 <div>
     <div>
         <div class="col-md-12">
             <div ng-controller="CalculatorController">
                 <h1 translate="details"></h1>
-                <form name="frm">
-                    <label translate="name"></label>
-                    <input class="form-control" type="text" name="name" required  /><br />
-                    
-                    <label translate="surname"></label>
-                    <input class="form-control" type="text" name="surname" required /><br />
-                    
-                  
-                    <label translate="jmbg"></label>
-                    <input class="form-control" type="text" name="jmbg" required min="13"/><br />
-                    
-                    <label translate="address"></label>
-                    <input class="form-control" type="text" name="address" required /><br />
+                <form name="userForm">
+                    <div class="form-group">
+                        <label translate="name"></label>
+                        <input type="text" name="name" class="form-control" ng-model="name" required ="required">
+                        <span ng-show="userForm.name.$touched && userForm.name.$error.required" style="color:red; display: block" translate="errName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label translate="surname"></label>
+                        <input type="text" name="surname" class="form-control" ng-model="surname" required="required">
+                        <span ng-show="userForm.surname.$touched && userForm.surname.$error.required" style="color:red; display: block" translate="errSurname"></span>
+                    </div>
+                     <div class="form-group">
+                        <label translate="jmbg"></label>
+                        <input type="number" name="jmbg" class="form-control" ng-model="jmbg" minlength="13" maxlength="13" required ="required">
+                        <div ng-show="userForm.jmbg.$touched">
+                               <span ng-show="userForm.jmbg.$error.required" style="color:red; display: block" translate="errJmbg"></span>
+                               <span ng-show="userForm.jmbg.$error.minlength" style="color:red; display: block" translate="errJmbgL"></span>
+                               <span ng-show="userForm.jmbg.$error.maxlength" style="color:red; display: block" translate="errJmbgL"></span>
 
-                    <label translate="telNumber"></label>
-                    <input class="form-control" type="text" name="telNumber" required /><br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label translate="address"></label>
+                        <input type="text" name="address" class="form-control" ng-model="address" required="required">
+                        <span ng-show="userForm.address.$touched && userForm.address.$error.required" style="color:red; display: block" translate="errAddress"></span>
+                    </div>
+                    <div class="form-group">
+                        <label translate="telNumber"></label>
+                        <input type="text" name="telNumber" class="form-control" ng-model="telNum" required="required">
+                        <span ng-show="userForm.telNumber.$touched && userForm.telNumber.$error.required" style="color:red; display: block" translate="errTelNum"></span>
+                    </div>
                 </form>
             </div>
         </div>

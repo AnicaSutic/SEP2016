@@ -15,12 +15,11 @@
         Age: 0,
         Sport: 0
     };
-    $scope.num = "jsaiocjsoij";
+   
     $scope.sports = {};
     $scope.values = {};
     $scope.ages = {};
     $scope.regions = {};
-
     
 
     RiskService.getRisksByCategory(1).then(function (response) {
@@ -44,7 +43,7 @@
     });
 
     $scope.calculate = function () {
-       
+
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
@@ -53,8 +52,7 @@
         });
     };
 
-    
-
+   
     /** DATEPICKER **/
 
     $scope.inlineOptions = {

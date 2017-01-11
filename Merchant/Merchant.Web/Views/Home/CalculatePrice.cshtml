@@ -26,26 +26,24 @@
                         </div>
                         <br />
                         <label translate="region"></label>
-                        <select class="form-control" name="region" required="required" ng-model="Insurance.Region">
-                            <option ng-repeat="r in regions" value="{{r.Id}}">{{r.Name}}</option>
+                        <select class="form-control" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
+                            <option value="" ng-selected="selected">Select Region</option>
                         </select><br />
-                        <div ng-show="form.region.$touched">
+                        
                             <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>
-                        </div>
+                    
                         <label translate="number"></label>
                         @*promenjen type u number*@
                         <input class="form-control" type="number" name="number" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
                         <div ng-show="form.number.$touched">
-                            <span ng-show="form.$submited || form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
+                            <span ng-show="form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
                             <span ng-show="form.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
                         </div>
                         <label translate="age"></label>
-                        <select class="form-control" name="age" ng-model="Insurance.Age" required">
-                            <option ng-repeat="a in ages" value="{{a.Id}}">{{a.Name}}</option>
+                        <select class="form-control" name="age" ng-model="Insurance.Age" required" ng-options="a.Id as a.Name for a in ages">
+                            <option value="" ng-selected="selected">Select Age</option>
                         </select><br />
-                        <div ng-show="form.age.$touched">
                             <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
-                        </div>
                         <label translate="sport">?</label>
                         <input type="checkbox" ng-model="isChecked" /><br />
                         <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport">
@@ -70,7 +68,7 @@
                             @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                         </div>
                         <a ui-sref="insurants">
-                            <button type="submit" ng-click="formDetails()" class="btn btn-default" translate="next"></button>
+                            <button type="submit" ng-disabled="form.$invalid" ng-click="formDetails()" class="btn btn-default" translate="next"></button>
                         </a>
                     </form>
                 </div>

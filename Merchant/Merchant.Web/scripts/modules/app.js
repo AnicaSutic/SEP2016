@@ -24,8 +24,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
         })
         .state('insurants', {
             url: '/Home/Insurants',
-            templateUrl: '/Home/Insurants',
-            controller: 'CalculatorController'
+            templateUrl: '/Home/Insurants'
         });
 
     var eng =
@@ -59,12 +58,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             name: "Name",
             errName: "You must enter name!",
             surname: "Surname",
-            errSurname: "You muste enter surname!",
+            errSurname: "You must enter surname!",
             jmbg: "Unique personal number",
             errJmbg: "You must enter personal number!",
             errJmbgL: "Personal number must contain 13 digits!",
             address: "Address",
-            telNumber: "Phone number"
+            errAddress: "You must enter address!",
+            telNumber: "Phone number",
+            errTelNum: "You must enter phone number!"
         };
     var ser =
         {
@@ -95,14 +96,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             next: "Nastavi dalje",
             details: "Podaci o osiguranicima",
             name: "Ime",
-            errName: "Morate uneti ime!",
+            errName: "Niste uneli ime!",
             surname: "Prezime",
-            errSurname: "Morate uneti prezime!",
+            errSurname: "Niste uneli prezime!",
             jmbg: "JMBG",
-            errJmbg: "Morate uneti JMBG!",
+            errJmbg: "Niste uneli JMBG!",
             errJmbgL: "JMBG mora sadržati 13 cifara!",
             address: "Adresa",
-            telNumber: "Telefon number"
+            errAddress: "Niste uneli adresu!",
+            telNumber: "Telefon number",
+            errTelNum: "Niste uneli broj telefona!"
 
         };
 
