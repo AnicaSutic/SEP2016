@@ -3,6 +3,8 @@
     $scope.travelRisks = {};
     $scope.travelRiskItems = {};
 
+    $scope.homeRisks = {};
+
     $scope.isChecked = false;
 
     $scope.price = 0.0;
@@ -15,31 +17,44 @@
         Age: 0,
         Sport: 0
     };
+
+    $scope.HomeInsurance = {
+        Area : "",
+        Age: "",
+        Value: "",
+        EnsuredBy: 0
+    };
    
     $scope.sports = {};
     $scope.values = {};
     $scope.ages = {};
     $scope.regions = {};
+    $scope.ensuredBy = {};
     
 
     RiskService.getRisksByCategory(1).then(function (response) {
         $scope.travelRisks = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(4).then(function (response) {
+    RiskService.getRiskItemsForRisk('Sport').then(function (response) {
+        alert('poslao');
         $scope.sports = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(1).then(function (response) {
+    RiskService.getRiskItemsForRisk("Region").then(function (response) {
         $scope.regions = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(3).then(function (response) {
+    RiskService.getRiskItemsForRisk("Age").then(function (response) {
         $scope.ages = response.data;
     });
 
-    RiskService.getRiskItemsForRisk(5).then(function (response) {
+    RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
         $scope.values = response.data;
+    });
+
+    RiskService.getOtherCategories().then(function (response) {
+        $scope.categories = response.data;
     });
 
     $scope.calculate = function () {
@@ -54,6 +69,30 @@
 
     $scope.formDetails = function () {
         console.log(form.number);
+    };
+
+    $scope.chooseAnother = function () {
+        $scope.showAnotherInsurance = true;
+    };
+
+
+    $scope.showInsuranceByCategory = function (c) {
+        if(c == "Home") {
+            $scope.showHomeForm = true;
+        }
+        if(c  == "Vehicle") {
+            $scope.showVehicleForm = true;
+        }
+     };
+
+   
+    $scope.cancelOther = function () {
+        $scope.showAnotherInsurance = false;
+        $scope.showHomeForm = false;
+        $scope.showVehicleForm = false;
+        $scope.HomeInsurance.Area = "";
+        $scope.HomeInsurance.Age = "";
+        $scope.HomeInsurance.Value = "";
     };
 
     /** DATEPICKER **/

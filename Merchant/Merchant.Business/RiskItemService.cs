@@ -14,9 +14,9 @@ namespace Merchant.Business
             _repository = new UnitOfWork().RiskItemRepository;
         }
 
-        public IEnumerable<RiskItem> GetRiskItemsByRiskId(int riskId)
+        public IEnumerable<RiskItem> GetRiskItemsByRiskName(string name)
         {
-            return _repository.Get(r => r.Risk.Id == riskId).ToList();
+            return _repository.Get(r => r.Risk.Name.Equals(name)).ToList();
         }
     }
 }

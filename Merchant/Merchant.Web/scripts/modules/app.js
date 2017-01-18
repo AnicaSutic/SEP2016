@@ -23,8 +23,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             controller: 'HomeController'
         })
         .state('insurants', {
-            url: '/Home/Insurants',
-            templateUrl: '/Home/Insurants'
+            url: '/Home/Insurants/:numOfInsurants',
+            templateUrl: '/Home/Insurants',
+            controller: 'InsurantsController'
         });
 
     var eng =
@@ -45,8 +46,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             calc: "Calculate",
             total: "Total price",
             openCal: "Open calendar",
+            chooseAnother: "Choose another insurance",
+            cancel: "Cancel",
             calculatePrice: "Calculate the price of your insurance.",
             travelInsurance: "Travel insurance",
+            vehicleInsurance: "Vehicle insurance",
+            homeInsurance: "Home insurance",
             selReg: "Select region",
             selAge: "Select age",
             selSport: "Select sport",
@@ -69,7 +74,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             address: "Address",
             errAddress: "You must enter address!",
             telNumber: "Phone number",
-            errTelNum: "You must enter phone number!"
+            errTelNum: "You must enter phone number!",
+            homeArea: "Building area",
+            errHomeArea: "You must enter building area!",
+            homeAge: "Building age",
+            errHomeAge: "You must enter building age!",
+            homeValue: "Estimated value",
+            errHomeValue: "You must enter value!",
+            ensuredBy: "Ensured by",
+            selEnsured: "Select",
+            errEnsured: "You must select one option!",
+            packageV: "Package you want to by",
+            brand: "Car brand",
+            year: "The year od production",
+            licence: "The license plate number",
+            chassis: "Chassis number"
         };
     var ser =
         {
@@ -90,7 +109,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             total: "Ukupna cena",
             openCal: "Otvori kalendar",
             calculatePrice: "Izračunajte cenu vašeg osiguranja",
+            chooseAnother: "Izaberite druga osiguranja",
+            cancel: "Otkaži",
             travelInsurance: "Putno osiguranje",
+            vehicleInsurance: "Osiguranje vozila",
+            homeInsurance: "Stambeno osiguranje",
             selReg: "Izaberite region",
             selAge: "Izaberite starost",
             selSport: "Izaberite sport",
@@ -113,8 +136,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             address: "Adresa",
             errAddress: "Niste uneli adresu!",
             telNumber: "Telefon number",
-            errTelNum: "Niste uneli broj telefona!"
-
+            errTelNum: "Niste uneli broj telefona!",
+            homeArea: "Površina stana",
+            errHomeArea: "Niste uneli površinu stana",
+            homeAge: "Starost stana",
+            errHomeAge: "Niste uneli starost stana",
+            homeValue: "Procenjena vrednost stana",
+            errHomeValue: "Niste uneli vrednost stana!",
+            ensuredBy: "Osigurano od",
+            selEnsured: "Izaberite",
+            errEnsured: "Niste izabrali nijednu opciju!",
+            packageV: "Paket koji želite da kupite",
+            brand: "Marka automobila",
+            year: "Godina proizvodnje",
+            licence: "Broj registarske tablice",
+            chassis: "Broj šasije"
         };
 
     $translateProvider.translations('en', eng);

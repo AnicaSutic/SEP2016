@@ -30,10 +30,10 @@ namespace Merchant.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetRiskItemsForRisk(int id)
+        public ActionResult GetRiskItemsForRisk(string name)
         {
             var service = new RiskItemService();
-            return Json(service.GetRiskItemsByRiskId(id), JsonRequestBehavior.AllowGet);
+            return Json(service.GetRiskItemsByRiskName(name), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

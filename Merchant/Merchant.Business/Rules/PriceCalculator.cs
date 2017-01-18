@@ -18,7 +18,8 @@ namespace Merchant.Business.Rules
         public void InitializeEngine(string drlFilePath)
         {
             PackageBuilder builder = new PackageBuilder();
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(drlFilePath);
+            //Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(drlFilePath);
+            Stream stream = this.GetType().GetTypeInfo().Assembly.GetManifestResourceStream(drlFilePath);
             builder.AddPackageFromDrl(drlFilePath, stream);
             Package pkg = builder.GetPackage();
             ruleBase = RuleBaseFactory.NewRuleBase();
