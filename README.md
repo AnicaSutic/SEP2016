@@ -65,7 +65,7 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 * **Anica Sutic** - [Anica's GitHub](https://github.com/AnicaSutic)
-* **Nenad Rad** - [Nenad's GitHub](https://github.com/AnicaSutic)
+* **Nenad Rad** - [Nenad's GitHub](https://github.com/nenadrad)
 * **Ivana Tesanovic** - [Ivana's GitHub](https://github.com/IvanaTesanovic)
 
 See also the list of [contributors](https://github.com/AnicaSutic/SEP2016/contributors) who participated in this project.
