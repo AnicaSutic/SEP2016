@@ -7,7 +7,7 @@
             return $http.get('/Risk/GetOtherCategories');
         },
         getRiskItemsForRisk: function (name) {
-            return $http.post('/Risk/GetRiskItemsForRisk', name);
+            return $http.get('/Risk/GetRiskItemsForRisk/'+ name);
         },
         calculatePrice: function (ins) {
             return $http.post('/Risk/Calculate', ins);
