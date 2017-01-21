@@ -16,7 +16,7 @@ namespace Merchant.Business
 
         public IEnumerable<RiskItem> GetRiskItemsByRiskName(string name)
         {
-            return _repository.Get(r => r.Risk.Name.Equals(name)).ToList();
+            return _repository.Get(r => r.Risk.Name == name).ToList();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Merchant.Web.Controllers
             return Json(service.GetOtherRiskCategories(), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult GetRiskItemsForRisk(string name)
         {
             var service = new RiskItemService();
