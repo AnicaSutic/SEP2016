@@ -15,22 +15,22 @@ namespace Merchant.Web.Controllers
 
         public ActionResult Insurance()
         {
-            return PartialView();
+            return View();
         }
 
         public ActionResult CalculatePrice()
         {
-            return PartialView();
+            return View();
         }
 
         public ActionResult HomePage()
         {
-            return PartialView();
+            return View();
         }
 
         public ActionResult Insurants()
         {
-            return PartialView();
+            return View();
         }
     }
 }

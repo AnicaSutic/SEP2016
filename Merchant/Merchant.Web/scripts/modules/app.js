@@ -2,8 +2,6 @@
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
 
-    $locationProvider.hashPrefix('!').html5Mode(true);
-
     $urlRouterProvider.otherwise("/Home/HomePage");
 
     $stateProvider
