@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/21/2017 16:15:41
+-- Date Created: 01/22/2017 20:04:05
 -- Generated from EDMX file: E:\Faks\Master\sep\new\git\git\Merchant\Merchant.DataAccess\Model.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,9 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_InsurancePolicy_Buyer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InsurancePolicy] DROP CONSTRAINT [FK_InsurancePolicy_Buyer];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Insurance_InsuranceCategory]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Insurance] DROP CONSTRAINT [FK_Insurance_InsuranceCategory];
 GO
@@ -32,20 +35,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Insurance_Vehicle]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Insurance] DROP CONSTRAINT [FK_Insurance_Vehicle];
 GO
-IF OBJECT_ID(N'[dbo].[FK_InsurancePolicy_Buyer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InsurancePolicy] DROP CONSTRAINT [FK_InsurancePolicy_Buyer];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Person_Persons]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_Person_Persons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PricelistItems_Pricelist]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PricelistItems] DROP CONSTRAINT [FK_PricelistItems_Pricelist];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PricelistItem_PricelistItems]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_PricelistItems];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PricelistItem_RiskItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_RiskItem];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PricelistItems_Pricelist]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PricelistItems] DROP CONSTRAINT [FK_PricelistItems_Pricelist];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Risk_InsuranceCategory]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Risk] DROP CONSTRAINT [FK_Risk_InsuranceCategory];
@@ -197,6 +197,7 @@ GO
 CREATE TABLE [dbo].[Risk] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] varchar(150)  NOT NULL,
+    [Name_Srb] varchar(150)  NOT NULL,
     [RiskCategoryId] int  NOT NULL
 );
 GO
@@ -204,7 +205,8 @@ GO
 -- Creating table 'RiskCategory'
 CREATE TABLE [dbo].[RiskCategory] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] varchar(150)  NOT NULL
+    [Name] varchar(150)  NOT NULL,
+    [Name_Srb] varchar(150)  NOT NULL
 );
 GO
 
@@ -212,6 +214,7 @@ GO
 CREATE TABLE [dbo].[RiskItem] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] varchar(150)  NOT NULL,
+    [Name_Srb] varchar(150)  NOT NULL,
     [RiskId] int  NOT NULL
 );
 GO

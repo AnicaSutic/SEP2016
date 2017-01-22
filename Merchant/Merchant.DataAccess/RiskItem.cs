@@ -16,6 +16,7 @@ namespace Merchant.DataAccess
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Name_Srb { get; set; }
         public int RiskId { get; set; }
     
         public virtual Risk Risk { get; set; }
