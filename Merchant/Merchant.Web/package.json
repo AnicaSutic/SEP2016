@@ -1,0 +1,23 @@
+{
+  "name": "merchantapplication",
+  "version": "1.0.0",
+  "description": "The application for ePayment.",
+  "main": "\u001b[A\u001b[Bindex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivana Anica Nenad",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-gzip": "^1.4.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.0.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-uglyfly": "^1.4.2"
+  },
+  "dependencies": {
+    "gulp-replace": "^0.5.4"
+  }
+}

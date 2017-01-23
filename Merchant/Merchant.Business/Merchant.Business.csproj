@@ -78,7 +78,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Rules\PriceByDaysRule.drl" />
     <None Include="Rules\PriceCalculatingRule.drl" />
   </ItemGroup>
