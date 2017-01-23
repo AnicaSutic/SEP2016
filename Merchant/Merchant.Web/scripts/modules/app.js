@@ -151,7 +151,46 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             chassis: "Broj šasije"
         };
 
+    $.ajax({
+        url: '/Risk/GetAllCategories',
+        success: function (response) {
+            setTranslations(response, "eng");
+            setTranslations(response, "srb");
+        }
+    });
+
+    $.ajax({
+        url: '/Risk/GetAllRisks',
+        success: function (response) {
+            setTranslations(response, "eng");
+            setTranslations(response, "srb");
+        }
+    });
+
+    $.ajax({
+        url: '/Risk/GetAllRiskItems',
+        success: function (response) {
+            setTranslations(response, "eng");
+            setTranslations(response, "srb");
+        }
+    });
+
+    function setTranslations(response, language) {
+        for (var i = 0; i < response.length; i++) {
+            var item = response[i];
+            if (language === "eng") {
+                eng[item.Name] = item.Name;
+            }
+            else if (language === "srb") {
+                ser[item.Name] = item.Name_Srb;
+            }
+        }
+    }
+
     $translateProvider.translations('en', eng);
     $translateProvider.translations('sr', ser);
     $translateProvider.preferredLanguage('en');
+
+    console.log(eng);
+    console.log(ser);
 });

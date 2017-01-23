@@ -30,6 +30,27 @@ namespace Merchant.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetAllCategories()
+        {
+            var service = new RiskCategoryService();
+            return Json(service.GetAllRiskCategories(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetAllRisks()
+        {
+            var service = new RiskService();
+            return Json(service.GetAllRisks(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetAllRiskItems()
+        {
+            var service = new RiskItemService();
+            return Json(service.GetAllRiskItems(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult GetRiskItemsForRisk(string id)
         {
             var service = new RiskItemService();

@@ -18,6 +18,11 @@ namespace Merchant.Business
         {
             return _repository.Get(c => c.Name != "Travel").ToList();
         }
-        
+
+        public IEnumerable<RiskCategory> GetAllRiskCategories()
+        {
+            return _repository.Get().ToList();
+        }
+
     }
 }

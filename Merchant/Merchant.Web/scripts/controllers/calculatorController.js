@@ -36,7 +36,7 @@
         $scope.travelRisks = response.data;
     });
 
-    RiskService.getRiskItemsForRisk('Sport').then(function (response) {
+    RiskService.getRiskItemsForRisk("Sport").then(function (response) {
         alert('poslao');
         $scope.sports = response.data;
     });

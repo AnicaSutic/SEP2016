@@ -29,14 +29,5 @@
     $scope.cancelOther = function () {
         $scope.showAnotherInsurance = false;
     };
-
-    RiskService.getRisksByCategory(1).then(function (response) {
-        $scope.risks = response.data;
-    });
-
-    RiskService.getOtherCategories().then(function (response) {
-        $scope.categories = response.data;
-    });
-
     
 });
