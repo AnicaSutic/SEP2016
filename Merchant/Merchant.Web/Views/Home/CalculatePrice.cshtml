@@ -39,7 +39,7 @@
                         <br />
 
                         <label translate="region"></label>
-                        <select class="form-control" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name | translate for r in regions">
+                        <select class="form-control" id ="region" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name | translate for r in regions">
                             <option value="" ng-selected="selected" translate="selReg"></option>
                         </select><br /> 
                             <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>

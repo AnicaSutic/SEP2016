@@ -58,7 +58,7 @@
     });
 
     $scope.calculate = function () {
-
+        
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
@@ -66,6 +66,8 @@
             $scope.price = response.data;
         });
     };
+
+    
 
     $scope.formDetails = function () {
         console.log(form.number);
