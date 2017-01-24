@@ -23,6 +23,11 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
+        public ActionResult OtherInsurances()
+        {
+            return View();
+        }
+
         public ActionResult HomePage()
         {
             return View();

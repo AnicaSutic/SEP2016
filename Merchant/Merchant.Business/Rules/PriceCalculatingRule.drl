@@ -1,9 +1,8 @@
 ﻿package Merchant.Business.Rules
 
-rule "CalculatePrice"
-    when
-        dto : PriceDto( Price > 0 )
-    then
-        dto.CalculatedPrice = dto.Price * dto.Coefficient;
-        modify(dto);
+rule "LargeOrder"
+	when
+		priceDto: PriceDto( Price > 0)
+	then
+		priceDto.CalculatedPrice = 10;
 end

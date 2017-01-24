@@ -30,6 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="drools-3.0, Version=0.0.0.0, Culture=neutral">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools-3.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="drools-dep, Version=0.0.0.0, Culture=neutral">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools-dep.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="drools.dotnet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\drools.dotnet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IKVM.GNU.Classpath, Version=0.28.0.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\IKVM.GNU.Classpath.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IKVM.Runtime, Version=0.28.0.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>..\packages\Drools.Net.1.0\lib\net\IKVM.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +62,10 @@
   <ItemGroup>
     <Compile Include="InsuranceDto.cs" />
     <Compile Include="InsurantDto.cs" />
-    <Compile Include="PriceDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,6 @@
     Layout = null;
 }
 
-@*<section class="testimonials">*@
 <style type="text/css">
     .form-control {
     width: 30%;
@@ -12,20 +11,30 @@
     background-color: #f1f1f1;
     }
 </style>
-
-        <div>
+        <div ng-controller="CalculatorController">
+            <div style="background-color:red">
+                dsds
+            </div>
             <div class="col-md-12">
-                <div ng-controller="CalculatorController">
+                <div>
                     <h1 translate="calculatePrice"></h1>
                     <h3 translate="travelInsurance" class="topBottomMargin"></h3>
                     <br />
                     <form name="form"  novalidate>
+
                         <label translate="duration"></label>
+                        <br/>
+                        <label translate="startDate"></label>
                         <div>
-                            <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="event.startDate"
-                                   is-open="sd.opened" datepicker-options="dateOptions" close-text="Zatvori"
-                                   current-text="Danas" clear-text="Obriši" />
+                            <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="Insurance.StartDate"
+                                   is-open="sd.opened" datepicker-options="dateOptions" />
                             <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()" translate="openCal"></button>
+                        </div>
+                        <label translate="endDate"></label>
+                        <div>
+                            <input ng-readonly="true" type="text" class="form-control" uib-datepicker-popup ng-model="Insurance.EndDate"
+                                   is-open="ed.opened" datepicker-options="dateOptions" />
+                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openEd()" translate="openCal"></button>
                         </div>
                         <br />
 
@@ -70,52 +79,18 @@
                             <button class="btn" ng-click="cancelOther()" translate="cancel"></button>
                         </div>
                         <br />
-                        <div ng-if="showHomeForm">
-                            <label translate="homeArea"></label>
-                            <input class="form-control" type="number" name="area" required min="1" ng-model="HomeInsurance.Area" /><br />
-                            <div ng-show="form.area.$touched">
-                                <span ng-show="form.area.$error.required" style="color:red; display: block" translate="errHomeArea"></span>
-                                <span ng-show="form.area.$error.min" style="color:red; display: block" translate="errHomeArea"></span>
-                            </div>
 
-                            <label translate="homeAge"></label>
-                            <input class="form-control" type="number" name="age" required min="1" ng-model="HomeInsurance.Age" /><br />
-                            <div ng-show="form.area.$touched">
-                                <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errHomeAge"></span>
-                                <span ng-show="form.age.$error.min" style="color:red; display: block" translate="errHomeAge"></span>
-                            </div>
-
-                            <label translate="homeValue"></label>
-                            <input class="form-control" type="number" name="homeValue" required min="1" ng-model="HomeInsurance.Value" /><br />
-                            <div ng-show="form.area.$touched">
-                                <span ng-show="form.homeValue.$error.required" style="color:red; display: block" translate="errHomeValue"></span>
-                                <span ng-show="form.homeValue.$error.min" style="color:red; display: block" translate="errHomeValue"></span>
-                            </div>
-                            @*dobaviti listu ensuredBy*@
-                            <label translate="ensuredBy"></label>
-                            <select class="form-control" name="ensuredBy" ng-model="HomeInsurance.InsuredBy" ng-options="e.Id as e.Name for e in ensuredBy">
-                                <option value="" ng-selected="selected" translate="selEnsured"></option>
-                            </select><br />
-                            <span ng-show="form.ensuredBy.$error.required" style="color:red; display: block" translate="errEnsured"></span>
-
-                         </div>
-                        <br />
-                        <div ng-if="showVehicleForm">
-                        <label translate="packageV"></label>
-                        </div>
                         <div class="topBottomMargin">
                             <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
                         </div>
                         <div ng-if="price != 0.0">
-                            <h3 translate="total">: {{price}} </h3>
+                            <h3 translate="total">: {{price}} @*<span translate="currency"></span>*@</h3>
                             @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                         </div>
                         
-                        <a class="btn btn-default" translate="next" ui-sref="insurants({numOfInsurants: Insurance.NumberOfInsurants})">
-                            @*<button type="submit"  class="btn btn-default" translate="next"></button>*@
+                        <a class="btn btn-default" translate="next" ui-sref="otherInsurances">
                         </a>
                     </form>
                 </div>
             </div>
         </div>
-@*</section>*@

@@ -90,8 +90,8 @@ namespace Merchant.Web.Controllers
             //
             PriceCalculator calculator = new PriceCalculator();
             PriceDto priceDto = new PriceDto();
-            priceDto.Price = 2000.0M;
-            priceDto.Coefficient = 0.5M;
+            priceDto.Price = 2000;
+            priceDto.Coefficient = 3;
 
             price = calculator.GetCalculatedPrice(priceDto);
 

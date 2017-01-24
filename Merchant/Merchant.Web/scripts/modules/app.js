@@ -15,6 +15,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             templateUrl: '/Home/CalculatePrice',
             controller: 'CalculatorController'
         })
+        .state('otherInsurances', {
+            url: '/Home/OtherInsurances',
+            templateUrl: '/Home/OtherInsurances',
+            controller: 'CalculatorController'
+        })
         .state('insurance', {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
@@ -86,7 +91,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             brand: "Car brand",
             year: "The year od production",
             licence: "The license plate number",
-            chassis: "Chassis number"
+            chassis: "Chassis number",
+            startDate: "From",
+            endDate: "To",
+            currency: "euros"
         };
     var ser =
         {
@@ -148,7 +156,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             brand: "Marka automobila",
             year: "Godina proizvodnje",
             licence: "Broj registarske tablice",
-            chassis: "Broj šasije"
+            chassis: "Broj šasije",
+            startDate: "Od",
+            endDate: "Do",
+            currency: "dinara"
         };
 
     $.ajax({

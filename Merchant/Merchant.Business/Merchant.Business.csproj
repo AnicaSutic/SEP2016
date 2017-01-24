@@ -66,6 +66,7 @@
     <Compile Include="RiskItemService.cs" />
     <Compile Include="RiskService.cs" />
     <Compile Include="Rules\PriceCalculator.cs" />
+    <Compile Include="Rules\PriceDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Merchant.Common.csproj">
@@ -78,8 +79,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Rules\PriceByDaysRule.drl" />
-    <None Include="Rules\PriceCalculatingRule.drl" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Rules\PriceByDaysRule.drl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\PriceCalculatingRule.drl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

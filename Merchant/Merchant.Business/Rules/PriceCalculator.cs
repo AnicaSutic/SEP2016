@@ -9,18 +9,18 @@ namespace Merchant.Business.Rules
 {
     public class PriceCalculator
     {
-        public static readonly string priceRulePath = "Merchant.Business.Rules.PriceCalculatingRule.drl";
+        public static readonly string priceRulePath = "MerchanLt.Business.Rules.PriceCalculatingRule.drl";
         public org.drools.FactHandle _currentCust = null;
         public WorkingMemory workingMemory;
         public RuleBase ruleBase;
         public InsuranceDto workingInsuranceDtoObj;
 
-        public void InitializeEngine(string drlFilePath)
+        public void InitializeEngine()
         {
             PackageBuilder builder = new PackageBuilder();
-            //Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(drlFilePath);
-            Stream stream = this.GetType().GetTypeInfo().Assembly.GetManifestResourceStream(drlFilePath);
-            builder.AddPackageFromDrl(drlFilePath, stream);
+            string[] results = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(results[1]);
+            builder.AddPackageFromDrl(results[1], stream);
             Package pkg = builder.GetPackage();
             ruleBase = RuleBaseFactory.NewRuleBase();
             ruleBase.AddPackage(pkg);
@@ -29,7 +29,7 @@ namespace Merchant.Business.Rules
 
         public decimal GetCalculatedPrice(PriceDto dto)
         {
-            InitializeEngine(priceRulePath);
+            InitializeEngine();
 
             if (_currentCust == null)
                 _currentCust = workingMemory.assertObject(dto);
@@ -37,9 +37,9 @@ namespace Merchant.Business.Rules
                 workingMemory.modifyObject(_currentCust, dto);
 
             workingMemory.fireAllRules();
-            PriceDto newDto = (PriceDto)workingMemory.getObject(_currentCust);
+            //PriceDto newDto = (PriceDto)workingMemory.getObject(_currentCust);
 
-            return newDto.CalculatedPrice;
+            return 0.0M;
         }
 
 

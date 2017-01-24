@@ -1,7 +1,6 @@
 ﻿app.controller('CalculatorController', function ($scope, RiskService) {
 
     $scope.travelRisks = {};
-    $scope.travelRiskItems = {};
 
     $scope.homeRisks = {};
 
@@ -15,7 +14,9 @@
         NumberOfInsurants: "",
         InsuredValue: 0,
         Age: 0,
-        Sport: 0
+        Sport: 0,
+        StartDate: "",
+        EndDate: ""
     };
 
     $scope.HomeInsurance = {
@@ -37,7 +38,6 @@
     });
 
     RiskService.getRiskItemsForRisk("Sport").then(function (response) {
-        alert('poslao');
         $scope.sports = response.data;
     });
 
@@ -124,14 +124,6 @@
         $scope.ed.opened = true;
     };
 
-    $scope.openDd = function () {
-        $scope.dd.opened = true;
-    };
-
-    $scope.openRemDate = function () {
-        $scope.rem.opened = true;
-    };
-
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
     $scope.altInputFormats = ['M!/d!/yyyy'];
@@ -141,14 +133,6 @@
     };
 
     $scope.ed = {
-        opened: false
-    };
-
-    $scope.rem = {
-        opened: false
-    };
-
-    $scope.dd = {
         opened: false
     };
 
