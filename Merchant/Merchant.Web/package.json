@@ -2,7 +2,7 @@
   "name": "merchantapplication",
   "version": "1.0.0",
   "description": "The application for ePayment.",
-  "main": "\u001b[A\u001b[Bindex.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
