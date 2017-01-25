@@ -94,7 +94,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             chassis: "Chassis number",
             startDate: "From",
             endDate: "To",
-            currency: "euros"
+            currency: "euros",
+            errStart: "You must enter start date!",
+            errEnd: "You must enter end date!"
         };
     var ser =
         {
@@ -159,7 +161,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             chassis: "Broj šasije",
             startDate: "Od",
             endDate: "Do",
-            currency: "dinara"
+            currency: "dinara",
+            errStart: "Niste uneli datum početka!",
+            errEnd: "Niste uneli datum završetka!"
         };
 
     $.ajax({

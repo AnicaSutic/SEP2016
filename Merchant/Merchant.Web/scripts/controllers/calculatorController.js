@@ -77,6 +77,10 @@
         $scope.showAnotherInsurance = true;
     };
 
+    $scope.checkForm = function () {
+        
+        $scope.showAnotherInsurance = true;
+    };
 
     $scope.showInsuranceByCategory = function (c) {
         if(c == "Home") {
@@ -96,6 +100,8 @@
         $scope.HomeInsurance.Age = "";
         $scope.HomeInsurance.Value = "";
     };
+
+    
 
     /** DATEPICKER **/
 
