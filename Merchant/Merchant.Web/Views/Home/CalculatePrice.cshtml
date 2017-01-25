@@ -29,20 +29,24 @@
                         <label translate="startDate"></label>
                         <div>
                             <input ng-readonly="true" name="startDate" type="text" class="form-control" uib-datepicker-popup ng-model="Insurance.StartDate"
-                                   is-open="sd.opened" datepicker-options="dateOptions" required/>
+                                   is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()"/>
                             <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openSd()" translate="openCal"></button>
                             <div ng-show="form.startDate.$touched">
                                 <span ng-show="form.startDate.$error.required" style="color:red; display: block" translate="errStart"></span>
                             </div>
+                           
                         </div>
                         <label translate="endDate"></label>
                         <div>
                             <input ng-readonly="true" name="endDate" type="text" class="form-control" uib-datepicker-popup ng-model="Insurance.EndDate"
-                                   is-open="ed.opened" datepicker-options="dateOptions" required />
+                                   is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
                             <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-default" ng-click="openEd()" translate="openCal"></button>
                             <div ng-show="form.endDate.$touched">
                                 <span ng-show="form.endDate.$error.required" style="color:red; display: block" translate="errEnd"></span>
                             </div>
+                            <div ng-show="dateEnd">
+                                <span  style="color:red; display: block" translate="errDateEnd"></span>
+                             </div>
                         </div>
                         <br />
 
@@ -89,15 +93,16 @@
                         <br />
 
                         <div class="topBottomMargin">
-                            <button translate="calc" class="btn btn-default" ng-click="calculate()"></button>
+                            <button disabled="{{ form.$invalid }}" translate="calc" class="btn btn-default" ng-click="calculate()"></button>
                         </div>
                         <div ng-if="price != 0.0">
                             <h3 translate="total">: {{price}} @*<span translate="currency"></span>*@</h3>
                             @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                         </div>
                         
-                        <a class="btn btn-default" translate="next" ui-sref="insurants">
+                        <a class="btn btn-default" disabled="{{ form.$invalid }}" translate="next" ui-sref="insurants">
                         </a>
+                       
                     </form>
                 </div>
             </div>

@@ -6,6 +6,10 @@
 
     $scope.isChecked = false;
 
+    $scope.dateStart = false;
+
+    $scope.dateEnd = false;
+
     $scope.price = 0.0;
 
     $scope.Insurance = {
@@ -61,7 +65,7 @@
         
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
-
+        
         RiskService.calculatePrice($scope.Insurance).then(function (response) {
             $scope.price = response.data;
         });
@@ -77,10 +81,25 @@
         $scope.showAnotherInsurance = true;
     };
 
-    $scope.checkForm = function () {
-        
-        $scope.showAnotherInsurance = true;
+    $scope.checkDate = function () {
+        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
+            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
+                $scope.dateEnd = true;
+            } else {
+                $scope.dateEnd = false;
+            }
+        }
     };
+
+    $scope.checkDateEnd = function () {
+        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
+            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
+                $scope.dateEnd = true;
+                $scope.dateStart = false;
+            }
+        }
+    };
+
 
     $scope.showInsuranceByCategory = function (c) {
         if(c == "Home") {

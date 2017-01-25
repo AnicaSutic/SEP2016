@@ -96,7 +96,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             endDate: "To",
             currency: "euros",
             errStart: "You must enter start date!",
-            errEnd: "You must enter end date!"
+            errEnd: "You must enter end date!",
+            errDateEnd: "End date is not valid! Check start date!",
+            errDateStart: "Start date is not valid! Check end date!"
         };
     var ser =
         {
@@ -163,7 +165,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             endDate: "Do",
             currency: "dinara",
             errStart: "Niste uneli datum početka!",
-            errEnd: "Niste uneli datum završetka!"
+            errEnd: "Niste uneli datum završetka!",
+            errDateEnd: "Datum završetka nije validan! Proverite početni datum!",
+            errDateStart: "Datum početka nije validan! Proverite datum završetka! "
         };
 
     $.ajax({
