@@ -275,3 +275,4 @@ __pycache__/
 # tools/
 
 Merchant/Merchant.Web/Web.config
+/Merchant/Merchant.Web/lib
