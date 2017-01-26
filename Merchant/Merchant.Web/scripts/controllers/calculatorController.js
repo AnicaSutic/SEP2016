@@ -102,6 +102,7 @@
 
 
     $scope.showInsuranceByCategory = function (c) {
+       
         if(c == "Home") {
             $scope.showHomeForm = true;
         }
