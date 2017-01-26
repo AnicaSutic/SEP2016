@@ -93,6 +93,9 @@
 	background:-o-linear-gradient(#69B7FA, #3280c2);
 	box-shadow:inset 0 1px #6ce4f6, 0 1px #787778;
     }
+    .disabled {
+        cursor:none;
+    }
 </style>
         <div ng-controller="CalculatorController">
             <div class=col-md-12">
@@ -100,7 +103,7 @@
                     <h3 style="text-align:center; font-style:oblique " translate="travelInsurance" class="topBottomMargin"></h3>
                     <br />
                 <div class="container1">
-                    <form class="form-horizontal" name="form" novalidate>
+                    <form class="form-horizontal" style="text-align:center" name="form" novalidate>
                         <div class="form-group">
                             <label class="col-sm-4" translate="duration"></label>
                             </div>
@@ -110,7 +113,7 @@
 
                                 <input ng-readonly="true" id="startDate" name="startDate" type="text" class="form-control col-sm-10" uib-datepicker-popup ng-model="Insurance.StartDate"
                                        is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
-                                <button style="margin:0.3em 0em 0.3em 0em" type="button" class="but" ng-click="openSd()" translate="openCal"></button>
+                                <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openSd()" translate="openCal"></button>
                                 <div ng-show="form.startDate.$touched">
                                     <span ng-show="form.startDate.$error.required" style="color:red; display: block" translate="errStart"></span>
                                 </div>
@@ -120,7 +123,7 @@
 
                             <input ng-readonly="true" name="endDate" type="text" class="form-control col-sm-10" uib-datepicker-popup ng-model="Insurance.EndDate"
                                    is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
-                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="but" ng-click="openEd()" translate="openCal"></button>
+                            <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openEd()" translate="openCal"></button>
                             <div ng-show="form.endDate.$touched">
                                 <span ng-show="form.endDate.$error.required" style="color:red; display: block" translate="errEnd"></span>
                             </div>
@@ -154,7 +157,7 @@
                                 <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
                             </div>
                             <label class="col-sm-4" translate="sport">?</label>
-                            <input type="checkbox" ng-model="isChecked" /><br />
+                            <input type="checkbox" class="btn" ng-model="isChecked" /><br />
                             <div class="form-group">
                                 <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
                                     <option value="" ng-selected="selected" translate="selSport"></option>
@@ -169,24 +172,26 @@
                                 <span ng-show="form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
                             </div>
                             <br />
-                            <button class="btn" ng-disabled="showVehicleForm && showHomeForm && showAnotherInsurance" ng-click="chooseAnother()" translate="chooseAnother"></button>
+                       
+                            <button class="btn btn-link " ng-disabled="showVehicleForm && showHomeForm && showAnotherInsurance" ng-click="chooseAnother()" translate="chooseAnother"></button>
                             <br />
-                            <div class="topBottomMargin" ng-if="showAnotherInsurance">
+                            <div ng-if="showAnotherInsurance">
                                 <button class="but" ng-repeat="c in categories" ng-click="showInsuranceByCategory(c.Name)">{{c.Name}}</button>
-                                <button class="btn btn-default" ng-click="cancelOther()" translate="cancel"></button>
+                                <button class="btn btn-link" ng-click="cancelOther()" translate="cancel"></button>
+                           
                             </div>
                             <br />
 
                             <div>
-                                <button disabled="{{ form.$invalid }}" translate="calc" class="but " style="float:right" ng-click="calculate()"></button>
+                                <button ng-disabled="form.$invalid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
                             </div>
                             <div ng-if="price != 0.0">
                                 <h3 translate="total">: {{price}} @*<span translate="currency"></span>*@</h3>
                                 @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                             </div>
-
-                            <a class="btn btn-default" disabled="{{ form.$invalid }}" translate="next" ui-sref="insurants">
-                            </a>
+                            <ul class="pager">
+                                <li><a class="btn btn-link" translate="next" ng-disabled="form.$invalid" ui-sref="insurants"> </a></li>
+                            </ul>
 
 </form>
                 </div>
