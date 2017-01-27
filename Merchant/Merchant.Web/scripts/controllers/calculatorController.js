@@ -30,35 +30,32 @@
         EnsuredBy: 0
     };
 
-    translateSelectOptions();
-   
+
     function translateSelectOptions() {
-        $scope.sportsSelectOptions = getSelectOptions("sports", $rootScope.currentLanguage);
-        $scope.regionsSelectOptions = getSelectOptions("regions", $rootScope.currentLanguage);
-        $scope.agesSelectOptions = getSelectOptions("ages", $rootScope.currentLanguage);
-        $scope.valuesSelectOptions = getSelectOptions("values", $rootScope.currentLanguage);
+        $scope.regions = getSelectOptions($scope.regionsResponseData, $rootScope.currentLanguage);
+        $scope.sports = getSelectOptions($scope.sportsResponseData, $rootScope.currentLanguage);
+        $scope.ages = getSelectOptions($scope.agesResponseData, $rootScope.currentLanguage);
+        $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
     }
 
-    function getSelectOptions(collectionName, language) {
-        var options;
-        if (language == "sr") {
-            options = "o.Id as o.Name_Srb for o in " + collectionName;
+    function getSelectOptions(data, language) {
+        var collection = [];
+        for (var i = 0; i < data.length; i++) {
+            var option = {};
+            option["Id"] = data[i].Id;
+            if (language == "sr") {
+                option["Name"] = data[i].Name_Srb;
+            }
+            else if (language == "en") {
+                option["Name"] = data[i].Name;
+            }
+            collection.push(option);
         }
-        else if (language == "en") {
-            options = "o.Id as o.Name for o in " + collectionName;
-        }
-        console.log(options);
-        return options;
+        return collection;
     }
 
     $rootScope.$on('languageChanged', function () {
-        console.log("test");
         translateSelectOptions();
-    });
-    
-    $scope.$on("languageChanged", function (event, args) {
-        console.log("emitovao");
-        console.log(args);
     });
 
     RiskService.getRisksByCategory(1).then(function (response) {
@@ -66,19 +63,23 @@
     });
 
     RiskService.getRiskItemsForRisk("Sport").then(function (response) {
-        $scope.sports = response.data;
+        $scope.sportsResponseData = response.data;
+        $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("Region").then(function (response) {
-        $scope.regions = response.data;
+        $scope.regionsResponseData = response.data;
+        $scope.regions = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("Age").then(function (response) {
-        $scope.ages = response.data;
+        $scope.agesResponseData = response.data;
+        $scope.ages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
-        $scope.values = response.data;
+        $scope.valuesResponseData = response.data;
+        $scope.values = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getOtherCategories().then(function (response) {
