@@ -36,6 +36,7 @@
         $scope.sports = getSelectOptions($scope.sportsResponseData, $rootScope.currentLanguage);
         $scope.ages = getSelectOptions($scope.agesResponseData, $rootScope.currentLanguage);
         $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
+        $scope.categories = getSelectOptions($scope.categoriesResponseData, $rootScope.currentLanguage);
     }
 
     function getSelectOptions(data, language) {
@@ -83,6 +84,7 @@
     });
 
     RiskService.getOtherCategories().then(function (response) {
+        $scope.categoriesResponseData = response.data;
         $scope.categories = response.data;
     });
 
@@ -97,9 +99,12 @@
     };
 
     
+    $scope.cancelHome = function () {
+        $rootScope.showHomeForm = false;
+    };
 
-    $scope.formDetails = function () {
-        console.log(form.number);
+    $scope.cancelVehicle = function () {
+        $rootScope.showVehicleForm = false;
     };
 
     $scope.chooseAnother = function () {
@@ -129,18 +134,18 @@
     $scope.showInsuranceByCategory = function (c) {
        
         if(c == "Home") {
-            $scope.showHomeForm = true;
+            $rootScope.showHomeForm = true;
         }
         if(c  == "Vehicle") {
-            $scope.showVehicleForm = true;
+            $rootScope.showVehicleForm = true;
         }
      };
 
    
     $scope.cancelOther = function () {
         $scope.showAnotherInsurance = false;
-        $scope.showHomeForm = false;
-        $scope.showVehicleForm = false;
+        $rootScope.showHomeForm = false;
+        $rootScope.showVehicleForm = false;
         $scope.HomeInsurance.Area = "";
         $scope.HomeInsurance.Age = "";
         $scope.HomeInsurance.Value = "";

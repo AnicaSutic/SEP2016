@@ -36,6 +36,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             english: "English",
             serbian: "Serbian",
             home: "Home",
+            startNow: "Buy insurance",
             welcome: "Welcome",
             okina: "Okina",
             insurance: "Insurance package",
@@ -96,13 +97,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             endDate: "To",
             currency: "euros",
             errStart: "You must enter start date!",
-            errEnd: "You must enter end date!"
+            errEnd: "You must enter end date!",
+            errDateEnd: "End date is not valid! Check start date!",
+            errDateStart: "Start date is not valid! Check end date!"
         };
     var ser =
         {
             english: "Engleski",
             serbian: "Srpski",
             home: "Početna strana",
+            startNow: "Kupi osiguranje",
             welcome: "Dobrodošli",
             okina: "Okina",
             insurance: "Osiguranje",
@@ -163,7 +167,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             endDate: "Do",
             currency: "dinara",
             errStart: "Niste uneli datum početka!",
-            errEnd: "Niste uneli datum završetka!"
+            errEnd: "Niste uneli datum završetka!",
+            errDateEnd: "Datum završetka nije validan! Proverite početni datum!",
+            errDateStart: "Datum početka nije validan! Proverite datum završetka! "
         };
 
     $.ajax({
@@ -242,20 +248,28 @@ app.controller('HomeController', function ($scope, $window, RiskService) {
     };
     
 });
-app.controller('NavbarController', function ($scope, $state, $translate) {
+app.controller('NavbarController', ['$scope', '$rootScope' ,'$state', '$translate', 'TranslateService', function ($scope, $rootScope, $state, $translate, TranslateService) {
+
+    $rootScope.currentLanguage = "en";
 
     $scope.changeCurrentLanguage = function (key) {
         $translate.use(key);
+        $rootScope.currentLanguage = key;
+        $rootScope.$emit('languageChanged', {});
     };
 
-});
-app.controller('CalculatorController', function ($scope, RiskService) {
+}]);
+app.controller('CalculatorController', function ($scope, $rootScope, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
 
     $scope.homeRisks = {};
 
     $scope.isChecked = false;
+
+    $scope.dateStart = false;
+
+    $scope.dateEnd = false;
 
     $scope.price = 0.0;
 
@@ -276,32 +290,57 @@ app.controller('CalculatorController', function ($scope, RiskService) {
         Value: "",
         EnsuredBy: 0
     };
-   
-    $scope.sports = {};
-    $scope.values = {};
-    $scope.ages = {};
-    $scope.regions = {};
-    $scope.ensuredBy = {};
-    
+
+
+    function translateSelectOptions() {
+        $scope.regions = getSelectOptions($scope.regionsResponseData, $rootScope.currentLanguage);
+        $scope.sports = getSelectOptions($scope.sportsResponseData, $rootScope.currentLanguage);
+        $scope.ages = getSelectOptions($scope.agesResponseData, $rootScope.currentLanguage);
+        $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
+    }
+
+    function getSelectOptions(data, language) {
+        var collection = [];
+        for (var i = 0; i < data.length; i++) {
+            var option = {};
+            option["Id"] = data[i].Id;
+            if (language == "sr") {
+                option["Name"] = data[i].Name_Srb;
+            }
+            else if (language == "en") {
+                option["Name"] = data[i].Name;
+            }
+            collection.push(option);
+        }
+        return collection;
+    }
+
+    $rootScope.$on('languageChanged', function () {
+        translateSelectOptions();
+    });
 
     RiskService.getRisksByCategory(1).then(function (response) {
         $scope.travelRisks = response.data;
     });
 
     RiskService.getRiskItemsForRisk("Sport").then(function (response) {
-        $scope.sports = response.data;
+        $scope.sportsResponseData = response.data;
+        $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("Region").then(function (response) {
-        $scope.regions = response.data;
+        $scope.regionsResponseData = response.data;
+        $scope.regions = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("Age").then(function (response) {
-        $scope.ages = response.data;
+        $scope.agesResponseData = response.data;
+        $scope.ages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
-        $scope.values = response.data;
+        $scope.valuesResponseData = response.data;
+        $scope.values = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getOtherCategories().then(function (response) {
@@ -312,7 +351,7 @@ app.controller('CalculatorController', function ($scope, RiskService) {
         
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
-
+        
         RiskService.calculatePrice($scope.Insurance).then(function (response) {
             $scope.price = response.data;
         });
@@ -328,12 +367,28 @@ app.controller('CalculatorController', function ($scope, RiskService) {
         $scope.showAnotherInsurance = true;
     };
 
-    $scope.checkForm = function () {
-        
-        $scope.showAnotherInsurance = true;
+    $scope.checkDate = function () {
+        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
+            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
+                $scope.dateEnd = true;
+            } else {
+                $scope.dateEnd = false;
+            }
+        }
     };
 
+    $scope.checkDateEnd = function () {
+        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
+            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
+                $scope.dateEnd = true;
+                $scope.dateStart = false;
+            }
+        }
+    };
+
+
     $scope.showInsuranceByCategory = function (c) {
+       
         if(c == "Home") {
             $scope.showHomeForm = true;
         }

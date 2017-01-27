@@ -1,8 +1,28 @@
 {
-	"name": "ASP.NET",
-	"private": true,
+  "name": "ASP.NET",
+  "homepage": "https://github.com/AnicaSutic/SEP2016/",
+  "authors": [
+    "Nenad Rad",
+    "Ivana Tesanovic",
+    "Anica Sutic"
+  ],
+  "description": "Application for buying insurance and ePayment system",
+  "main": "",
+  "license": "MIT",
+  "private": true,
   "dependencies": {
     "jquery": "1.10.2",
-    "bootstrap": "3.0.0"
+    "bootstrap": "3.0.0",
+    "angular-ui-router": "0.2.18",
+    "angular-sanitize": "1.6.1",
+    "angular-translate": "2.13.1",
+    "angular-cookies": "1.4.8",
+    "angular-cache-buster": "0.4.3",
+    "angular-local-storage": "0.2.3",
+    "angular-resource": "1.4.8",
+    "angular-bootstrap": "0.14.3"
+  },
+  "resolutions": {
+    "angular": "1.6.1"
   }
 }
