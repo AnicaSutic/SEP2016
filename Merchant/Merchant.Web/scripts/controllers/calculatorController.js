@@ -1,4 +1,4 @@
-﻿app.controller('CalculatorController', function ($scope, RiskService) {
+﻿app.controller('CalculatorController', function ($scope, $rootScope, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
 
@@ -29,13 +29,37 @@
         Value: "",
         EnsuredBy: 0
     };
+
+    translateSelectOptions();
    
-    $scope.sports = {};
-    $scope.values = {};
-    $scope.ages = {};
-    $scope.regions = {};
-    $scope.ensuredBy = {};
+    function translateSelectOptions() {
+        $scope.sportsSelectOptions = getSelectOptions("sports", $rootScope.currentLanguage);
+        $scope.regionsSelectOptions = getSelectOptions("regions", $rootScope.currentLanguage);
+        $scope.agesSelectOptions = getSelectOptions("ages", $rootScope.currentLanguage);
+        $scope.valuesSelectOptions = getSelectOptions("values", $rootScope.currentLanguage);
+    }
+
+    function getSelectOptions(collectionName, language) {
+        var options;
+        if (language == "sr") {
+            options = "o.Id as o.Name_Srb for o in " + collectionName;
+        }
+        else if (language == "en") {
+            options = "o.Id as o.Name for o in " + collectionName;
+        }
+        console.log(options);
+        return options;
+    }
+
+    $rootScope.$on('languageChanged', function () {
+        console.log("test");
+        translateSelectOptions();
+    });
     
+    $scope.$on("languageChanged", function (event, args) {
+        console.log("emitovao");
+        console.log(args);
+    });
 
     RiskService.getRisksByCategory(1).then(function (response) {
         $scope.travelRisks = response.data;

@@ -260,6 +260,7 @@
     <Content Include="scripts\scripts.js" />
     <Content Include="scripts\angular-translate.js" />
     <Content Include="scripts\services\riskService.js" />
+    <Content Include="scripts\services\translateService.js" />
     <Content Include="scripts\smoothscroll.js" />
     <Content Include="scripts\ui-bootstrap-tpls-2.1.3.min.js" />
     <Content Include="scripts\waypoints.min.js" />

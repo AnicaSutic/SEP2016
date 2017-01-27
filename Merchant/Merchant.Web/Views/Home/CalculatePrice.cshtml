@@ -95,7 +95,7 @@
         cursor:none;
     }
 </style>
-        <div ng-controller="CalculatorController">
+        <div">
             <div class=col-md-12">
                     <h1 style="text-align:center" translate="calculatePrice"></h1>
                     <h3 style="text-align:center; font-style:oblique " translate="travelInsurance" class="topBottomMargin"></h3>
@@ -132,7 +132,7 @@
 
                             <div class="form-group">
                                 <label class="col-sm-4" for="region" translate="region"></label>
-                                <select class="form-control col-sm-10" id="region" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name | translate for r in regions">
+                                <select class="form-control col-sm-10" id="region" name="region" required="required" ng-model="Insurance.Region" ng-options="{{regionsSelectOptions}}">
                                     <option value="" ng-selected="selected" translate="selReg"></option>
                                 </select><br />
                                 <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>
@@ -149,7 +149,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4" translate="age"></label>
-                                <select class="form-control col-sm-10" name="age" ng-model="Insurance.Age" required" ng-options="a.Id as a.Name for a in ages">
+                                <select class="form-control col-sm-10" name="age" ng-model="Insurance.Age" required" ng-options="{{agesSelectOptions}}">
                                     <option ng-selected="selected" translate="selAge"></option>
                                 </select><br />
                                 <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
@@ -157,14 +157,14 @@
                             <label class="col-sm-4" translate="sport">?</label>
                             <input type="checkbox" class="btn" ng-model="isChecked" /><br />
                             <div class="form-group">
-                                <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
+                                <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport" ng-options="{{sportsSelectOptions}}">
                                     <option value="" ng-selected="selected" translate="selSport"></option>
                                 </select><br />
                                 <span ng-show="form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4" translate="value"></label>
-                                <select class="form-control col-sm-10" name="value" ng-model="Insurance.InsuredValue" ng-options="v.Id as v.Name for v in values">
+                                <select class="form-control col-sm-10" name="value" ng-model="Insurance.InsuredValue" ng-options="{{valuesSelectOptions}}">
                                     <option value="" ng-selected="selected" translate="selValue"></option>
                                 </select><br />
                                 <span ng-show="form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
