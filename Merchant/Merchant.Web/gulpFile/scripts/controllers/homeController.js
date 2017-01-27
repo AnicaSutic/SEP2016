@@ -1,0 +1,1 @@
+app.controller("HomeController",function(o,n,e){o.showForm=!1,o.showAnotherInsurance=!1,o.risks={},o.categories={},o.sports={},o.values={},o.ages={},o.regions={},o.addPolicy=function(){o.showForm=!0},o.cancelPolicy=function(){o.showForm=!1},o.chooseAnother=function(){o.showAnotherInsurance=!0},o.cancelOther=function(){o.showAnotherInsurance=!1}});

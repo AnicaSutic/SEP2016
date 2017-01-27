@@ -7,7 +7,7 @@ gulp.task('default', function () {
     console.log("Merchant Application");
 });
 
-// svi moduli i kontroleri
+// svi moduli i kontroleri u jedan fajl
 gulp.task('angularModulesAndControllers', function () {
     return gulp.src(
       ["scripts/modules/app.js"
@@ -17,5 +17,14 @@ gulp.task('angularModulesAndControllers', function () {
       , "scripts/controllers/insurantsController.js"
       , "scripts/services/riskService.js"])
       .pipe(concat('angularModAndContrl.js'))
-      .pipe(gulp.dest("scripts"));
+      .pipe(gulp.dest("gulpFile"));
 });
+
+//minimizirane svih javaScript fajlova iz script foldera
+gulp.task('uglifyScripts', function () {
+    return gulp.src(["scripts/**/*js", "!scripts/**/*min.js"])
+    .pipe(uglify())
+    .pipe(gulp.dest("gulpFile/scripts"));
+});
+
+//minimiziranje bower komponenti

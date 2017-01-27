@@ -1,0 +1,1 @@
+app.controller("NavbarController",["$scope","$rootScope","$state","$translate","TranslateService",function(e,a,n,r,t){a.currentLanguage="en",e.changeCurrentLanguage=function(e){r.use(e),a.currentLanguage=e,a.$emit("languageChanged",{})}}]);
