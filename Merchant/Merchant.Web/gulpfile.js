@@ -20,6 +20,12 @@ gulp.task('angularModulesAndControllers', function () {
       .pipe(gulp.dest("gulpFile"));
 });
 
+gulp.task('uglifyAngular', function () {
+    return gulp.src("gulpFile/angularModAndContrl.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("gulpFile/min"));
+});
+
 //minimizirane svih javaScript fajlova iz script foldera
 gulp.task('uglifyScripts', function () {
     return gulp.src(["scripts/**/*js", "!scripts/**/*min.js"])

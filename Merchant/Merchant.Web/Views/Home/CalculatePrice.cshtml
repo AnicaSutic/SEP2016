@@ -168,6 +168,7 @@
                             </div>
                             <br />
                         <div ng-if="showHomeForm">
+                            <h3 translate="homeInsurance"></h3>
                             <div class="form-group">
                                 <label class="col-sm-4" translate="homeArea"></label>
                                 <input class="form-control  col-sm-10" type="number" name="area" required min="1" ng-model="HomeInsurance.Area" /><br />
@@ -178,37 +179,43 @@
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-4" translate="homeAge"></label>
-                                <input class="form-control col-sm-10" type="number" name="age" required min="1" ng-model="HomeInsurance.Age" /><br />
-                                <div ng-show="form.area.$touched">
-                                    <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errHomeAge"></span>
-                                    <span ng-show="form.age.$error.min" style="color:red; display: block" translate="errHomeAge"></span>
+                                <input class="form-control col-sm-10" type="number" name="homeAge" required min="1" ng-model="HomeInsurance.Age" /><br />
+                                <div ng-show="form.homeAge.$touched">
+                                    <span ng-show="form.homeAge.$error.required" style="color:red; display: block" translate="errHomeAge"></span>
+                                    <span ng-show="form.homeAge.$error.min" style="color:red; display: block" translate="errHomeAge"></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-4" translate="homeValue"></label>
                                 <input class="form-control col-sm-10" type="number" name="homeValue" required min="1" ng-model="HomeInsurance.Value" /><br />
-                                <div ng-show="form.area.$touched">
+                                <div ng-show="form.homeValue.$touched">
                                     <span ng-show="form.homeValue.$error.required" style="color:red; display: block" translate="errHomeValue"></span>
                                     <span ng-show="form.homeValue.$error.min" style="color:red; display: block" translate="errHomeValue"></span>
                                 </div>
                                 </div>
                                 <div class="form-group">
-                                    @*dobaviti listu ensuredBy*@
                                     <label  class="col-sm-4" translate="ensuredBy"></label>
-                                    <select class="form-control col-sm-10" name="ensuredBy" ng-model="HomeInsurance.InsuredBy" ng-options="e.Id as e.Name for e in ensuredBy">
-                                        <option value="" ng-selected="selected" translate="selEnsured"></option>
-                                    </select><br />
-                                    <span ng-show="form.ensuredBy.$error.required" style="color:red; display: block" translate="errEnsured"></span>
+                                    <span ng-show="form.insuredBy.$error.required" style="color:red; display: block" translate="errEnsured"></span>
                                 </div>
-                            <button class="btn btn-link" ng-click="cancelHome()" translate="cancel"></button>
+                            <div ng-repeat="i in insuredBy" class="form-group">
+                                <label class="col-sm-4" >{{i.Name}}</label>
+                                <input type="checkbox"  /><br />
+                            </div><br />
+                                <button class="btn btn-link" ng-click="cancelHome()" translate="cancel"></button>
                             </div>
                         <br />
                         <div ng-if="showVehicleForm">
+                        <h3 translate="vehicleInsurance"></h3>
                             <div class="form-group">
                                 <label class="col-sm-4" translate="packageV"></label>
+                                <select class="form-control col-sm-10" name="package" required ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
+                                    <option value="" ng-selected="selected" translate="selPackage"></option>
+                                </select><br />
+                                <span ng-show="form.package.$error.required" style="color:red; display: block" translate="errPackage"></span>
                             </div>
+                            
                             <button class="btn btn-link" ng-click="cancelVehicle()" translate="cancel"></button>
-                            </div><br />
+                        </div><br />
                             <div>
                                 <button ng-disabled="form.$invalid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
                             </div>
@@ -217,7 +224,7 @@
                                 @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
                             </div>
                            
-</form>
+                    </form>
                 </div>
                 <ul class="pager">
                     <li><a class="btn btn-link"  translate="next" ui-sref="insurants"> </a></li>

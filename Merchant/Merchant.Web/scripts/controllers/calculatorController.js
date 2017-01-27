@@ -27,7 +27,11 @@
         Area : "",
         Age: "",
         Value: "",
-        EnsuredBy: 0
+        InsuredBy: 0
+    };
+
+    $scope.VehicleInsurance = {
+        Package : 0
     };
 
 
@@ -36,7 +40,9 @@
         $scope.sports = getSelectOptions($scope.sportsResponseData, $rootScope.currentLanguage);
         $scope.ages = getSelectOptions($scope.agesResponseData, $rootScope.currentLanguage);
         $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
+        $scope.insuredBy = getSelectOptions($scope.insuredByResponseData, $rootScope.currentLanguage);
         $scope.categories = getSelectOptions($scope.categoriesResponseData, $rootScope.currentLanguage);
+        $scope.packages = getSelectOptions($scope.packagesResponseData, $rootScope.currentLanguage);
     }
 
     function getSelectOptions(data, language) {
@@ -68,6 +74,11 @@
         $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
+    RiskService.getRiskItemsForRisk("InsuredBy").then(function (response) {
+        $scope.insuredByResponseData = response.data;
+        $scope.insuredBy = getSelectOptions(response.data, $rootScope.currentLanguage);
+    });
+
     RiskService.getRiskItemsForRisk("Region").then(function (response) {
         $scope.regionsResponseData = response.data;
         $scope.regions = getSelectOptions(response.data, $rootScope.currentLanguage);
@@ -81,6 +92,11 @@
     RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
         $scope.valuesResponseData = response.data;
         $scope.values = getSelectOptions(response.data, $rootScope.currentLanguage);
+    });
+
+    RiskService.getRiskItemsForRisk("Packages").then(function (response) {
+        $scope.packagesResponseData = response.data;
+        $scope.packages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getOtherCategories().then(function (response) {
@@ -132,11 +148,10 @@
 
 
     $scope.showInsuranceByCategory = function (c) {
-       
-        if(c == "Home") {
+        if(c == "Home" || c == "Stambeno") {
             $rootScope.showHomeForm = true;
         }
-        if(c  == "Vehicle") {
+        if(c  == "Vehicle" || c == "Osiguranje vozila") {
             $rootScope.showVehicleForm = true;
         }
      };
