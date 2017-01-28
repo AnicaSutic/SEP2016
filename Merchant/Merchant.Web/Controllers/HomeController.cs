@@ -37,5 +37,10 @@ namespace Merchant.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult OtherInsurance()
+        {
+            return View();
+        }
     }
 }

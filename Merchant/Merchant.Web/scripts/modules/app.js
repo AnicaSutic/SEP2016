@@ -15,9 +15,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             templateUrl: '/Home/CalculatePrice',
             controller: 'CalculatorController'
         })
-        .state('otherInsurances', {
-            url: '/Home/OtherInsurances',
-            templateUrl: '/Home/OtherInsurances',
+        .state('otherInsurance', {
+            url: '/Home/OtherInsurance',
+            templateUrl: '/Home/OtherInsurance',
             controller: 'CalculatorController'
         })
         .state('insurance', {
