@@ -16,25 +16,38 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+To install all components you need to have installed git and node.js. 
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+1) Install node modules,
+path : Merchant/Merchant.Web
 
 ```
-until finished
+npm install 
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+2) Install bower,
+path : Merchant/Merchant.Web
 
-## Running the tests
+```
+bower install
+```
 
-Explain how to run the automated tests for this system
+3) Install gulp,
+path : Merchant/Merchant.Web
+
+```
+npm install --save-dev gulp
+```
+
+## How to deploy
+
+1) Run gulp.js file to create gulpFile folder which will contain files from gulp tasks. This can be initiated from VisualStudio in TaskRunnerExploler. Another way is to run gulp file through git-bash in your project directory,
+path : Merchant/Merchant.Web
+
+
+```
+gulp
+```
 
 ### Break down into end to end tests
 
