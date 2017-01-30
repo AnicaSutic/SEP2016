@@ -210,12 +210,27 @@
                     <h3 translate="vehicleInsurance"></h3>
                     <div class="form-group">
                         <label class="col-sm-4" translate="packageV"></label>
-                        <select class="form-control col-sm-10" name="package" required ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
+                        <select class="form-control col-sm-10" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
                             <option value="" ng-selected="selected" translate="selPackage"></option>
                         </select><br />
                         <span ng-show="form.package.$error.required" style="color:red; display: block" translate="errPackage"></span>
                     </div>
-
+                    <div ng-show="towing && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="towing"></label>
+                        <input class="form-control col-sm-8" type="number" name="towing" required min="1" ng-model="VehicleInsurance.Towing" /><br />
+                        <span ng-show="form.towing.$touched && form.towing.$error.required" style="color:red; display: block" translate="errTowing"></span>
+                    </div>
+                    <div ng-show="repair && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="repair"></label>
+                        <input class="form-control col-sm-10" type="number" name="repair" required min="1" ng-model="VehicleInsurance.Repair" /><br />
+                        <span ng-show="form.repair.$touched && form.repair.$error.required" style="color:red; display: block" translate="errRepair"></span>
+                    </div>
+                    <div ng-show="accomodation && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="accomodation"></label>
+                        <input class="form-control col-sm-10" type="number" name="accomodation" required min="1" ng-model="VehicleInsurance.Accomodation" /><br />
+                        <span ng-show="form.accomodation.$touched && form.accomodation.$error.required" style="color:red; display: block" translate="errAccomodation"></span>
+                    </div>
+                   
                     <button class="btn btn-link" ng-click="cancelVehicle()" translate="cancel"></button>
                 </div><br />
                 <div>
@@ -234,6 +249,6 @@
     </ul>
         *@
     </div>
-            <a class="left-control" ui-sref="home"><i class="fa fa-angle-left"></i></a>
+            <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
             <a class="right-control" ui-sref="insurants"><i class="fa fa-angle-right"></i></a>
 </div>
