@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace PCC.Controllers
 {
@@ -24,88 +26,83 @@ namespace PCC.Controllers
         }
 
         // POST: api/Payment
-        public string Post(CreditCardDetails cardDetails)
+        public PaymentResponse Post(PaymentDetails paymentDetails)
         {
-            Item item = new Item();
-            item.name = "Demo Item";
-            item.currency = "USD";
-            item.price = "5";
-            item.quantity = "1";
-            item.sku = "sku";
+            var creditCard = new CreditCard
+            {
+                cvv2 = paymentDetails.Cvv,
+                expire_month = int.Parse(paymentDetails.ExpirationMonth),
+                expire_year = int.Parse(paymentDetails.ExpirationYear),
+                number = paymentDetails.CardNumber,
+                type = "visa"
+            };
 
-            List<Item> items = new List<Item>();
-            items.Add(item);
-            ItemList itemList = new ItemList();
-            itemList.items = items;
+            var details = new Details
+            {
+                shipping = "0",
+                subtotal = paymentDetails.Amount,
+                tax = "0",
+            };
 
-            Address billingAddress = new Address();
-            billingAddress.city = "New York";
-            billingAddress.country_code = "US";
-            billingAddress.line1 = "23rd street kew gardens";
-            billingAddress.postal_code = "43210";
-            billingAddress.state = "NY";
+            var amount = new Amount
+            {
+                currency = "USD",
+                total = paymentDetails.Amount,
+                details = details,
+            };
 
-            CreditCard creditCard = new CreditCard();
-            creditCard.billing_address = billingAddress;
-            creditCard.cvv2 = cardDetails.Cvv;
-            creditCard.expire_month = int.Parse(cardDetails.ExpirationMonth);
-            creditCard.expire_year = int.Parse(cardDetails.ExpirationYear);
-            creditCard.first_name = "Aman";
-            creditCard.last_name = "Thakur";
-            creditCard.number = cardDetails.CardNumber;
-            creditCard.type = "visa";
+            var transaction = new Transaction
+            {
+                amount = amount,
+                invoice_number = Common.GetRandomInvoiceNumber()
+            };
 
-            Details details = new Details();
-            details.shipping = "1";
-            details.subtotal = "5";
-            details.tax = "1";
+            var transactions = new List<Transaction> {transaction};
 
-            Amount amount = new Amount();
-            amount.currency = "USD";
-            amount.total = "7";
-            amount.details = details;
+            var fundingInstrument = new FundingInstrument {credit_card = creditCard};
 
-            Transaction transaction = new Transaction();
-            transaction.amount = amount;
-            transaction.description = "Description about payment amount";
-            transaction.item_list = itemList;
-            transaction.invoice_number = Common.GetRandomInvoiceNumber();
+            var fundingInstruments = new List<FundingInstrument> {fundingInstrument};
 
-            List<Transaction> transactions = new List<Transaction>();
-            transactions.Add(transaction);
+            var payer = new Payer
+            {
+                funding_instruments = fundingInstruments,
+                payment_method = "credit_card"
+            };
 
-            FundingInstrument fundingInstrument = new FundingInstrument();
-            fundingInstrument.credit_card = creditCard;
-
-            List<FundingInstrument> fundingInstruments = new List<FundingInstrument>();
-            fundingInstruments.Add(fundingInstrument);
-
-            Payer payer = new Payer();
-            payer.funding_instruments = fundingInstruments;
-            payer.payment_method = "credit_card";
-
-            Payment paymet = new Payment();
-            paymet.intent = "sale";
-            paymet.payer = payer;
-            paymet.transactions = transactions;
+            var paymet = new Payment
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactions
+            };
 
             try
             {
-                APIContext apiContext = Models.Configuration.GetApiContext();
-                Payment createPayment = paymet.Create(apiContext);
+                var apiContext = Models.Configuration.GetApiContext();
+                var createPayment = paymet.Create(apiContext);
 
                 if (createPayment.state.ToLower() != "approved")
                 {
-                    return "failure";
+                    return new PaymentResponse
+                    {
+                        TransactionSuccessful = false,
+                        Message = null
+                    };
                 }
             }
             catch (PayPal.PayPalException ex)
             {
-                //ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-                //log.Error("Error" + ex.Message);
-                return "failure" + ex.Message;
+                return new PaymentResponse
+                {
+                    TransactionSuccessful = false,
+                    Message = ex.InnerException?.Message
+                };
             }
-            return "success";
+            return new PaymentResponse
+            {
+                TransactionSuccessful = true,
+                Message = null
+            };
         }
 
         // PUT: api/Payment/5

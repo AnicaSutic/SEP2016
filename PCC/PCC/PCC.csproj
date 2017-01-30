@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CreditCardController.cs" />
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -127,6 +128,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreditCardDetails.cs" />
+    <Compile Include="Models\PaymentDetails.cs" />
+    <Compile Include="Models\PaymentResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
