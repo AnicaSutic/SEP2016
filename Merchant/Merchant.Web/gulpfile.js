@@ -3,11 +3,35 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
 gulp.task('default', function () {
-    // place code for your default task here
     console.log("Merchant Application");
+
 });
 
-// svi moduli i kontroleri u jedan fajl
+
+// concat and uglify all bower components
+gulp.task('allBower', function () {
+    return gulp.src(
+        ["lib/bootstrap/dist/bootstrap.js"
+        , "lib/angular/angular.js"
+        , "lib/jquery/jquery.js"
+        , "lib/angular-ui-router/release/angular-ui-router.js"
+        , "lib/angular-sanitize/angular-sanitize.js"
+        , "lib/angular-translate/angular-translate.js"
+        , "scripts/modernizr-2.6.2.js"
+        , "scripts/ui-bootstrap-tpls-2.1.3.min.js"
+        , "scripts/scripts.js"
+        , "scripts/jquery.flexslider.js"
+        , "scripts/jquery.smooth-scroll.js"
+        , "scripts/jquery.fancybox.pack.js"
+        , "scripts/waypoints.min.js"
+         , "scripts/ui-bootstrap-tpls-2.1.3.min.js"])
+        .pipe(concat('allBower.js'))
+        .pipe(gulp.dest('gulpFiles'))
+
+});
+
+
+// concat and uglify all modules and controllers
 gulp.task('angularModulesAndControllers', function () {
     return gulp.src(
       ["scripts/modules/app.js"
@@ -17,20 +41,17 @@ gulp.task('angularModulesAndControllers', function () {
       , "scripts/controllers/insurantsController.js"
       , "scripts/services/riskService.js"])
       .pipe(concat('angularModAndContrl.js'))
-      .pipe(gulp.dest("gulpFile"));
+      .pipe(gulp.dest("gulpFiles"));
 });
 
-gulp.task('uglifyAngular', function () {
-    return gulp.src("gulpFile/angularModAndContrl.js")
-    .pipe(uglify())
-    .pipe(gulp.dest("gulpFile/min"));
+// concat all js 
+// ovaj pokrenuti,automatski pokrece i ostale koji su potrebni
+gulp.task('all_JS', ['allBower', 'angularModulesAndControllers'], function () {
+    return gulp.src(
+        ["gulpFiles/allBower.js"
+         , "gulpFiles/angularModAndContrl.js"])
+        .pipe(concat('all_JS'))
+        .pipe(uglify())
+        .pipe(gulp.dest('gulpFiles'));
 });
 
-//minimizirane svih javaScript fajlova iz script foldera
-gulp.task('uglifyScripts', function () {
-    return gulp.src(["scripts/**/*js", "!scripts/**/*min.js"])
-    .pipe(uglify())
-    .pipe(gulp.dest("gulpFile/scripts"));
-});
-
-//minimiziranje bower komponenti

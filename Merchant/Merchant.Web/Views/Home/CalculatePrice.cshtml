@@ -250,5 +250,7 @@
         *@
     </div>
             <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
-            <a class="right-control" ui-sref="insurants"><i class="fa fa-angle-right"></i></a>
-</div>
+    <div ng-show="!form.$invalid">
+        <a class="right-control" ui-sref="insurants"><i class="fa fa-angle-right"></i></a>
+     </div>
+        </div>
