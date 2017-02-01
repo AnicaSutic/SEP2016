@@ -21,30 +21,30 @@
     $scope.price = 0.0;
    
 
-    $scope.Insurance = {
-        Duration: "",
-        Region: 0,
-        NumberOfInsurants: "",
-        InsuredValue: 0,
-        Age: 0,
-        Sport: 0,
-        StartDate: "",
-        EndDate: ""
-    };
+    //$scope.Insurance = {
+    //    Duration: "",
+    //    Region: 0,
+    //    NumberOfInsurants: "",
+    //    InsuredValue: 0,
+    //    Age: 0,
+    //    Sport: 0,
+    //    StartDate: "",
+    //    EndDate: ""
+    //};
 
-    $scope.HomeInsurance = {
-        Area : "",
-        Age: "",
-        Value: "",
-        InsuredBy: 0
-    };
+    //$scope.HomeInsurance = {
+    //    Area : "",
+    //    Age: "",
+    //    Value: "",
+    //    InsuredBy: 0
+    //};
 
-    $scope.VehicleInsurance = {
-        Package: 0,
-        Towing : "",
-        Repair: "",
-        Accomodation: ""
-    };
+    //$scope.VehicleInsurance = {
+    //    Package: 0,
+    //    Towing : "",
+    //    Repair: "",
+    //    Accomodation: ""
+    //};
 
 
     function translateSelectOptions() {
