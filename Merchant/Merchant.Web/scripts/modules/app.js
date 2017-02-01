@@ -39,7 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             startNow: "Buy insurance",
             welcome: "Welcome",
             okina: "Okina",
-            insurance: "Insurance package",
+            insurance: "Insurance packages",
             calculate: "Calculate the price",
             duration: "Insurance duration",
             region: "Region",

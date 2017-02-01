@@ -120,14 +120,12 @@
                     </div>
                 </div>
                 <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openEd()" translate="openCal"></button>
-
-
                 <div class="form-group">
                     <label class="col-sm-4" for="region" translate="region"></label>
-                    <select class="form-control col-sm-10" id="region" name="region" required="required" ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
-                        <option value="" ng-selected="selected" translate="selReg"></option>
+                    <select class="form-control col-sm-10" id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
+                        <option  value="" translate="selReg"></option>
                     </select><br />
-                    <span ng-show="form.region.$error.required" style="color:red; display: block" translate="errReg"></span>
+                    <span ng-show="form.region.$touched && region.$error.required" style="color:red; display: block" translate="errReg"></span>
                 </div>
                 <br />
                 <div class="form-group">
@@ -141,25 +139,25 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4" translate="age"></label>
-                    <select class="form-control col-sm-10" name="age" ng-model="Insurance.Age" required" ng-options="a.Id as a.Name for a in ages">
-                        <option ng-selected="selected" translate="selAge"></option>
+                    <select class="form-control col-sm-10" name="age" ng-model="Insurance.Age" required ng-options="a.Id as a.Name for a in ages">
+                        <option value="" translate="selAge"></option>
                     </select><br />
-                    <span ng-show="form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
+                    <span ng-show="form.age.$touched && form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
                 </div>
                 <label class="col-sm-4" translate="sport">?</label>
                 <input type="checkbox" ng-model="isChecked" /><br />
                 <div class="form-group">
-                    <select class="form-control" name="sport" ng-show="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
-                        <option value="" ng-selected="selected" translate="selSport"></option>
+                    <select class="form-control" name="sport" ng-if="isChecked" required  ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
+                        <option value="" translate="selSport"></option>
                     </select><br />
-                    <span ng-show="form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>
+                    <span ng-show="isChecked && form.sport.$touched && form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4" translate="value"></label>
-                    <select class="form-control col-sm-10" name="value" ng-model="Insurance.InsuredValue" ng-options="v.Id as v.Name for v in values">
-                        <option value="" ng-selected="selected" translate="selValue"></option>
+                    <select class="form-control col-sm-10" name="value" ng-model="Insurance.InsuredValue" required ng-options="v.Id as v.Name for v in values">
+                        <option value=""  translate="selValue"></option>
                     </select><br />
-                    <span ng-show="form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
+                    <span ng-show="form.value.$touched && form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
                 </div>
                 <button class="btn btn-link " ng-disabled="showVehicleForm || showHomeForm || showAnotherInsurance" ng-click="chooseAnother()" translate="chooseAnother"></button>
                 <br />
@@ -210,22 +208,22 @@
                     <h3 translate="vehicleInsurance"></h3>
                     <div class="form-group">
                         <label class="col-sm-4" translate="packageV"></label>
-                        <select class="form-control col-sm-10" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
-                            <option value="" ng-selected="selected" translate="selPackage"></option>
+                        <select class="form-control col-sm-10" id="package" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
+                            <option value="" translate="selPackage"></option>
                         </select><br />
                         <span ng-show="form.package.$error.required" style="color:red; display: block" translate="errPackage"></span>
                     </div>
-                    <div ng-show="towing && !form.package.$error.required " class="form-group">
+                    <div ng-if="towing && !form.package.$error.required " class="form-group">
                         <label class="col-sm-4" translate="towing"></label>
                         <input class="form-control col-sm-8" type="number" name="towing" required min="1" ng-model="VehicleInsurance.Towing" /><br />
                         <span ng-show="form.towing.$touched && form.towing.$error.required" style="color:red; display: block" translate="errTowing"></span>
                     </div>
-                    <div ng-show="repair && !form.package.$error.required " class="form-group">
+                    <div ng-if="repair && !form.package.$error.required " class="form-group">
                         <label class="col-sm-4" translate="repair"></label>
                         <input class="form-control col-sm-10" type="number" name="repair" required min="1" ng-model="VehicleInsurance.Repair" /><br />
                         <span ng-show="form.repair.$touched && form.repair.$error.required" style="color:red; display: block" translate="errRepair"></span>
                     </div>
-                    <div ng-show="accomodation && !form.package.$error.required " class="form-group">
+                    <div ng-if="accomodation && !form.package.$error.required " class="form-group">
                         <label class="col-sm-4" translate="accomodation"></label>
                         <input class="form-control col-sm-10" type="number" name="accomodation" required min="1" ng-model="VehicleInsurance.Accomodation" /><br />
                         <span ng-show="form.accomodation.$touched && form.accomodation.$error.required" style="color:red; display: block" translate="errAccomodation"></span>
@@ -243,14 +241,9 @@
 
             </form>
         </div>
-        @*
-    <ul class="pager">
-        <li><a class="btn btn-link" translate="next" ui-sref="insurants"> </a></li>
-    </ul>
-        *@
     </div>
-            <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
-    
+        <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
+        <div ng-show="!form.$invalid">
         <a class="right-control" ui-sref="insurants({numOfInsurants : num })"><i class="fa fa-angle-right"></i></a>
-     
         </div>
+</div>
