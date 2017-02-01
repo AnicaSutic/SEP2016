@@ -133,7 +133,7 @@
                 <div class="form-group">
                     <label class="col-sm-4" for="number" translate="number"></label>
                     @*promenjen type u number*@
-                    <input class="form-control col-sm-10" type="number" id="number" name="number" ng-blur="onBlur()" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
+                    <input class="form-control col-sm-10" type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
                     <div ng-show="form.number.$touched">
                         <span ng-show="form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
                         <span ng-show="form.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
@@ -250,7 +250,7 @@
         *@
     </div>
             <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
-    <div ng-show="!form.$invalid">
-        <a class="right-control" ui-sref="insurants"><i class="fa fa-angle-right"></i></a>
-     </div>
+    
+        <a class="right-control" ui-sref="insurants({numOfInsurants : num })"><i class="fa fa-angle-right"></i></a>
+     
         </div>

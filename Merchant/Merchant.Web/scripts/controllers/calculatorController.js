@@ -19,6 +19,7 @@
     $scope.transport = false;
 
     $scope.price = 0.0;
+   
 
     $scope.Insurance = {
         Duration: "",
@@ -125,6 +126,10 @@
         });
     };
 
+    $scope.pickNumber = function () {
+        $scope.num = document.getElementById('number').value;
+        console.log($scope.num)
+    };
     
     $scope.cancelHome = function () {
         $rootScope.showHomeForm = false;
@@ -146,6 +151,7 @@
         $scope.showAnotherInsurance = true;
     };
 
+  
     $scope.checkDate = function () {
         if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
             if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {

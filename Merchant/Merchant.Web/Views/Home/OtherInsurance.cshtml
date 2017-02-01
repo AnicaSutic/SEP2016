@@ -128,7 +128,7 @@
                     <div class="form-group">
                         <label class="col-sm-4" translate="jmbg"></label>
                         <input type="number" name="jmbg" class="form-control col-sm-10" ng-model="InsurantHome.IdentNumber" minlength="13" maxlength="13" required="required">
-                        <div ng-show="userForm.jmbg.$touched">
+                        <div ng-show="homeForm.jmbg.$touched">
                             <span ng-show="homeForm.jmbg.$error.required" style="color:red; display: block" translate="errJmbg"></span>
                             <span ng-show="homeForm.jmbg.$error.minlength" style="color:red; display: block" translate="errJmbgL"></span>
                             <span ng-show="homeForm.jmbg.$error.maxlength" style="color:red; display: block" translate="errJmbgL"></span>
@@ -137,8 +137,15 @@
                     <div class="form-group">
                         <label class="col-sm-4" translate="address"></label>
                         <input type="text" name="address" class="form-control col-sm-10" ng-model="InsurantHome.Address" required="required">
-                        <span ng-show="vehicleForm.address.$touched && vehicleForm.address.$error.required" style="color:red; display: block" translate="errAddress"></span>
-                    </div>
+                        <span ng-show="homeForm.address.$touched && vehicleForm.address.$error.required" style="color:red; display: block" translate="errAddress"></span>
+                    </div>        
+                </form>
+            </div>
+        </div>
+        <div ng-show="{{showVehicleForm}}">
+            <h1 translate="vehicleInsurance"></h1>
+            <div class="container1">
+                <form name="vehicleForm" class="form-horizontal" style="text-align:center">
                     <div class="form-group">
                         <label class="col-sm-4" translate="name"></label>
                         <input type="text" name="name" class="form-control col-sm-10" ng-model="Vehicle.Name" required="required">
@@ -151,20 +158,13 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4" translate="jmbg"></label>
-                        <input type="number" name="jmbg" class="form-control col-sm-10" ng-model="Vehicle .IdentNumber" minlength="13" maxlength="13" required="required">
-                        <div ng-show="userForm.jmbg.$touched">
+                        <input type="number" name="jmbg" class="form-control col-sm-10" ng-model="Vehicle.IdentNumber" minlength="13" maxlength="13" required="required">
+                        <div ng-show="vehicleForm.jmbg.$touched">
                             <span ng-show="vehicleForm.jmbg.$error.required" style="color:red; display: block" translate="errJmbg"></span>
                             <span ng-show="vehicleForm.jmbg.$error.minlength" style="color:red; display: block" translate="errJmbgL"></span>
                             <span ng-show="vehicleForm.jmbg.$error.maxlength" style="color:red; display: block" translate="errJmbgL"></span>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div ng-show="{{showVehicleForm}}">
-            <h1 translate="vehicleInsurance"></h1>
-            <div class="container1">
-                <form name="vehicleForm" class="form-horizontal" style="text-align:center">
                     <div class="form-group">
                         <label class="col-sm-4" translate="brand"></label>
                         <input type="text" name="brand" class="form-control col-sm-10" ng-model="Vehicle.Brand" required="required">
@@ -190,9 +190,14 @@
                 </form>
             </div>
         </div>
-        <a class="left-control" ui-sref="insurants"><i class="fa fa-angle-left"></i></a>
+        <a class="left-control" data-slide="prev" ui-sref="insurants"><i class="fa fa-angle-left"></i></a>
         <a class="right-control" ui-sref="insurants"><i class="fa fa-angle-right"></i></a>
         </div>
-    <button class="btn btn-link">Buy insurance</button>
-       
+
+    <div ng-show="((!showHomeForm || !homeForm.$invalid) && (!showVehicleForm || !vehicleForm.$invalid) )">
+            <div class="caption">
+                <a data-scroll class="btn btn-start animated fadeInUpBig" translate="startNow"></a>
+            </div>
+        
     </div>
+</div>

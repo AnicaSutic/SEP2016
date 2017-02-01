@@ -76,6 +76,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             jmbg: "Unique personal number",
             errJmbg: "You must enter personal number!",
             errJmbgL: "Personal number must contain 13 digits!",
+            email: "E-mail",
+            errEmail: "You must enter email!",
+            errEmailValidate: "Invalid email address!",
             address: "Address",
             errAddress: "You must enter address!",
             telNumber: "Phone number",
@@ -108,7 +111,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             accomodation: "Number of days",
             errTowing: "You must enter distance!",
             errRepair: "You must enter price!",
-            errAccomodation: "You muste enter number of days!"
+            errAccomodation: "You muste enter number of days!",
+            addInsurant: "Add insurant",
+            deleteInsurant: "Delete insurant"
         };
     var ser =
         {
@@ -155,6 +160,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             jmbg: "JMBG",
             errJmbg: "Niste uneli JMBG!",
             errJmbgL: "JMBG mora sadržati 13 cifara!",
+            email: "E-mail",
+            errEmail: "Niste uneli e-mail adresu!",
+            errEmailValidate: "Nevalidna e-mail adresa!",
             address: "Adresa",
             errAddress: "Niste uneli adresu!",
             telNumber: "Telefon number",
@@ -187,7 +195,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             accomodation: "Broj dana",
             errTowing: "Niste uneli kilometražu!",
             errRepair: "Niste uneli cenu!",
-            errAccomodation: "Niste uneli broj dana!"
+            errAccomodation: "Niste uneli broj dana!",
+            addInsurant: "Dodaj korisnika",
+            deleteInsurant: "Obriši korisnika"
         };
 
     $.ajax({
