@@ -13,22 +13,22 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
+        public ActionResult HomePage()
+        {
+            return View();
+        }
+
         public ActionResult Insurance()
         {
             return View();
         }
 
-        public ActionResult CalculatePrice()
+        public ActionResult TermsAndConditions()
         {
             return View();
         }
 
-        public ActionResult OtherInsurances()
-        {
-            return View();
-        }
-
-        public ActionResult HomePage()
+        public ActionResult Travel()
         {
             return View();
         }
@@ -38,9 +38,24 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
-        public ActionResult OtherInsurance()
+        public ActionResult Others()
         {
             return View();
         }
+
+        //public ActionResult CalculatePrice()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult Insurants()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult OtherInsurance()
+        //{
+        //    return View();
+        //}
     }
 }

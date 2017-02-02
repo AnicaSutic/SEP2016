@@ -1,4 +1,4 @@
-﻿app.controller('CalculatorController', function ($scope, $rootScope, RiskService, TranslateService) {
+﻿app.controller('MainController', function ($scope, $rootScope, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
 
@@ -20,6 +20,7 @@
 
     $scope.price = 0.0;
    
+    $scope.areAccepted = $rootScope.isAccepted;
 
     $scope.Insurance = {
         Duration: "",
@@ -115,16 +116,6 @@
         $scope.categoriesResponseData = response.data;
         $scope.categories = response.data;
     });
-
-    $scope.calculate = function () {
-        
-        if (!$scope.isChecked)
-            $scope.Insurance.Sport = 0;
-        
-        RiskService.calculatePrice($scope.Insurance).then(function (response) {
-            $scope.price = response.data;
-        });
-    };
 
     $scope.pickNumber = function () {
         $scope.num = document.getElementById('number').value;
@@ -244,6 +235,17 @@
         
     };
 
+    /** CALCULATOR **/
+
+    $scope.calculate = function () {
+
+        if (!$scope.isChecked)
+            $scope.Insurance.Sport = 0;
+
+        RiskService.calculatePrice($scope.Insurance).then(function (response) {
+            $scope.price = response.data;
+        });
+    };
     
 
     /** DATEPICKER **/

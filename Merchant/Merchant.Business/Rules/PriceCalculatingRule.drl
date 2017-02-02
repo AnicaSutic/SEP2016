@@ -1,8 +1,0 @@
-﻿package Merchant.Business.Rules
-
-rule "LargeOrder"
-	when
-		priceDto: PriceDto( Price > 0)
-	then
-		priceDto.CalculatedPrice = 10;
-end

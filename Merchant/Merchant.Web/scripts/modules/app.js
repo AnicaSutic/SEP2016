@@ -10,26 +10,41 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             templateUrl: '/Home/HomePage',
             controller: 'HomeController'
         })
-        .state('calculator', {
-            url: '/Home/CalculatePrice',
-            templateUrl: '/Home/CalculatePrice',
-            controller: 'CalculatorController'
-        })
-        .state('otherInsurance', {
-            url: '/Home/OtherInsurance',
-            templateUrl: '/Home/OtherInsurance',
-            controller: 'CalculatorController'
-        })
         .state('insurance', {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
-            controller: 'HomeController'
+            controller: 'MainController'
         })
-        .state('insurants', {
-            url: '/Home/Insurants/:numOfInsurants',
+        .state('insurance.terms', {
+            url: '/Home/TermsAndConditions',
+            templateUrl: '/Home/TermsAndConditions',
+            controller: 'MainController'
+        })
+        .state('insurance.travel', {
+            url: '/Home/Travel',
+            templateUrl: '/Home/Travel',
+            controller: 'MainController'
+        })
+        .state('insurance.insurants', {
+            url: '/Home/Insurants',
             templateUrl: '/Home/Insurants',
-            controller: 'InsurantsController'
+            controller: 'MainController'
+        })
+        .state('insurance.others', {
+            url: '/Home/Others',
+            templateUrl: '/Home/Others',
+            controller: 'MainController'
         });
+        //.state('otherInsurance', {
+        //    url: '/Home/OtherInsurance',
+        //    templateUrl: '/Home/OtherInsurance',
+        //    controller: 'MainController'
+        //})
+        //.state('insurants', {
+        //    url: '/Home/Insurants/:numOfInsurants',
+        //    templateUrl: '/Home/Insurants',
+        //    controller: 'InsurantsController'
+        //});
 
     var eng =
         {
@@ -59,59 +74,59 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             selReg: "Select region",
             selAge: "Select age",
             selSport: "Select sport",
-            selValue: "Select value",
-            errReg: "You must select region!",
-            errNumReq: "You must enter number!",
-            errNumMin: "Number of person must be more the zero!",
-            errAge: "You must select age!",
-            errSport: "You must select sport!",
-            errValue: "You must select value!",
+            selValue: "Select insured value",
+            errReg: "You must select a region!",
+            errNumReq: "You must enter a number!",
+            errNumMin: "Number of persons must be larger than zero!",
+            errAge: "You must select an age!",
+            errSport: "You must select a sport!",
+            errValue: "You must select an insured value!",
             next: "Next",
             previous: "Previous",
             details: "Details about insurants",
             name: "Name",
-            errName: "You must enter name!",
+            errName: "You must enter a name!",
             surname: "Surname",
-            errSurname: "You must enter surname!",
+            errSurname: "You must enter a surname!",
             jmbg: "Unique personal number",
-            errJmbg: "You must enter personal number!",
+            errJmbg: "You must enter a personal number!",
             errJmbgL: "Personal number must contain 13 digits!",
             email: "E-mail",
-            errEmail: "You must enter email!",
+            errEmail: "You must enter an email!",
             errEmailValidate: "Invalid email address!",
             address: "Address",
-            errAddress: "You must enter address!",
+            errAddress: "You must enter an address!",
             telNumber: "Phone number",
-            errTelNum: "You must enter phone number!",
+            errTelNum: "You must enter a phone number!",
             homeArea: "Building area",
-            errHomeArea: "You must enter building area!",
-            homeAge: "Building age",
-            errHomeAge: "You must enter building age!",
+            errHomeArea: "You must enter a building area!",
+            homeAge: "Age of the building",
+            errHomeAge: "You must enter an age of the building!",
             homeValue: "Estimated value",
-            errHomeValue: "You must enter value!",
+            errHomeValue: "You must enter a value!",
             ensuredBy: "Ensured by",
             selEnsured: "Select",
             errEnsured: "You must select one option!",
-            packageV: "Package you want to by",
+            packageV: "Package you want to buy",
             selPackage: "Select package",
-            errPackage: "You must select package!",
+            errPackage: "You must select a package!",
             brand: "Car brand",
-            year: "The year od production",
-            licence: "The license plate number",
+            year: "Year od production",
+            licence: "License plate number",
             chassis: "Chassis number",
             startDate: "From",
             endDate: "To",
             currency: "euros",
-            errStart: "You must enter start date!",
-            errEnd: "You must enter end date!",
+            errStart: "You must enter a start date!",
+            errEnd: "You must enter an end date!",
             errDateEnd: "End date is not valid! Check start date!",
             errDateStart: "Start date is not valid! Check end date!",
-            towing: "Distance(km)",
+            towing: "Distance (km)",
             repair: "Certain price",
             accomodation: "Number of days",
-            errTowing: "You must enter distance!",
-            errRepair: "You must enter price!",
-            errAccomodation: "You muste enter number of days!",
+            errTowing: "You must enter the distance!",
+            errRepair: "You must enter the price!",
+            errAccomodation: "You muste enter the number of days!",
             addInsurant: "Add insurant",
             deleteInsurant: "Delete insurant"
         };

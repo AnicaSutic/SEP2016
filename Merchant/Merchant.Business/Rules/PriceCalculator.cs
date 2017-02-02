@@ -9,39 +9,40 @@ namespace Merchant.Business.Rules
 {
     public class PriceCalculator
     {
-        public static readonly string priceRulePath = "MerchanLt.Business.Rules.PriceCalculatingRule.drl";
-        public org.drools.FactHandle _currentCust = null;
-        public WorkingMemory workingMemory;
-        public RuleBase ruleBase;
-        public InsuranceDto workingInsuranceDtoObj;
-
-        public void InitializeEngine()
+        
+        public decimal CalculatePrice(InsuranceDto insurance)
         {
-            PackageBuilder builder = new PackageBuilder();
-            string[] results = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(results[1]);
-            builder.AddPackageFromDrl(results[1], stream);
-            Package pkg = builder.GetPackage();
-            ruleBase = RuleBaseFactory.NewRuleBase();
-            ruleBase.AddPackage(pkg);
-            workingMemory = ruleBase.NewWorkingMemory();
+            var service = new PriceListItemService();
+            var riskService = new RiskService();
+            var calculatedPrice = 0.0M;
+
+            //foreach(var property in ins.GetType().GetProperties())
+            //{
+            //    if(!property.Name.Equals("Duration"))
+            //    {
+            //        var p = service.GetPricelistItemByRiskItemName(riskService.GetRiskByName(property.Name).Id);
+            //        var pp = p.First().Price;
+            //        price += pp;
+            //    }
+
+            //}
+            //var durationPrice = ins.duration;
+
+            //var durationPrice = 0.0M;
+            //var regionPrice = ins.Region != 0 ?service.GetPricelistItemByRiskItemId(ins.Region).First().Price : 0.0M;
+            //var agePrice = ins.Age != 0 ? service.GetPricelistItemByRiskItemId(ins.Age).First().Price : 0.0M;
+            //var sportPrice = ins.Sport != 0 ? service.GetPricelistItemByRiskItemId(ins.Sport).First().Price : 0.0M;
+            //var valuePrice = ins.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(ins.InsuredValue).First().Price : 0.0M;
+
+            //price = regionPrice + agePrice + sportPrice + valuePrice;
+
+            //
+
+
+            //var totalPrice = price * decimal.Parse(ins.NumberOfInsurants);
+
+            return calculatedPrice;
         }
-
-        public decimal GetCalculatedPrice(PriceDto dto)
-        {
-            InitializeEngine();
-
-            if (_currentCust == null)
-                _currentCust = workingMemory.assertObject(dto);
-            else
-                workingMemory.modifyObject(_currentCust, dto);
-
-            workingMemory.fireAllRules();
-            //PriceDto newDto = (PriceDto)workingMemory.getObject(_currentCust);
-
-            return 0.0M;
-        }
-
 
     }
 }

@@ -1,33 +1,15 @@
-﻿app.controller('HomeController', function ($scope, $window, RiskService) {
+﻿app.controller('HomeController', function ($rootScope, $scope) {
 
-    $scope.showForm = false;
-    $scope.showAnotherInsurance = false;
+    $rootScope.isAccepted = false;
+    $scope.error = "";
 
-    $scope.risks = {};
-    $scope.categories = {};
-
-    $scope.sports = {};
-    $scope.values = {};
-    $scope.ages = {};
-    $scope.regions = {};
-
-    /** METHODS **/
-
-    $scope.addPolicy = function () {
-        $scope.showForm = true;
-    };
-
-    $scope.cancelPolicy = function () {
-        $scope.showForm = false;
-    };
-
-    $scope.chooseAnother = function () {
-        $scope.showAnotherInsurance = true;
-    };
-
-    //ovde treba ponistavati ako su unete neke vrednosti za osiguranje da se ne bi i ono poslalo
-    $scope.cancelOther = function () {
-        $scope.showAnotherInsurance = false;
+    $scope.accept = function () {
+        if (!$scope.areAccepted)
+            $scope.error = "You must accept the terms & conditions!";
+        else {
+            $scope.error = "";
+            $rootScope.isAccepted = true;
+        }
     };
     
 });

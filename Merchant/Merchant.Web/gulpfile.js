@@ -37,7 +37,7 @@ gulp.task('angularModulesAndControllers', function () {
       ["scripts/modules/app.js"
       , "scripts/controllers/homeController.js"
       , "scripts/controllers/navbarController.js"
-      , "scripts/controllers/calculatorController.js"
+      , "scripts/controllers/mainController.js"
       , "scripts/controllers/insurantsController.js"
       , "scripts/services/riskService.js"])
       .pipe(concat('angularModAndContrl.js'))
