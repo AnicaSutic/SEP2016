@@ -1,4 +1,4 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, RiskService, TranslateService) {
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, RiskService, TranslateService) {
 
     //$scope.checkState = function () {
     //    if ($state.is('insurance')) {
@@ -238,14 +238,21 @@
 
     /** CALCULATOR **/
 
+    $scope.getShortDate = function (date) {
+        return $filter('date')(date, 'longDate');
+    };
+
     $scope.calculate = function () {
 
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
-        RiskService.calculatePrice($scope.Insurance).then(function (response) {
-            $scope.price = response.data;
-        });
+        $scope.Insurance.StartDate = $scope.getShortDate($scope.Insurance.StartDate); //m/d/yy
+        alert($scope.Insurance.StartDate);
+
+        //RiskService.calculatePrice($scope.Insurance).then(function (response) {
+        //    $scope.price = response.data;
+        //});
     };
     
 

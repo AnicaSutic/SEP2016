@@ -164,12 +164,7 @@
                     </select><br />
                     <span ng-show="form.value.$touched && form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
                 </div>
-                <button class="btn btn-link " ng-disabled="showVehicleForm || showHomeForm || showAnotherInsurance" ng-click="chooseAnother()" translate="chooseAnother"></button>
-                <br />
-                <div ng-if="showAnotherInsurance">
-                    <button class="but" ng-repeat="c in categories" ng-click="showInsuranceByCategory(c.Name)">{{c.Name}}</button>
-                    <button class="btn btn-link" ng-click="cancelOther()" translate="cancel"></button>
-                </div>
+                
                 <br />
                 <div ng-if="showHomeForm">
                     <h3 translate="homeInsurance"></h3>
@@ -236,7 +231,7 @@
                     <button class="btn btn-link" ng-click="cancelVehicle()" translate="cancel"></button>
                 </div><br />
                 <div>
-                    <button ng-disabled="form.$invalid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
+                    <button @*ng-disabled="form.$invalid"*@ translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
                 </div>
                 <div ng-if="price != 0.0">
                     <h3 translate="total">: {{price}} @*<span translate="currency"></span>*@</h3>
