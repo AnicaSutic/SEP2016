@@ -7,11 +7,12 @@
     "Anica Sutic"
   ],
   "description": "Application for buying insurance and ePayment system",
-  "main": "",
   "private": true,
   "dependencies": {
-    "jquery": "1.10.2",
     "bootstrap": "3.0.0",
+    "jquery": "1.10.2",
+    "modernizer": "2.6.2",
+    "angular": "1.2.16",
     "angular-ui-router": "0.4.2",
     "angular-sanitize": "1.6.1",
     "angular-translate": "2.13.1",
@@ -20,8 +21,5 @@
     "angular-local-storage": "0.2.3",
     "angular-resource": "1.4.8",
     "angular-bootstrap": "0.14.3"
-  },
-  "resolutions": {
-    "angular": "1.6.1"
   }
 }

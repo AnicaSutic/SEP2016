@@ -25,12 +25,11 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" ui-sref="home">
-                        <h1><img class="img-responsive" src="~/Content/images/rsz_capture.png" alt="logo"></h1>
+                        <h1>CareTravel</h1>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="scroll"><a translate="home" ui-sref="home"></a></li>
                         <li class="scroll"><a translate="insurance" ui-sref="calculator"></a></li>
                         <li><a ng-click="changeCurrentLanguage('en')" href ="" translate="english"></a></li>
                         <li><a ng-click="changeCurrentLanguage('sr')" href="" translate="serbian"></a></li>
@@ -40,20 +39,31 @@
         </div><!--/#main-nav-->
     </header><!--/#home-->
     
-    <script src="~/scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/scripts/jquery.flexslider.js"></script>
-    <script src="~/scripts/jquery.smooth-scroll.js"></script>
-    <script src="~/scripts/jquery.fancybox.pack.js"></script>
-    <script src="~/scripts/bootstrap.min.js"></script>
+    <div id="mainDiv" class="topBottomMargin">
+        @RenderBody()
+    </div>
+
+    <script src="~/scripts/jquery/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/jquery/jquery.flexslider.js"></script>
+    <script src="~/scripts/jquery/jquery.smooth-scroll.js"></script>
+    <script src="~/scripts/jquery/jquery.fancybox.pack.js"></script>
+    <script src="~/scripts/bootstrap/bootstrap.js"></script>
     <script src="~/scripts/scripts.js"></script>
-    <script src="~/scripts/angular.js"></script>
-    <script src="~/scripts/angular-ui-module.js"></script>
-    <script src="~/scripts/angular-ui-router.js"></script>
-    <script src="~/scripts/angular-sanitize.js"></script>
-    <script src="~/scripts/angular-translate.js"></script>
+    <script src="~/scripts/angular/angular.js"></script>
+    <script src="~/scripts/angular/angular-ui-module.js"></script>
+    <script src="~/scripts/angular/angular-ui-router.js"></script>
+    <script src="~/scripts/angular/angular-sanitize.js"></script>
+    <script src="~/scripts/angular/angular-translate.js"></script>
     <script src="~/scripts/modernizr-2.6.2.js"></script>
     <script src="~/scripts/waypoints.min.js"></script>
-    <script src="~/scripts/ui-bootstrap-tpls-2.1.3.min.js"></script>
+    <script src="~/scripts/bootstrap/ui-bootstrap-tpls-2.1.3.min.js"></script>
+
+    @*<script src="~/lib/Content/concatCss.min.js"></script>*@
+    @*<script src="~/lib/scripts/concatJs.min.js"></script>*@
+    @*<script src="~/lib/scripts/concatJqueryJs.min.js"></script>
+    <script src="~/lib/scripts/concatBsJs.min.js"></script>
+    <script src="~/lib/scripts/concatAngularJs.min.js"></script>
+    <script src="~/lib/scripts/concatOtherJs.min.js"></script>*@
 
     <script src="~/scripts/modules/app.js"></script>
     <script src="~/scripts/controllers/homeController.js"></script>
@@ -62,10 +72,6 @@
     <script src="~/scripts/controllers/insurantsController.js"></script>
     <script src="~/scripts/services/riskService.js"></script>
     <script src="~/scripts/services/translateService.js"></script>
-
-    <div id="mainDiv" class="topBottomMargin">
-        @RenderBody()
-    </div>
 
 </body>
 </html>

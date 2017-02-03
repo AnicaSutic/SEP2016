@@ -3,8 +3,12 @@
     Layout = null;
 }
 
-Terms & Conditions
+<h1>Terms & Conditions</h1>
 
-<input type="checkbox" ng-model="areAccepted"/>
-<button ng-click="accept()">Accept</button>
+<div>Before you proceed, please read and accept the Terms&Conditions.</div>
+
+<div>
+    <input type="checkbox" ng-model="areAccepted"/>
+    <button ng-click="accept()">Accept</button>
+</div>
 <div>{{error}}</div>

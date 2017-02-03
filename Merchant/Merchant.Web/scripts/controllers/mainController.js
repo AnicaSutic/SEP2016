@@ -1,21 +1,22 @@
-﻿app.controller('MainController', function ($scope, $rootScope, RiskService, TranslateService) {
+﻿app.controller('MainController', function ($scope, $rootScope, $state, RiskService, TranslateService) {
+
+    //$scope.checkState = function () {
+    //    if ($state.is('insurance')) {
+    //        $state.go('insurance.terms');
+    //    }
+    //};
+
+    //$scope.checkState();
 
     $scope.travelRisks = {};
-
     $scope.homeRisks = {};
 
     $scope.isChecked = false;
-
     $scope.dateStart = false;
-
     $scope.dateEnd = false;
-
     $scope.towing = false;
-
     $scope.repair = false;
-
     $scope.accomodation = false;
-
     $scope.transport = false;
 
     $scope.price = 0.0;

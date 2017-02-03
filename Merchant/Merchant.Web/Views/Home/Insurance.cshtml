@@ -2,7 +2,18 @@
 @{
     Layout = null;
 }
+<div ng-if="!areAccepted">
+    Please accept the Terms&Conditions before continuing with the purchase.
+</div>
 
-insurance
-<button ui-sref="insurance.terms">proceed</button>
-<div ui-view></div>
+<div ng-if="areAccepted">
+    insurance
+    <div>
+        <ul>
+            <li><a ui-sref="insurance.travel">Travel insurance</a></li>
+            <li><a ui-sref="insurance.insurants">Insurants</a></li>
+            <li><a ui-sref="insurance.others">Other insurances</a></li>
+        </ul>
+    </div>
+    <div ui-view></div>
+</div>

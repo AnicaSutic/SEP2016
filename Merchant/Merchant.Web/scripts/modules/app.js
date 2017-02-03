@@ -10,41 +10,28 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             templateUrl: '/Home/HomePage',
             controller: 'HomeController'
         })
+        .state('terms', {
+            url: '/Home/TermsAndConditions',
+            templateUrl: '/Home/TermsAndConditions',
+            controller: 'HomeController'
+        })
         .state('insurance', {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
             controller: 'MainController'
         })
-        .state('insurance.terms', {
-            url: '/Home/TermsAndConditions',
-            templateUrl: '/Home/TermsAndConditions',
-            controller: 'MainController'
-        })
         .state('insurance.travel', {
-            url: '/Home/Travel',
-            templateUrl: '/Home/Travel',
-            controller: 'MainController'
+            url: '/Travel',
+            templateUrl: '/Home/Travel'
         })
         .state('insurance.insurants', {
-            url: '/Home/Insurants',
-            templateUrl: '/Home/Insurants',
-            controller: 'MainController'
+            url: '/Insurants',
+            templateUrl: '/Home/Insurants'
         })
         .state('insurance.others', {
-            url: '/Home/Others',
-            templateUrl: '/Home/Others',
-            controller: 'MainController'
+            url: '/Others',
+            templateUrl: '/Home/Others'
         });
-        //.state('otherInsurance', {
-        //    url: '/Home/OtherInsurance',
-        //    templateUrl: '/Home/OtherInsurance',
-        //    controller: 'MainController'
-        //})
-        //.state('insurants', {
-        //    url: '/Home/Insurants/:numOfInsurants',
-        //    templateUrl: '/Home/Insurants',
-        //    controller: 'InsurantsController'
-        //});
 
     var eng =
         {
@@ -53,7 +40,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             home: "Home",
             startNow: "Buy insurance",
             welcome: "Welcome",
-            okina: "Okina",
+            okina: "CareTravel",
             insurance: "Insurance packages",
             calculate: "Calculate the price",
             duration: "Insurance duration",
@@ -137,7 +124,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             home: "Početna strana",
             startNow: "Kupi osiguranje",
             welcome: "Dobrodošli",
-            okina: "Okina",
+            okina: "CareTravel",
             insurance: "Osiguranje",
             calculate: "Izračunajte cenu osiguranja",
             duration: "Trajanje osiguranja",

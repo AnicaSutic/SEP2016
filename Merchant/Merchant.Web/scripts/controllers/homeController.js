@@ -1,4 +1,4 @@
-﻿app.controller('HomeController', function ($rootScope, $scope) {
+﻿app.controller('HomeController', function ($rootScope, $scope, $state) {
 
     $rootScope.isAccepted = false;
     $scope.error = "";
@@ -9,6 +9,7 @@
         else {
             $scope.error = "";
             $rootScope.isAccepted = true;
+            $state.go('insurance');
         }
     };
     
