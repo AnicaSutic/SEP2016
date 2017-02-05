@@ -5,10 +5,32 @@
 
 <h1>Terms & Conditions</h1>
 
-<div>Before you proceed, please read and accept the Terms&Conditions.</div>
-
-<div>
-    <input type="checkbox" ng-model="areAccepted"/>
-    <button ng-click="accept()">Accept</button>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-lg-10">
+                            <div class="checkbox" ng-model="areAccepted">
+                                <label>
+                                    <input type="checkbox"> Before you proceed, please read and accept the Terms&Conditions.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" ng-click="accept()">Proceed</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10">
+                            <p class="text-danger">{{error}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
-<div>{{error}}</div>
