@@ -22,5 +22,10 @@ namespace Merchant.Business
             var list = _repository.Get(pli => pli.RiskItemId == id).ToList();
             return list;
         }
+
+        public List<PricelistItem> GetAllPricelistItems()
+        {
+            return _repository.Get().ToList();
+        }
     }
 }
