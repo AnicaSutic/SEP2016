@@ -295,12 +295,14 @@
     <Content Include="Views\Templates\Insurance.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
-    <Content Include="Views\Home\Insurants.cshtml" />
+    <Content Include="Views\Home\InsurantsOLD.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
     <Content Include="Views\Home\Travel.cshtml" />
     <Content Include="Views\Home\Others.cshtml" />
+    <Content Include="Views\Home\Insurants.cshtml" />
+    <Content Include="Views\Home\Others1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
