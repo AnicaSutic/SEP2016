@@ -121,7 +121,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errPassport: "You must enter a passport number!",
             add: "Add",
             noInsurants: "You haven't added any insurants yet.",
-            isBuyer: "Choose as a buyer of the insurance"
+            isBuyer: "Choose as a buyer of the insurance",
+            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment."
         };
     var ser =
         {
@@ -211,7 +212,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errPassport: "Morate uneti broj pasoša!",
             add: "Dodaj",
             noInsurants: "Još uvek niste dodali nijednog osiguranika.",
-            isBuyer: "Odabrati kao kupca osiguranja"
+            isBuyer: "Odabrati kao kupca osiguranja",
+            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom."
         };
 
     $.ajax({

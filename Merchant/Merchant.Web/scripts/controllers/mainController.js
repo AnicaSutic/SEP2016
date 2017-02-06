@@ -298,6 +298,8 @@
     $scope.deleteInsurant = function (index) {
         $scope.addedInsurants.splice(index, 1);
         $scope.insurantsCounter -= 1;
+        if ($scope.insurantsCounter == 0)
+            $scope.buyerExists = false;
     };
 
     /** CALCULATOR **/
