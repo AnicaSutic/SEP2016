@@ -1,6 +1,6 @@
-﻿app.controller('HomeController', function ($rootScope, $scope, $state) {
+﻿app.controller('HomeController', function ($window, $scope, $state) {
 
-    $rootScope.isAccepted = false;
+    $window.localStorage.setItem("areTermsAccepted", false);
     $scope.error = "";
 
     $scope.accept = function () {
@@ -8,7 +8,7 @@
             $scope.error = "You must accept the terms & conditions!";
         else {
             $scope.error = "";
-            $rootScope.isAccepted = true;
+            $window.localStorage.setItem("areTermsAccepted", true);
             $state.go('insurance');
         }
     };
