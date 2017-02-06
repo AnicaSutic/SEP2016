@@ -300,7 +300,7 @@
         $scope.insurantsCounter -= 1;
         if ($scope.insurantsCounter == 0)
             $scope.buyerExists = false;
-    };
+    }; 
 
     /** CALCULATOR **/
 
