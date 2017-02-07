@@ -16,6 +16,9 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
    
     $scope.areAccepted = $rootScope.isAccepted;
 
+    var ctrl = this;
+    ctrl.getSelectOptions = getSelectOptions;
+
     $scope.Insurance = {
         Duration: "",
         //Region: 0,
@@ -41,6 +44,9 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
         Accomodation: ""
     };
 
+    $scope.sum = function (first, second) {
+        return first + second;
+    };
 
     function translateSelectOptions() {
         $scope.regions = getSelectOptions($scope.regionsResponseData, $rootScope.currentLanguage);
@@ -51,7 +57,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
         $scope.categories = getSelectOptions($scope.categoriesResponseData, $rootScope.currentLanguage);
         $scope.packages = getSelectOptions($scope.packagesResponseData, $rootScope.currentLanguage);
     }
-
+    
     function getSelectOptions(data, language) {
         var collection = [];
         for (var i = 0; i < data.length; i++) {

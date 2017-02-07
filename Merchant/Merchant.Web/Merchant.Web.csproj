@@ -220,6 +220,10 @@
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="lib\angular-mocks\angular-mocks.js" />
+    <Content Include="lib\angular\angular-csp.css" />
+    <Content Include="lib\angular\angular.js" />
+    <Content Include="lib\angular\angular.min.js" />
+    <Content Include="lib\angular\index.js" />
     <Content Include="lib\scripts\concatAngularJs.min.js" />
     <Content Include="lib\scripts\concatBsJs.min.js" />
     <Content Include="lib\scripts\concatJqueryJs.min.js" />
@@ -289,7 +293,9 @@
     <Content Include="Gruntfile.js" />
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="karma.conf.js" />
-    <Content Include="TestScripts\NewTest.js" />
+    <Content Include="TestScripts\insurantsControllerSpec.js" />
+    <Content Include="TestScripts\mainControllerSpec.js" />
+    <Content Include="TestScripts\navbarControllerSpec.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +329,13 @@
     <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Insurants.cshtml" />
     <Content Include="Views\Home\Others1.cshtml" />
+    <Content Include="lib\angular\.bower.json" />
+    <Content Include="lib\angular\angular.min.js.gzip" />
+    <Content Include="lib\angular\angular.min.js.map" />
+    <Content Include="lib\angular\bower.json" />
+    <Content Include="lib\angular\LICENSE.md" />
+    <Content Include="lib\angular\package.json" />
+    <Content Include="lib\angular\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

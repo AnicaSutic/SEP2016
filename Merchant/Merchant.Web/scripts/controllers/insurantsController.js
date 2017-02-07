@@ -1,4 +1,5 @@
-﻿app.controller('InsurantsController', function ($scope, $stateParams) {
+﻿'use-strict';
+app.controller('InsurantsController', function ($scope, $stateParams) {
 
   
     $scope.numOfInsurants = $stateParams.numOfInsurants;
@@ -33,7 +34,6 @@
         $scope.userForm.address.$touched = false;
         $scope.userForm.telNumber.$touched = false;
         $scope.counterForInsurants += 1;
-        
     };
 
     $scope.deleteInsurant = function () {
