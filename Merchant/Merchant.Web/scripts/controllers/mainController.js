@@ -1,4 +1,4 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService) {
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -12,48 +12,33 @@
     $scope.transport = false;
 
     $scope.price = 0.0;
+   
+    $scope.areAccepted = $rootScope.isAccepted;
 
-    $scope.areTermsAccepted = $window.localStorage.getItem("areTermsAccepted");
-
-    $window.localStorage.setItem("purchaseStep", 1);
-
-    $scope.showVehicleForm = false;
-    $scope.showHomeForm = false;
-
-    $scope.initializeInsurance = function () {
-        $scope.Insurance = {
-            Duration: "",
-            //Region: 0,
-            NumberOfInsurants: 4,
-            // InsuredValue: 0,
-            //  Age: 0,
-            //  Sport: 0,
-            StartDate: "",
-            EndDate: ""
-        };
+    $scope.Insurance = {
+        Duration: "",
+        //Region: 0,
+        NumberOfInsurants: "",
+      // InsuredValue: 0,
+      //  Age: 0,
+      //  Sport: 0,
+       StartDate: "",
+        EndDate: ""
     };
 
-    $scope.initializeHomeInsurance = function () {
-        $scope.HomeInsurance = {
-            Area: "",
-            Age: "",
-            Value: "",
-            InsuredBy: 0
-        };
+    $scope.HomeInsurance = {
+        Area : "",
+        Age: "",
+        Value: "",
+        InsuredBy: 0
     };
 
-    $scope.initializeVehicleInsurance = function () {
-        $scope.VehicleInsurance = {
-            //Package: 0,
-            Towing: "",
-            Repair: "",
-            Accomodation: ""
-        };
+    $scope.VehicleInsurance = {
+        //Package: 0,
+        Towing : "",
+        Repair: "",
+        Accomodation: ""
     };
-
-    $scope.initializeInsurance();
-    $scope.initializeHomeInsurance();
-    $scope.initializeVehicleInsurance();
 
 
     function translateSelectOptions() {
@@ -90,8 +75,6 @@
         $scope.travelRisks = response.data;
     });
 
-    /** GET OPTION ITEMS **/
-
     RiskService.getRiskItemsForRisk("Sport").then(function (response) {
         $scope.sportsResponseData = response.data;
         $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
@@ -122,29 +105,30 @@
         $scope.packages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
+    RiskService.getOtherCategories().then(function (response) {
+        $scope.categoriesResponseData = response.data;
+        $scope.categories = response.data;
+    });
+
     $scope.pickNumber = function () {
         $scope.num = document.getElementById('number').value;
         console.log($scope.num)
     };
-
-    /** OTHER INSURANCES **/
-
-    $scope.addVehicleIns = function () {
-        $scope.showVehicleForm = true;
-    };
     
-    $scope.addHomeIns = function () {
-        $scope.showHomeForm = true;
-    };
-
-    $scope.cancelHomeIns = function () {
-        $scope.showHomeForm = false;
-        $scope.initializeHomeInsurance();
+    $scope.cancelHome = function () {
+        $rootScope.showHomeForm = false;
+        $scope.HomeInsurance.Area = "";
+        $scope.HomeInsurance.Age = "";
+        $scope.HomeInsurance.Value = "";
+        $scope.HomeInsurance.insuredBy = 0;
     };
 
     $scope.cancelVehicle = function () {
-        $scope.showVehicleForm = false;
-        $scope.initializeVehicleInsurance();
+        $rootScope.showVehicleForm = false;
+        $scope.VehicleInsurance.Package = 0;
+        $scope.VehicleInsurance.Towing = "";
+        $scope.VehicleInsurance.Repair = "";
+        $scope.VehicleInsurance.Accomodation = "";
     };
 
     $scope.chooseAnother = function () {
@@ -244,85 +228,16 @@
         
     };
 
-    /** INSURANTS **/
-
-    $scope.passportNumberPattern = "^(?!^0+$)[a-zA-Z0-9]{3,20}$";
-    $scope.emailPattern = "";
-
-    $scope.buyerExists = false;
-
-    $scope.insurantsCounter = 0;
-    $scope.addedInsurants = [];
-    $scope.showInsForm = false;
-
-    $scope.initializeCurrentInsurant = function () {
-        $scope.CurrentInsurant = {
-            Name: "",
-            Surname: "",
-            IdentificationNumber: "",
-            PassportNumber: "",
-            Address: "",
-            TelephoneNumber: "",
-            Email: "",
-            IsBuyer: false
-        };
-        $scope.showInsForm = false;
-        //$scope.insurantForm.name.$touched = false;
-        //$scope.insurantForm.surname.$touched = false;
-        //$scope.insurantForm.jmbg.$touched = false;
-        //$scope.insurantForm.email.$touched = false;
-        //$scope.insurantForm.address.$touched = false;
-        //$scope.insurantForm.telNumber.$touched = false;
-        //$scope.insurantForm.passport.$touched = false;
-    };
-
-    $scope.initializeCurrentInsurant();
-
-    $scope.showInsurantForm = function () {
-        $scope.showInsForm = true;
-    };
-
-    $scope.addInsurant = function () {
-        if ($scope.CurrentInsurant.IsBuyer) {
-            $scope.buyerExists = true;
-        }
-        $scope.addedInsurants.push($scope.CurrentInsurant);
-        $scope.initializeCurrentInsurant();
-        $scope.insurantsCounter += 1;
-    };
-
-    $scope.cancelInsurant = function () {
-        $scope.initializeCurrentInsurant();
-    };
-
-    $scope.deleteInsurant = function (index) {
-        $scope.addedInsurants.splice(index, 1);
-        $scope.insurantsCounter -= 1;
-        if ($scope.insurantsCounter == 0)
-            $scope.buyerExists = false;
-    }; 
-
     /** CALCULATOR **/
-
-    $scope.getShortDate = function (date) {
-        return $filter('date')(date, 'longDate');
-    };
 
     $scope.calculate = function () {
 
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
-        $scope.Insurance.StartDate = $scope.getShortDate($scope.Insurance.StartDate); //m/d/yy
-        alert($scope.Insurance.StartDate);
-
-        //RiskService.calculatePrice($scope.Insurance).then(function (response) {
-        //    $scope.price = response.data;
-        //});
-    };
-
-    $scope.addTravelInsurance = function () {
-        $window.localStorage.setItem("purchaseStep", 2);
+        RiskService.calculatePrice($scope.Insurance).then(function (response) {
+            $scope.price = response.data;
+        });
     };
     
 

@@ -2,12 +2,11 @@
 @{
     Layout = null;
 }
-
-<div ng-if="!areTermsAccepted">
-    Please accept the <a>Terms&Conditions</a> before continuing with the purchase.
+<div ng-if="!areAccepted">
+    Please accept the Terms&Conditions before continuing with the purchase.
 </div>
 
-<div ng-if="areTermsAccepted">
+<div ng-if="areAccepted">
     insurance
     <div>
         <ul>

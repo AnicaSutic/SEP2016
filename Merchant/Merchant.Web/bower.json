@@ -21,8 +21,5 @@
     "angular-local-storage": "0.2.3",
     "angular-resource": "1.4.8",
     "angular-bootstrap": "0.14.3"
-  },
-  "resolutions": {
-    "angular": "1.6.1"
   }
 }

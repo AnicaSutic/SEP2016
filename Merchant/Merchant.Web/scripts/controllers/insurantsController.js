@@ -26,12 +26,12 @@
             TelNumber: "",
             Email: ""
         };
-        $scope.insurantForm.name.$touched = false;
-        $scope.insurantForm.surname.$touched = false;
-        $scope.insurantForm.jmbg.$touched = false;
-        $scope.insurantForm.email.$touched = false;
-        $scope.insurantForm.address.$touched = false;
-        $scope.insurantForm.telNumber.$touched = false;
+        $scope.userForm.name.$touched = false;
+        $scope.userForm.surname.$touched = false;
+        $scope.userForm.jmbg.$touched = false;
+        $scope.userForm.email.$touched = false;
+        $scope.userForm.address.$touched = false;
+        $scope.userForm.telNumber.$touched = false;
         $scope.counterForInsurants += 1;
         
     };
@@ -39,12 +39,12 @@
     $scope.deleteInsurant = function () {
         $scope.addedInsurants.pop();
         $scope.counterForInsurants -= 1;
-        $scope.insurantForm.name.$touched = false;
-        $scope.insurantForm.surname.$touched = false;
-        $scope.insurantForm.jmbg.$touched = false;
-        $scope.insurantForm.email.$touched = false;
-        $scope.insurantForm.address.$touched = false;
-        $scope.insurantForm.telNumber.$touched = false;
+        $scope.userForm.name.$touched = false;
+        $scope.userForm.surname.$touched = false;
+        $scope.userForm.jmbg.$touched = false;
+        $scope.userForm.email.$touched = false;
+        $scope.userForm.address.$touched = false;
+        $scope.userForm.telNumber.$touched = false;
     };
 
     $scope.finish = function () {
