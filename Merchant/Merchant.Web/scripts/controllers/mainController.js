@@ -1,4 +1,5 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, RiskService, TranslateService) {
+﻿'use strict';
+app.controller('MainController', function ($scope, $rootScope, $state, $filter, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};

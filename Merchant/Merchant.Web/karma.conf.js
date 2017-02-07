@@ -14,28 +14,35 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [    
-      'TestScripts/*.js'
+    files: [
+      'scripts/angular/angular.js',
+      'scripts/angular/angular-resource.js',
+      'scripts/angular/angular-mocks.js',
+      'scripts/modules/app.js',
+      'scripts/jquery/*.js',
+      'scripts/bootstrap/bootstrap.js',
+      'scripts/bootstrap/ui-bootstrap-tpls-2.1.3.min.js',
+      'scripts/jasmine/jasmine.js',
+      'scripts/controllers/mainController.js',
+      'TestScripts/DefaultTest.js'
     ],
 
 
     // list of files to exclude
-    exclude: [
-       'Scripts/*.min.js'      
+    exclude: [   
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'xml'],
+    reporters: ['progress'],
 
 
     // web server port
@@ -52,16 +59,16 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 };

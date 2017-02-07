@@ -201,6 +201,8 @@
     <Content Include="Content\images\team\3.jpg" />
     <Content Include="Content\images\team\4.jpg" />
     <Content Include="Content\images\twitter-bg.jpg" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\main.css" />
@@ -217,10 +219,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
+    <Content Include="lib\angular-mocks\angular-mocks.js" />
     <Content Include="lib\scripts\concatAngularJs.min.js" />
     <Content Include="lib\scripts\concatBsJs.min.js" />
     <Content Include="lib\scripts\concatJqueryJs.min.js" />
     <Content Include="lib\scripts\concatOtherJs.min.js" />
+    <Content Include="scripts\angular\angular-mocks.js" />
+    <Content Include="lib\angular-mocks\ngAnimateMock.js" />
+    <Content Include="lib\angular-mocks\ngMock.js" />
+    <Content Include="lib\angular-mocks\ngMockE2E.js" />
+    <Content Include="scripts\angular\angular-resource.js" />
     <Content Include="scripts\angular\angular-sanitize.js" />
     <Content Include="scripts\angular\angular.js" />
     <Content Include="scripts\angular\angular.min.js" />
@@ -231,6 +239,10 @@
     <Content Include="scripts\controllers\insurantsController.js" />
     <Content Include="scripts\controllers\navbarController.js" />
     <Content Include="scripts\html5shiv.js" />
+    <Content Include="scripts\jasmine\boot.js" />
+    <Content Include="scripts\jasmine\console.js" />
+    <Content Include="scripts\jasmine\jasmine-html.js" />
+    <Content Include="scripts\jasmine\jasmine.js" />
     <Content Include="scripts\jquery\jquery.countTo.js" />
     <Content Include="scripts\jquery\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery\jquery.fitvids.js" />
@@ -256,7 +268,11 @@
     <None Include=".bin\bower.cmd" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\node.cmd" />
-    <None Include="scripts\jquery\jquery-1.10.2.intellisense.js" />
+    <Content Include="lib\angular-mocks\.bower.json" />
+    <Content Include="lib\angular-mocks\bower.json" />
+    <Content Include="lib\angular-mocks\LICENSE.md" />
+    <Content Include="lib\angular-mocks\package.json" />
+    <Content Include="lib\angular-mocks\README.md" />
     <Content Include="scripts\jquery\jquery-1.10.2.js" />
     <Content Include="scripts\jquery\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
@@ -271,7 +287,9 @@
     <Content Include="scripts\waypoints.min.js" />
     <Content Include="scripts\wow.min.js" />
     <Content Include="Gruntfile.js" />
-    <Content Include="tests\karma.conf.js" />
+    <Content Include="TestScripts\DefaultTest.js" />
+    <Content Include="karma.conf.js" />
+    <Content Include="TestScripts\NewTest.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     karma: {
 		unit:{
-		 configFile: 'tests/karma.conf.js'
+		 configFile: 'karma.conf.js'
 		}	     
     }});
 	
