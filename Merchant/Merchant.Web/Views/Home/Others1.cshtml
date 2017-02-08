@@ -1,16 +1,34 @@
 ﻿<div>
     <h1>Do you wish to buy another insurance?</h1>
     <div>
-        <button ng-click="addVehicleIns()">Buy vehicle insurance</button>
-        <button ng-click="addHomeIns()">Buy home insurance</button>
+        <button ng-click="showVehicleIns()">Buy vehicle insurance</button>
+        <button ng-click="showHomeIns()">Buy home insurance</button>
     </div>
 
     <div ng-if="showVehicleForm">
-        <form></form>
+        <h2>Vehicle Insurance</h2>
+        <form name="homeForm">
+            <div class="form-group">
+                <label translate="name"></label>
+                <input type="text" name="name" ng-model="InsurantHome.Name" required="required">
+                <span ng-show="homeForm.name.$touched && homeForm.name.$error.required" style="color:red; display: block" translate="errName"></span>
+            </div>
+        </form>
+        <div>
+            <button translate="buy"></button>
+            <button ng-click="cancelVehicleIns()" translate="cancel"></button>
+        </div>
     </div>
 
     <div ng-if="showHomeForm">
-        <form></form>
+        <h2>Home Insurance</h2>
+        <form>
+
+        </form>
+        <div>
+            <button translate="buy"></button>
+            <button ng-click="cancelHomeIns()" translate="cancel"></button>
+        </div>
     </div>
 
 </div>

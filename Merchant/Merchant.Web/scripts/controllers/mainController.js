@@ -129,11 +129,13 @@
 
     /** OTHER INSURANCES **/
 
-    $scope.addVehicleIns = function () {
+    $scope.initialize
+
+    $scope.showVehicleIns = function () {
         $scope.showVehicleForm = true;
     };
     
-    $scope.addHomeIns = function () {
+    $scope.showHomeIns = function () {
         $scope.showHomeForm = true;
     };
 
@@ -142,15 +144,12 @@
         $scope.initializeHomeInsurance();
     };
 
-    $scope.cancelVehicle = function () {
+    $scope.cancelVehicleIns = function () {
         $scope.showVehicleForm = false;
         $scope.initializeVehicleInsurance();
     };
 
-    $scope.chooseAnother = function () {
-        $scope.showAnotherInsurance = true;
-    };
-
+    /***/
   
     $scope.checkDate = function () {
         if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
@@ -243,7 +242,7 @@
         }
         
     };
-
+     
     /** INSURANTS **/
 
     $scope.passportNumberPattern = "^(?!^0+$)[a-zA-Z0-9]{3,20}$";
@@ -295,10 +294,14 @@
         $scope.initializeCurrentInsurant();
     };
 
-    $scope.deleteInsurant = function (index) {
+    $scope.deleteInsurant = function (insurant, index) {
+        alert(insurant.IsBuyer);
+        alert(index);
         $scope.addedInsurants.splice(index, 1);
         $scope.insurantsCounter -= 1;
-    };
+        if(insurant.IsBuyer)
+            $scope.buyerExists = false;
+    }; 
 
     /** CALCULATOR **/
 

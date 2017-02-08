@@ -2,19 +2,21 @@
     Layout = null;
 }
 
-<div ng-if="areTermsAccepted">
+<div>
     <h1>Who do you wish to insure?</h1>
 
     <div ng-if="insurantsCounter != 0">
         <ul ng-repeat="i in addedInsurants">
-            <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant($index)">X</button></li>
+            <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant(i, $index)">X</button></li>
         </ul>
     </div>
 
     <p class="alert alert-info" ng-if="insurantsCounter == 0" translate="noInsurants"></p>
 
+    <p class="alert alert-info" ng-show="insurantsCounter == Insurance.NumberOfInsurants" translate="noMoreInsurants"></p>
+
     <div>
-        <button ng-disabled="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
+        <button ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
         <div ng-if="showInsForm">
             <form name="insurantForm">
                 <div class="form-group">
@@ -28,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label translate="jmbg"></label>
-                    <input type="number" name="jmbg" ng-model="CurrentInsurant.IdentificationNumber" @*minlength="13" maxlength="13"*@ required="required">
+                    <input type="number" name="jmbg" ng-model="CurrentInsurant.IdentificationNumber" minlength="13" maxlength="13" required="required">
                     <div ng-show="insurantForm.jmbg.$touched">
                         <span ng-show="insurantForm.jmbg.$error.required" translate="errJmbg"></span>
                         <span ng-show="insurantForm.jmbg.$error.minlength" translate="errJmbgL"></span>
@@ -45,23 +47,23 @@
                 </div>
                 <div class="form-group">
                     <label translate="address"></label>
-                    <input type="text" name="address" ng-model="Insurant.Address" required="required">
+                    <input type="text" name="address" ng-model="CurrentInsurant.Address" required="required">
                     <span ng-show="insurantForm.address.$touched && insurantForm.address.$error.required" translate="errAddress"></span>
                 </div>
                 <div class="form-group">
-                    <label translate="email"></label>
-                    <input type="email" name="email" ng-model="Insurant.Email" required="required">
-                    <span ng-show="insurantForm.email.$touched && insurantForm.email.$error.required" translate="errEmail"></span>
-                    <span ng-show="insurantForm.email.$error.email" translate="errEmailValidate"></span>
-                </div>
-                <div class="form-group">
                     <label translate="telNumber"></label>
-                    <input type="text" name="telNumber" ng-model="Insurant.TelephoneNumber" required="required">
+                    <input type="text" name="telNumber" ng-model="CurrentInsurant.TelephoneNumber" required="required">
                     <span ng-show="insurantForm.telNumber.$touched && insurantForm.telNumber.$error.required" translate="errTelNum"></span>
                 </div>
                 <div class="form-group">
                     <input ng-disabled="buyerExists" type="checkbox" ng-model="CurrentInsurant.IsBuyer" />
                     <label translate="isBuyer"></label>
+                </div>
+                <div ng-if="CurrentInsurant.IsBuyer" class="form-group">
+                    <label translate="email"></label>
+                    <input type="email" name="email" ng-model="CurrentInsurant.Email" required="required">
+                    <span ng-show="insurantForm.email.$touched && insurantForm.email.$error.required" translate="errEmail"></span>
+                    <span ng-show="insurantForm.email.$error.email" translate="errEmailValidate"></span>
                 </div>
             </form>
             <div>
