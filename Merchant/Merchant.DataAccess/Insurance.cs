@@ -19,15 +19,15 @@ namespace Merchant.DataAccess
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public decimal Price { get; set; }
-        public int InsurancePolicyId { get; set; }
-        public int InsurantsId { get; set; }
         public int VehicleId { get; set; }
         public int ResidentalBuildingId { get; set; }
+        public int VoyageId { get; set; }
+        public int InsurancesId { get; set; }
     
         public virtual RiskCategory RiskCategory { get; set; }
-        public virtual InsurancePolicy InsurancePolicy { get; set; }
-        public virtual Insurants Insurants { get; set; }
         public virtual ResidentalBuilding ResidentalBuilding { get; set; }
         public virtual Vehicle Vehicle { get; set; }
+        public virtual Insurances Insurances { get; set; }
+        public virtual Voyage Voyage { get; set; }
     }
 }

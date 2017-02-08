@@ -13,7 +13,7 @@
 
     <p class="alert alert-info" ng-if="insurantsCounter == 0" translate="noInsurants"></p>
 
-    <p class="alert alert-info" ng-show="insurantsCounter == Insurance.NumberOfInsurants" translate="noMoreInsurants"></p>
+    <p class="alert alert-info" ng-show="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants" translate="noMoreInsurants"></p>
 
     <div>
         <button ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>

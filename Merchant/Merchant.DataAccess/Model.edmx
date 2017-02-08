@@ -4,354 +4,457 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MerchantDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="MerchantDBModelStoreContainer">
-    <EntitySet Name="Buyer" EntityType="MerchantDBModel.Store.Buyer" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Insurance" EntityType="MerchantDBModel.Store.Insurance" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="InsurancePolicy" EntityType="MerchantDBModel.Store.InsurancePolicy" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Insurants" EntityType="MerchantDBModel.Store.Insurants" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Person" EntityType="MerchantDBModel.Store.Person" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Pricelist" EntityType="MerchantDBModel.Store.Pricelist" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PricelistItem" EntityType="MerchantDBModel.Store.PricelistItem" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PricelistItems" EntityType="MerchantDBModel.Store.PricelistItems" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ResidentalBuilding" EntityType="MerchantDBModel.Store.ResidentalBuilding" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Risk" EntityType="MerchantDBModel.Store.Risk" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RiskCategory" EntityType="MerchantDBModel.Store.RiskCategory" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RiskItem" EntityType="MerchantDBModel.Store.RiskItem" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="MerchantDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Vehicle" EntityType="MerchantDBModel.Store.Vehicle" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="InsurancePolicy_Buyer" Association="MerchantDBModel.Store.InsurancePolicy_Buyer">
-      <End Role="Buyer" EntitySet="Buyer" />
-      <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
-    </AssociationSet>
-    <AssociationSet Name="Insurance_InsuranceCategory" Association="MerchantDBModel.Store.Insurance_InsuranceCategory">
-      <End Role="RiskCategory" EntitySet="RiskCategory" />
-      <End Role="Insurance" EntitySet="Insurance" />
-    </AssociationSet>
-    <AssociationSet Name="Insurance_InsurancePolicy" Association="MerchantDBModel.Store.Insurance_InsurancePolicy">
-      <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
-      <End Role="Insurance" EntitySet="Insurance" />
-    </AssociationSet>
-    <AssociationSet Name="Insurance_Persons" Association="MerchantDBModel.Store.Insurance_Persons">
-      <End Role="Insurants" EntitySet="Insurants" />
-      <End Role="Insurance" EntitySet="Insurance" />
-    </AssociationSet>
-    <AssociationSet Name="Insurance_ResidentalBuilding" Association="MerchantDBModel.Store.Insurance_ResidentalBuilding">
-      <End Role="ResidentalBuilding" EntitySet="ResidentalBuilding" />
-      <End Role="Insurance" EntitySet="Insurance" />
-    </AssociationSet>
-    <AssociationSet Name="Insurance_Vehicle" Association="MerchantDBModel.Store.Insurance_Vehicle">
-      <End Role="Vehicle" EntitySet="Vehicle" />
-      <End Role="Insurance" EntitySet="Insurance" />
-    </AssociationSet>
-    <AssociationSet Name="Person_Persons" Association="MerchantDBModel.Store.Person_Persons">
-      <End Role="Insurants" EntitySet="Insurants" />
-      <End Role="Person" EntitySet="Person" />
-    </AssociationSet>
-    <AssociationSet Name="PricelistItems_Pricelist" Association="MerchantDBModel.Store.PricelistItems_Pricelist">
-      <End Role="Pricelist" EntitySet="Pricelist" />
-      <End Role="PricelistItems" EntitySet="PricelistItems" />
-    </AssociationSet>
-    <AssociationSet Name="PricelistItem_PricelistItems" Association="MerchantDBModel.Store.PricelistItem_PricelistItems">
-      <End Role="PricelistItems" EntitySet="PricelistItems" />
-      <End Role="PricelistItem" EntitySet="PricelistItem" />
-    </AssociationSet>
-    <AssociationSet Name="PricelistItem_RiskItem" Association="MerchantDBModel.Store.PricelistItem_RiskItem">
-      <End Role="RiskItem" EntitySet="RiskItem" />
-      <End Role="PricelistItem" EntitySet="PricelistItem" />
-    </AssociationSet>
-    <AssociationSet Name="Risk_InsuranceCategory" Association="MerchantDBModel.Store.Risk_InsuranceCategory">
-      <End Role="RiskCategory" EntitySet="RiskCategory" />
-      <End Role="Risk" EntitySet="Risk" />
-    </AssociationSet>
-    <AssociationSet Name="RiskItem_Risk" Association="MerchantDBModel.Store.RiskItem_Risk">
-      <End Role="Risk" EntitySet="Risk" />
-      <End Role="RiskItem" EntitySet="RiskItem" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Buyer">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="Surname" Type="varchar" Nullable="false" MaxLength="150" />
-  </EntityType>
-  <EntityType Name="Insurance">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RiskCategoryId" Type="int" Nullable="false" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Price" Type="decimal" Nullable="false" Precision="20" Scale="2" />
-    <Property Name="InsurancePolicyId" Type="int" Nullable="false" />
-    <Property Name="InsurantsId" Type="int" Nullable="false" />
-    <Property Name="VehicleId" Type="int" Nullable="false" />
-    <Property Name="ResidentalBuildingId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="InsurancePolicy">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Price" Type="decimal" Nullable="false" Precision="20" Scale="2" />
-    <Property Name="BuyerId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Insurants">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Person">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="InsurantsId" Type="int" Nullable="false" />
-    <Property Name="Name" Type="int" Nullable="false" />
-    <Property Name="Surname" Type="int" Nullable="false" />
-    <Property Name="IdentificationNumber" Type="char" Nullable="false" MaxLength="13" />
-    <Property Name="PassportNumber" Type="char" Nullable="false" MaxLength="8" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="30" />
-    <Property Name="TelephoneNumber" Type="varchar" Nullable="true" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="Pricelist">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PricelistItem">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Code" Type="char" Nullable="false" MaxLength="5" />
-    <Property Name="Price" Type="decimal" Nullable="false" Precision="20" Scale="2" />
-    <Property Name="RiskItemId" Type="int" Nullable="false" />
-    <Property Name="PricelistItemsId" Type="int" Nullable="false" />
-    <Property Name="Coefficient" Type="decimal" Nullable="false" Precision="5" Scale="2" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PricelistItems">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PricelistId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ResidentalBuilding">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="OwnerName" Type="varchar" Nullable="false" MaxLength="30" />
-    <Property Name="OwnerSurname" Type="varchar" Nullable="false" MaxLength="30" />
-    <Property Name="OwnerIdentificationNumber" Type="char" Nullable="false" MaxLength="13" />
-  </EntityType>
-  <EntityType Name="Risk">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="Name_Srb" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="RiskCategoryId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RiskCategory">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="Name_Srb" Type="varchar" Nullable="false" MaxLength="150" />
-  </EntityType>
-  <EntityType Name="RiskItem">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="Name_Srb" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="RiskId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Vehicle">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Brand" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="YearOfProduction" Type="datetime" Nullable="false" />
-    <Property Name="LicensePlateNumber" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="ChassisNumber" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="OwnerName" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="OwnerSurname" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="OwnerIdentificationNumber" Type="char" Nullable="false" MaxLength="13" />
-  </EntityType>
-  <Association Name="InsurancePolicy_Buyer">
-    <End Role="Buyer" Type="MerchantDBModel.Store.Buyer" Multiplicity="1" />
-    <End Role="InsurancePolicy" Type="MerchantDBModel.Store.InsurancePolicy" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Buyer">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InsurancePolicy">
-        <PropertyRef Name="BuyerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Insurance_InsuranceCategory">
-    <End Role="RiskCategory" Type="MerchantDBModel.Store.RiskCategory" Multiplicity="1" />
-    <End Role="Insurance" Type="MerchantDBModel.Store.Insurance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskCategory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Insurance">
-        <PropertyRef Name="RiskCategoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Insurance_InsurancePolicy">
-    <End Role="InsurancePolicy" Type="MerchantDBModel.Store.InsurancePolicy" Multiplicity="1" />
-    <End Role="Insurance" Type="MerchantDBModel.Store.Insurance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="InsurancePolicy">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Insurance">
-        <PropertyRef Name="InsurancePolicyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Insurance_Persons">
-    <End Role="Insurants" Type="MerchantDBModel.Store.Insurants" Multiplicity="1" />
-    <End Role="Insurance" Type="MerchantDBModel.Store.Insurance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Insurants">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Insurance">
-        <PropertyRef Name="InsurantsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Insurance_ResidentalBuilding">
-    <End Role="ResidentalBuilding" Type="MerchantDBModel.Store.ResidentalBuilding" Multiplicity="1" />
-    <End Role="Insurance" Type="MerchantDBModel.Store.Insurance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResidentalBuilding">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Insurance">
-        <PropertyRef Name="ResidentalBuildingId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Insurance_Vehicle">
-    <End Role="Vehicle" Type="MerchantDBModel.Store.Vehicle" Multiplicity="1" />
-    <End Role="Insurance" Type="MerchantDBModel.Store.Insurance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Vehicle">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Insurance">
-        <PropertyRef Name="VehicleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Person_Persons">
-    <End Role="Insurants" Type="MerchantDBModel.Store.Insurants" Multiplicity="1" />
-    <End Role="Person" Type="MerchantDBModel.Store.Person" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Insurants">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="InsurantsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PricelistItems_Pricelist">
-    <End Role="Pricelist" Type="MerchantDBModel.Store.Pricelist" Multiplicity="1" />
-    <End Role="PricelistItems" Type="MerchantDBModel.Store.PricelistItems" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pricelist">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PricelistItems">
-        <PropertyRef Name="PricelistId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PricelistItem_PricelistItems">
-    <End Role="PricelistItems" Type="MerchantDBModel.Store.PricelistItems" Multiplicity="1" />
-    <End Role="PricelistItem" Type="MerchantDBModel.Store.PricelistItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PricelistItems">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PricelistItem">
-        <PropertyRef Name="PricelistItemsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PricelistItem_RiskItem">
-    <End Role="RiskItem" Type="MerchantDBModel.Store.RiskItem" Multiplicity="1" />
-    <End Role="PricelistItem" Type="MerchantDBModel.Store.PricelistItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskItem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PricelistItem">
-        <PropertyRef Name="RiskItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Risk_InsuranceCategory">
-    <End Role="RiskCategory" Type="MerchantDBModel.Store.RiskCategory" Multiplicity="1" />
-    <End Role="Risk" Type="MerchantDBModel.Store.Risk" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RiskCategory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Risk">
-        <PropertyRef Name="RiskCategoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RiskItem_Risk">
-    <End Role="Risk" Type="MerchantDBModel.Store.Risk" Multiplicity="1" />
-    <End Role="RiskItem" Type="MerchantDBModel.Store.RiskItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Risk">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RiskItem">
-        <PropertyRef Name="RiskId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+      <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiskCategoryId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+          <Property Name="ResidentalBuildingId" Type="int" Nullable="false" />
+          <Property Name="VoyageId" Type="int" Nullable="false" />
+          <Property Name="InsurancesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsurancePolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="BuyerId" Type="int" Nullable="false" />
+          <Property Name="InsurancesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsurantsId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Insurants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pricelist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PricelistItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="RiskItemId" Type="int" Nullable="false" />
+          <Property Name="PricelistItemsId" Type="int" Nullable="false" />
+          <Property Name="Coefficient" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PricelistItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PricelistId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResidentalBuilding">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SurfaceArea" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="BuildingAge" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="EstimatedValue" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="InsuredFor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Risk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name_Srb" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="RiskCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name_Srb" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name_Srb" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="RiskId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Package" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Brand" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="YearOfProduction" Type="datetime" Nullable="false" />
+          <Property Name="LicensePlateNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ChassisNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voyage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberOfInsurants" Type="int" Nullable="false" />
+          <Property Name="InsurantAge" Type="int" Nullable="false" />
+          <Property Name="Sport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsuredValue" Type="int" Nullable="false" />
+          <Property Name="InsurantsId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Insurance_InsuranceCategory">
+          <End Role="RiskCategory" Type="Self.RiskCategory" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiskCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="RiskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_ResidentalBuilding">
+          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentalBuilding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="ResidentalBuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsurancePolicy_Buyer">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsurancePolicy">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurant_Insurants">
+          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
+          <End Role="Insurant" Type="Self.Insurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurant">
+              <PropertyRef Name="InsurantsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricelistItem_PricelistItems">
+          <End Role="PricelistItems" Type="Self.PricelistItems" Multiplicity="1" />
+          <End Role="PricelistItem" Type="Self.PricelistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricelistItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PricelistItem">
+              <PropertyRef Name="PricelistItemsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricelistItem_RiskItem">
+          <End Role="RiskItem" Type="Self.RiskItem" Multiplicity="1" />
+          <End Role="PricelistItem" Type="Self.PricelistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiskItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PricelistItem">
+              <PropertyRef Name="RiskItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricelistItems_Pricelist">
+          <End Role="Pricelist" Type="Self.Pricelist" Multiplicity="1" />
+          <End Role="PricelistItems" Type="Self.PricelistItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pricelist">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PricelistItems">
+              <PropertyRef Name="PricelistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Risk_InsuranceCategory">
+          <End Role="RiskCategory" Type="Self.RiskCategory" Multiplicity="1" />
+          <End Role="Risk" Type="Self.Risk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiskCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Risk">
+              <PropertyRef Name="RiskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiskItem_Risk">
+          <End Role="Risk" Type="Self.Risk" Multiplicity="1" />
+          <End Role="RiskItem" Type="Self.RiskItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RiskItem">
+              <PropertyRef Name="RiskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Insurance_Insurants">
+          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="InsurancesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Insurance_Voyage">
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voyage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="VoyageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InsurancePolicy_Insurances">
+          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsurancePolicy">
+              <PropertyRef Name="InsurancesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResidentalBuilding_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResidentalBuilding">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vehicle_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Voyage_Insurants">
+          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voyage">
+              <PropertyRef Name="InsurantsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MerchantDBModelStoreContainer">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurance" EntityType="Self.Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsurancePolicy" EntityType="Self.InsurancePolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurances" EntityType="Self.Insurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurant" EntityType="Self.Insurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurants" EntityType="Self.Insurants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pricelist" EntityType="Self.Pricelist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PricelistItem" EntityType="Self.PricelistItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PricelistItems" EntityType="Self.PricelistItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResidentalBuilding" EntityType="Self.ResidentalBuilding" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Risk" EntityType="Self.Risk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskCategory" EntityType="Self.RiskCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskItem" EntityType="Self.RiskItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voyage" EntityType="Self.Voyage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Insurance_InsuranceCategory" Association="Self.FK_Insurance_InsuranceCategory">
+            <End Role="RiskCategory" EntitySet="RiskCategory" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_ResidentalBuilding" Association="Self.FK_Insurance_ResidentalBuilding">
+            <End Role="ResidentalBuilding" EntitySet="ResidentalBuilding" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Vehicle" Association="Self.FK_Insurance_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsurancePolicy_Buyer" Association="Self.FK_InsurancePolicy_Buyer">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurant_Insurants" Association="Self.FK_Insurant_Insurants">
+            <End Role="Insurants" EntitySet="Insurants" />
+            <End Role="Insurant" EntitySet="Insurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricelistItem_PricelistItems" Association="Self.FK_PricelistItem_PricelistItems">
+            <End Role="PricelistItems" EntitySet="PricelistItems" />
+            <End Role="PricelistItem" EntitySet="PricelistItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricelistItem_RiskItem" Association="Self.FK_PricelistItem_RiskItem">
+            <End Role="RiskItem" EntitySet="RiskItem" />
+            <End Role="PricelistItem" EntitySet="PricelistItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricelistItems_Pricelist" Association="Self.FK_PricelistItems_Pricelist">
+            <End Role="Pricelist" EntitySet="Pricelist" />
+            <End Role="PricelistItems" EntitySet="PricelistItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Risk_InsuranceCategory" Association="Self.FK_Risk_InsuranceCategory">
+            <End Role="RiskCategory" EntitySet="RiskCategory" />
+            <End Role="Risk" EntitySet="Risk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiskItem_Risk" Association="Self.FK_RiskItem_Risk">
+            <End Role="Risk" EntitySet="Risk" />
+            <End Role="RiskItem" EntitySet="RiskItem" />
+          </AssociationSet>
+          <AssociationSet Name="Insurance_Insurants" Association="Self.Insurance_Insurants">
+            <End Role="Insurances" EntitySet="Insurances" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="Insurance_Voyage" Association="Self.Insurance_Voyage">
+            <End Role="Voyage" EntitySet="Voyage" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="InsurancePolicy_Insurances" Association="Self.InsurancePolicy_Insurances">
+            <End Role="Insurances" EntitySet="Insurances" />
+            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="ResidentalBuilding_Owner" Association="Self.ResidentalBuilding_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="ResidentalBuilding" EntitySet="ResidentalBuilding" />
+          </AssociationSet>
+          <AssociationSet Name="Vehicle_Owner" Association="Self.Vehicle_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="Voyage_Insurants" Association="Self.Voyage_Insurants">
+            <End Role="Insurants" EntitySet="Insurants" />
+            <End Role="Voyage" EntitySet="Voyage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerchantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -362,6 +465,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Insurance">
           <Key>
@@ -372,15 +480,15 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Price" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="InsurancePolicyId" Type="Int32" Nullable="false" />
-          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
           <Property Name="VehicleId" Type="Int32" Nullable="false" />
           <Property Name="ResidentalBuildingId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RiskCategory" Relationship="Self.Insurance_InsuranceCategory" FromRole="Insurance" ToRole="RiskCategory" />
-          <NavigationProperty Name="InsurancePolicy" Relationship="Self.Insurance_InsurancePolicy" FromRole="Insurance" ToRole="InsurancePolicy" />
-          <NavigationProperty Name="Insurants" Relationship="Self.Insurance_Persons" FromRole="Insurance" ToRole="Insurants" />
-          <NavigationProperty Name="ResidentalBuilding" Relationship="Self.Insurance_ResidentalBuilding" FromRole="Insurance" ToRole="ResidentalBuilding" />
-          <NavigationProperty Name="Vehicle" Relationship="Self.Insurance_Vehicle" FromRole="Insurance" ToRole="Vehicle" />
+          <Property Name="VoyageId" Type="Int32" Nullable="false" />
+          <Property Name="InsurancesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RiskCategory" Relationship="Self.FK_Insurance_InsuranceCategory" FromRole="Insurance" ToRole="RiskCategory" />
+          <NavigationProperty Name="ResidentalBuilding" Relationship="Self.FK_Insurance_ResidentalBuilding" FromRole="Insurance" ToRole="ResidentalBuilding" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_Insurance_Vehicle" FromRole="Insurance" ToRole="Vehicle" />
+          <NavigationProperty Name="Insurances" Relationship="Self.Insurance_Insurants" FromRole="Insurance" ToRole="Insurances" />
+          <NavigationProperty Name="Voyage" Relationship="Self.Insurance_Voyage" FromRole="Insurance" ToRole="Voyage" />
         </EntityType>
         <EntityType Name="InsurancePolicy">
           <Key>
@@ -389,7 +497,29 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Price" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="BuyerId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Buyer" Relationship="Self.InsurancePolicy_Buyer" FromRole="InsurancePolicy" ToRole="Buyer" />
+          <Property Name="InsurancesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_InsurancePolicy_Buyer" FromRole="InsurancePolicy" ToRole="Buyer" />
+          <NavigationProperty Name="Insurances" Relationship="Self.InsurancePolicy_Insurances" FromRole="InsurancePolicy" ToRole="Insurances" />
+        </EntityType>
+        <EntityType Name="Insurances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Insurant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Insurants" Relationship="Self.FK_Insurant_Insurants" FromRole="Insurant" ToRole="Insurants" />
         </EntityType>
         <EntityType Name="Insurants">
           <Key>
@@ -397,19 +527,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="Person">
+        <EntityType Name="Owner">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PassportNumber" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Insurants" Relationship="Self.Person_Persons" FromRole="Person" ToRole="Insurants" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Pricelist">
           <Key>
@@ -432,8 +558,8 @@
           <Property Name="Coefficient" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="PricelistItems" Relationship="Self.PricelistItem_PricelistItems" FromRole="PricelistItem" ToRole="PricelistItems" />
-          <NavigationProperty Name="RiskItem" Relationship="Self.PricelistItem_RiskItem" FromRole="PricelistItem" ToRole="RiskItem" />
+          <NavigationProperty Name="PricelistItems" Relationship="Self.FK_PricelistItem_PricelistItems" FromRole="PricelistItem" ToRole="PricelistItems" />
+          <NavigationProperty Name="RiskItem" Relationship="Self.FK_PricelistItem_RiskItem" FromRole="PricelistItem" ToRole="RiskItem" />
         </EntityType>
         <EntityType Name="PricelistItems">
           <Key>
@@ -441,7 +567,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PricelistId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pricelist" Relationship="Self.PricelistItems_Pricelist" FromRole="PricelistItems" ToRole="Pricelist" />
+          <NavigationProperty Name="Pricelist" Relationship="Self.FK_PricelistItems_Pricelist" FromRole="PricelistItems" ToRole="Pricelist" />
         </EntityType>
         <EntityType Name="ResidentalBuilding">
           <Key>
@@ -449,9 +575,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerSurname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerIdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SurfaceArea" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="BuildingAge" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="EstimatedValue" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="InsuredFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="Self.ResidentalBuilding_Owner" FromRole="ResidentalBuilding" ToRole="Owner" />
         </EntityType>
         <EntityType Name="Risk">
           <Key>
@@ -459,9 +588,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name_Srb" Type="String" Nullable="false" FixedLength="false" MaxLength="150" Unicode="false" />
+          <Property Name="Name_Srb" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RiskCategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RiskCategory" Relationship="Self.Risk_InsuranceCategory" FromRole="Risk" ToRole="RiskCategory" />
+          <NavigationProperty Name="RiskCategory" Relationship="Self.FK_Risk_InsuranceCategory" FromRole="Risk" ToRole="RiskCategory" />
         </EntityType>
         <EntityType Name="RiskCategory">
           <Key>
@@ -469,17 +598,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name_Srb" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          </EntityType>
+          <Property Name="Name_Srb" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="RiskItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name_Srb" Type="String" Nullable="false" FixedLength="false" MaxLength="150" Unicode="false" />
+          <Property Name="Name_Srb" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RiskId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Risk" Relationship="Self.RiskItem_Risk" FromRole="RiskItem" ToRole="Risk" />
+          <NavigationProperty Name="Risk" Relationship="Self.FK_RiskItem_Risk" FromRole="RiskItem" ToRole="Risk" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -496,16 +625,29 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Package" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Brand" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="YearOfProduction" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="YearOfProduction" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LicensePlateNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ChassisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerSurname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OwnerIdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="Self.Vehicle_Owner" FromRole="Vehicle" ToRole="Owner" />
         </EntityType>
-        <Association Name="InsurancePolicy_Buyer">
+        <EntityType Name="Voyage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumberOfInsurants" Type="Int32" Nullable="false" />
+          <Property Name="InsurantAge" Type="Int32" Nullable="false" />
+          <Property Name="Sport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InsuredValue" Type="Int32" Nullable="false" />
+          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Insurants" Relationship="Self.Voyage_Insurants" FromRole="Voyage" ToRole="Insurants" />
+        </EntityType>
+        <Association Name="FK_InsurancePolicy_Buyer">
           <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
           <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -517,7 +659,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Insurance_InsuranceCategory">
+        <Association Name="FK_Insurance_InsuranceCategory">
           <End Role="RiskCategory" Type="Self.RiskCategory" Multiplicity="1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -529,31 +671,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Insurance_InsurancePolicy">
-          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="1" />
-          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InsurancePolicy">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Insurance">
-              <PropertyRef Name="InsurancePolicyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Insurance_Persons">
-          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
-          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurants">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Insurance">
-              <PropertyRef Name="InsurantsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Insurance_ResidentalBuilding">
+        <Association Name="FK_Insurance_ResidentalBuilding">
           <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -565,7 +683,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Insurance_Vehicle">
+        <Association Name="FK_Insurance_Vehicle">
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -577,19 +695,91 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Person_Persons">
+        <Association Name="Insurance_Insurants">
+          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="InsurancesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Insurance_Voyage">
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voyage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="VoyageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InsurancePolicy_Insurances">
+          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsurancePolicy">
+              <PropertyRef Name="InsurancesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurant_Insurants">
           <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
-          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <End Role="Insurant" Type="Self.Insurant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Insurants">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Person">
+            <Dependent Role="Insurant">
               <PropertyRef Name="InsurantsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PricelistItems_Pricelist">
+        <Association Name="Voyage_Insurants">
+          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voyage">
+              <PropertyRef Name="InsurantsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResidentalBuilding_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResidentalBuilding">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vehicle_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricelistItems_Pricelist">
           <End Role="Pricelist" Type="Self.Pricelist" Multiplicity="1" />
           <End Role="PricelistItems" Type="Self.PricelistItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -601,7 +791,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PricelistItem_PricelistItems">
+        <Association Name="FK_PricelistItem_PricelistItems">
           <End Role="PricelistItems" Type="Self.PricelistItems" Multiplicity="1" />
           <End Role="PricelistItem" Type="Self.PricelistItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -613,7 +803,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PricelistItem_RiskItem">
+        <Association Name="FK_PricelistItem_RiskItem">
           <End Role="RiskItem" Type="Self.RiskItem" Multiplicity="1" />
           <End Role="PricelistItem" Type="Self.PricelistItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -625,7 +815,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Risk_InsuranceCategory">
+        <Association Name="FK_Risk_InsuranceCategory">
           <End Role="RiskCategory" Type="Self.RiskCategory" Multiplicity="1" />
           <End Role="Risk" Type="Self.Risk" Multiplicity="*" />
           <ReferentialConstraint>
@@ -637,7 +827,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RiskItem_Risk">
+        <Association Name="FK_RiskItem_Risk">
           <End Role="Risk" Type="Self.Risk" Multiplicity="1" />
           <End Role="RiskItem" Type="Self.RiskItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -649,12 +839,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MerchantDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Buyer" EntityType="Self.Buyer" />
           <EntitySet Name="Insurance" EntityType="Self.Insurance" />
           <EntitySet Name="InsurancePolicy" EntityType="Self.InsurancePolicy" />
+          <EntitySet Name="Insurances" EntityType="Self.Insurances" />
+          <EntitySet Name="Insurant" EntityType="Self.Insurant" />
           <EntitySet Name="Insurants" EntityType="Self.Insurants" />
-          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" />
           <EntitySet Name="Pricelist" EntityType="Self.Pricelist" />
           <EntitySet Name="PricelistItem" EntityType="Self.PricelistItem" />
           <EntitySet Name="PricelistItems" EntityType="Self.PricelistItems" />
@@ -664,256 +856,271 @@
           <EntitySet Name="RiskItem" EntityType="Self.RiskItem" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
-          <AssociationSet Name="InsurancePolicy_Buyer" Association="Self.InsurancePolicy_Buyer">
+          <EntitySet Name="Voyage" EntityType="Self.Voyage" />
+          <AssociationSet Name="FK_InsurancePolicy_Buyer" Association="Self.FK_InsurancePolicy_Buyer">
             <End Role="Buyer" EntitySet="Buyer" />
             <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
           </AssociationSet>
-          <AssociationSet Name="Insurance_InsuranceCategory" Association="Self.Insurance_InsuranceCategory">
+          <AssociationSet Name="FK_Insurance_InsuranceCategory" Association="Self.FK_Insurance_InsuranceCategory">
             <End Role="RiskCategory" EntitySet="RiskCategory" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="Insurance_InsurancePolicy" Association="Self.Insurance_InsurancePolicy">
-            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
-            <End Role="Insurance" EntitySet="Insurance" />
-          </AssociationSet>
-          <AssociationSet Name="Insurance_Persons" Association="Self.Insurance_Persons">
-            <End Role="Insurants" EntitySet="Insurants" />
-            <End Role="Insurance" EntitySet="Insurance" />
-          </AssociationSet>
-          <AssociationSet Name="Insurance_ResidentalBuilding" Association="Self.Insurance_ResidentalBuilding">
+          <AssociationSet Name="FK_Insurance_ResidentalBuilding" Association="Self.FK_Insurance_ResidentalBuilding">
             <End Role="ResidentalBuilding" EntitySet="ResidentalBuilding" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="Insurance_Vehicle" Association="Self.Insurance_Vehicle">
+          <AssociationSet Name="FK_Insurance_Vehicle" Association="Self.FK_Insurance_Vehicle">
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="Person_Persons" Association="Self.Person_Persons">
-            <End Role="Insurants" EntitySet="Insurants" />
-            <End Role="Person" EntitySet="Person" />
+          <AssociationSet Name="Insurance_Insurants" Association="Self.Insurance_Insurants">
+            <End Role="Insurances" EntitySet="Insurances" />
+            <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="PricelistItems_Pricelist" Association="Self.PricelistItems_Pricelist">
+          <AssociationSet Name="Insurance_Voyage" Association="Self.Insurance_Voyage">
+            <End Role="Voyage" EntitySet="Voyage" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="InsurancePolicy_Insurances" Association="Self.InsurancePolicy_Insurances">
+            <End Role="Insurances" EntitySet="Insurances" />
+            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurant_Insurants" Association="Self.FK_Insurant_Insurants">
+            <End Role="Insurants" EntitySet="Insurants" />
+            <End Role="Insurant" EntitySet="Insurant" />
+          </AssociationSet>
+          <AssociationSet Name="Voyage_Insurants" Association="Self.Voyage_Insurants">
+            <End Role="Insurants" EntitySet="Insurants" />
+            <End Role="Voyage" EntitySet="Voyage" />
+          </AssociationSet>
+          <AssociationSet Name="ResidentalBuilding_Owner" Association="Self.ResidentalBuilding_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="ResidentalBuilding" EntitySet="ResidentalBuilding" />
+          </AssociationSet>
+          <AssociationSet Name="Vehicle_Owner" Association="Self.Vehicle_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricelistItems_Pricelist" Association="Self.FK_PricelistItems_Pricelist">
             <End Role="Pricelist" EntitySet="Pricelist" />
             <End Role="PricelistItems" EntitySet="PricelistItems" />
           </AssociationSet>
-          <AssociationSet Name="PricelistItem_PricelistItems" Association="Self.PricelistItem_PricelistItems">
+          <AssociationSet Name="FK_PricelistItem_PricelistItems" Association="Self.FK_PricelistItem_PricelistItems">
             <End Role="PricelistItems" EntitySet="PricelistItems" />
             <End Role="PricelistItem" EntitySet="PricelistItem" />
           </AssociationSet>
-          <AssociationSet Name="PricelistItem_RiskItem" Association="Self.PricelistItem_RiskItem">
+          <AssociationSet Name="FK_PricelistItem_RiskItem" Association="Self.FK_PricelistItem_RiskItem">
             <End Role="RiskItem" EntitySet="RiskItem" />
             <End Role="PricelistItem" EntitySet="PricelistItem" />
           </AssociationSet>
-          <AssociationSet Name="Risk_InsuranceCategory" Association="Self.Risk_InsuranceCategory">
+          <AssociationSet Name="FK_Risk_InsuranceCategory" Association="Self.FK_Risk_InsuranceCategory">
             <End Role="RiskCategory" EntitySet="RiskCategory" />
             <End Role="Risk" EntitySet="Risk" />
           </AssociationSet>
-          <AssociationSet Name="RiskItem_Risk" Association="Self.RiskItem_Risk">
+          <AssociationSet Name="FK_RiskItem_Risk" Association="Self.FK_RiskItem_Risk">
             <End Role="Risk" EntitySet="Risk" />
             <End Role="RiskItem" EntitySet="RiskItem" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MerchantDBModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MerchantDBModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MerchantDBModelStoreContainer" CdmEntityContainer="MerchantDBEntities1">
-    <EntitySetMapping Name="Buyer">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Buyer)">
-        <MappingFragment StoreEntitySet="Buyer">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Insurance">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Insurance)">
-        <MappingFragment StoreEntitySet="Insurance">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="RiskCategoryId" ColumnName="RiskCategoryId" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="InsurancePolicyId" ColumnName="InsurancePolicyId" />
-          <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
-          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-          <ScalarProperty Name="ResidentalBuildingId" ColumnName="ResidentalBuildingId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InsurancePolicy">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.InsurancePolicy)">
-        <MappingFragment StoreEntitySet="InsurancePolicy">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Insurants">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Insurants)">
-        <MappingFragment StoreEntitySet="Insurants">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Person">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Person)">
-        <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
-          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pricelist">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Pricelist)">
-        <MappingFragment StoreEntitySet="Pricelist">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PricelistItem">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.PricelistItem)">
-        <MappingFragment StoreEntitySet="PricelistItem">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="RiskItemId" ColumnName="RiskItemId" />
-          <ScalarProperty Name="PricelistItemsId" ColumnName="PricelistItemsId" />
-          <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PricelistItems">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.PricelistItems)">
-        <MappingFragment StoreEntitySet="PricelistItems">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PricelistId" ColumnName="PricelistId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ResidentalBuilding">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.ResidentalBuilding)">
-        <MappingFragment StoreEntitySet="ResidentalBuilding">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="OwnerSurname" ColumnName="OwnerSurname" />
-          <ScalarProperty Name="OwnerIdentificationNumber" ColumnName="OwnerIdentificationNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Risk">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Risk)">
-        <MappingFragment StoreEntitySet="Risk">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
-          <ScalarProperty Name="RiskCategoryId" ColumnName="RiskCategoryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RiskCategory">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.RiskCategory)">
-        <MappingFragment StoreEntitySet="RiskCategory">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RiskItem">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.RiskItem)">
-        <MappingFragment StoreEntitySet="RiskItem">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
-          <ScalarProperty Name="RiskId" ColumnName="RiskId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.sysdiagrams)">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Vehicle">
-      <EntityTypeMapping TypeName="IsTypeOf(MerchantDBModel.Vehicle)">
-        <MappingFragment StoreEntitySet="Vehicle">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Brand" ColumnName="Brand" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="YearOfProduction" ColumnName="YearOfProduction" />
-          <ScalarProperty Name="LicensePlateNumber" ColumnName="LicensePlateNumber" />
-          <ScalarProperty Name="ChassisNumber" ColumnName="ChassisNumber" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="OwnerSurname" ColumnName="OwnerSurname" />
-          <ScalarProperty Name="OwnerIdentificationNumber" ColumnName="OwnerIdentificationNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MerchantDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Buyer">
+            <EntityTypeMapping TypeName="MerchantDBModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurance">
+            <EntityTypeMapping TypeName="MerchantDBModel.Insurance">
+              <MappingFragment StoreEntitySet="Insurance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RiskCategoryId" ColumnName="RiskCategoryId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="ResidentalBuildingId" ColumnName="ResidentalBuildingId" />
+                <ScalarProperty Name="VoyageId" ColumnName="VoyageId" />
+                <ScalarProperty Name="InsurancesId" ColumnName="InsurancesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsurancePolicy">
+            <EntityTypeMapping TypeName="MerchantDBModel.InsurancePolicy">
+              <MappingFragment StoreEntitySet="InsurancePolicy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="InsurancesId" ColumnName="InsurancesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurances">
+            <EntityTypeMapping TypeName="MerchantDBModel.Insurances">
+              <MappingFragment StoreEntitySet="Insurances">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurant">
+            <EntityTypeMapping TypeName="MerchantDBModel.Insurant">
+              <MappingFragment StoreEntitySet="Insurant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurants">
+            <EntityTypeMapping TypeName="MerchantDBModel.Insurants">
+              <MappingFragment StoreEntitySet="Insurants">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owner">
+            <EntityTypeMapping TypeName="MerchantDBModel.Owner">
+              <MappingFragment StoreEntitySet="Owner">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pricelist">
+            <EntityTypeMapping TypeName="MerchantDBModel.Pricelist">
+              <MappingFragment StoreEntitySet="Pricelist">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PricelistItem">
+            <EntityTypeMapping TypeName="MerchantDBModel.PricelistItem">
+              <MappingFragment StoreEntitySet="PricelistItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="RiskItemId" ColumnName="RiskItemId" />
+                <ScalarProperty Name="PricelistItemsId" ColumnName="PricelistItemsId" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PricelistItems">
+            <EntityTypeMapping TypeName="MerchantDBModel.PricelistItems">
+              <MappingFragment StoreEntitySet="PricelistItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PricelistId" ColumnName="PricelistId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResidentalBuilding">
+            <EntityTypeMapping TypeName="MerchantDBModel.ResidentalBuilding">
+              <MappingFragment StoreEntitySet="ResidentalBuilding">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SurfaceArea" ColumnName="SurfaceArea" />
+                <ScalarProperty Name="BuildingAge" ColumnName="BuildingAge" />
+                <ScalarProperty Name="EstimatedValue" ColumnName="EstimatedValue" />
+                <ScalarProperty Name="InsuredFor" ColumnName="InsuredFor" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risk">
+            <EntityTypeMapping TypeName="MerchantDBModel.Risk">
+              <MappingFragment StoreEntitySet="Risk">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
+                <ScalarProperty Name="RiskCategoryId" ColumnName="RiskCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskCategory">
+            <EntityTypeMapping TypeName="MerchantDBModel.RiskCategory">
+              <MappingFragment StoreEntitySet="RiskCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskItem">
+            <EntityTypeMapping TypeName="MerchantDBModel.RiskItem">
+              <MappingFragment StoreEntitySet="RiskItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name_Srb" ColumnName="Name_Srb" />
+                <ScalarProperty Name="RiskId" ColumnName="RiskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MerchantDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="MerchantDBModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="YearOfProduction" ColumnName="YearOfProduction" />
+                <ScalarProperty Name="LicensePlateNumber" ColumnName="LicensePlateNumber" />
+                <ScalarProperty Name="ChassisNumber" ColumnName="ChassisNumber" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voyage">
+            <EntityTypeMapping TypeName="MerchantDBModel.Voyage">
+              <MappingFragment StoreEntitySet="Voyage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="NumberOfInsurants" ColumnName="NumberOfInsurants" />
+                <ScalarProperty Name="InsurantAge" ColumnName="InsurantAge" />
+                <ScalarProperty Name="Sport" ColumnName="Sport" />
+                <ScalarProperty Name="InsuredValue" ColumnName="InsuredValue" />
+                <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -927,7 +1134,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

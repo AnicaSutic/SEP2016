@@ -16,8 +16,12 @@ namespace Merchant.DataAccess
     {
         public int Id { get; set; }
         public string Address { get; set; }
-        public string OwnerName { get; set; }
-        public string OwnerSurname { get; set; }
-        public string OwnerIdentificationNumber { get; set; }
+        public decimal SurfaceArea { get; set; }
+        public decimal BuildingAge { get; set; }
+        public decimal EstimatedValue { get; set; }
+        public string InsuredFor { get; set; }
+        public int OwnerId { get; set; }
+    
+        public virtual Owner Owner { get; set; }
     }
 }

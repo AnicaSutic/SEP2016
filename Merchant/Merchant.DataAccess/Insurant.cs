@@ -10,13 +10,19 @@
 namespace Merchant.DataAccess
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Insurant
     {
-        public string Database { get; set; }
+        public int Id { get; set; }
+        public int InsurantsId { get; set; }
         public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public string Surname { get; set; }
+        public string IdentificationNumber { get; set; }
+        public string PassportNumber { get; set; }
+        public string Address { get; set; }
+        public string TelephoneNumber { get; set; }
+    
+        public virtual Insurants Insurants { get; set; }
     }
 }

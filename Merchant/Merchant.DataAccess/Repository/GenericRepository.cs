@@ -9,10 +9,10 @@ namespace Merchant.DataAccess.Repository
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        internal MerchantDBEntities1 Context;
+        internal Entities Context;
         internal DbSet<TEntity> DbSet;
 
-        public GenericRepository(MerchantDBEntities1 context)
+        public GenericRepository(Entities context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();

@@ -12,17 +12,8 @@ namespace Merchant.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Insurances
     {
         public int Id { get; set; }
-        public int InsurantsId { get; set; }
-        public int Name { get; set; }
-        public int Surname { get; set; }
-        public string IdentificationNumber { get; set; }
-        public string PassportNumber { get; set; }
-        public string Address { get; set; }
-        public string TelephoneNumber { get; set; }
-    
-        public virtual Insurants Insurants { get; set; }
     }
 }

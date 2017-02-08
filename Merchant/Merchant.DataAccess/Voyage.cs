@@ -10,10 +10,18 @@
 namespace Merchant.DataAccess
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Voyage
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id { get; set; }
+        public string Region { get; set; }
+        public int NumberOfInsurants { get; set; }
+        public int InsurantAge { get; set; }
+        public string Sport { get; set; }
+        public int InsuredValue { get; set; }
+        public int InsurantsId { get; set; }
+    
+        public virtual Insurants Insurants { get; set; }
     }
 }

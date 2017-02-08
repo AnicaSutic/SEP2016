@@ -42,20 +42,5 @@ namespace Merchant.Web.Controllers
         {
             return View();
         }
-
-        //public ActionResult CalculatePrice()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult Insurants()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult OtherInsurance()
-        //{
-        //    return View();
-        //}
     }
 }

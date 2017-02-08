@@ -12,14 +12,12 @@ namespace Merchant.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class InsurancePolicy
+    public partial class Owner
     {
         public int Id { get; set; }
-        public decimal Price { get; set; }
-        public int BuyerId { get; set; }
-        public int InsurancesId { get; set; }
-    
-        public virtual Buyer Buyer { get; set; }
-        public virtual Insurances Insurances { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string IdentificationNumber { get; set; }
+        public string Address { get; set; }
     }
 }

@@ -13,9 +13,8 @@
 
     $scope.price = 0.0;
 
-    $scope.areTermsAccepted = $window.localStorage.getItem("areTermsAccepted");
-
-    $window.localStorage.setItem("purchaseStep", 1);
+    $scope.areTermsAccepted = sessionStorage.getItem("areTermsAccepted");
+    $scope.purchaseStep = sessionStorage.getItem("purchaseStep");
 
     $scope.showVehicleForm = false;
     $scope.showHomeForm = false;
@@ -24,10 +23,10 @@
         $scope.Insurance = {
             Duration: "",
             //Region: 0,
-            NumberOfInsurants: 4,
-            // InsuredValue: 0,
-            //  Age: 0,
-            //  Sport: 0,
+            NumberOfInsurants: 0,
+            //InsuredValue: 0,
+            //Age: 0,
+            //Sport: 0,
             StartDate: "",
             EndDate: ""
         };
@@ -169,17 +168,6 @@
             }
         }
     };
-
-
-    $scope.showInsuranceByCategory = function (c) {
-        if(c == "Home" || c == "Stambeno") {
-            $rootScope.showHomeForm = true;
-        }
-        if(c  == "Vehicle" || c == "Osiguranje vozila") {
-            $rootScope.showVehicleForm = true;
-        }
-     };
-
    
     $scope.cancelOther = function () {
         $scope.showAnotherInsurance = false;
@@ -191,7 +179,6 @@
         $scope.HomeInsurance.insuredBy = 0;
     };
    
-
     $scope.onPackageChange = function () {
        
         for (var i = 0; i < $scope.packages.length; i++) {
@@ -305,27 +292,19 @@
 
     /** CALCULATOR **/
 
-    $scope.getShortDate = function (date) {
-        return $filter('date')(date, 'longDate');
-    };
-
     $scope.calculate = function () {
 
         if (!$scope.isChecked)
             $scope.Insurance.Sport = 0;
 
-        $scope.Insurance.StartDate = $scope.getShortDate($scope.Insurance.StartDate); //m/d/yy
-        alert($scope.Insurance.StartDate);
-
-        //RiskService.calculatePrice($scope.Insurance).then(function (response) {
-        //    $scope.price = response.data;
-        //});
+        RiskService.calculatePrice($scope.Insurance).then(function (response) {
+            $scope.price = response.data;
+        });
     };
 
     $scope.addTravelInsurance = function () {
-        $window.localStorage.setItem("purchaseStep", 2);
+        sessionStorage.setItem("purchaseStep", 2);
     };
-    
 
     /** DATEPICKER **/
 

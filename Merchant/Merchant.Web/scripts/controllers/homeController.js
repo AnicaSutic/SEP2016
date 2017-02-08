@@ -1,6 +1,7 @@
-﻿app.controller('HomeController', function ($window, $scope, $state) {
+﻿app.controller('HomeController', function ($scope, $state) {
 
-    $window.localStorage.setItem("areTermsAccepted", false);
+    sessionStorage.setItem("areTermsAccepted", false);
+    sessionStorage.setItem("purchaseStep", 0);
     $scope.error = "";
 
     $scope.accept = function () {
@@ -8,7 +9,8 @@
             $scope.error = "You must accept the terms & conditions!";
         else {
             $scope.error = "";
-            $window.localStorage.setItem("areTermsAccepted", true);
+            sessionStorage.setItem("areTermsAccepted", true);
+            sessionStorage.setItem("purchaseStep", 1);
             $state.go('insurance');
         }
     };

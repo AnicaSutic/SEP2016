@@ -195,7 +195,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             chassis: "Broj šasije",
             startDate: "Od",
             endDate: "Do",
-            currency: "dinara",
+            currency: "eura",
             errStart: "Morate uneti datum početka!",
             errEnd: "Morate uneti datum završetka!",
             errDateEnd: "Datum završetka nije validan! Proverite početni datum!",

@@ -1,0 +1,247 @@
+﻿@{
+    Layout = null;
+}
+<style type="text/css">
+    .form-control {
+        width: 30%;
+        padding: 16px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #f1f1f1;
+    }
+
+    label {
+        /* Other styling.. */
+        width: 60%;
+        display: inline-block;
+        text-align: right;
+        vertical-align: top;
+        padding-right: 25px;
+    }
+
+    div.container1 {
+        background: white;
+        margin-top: 30px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        color: #939393;
+        font-weight: 300;
+        font-size: 15px;
+        width: 768px;
+        margin: 0 auto;
+    }
+
+    body {
+        background: url(/content/images/slider/3.jpg) #ccc;
+        transition-property: opacity;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+    }
+
+    select {
+        width: 33.5%;
+        box-shadow: 0 3px 0 #ccc;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+    }
+
+        input:hover, textarea:hover, select:hover {
+            border-color: #aaa;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            box-shadow: 0 0 0px 1.5px #3d92d9;
+        }
+
+    .but {
+        background:: #50a5ed;
+        background: linear-gradient(#50a5ed, #3280c2);
+        background: -webkit-linear-gradient(#50a5ed, #3280c2);
+        background: -moz-linear-gradient(#50a5ed, #3280c2);
+        background: -o-linear-gradient(#50a5ed, #3280c2);
+        box-shadow: inset 0 1px #6ce4f6, 0 1px #787778;
+        color: white;
+        cursor: pointer;
+        border-radius: 40px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        width: 20%;
+    }
+
+        .but:hover {
+            background:: #69B7FA;
+            background: linear-gradient(#69B7FA, #3280c2);
+            background: -webkit-linear-gradient(#69B7FA, #3280c2);
+            background: -moz-linear-gradient(#69B7FA, #3280c2);
+            background: -o-linear-gradient(#69B7FA, #3280c2);
+            box-shadow: inset 0 1px #6ce4f6, 0 1px #787778;
+        }
+
+    .disabled {
+        cursor: none;
+    }
+
+    h1, h2, h3 {
+        text-align: center;
+    }
+</style>
+<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel" ng-if="areAccepted">
+    <div class=col-md-12">
+        <h1 translate="calculatePrice"></h1>
+        <h3 translate="travelInsurance" class="topBottomMargin"></h3>
+        <br />
+        <div class="container1">
+            <form class="form-horizontal" style="text-align:center" name="form" novalidate>
+                <div class="form-group">
+                    <label class="col-sm-4" translate="duration"></label>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="col-sm-4" for="startDate" translate="startDate"></label>
+                    <input ng-readonly="true" id="startDate" name="startDate" type="text" class="form-control col-sm-10" uib-datepicker-popup ng-model="Insurance.StartDate"
+                           is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
+                    <div ng-show="form.startDate.$touched">
+                        <span ng-show="form.startDate.$error.required" style="color:red; display: block" translate="errStart"></span>
+                    </div>
+                </div>
+                <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openSd()" translate="openCal"></button>
+                <div class="form-group">
+                    <label class="col-sm-4" translate="endDate"></label>
+                    <input ng-readonly="true" name="endDate" type="text" class="form-control col-sm-10" uib-datepicker-popup ng-model="Insurance.EndDate"
+                           is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
+                    <div ng-show="form.endDate.$touched">
+                        <span ng-show="form.endDate.$error.required" style="color:red; display: block" translate="errEnd"></span>
+                    </div>
+                    <div ng-show="dateEnd">
+                        <span style="color:red; display: block" translate="errDateEnd"></span>
+                    </div>
+                </div>
+                <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openEd()" translate="openCal"></button>
+                <div class="form-group">
+                    <label class="col-sm-4" for="region" translate="region"></label>
+                    <select class="form-control col-sm-10" id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
+                        <option value="" translate="selReg"></option>
+                    </select><br />
+                    <span ng-show="form.region.$touched && region.$error.required" style="color:red; display: block" translate="errReg"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="col-sm-4" for="number" translate="number"></label>
+                    @*promenjen type u number*@
+                    <input class="form-control col-sm-10" type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" /><br />
+                    <div ng-show="form.number.$touched">
+                        <span ng-show="form.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
+                        <span ng-show="form.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4" translate="age"></label>
+                    <select class="form-control col-sm-10" name="age" ng-model="Insurance.Age" required ng-options="a.Id as a.Name for a in ages">
+                        <option value="" translate="selAge"></option>
+                    </select><br />
+                    <span ng-show="form.age.$touched && form.age.$error.required" style="color:red; display: block" translate="errAge"></span>
+                </div>
+                <label class="col-sm-4" translate="sport">?</label>
+                <input type="checkbox" ng-model="isChecked" /><br />
+                <div class="form-group">
+                    <select class="form-control" name="sport" ng-if="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
+                        <option value="" translate="selSport"></option>
+                    </select><br />
+                    <span ng-show="isChecked && form.sport.$touched && form.sport.$error.required" style="color:red; display: block" translate="errSport"></span>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4" translate="value"></label>
+                    <select class="form-control col-sm-10" name="value" ng-model="Insurance.InsuredValue" required ng-options="v.Id as v.Name for v in values">
+                        <option value="" translate="selValue"></option>
+                    </select><br />
+                    <span ng-show="form.value.$touched && form.value.$error.required" style="color:red; display: block" translate="errValue"></span>
+                </div>
+                
+                <br />
+                <div ng-if="showHomeForm">
+                    <h3 translate="homeInsurance"></h3>
+                    <div class="form-group">
+                        <label class="col-sm-4" translate="homeArea"></label>
+                        <input class="form-control  col-sm-10" type="number" name="area" required min="1" ng-model="HomeInsurance.Area" /><br />
+                        <div ng-show="form.area.$touched">
+                            <span ng-show="form.area.$error.required" style="color:red; display: block" translate="errHomeArea"></span>
+                            <span ng-show="form.area.$error.min" style="color:red; display: block" translate="errHomeArea"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" translate="homeAge"></label>
+                        <input class="form-control col-sm-10" type="number" name="homeAge" required min="1" ng-model="HomeInsurance.Age" /><br />
+                        <div ng-show="form.homeAge.$touched">
+                            <span ng-show="form.homeAge.$error.required" style="color:red; display: block" translate="errHomeAge"></span>
+                            <span ng-show="form.homeAge.$error.min" style="color:red; display: block" translate="errHomeAge"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" translate="homeValue"></label>
+                        <input class="form-control col-sm-10" type="number" name="homeValue" required min="1" ng-model="HomeInsurance.Value" /><br />
+                        <div ng-show="form.homeValue.$touched">
+                            <span ng-show="form.homeValue.$error.required" style="color:red; display: block" translate="errHomeValue"></span>
+                            <span ng-show="form.homeValue.$error.min" style="color:red; display: block" translate="errHomeValue"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" translate="ensuredBy"></label>
+                        <span ng-show="form.insuredBy.$error.required" style="color:red; display: block" translate="errEnsured"></span>
+                    </div>
+                    <div ng-repeat="i in insuredBy" class="form-group">
+                        <label class="col-sm-4">{{i.Name}}</label>
+                        <input type="checkbox" /><br />
+                    </div><br />
+                    <button class="btn btn-link" ng-click="cancelHome()" translate="cancel"></button>
+                </div>
+                <br />
+                <div ng-if="showVehicleForm">
+                    <h3 translate="vehicleInsurance"></h3>
+                    <div class="form-group">
+                        <label class="col-sm-4" translate="packageV"></label>
+                        <select class="form-control col-sm-10" id="package" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
+                            <option value="" translate="selPackage"></option>
+                        </select><br />
+                        <span ng-show="form.package.$error.required" style="color:red; display: block" translate="errPackage"></span>
+                    </div>
+                    <div ng-if="towing && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="towing"></label>
+                        <input class="form-control col-sm-8" type="number" name="towing" required min="1" ng-model="VehicleInsurance.Towing" /><br />
+                        <span ng-show="form.towing.$touched && form.towing.$error.required" style="color:red; display: block" translate="errTowing"></span>
+                    </div>
+                    <div ng-if="repair && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="repair"></label>
+                        <input class="form-control col-sm-10" type="number" name="repair" required min="1" ng-model="VehicleInsurance.Repair" /><br />
+                        <span ng-show="form.repair.$touched && form.repair.$error.required" style="color:red; display: block" translate="errRepair"></span>
+                    </div>
+                    <div ng-if="accomodation && !form.package.$error.required " class="form-group">
+                        <label class="col-sm-4" translate="accomodation"></label>
+                        <input class="form-control col-sm-10" type="number" name="accomodation" required min="1" ng-model="VehicleInsurance.Accomodation" /><br />
+                        <span ng-show="form.accomodation.$touched && form.accomodation.$error.required" style="color:red; display: block" translate="errAccomodation"></span>
+                    </div>
+
+                    <button class="btn btn-link" ng-click="cancelVehicle()" translate="cancel"></button>
+                </div><br />
+                <div>
+                    <button @*ng-disabled="form.$invalid"*@ translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
+                </div>
+                <div ng-if="price != 0.0">
+                    <h3 translate="total">: {{price}} @*<span translate="currency"></span>*@</h3>
+                    @*ovde valutu treba vuci iz baze (u zavisnosti od toga da li je srpski ili engleski)*@
+                </div>
+            </form>
+        </div>
+    </div>
+    <a class="left-control btn" ui-sref="home"><i class="fa fa-angle-left"></i></a>
+    <div ng-show="!form.$invalid">
+        <a class="right-control" ui-sref="insurants({numOfInsurants : num })"><i class="fa fa-angle-right"></i></a>
+    </div>
+</div>

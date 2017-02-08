@@ -15,13 +15,14 @@ namespace Merchant.DataAccess
     public partial class Vehicle
     {
         public int Id { get; set; }
+        public string Package { get; set; }
         public string Brand { get; set; }
         public string Type { get; set; }
         public System.DateTime YearOfProduction { get; set; }
         public string LicensePlateNumber { get; set; }
         public string ChassisNumber { get; set; }
-        public string OwnerName { get; set; }
-        public string OwnerSurname { get; set; }
-        public string OwnerIdentificationNumber { get; set; }
+        public int OwnerId { get; set; }
+    
+        public virtual Owner Owner { get; set; }
     }
 }
