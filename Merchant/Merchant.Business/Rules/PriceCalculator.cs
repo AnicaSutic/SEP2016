@@ -31,21 +31,18 @@ namespace Merchant.Business.Rules
                 insurantsPercentage = 0.9M;
             else
                 insurantsPercentage = 0.85M;
-
-            var durationPrice = service.GetPricelistItemByRiskItemId(18).First().Price * service.GetPricelistItemByRiskItemId(18).First().Coefficient;
+            
             var regionPrice = insurance.Region != 0 ? service.GetPricelistItemByRiskItemId(insurance.Region).First().Price * service.GetPricelistItemByRiskItemId(insurance.Region).First().Coefficient : 0.0M;
             var agePrice = insurance.Age != 0 ? service.GetPricelistItemByRiskItemId(insurance.Age).First().Price * service.GetPricelistItemByRiskItemId(insurance.Age).First().Coefficient : 0.0M;
             var sportPrice = insurance.Sport != 0 ? service.GetPricelistItemByRiskItemId(insurance.Sport).First().Price * service.GetPricelistItemByRiskItemId(insurance.Sport).First().Coefficient : 0.0M;
             var valuePrice = insurance.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(insurance.InsuredValue).First().Price * service.GetPricelistItemByRiskItemId(insurance.InsuredValue).First().Coefficient : 0.0M;
 
-            var durationPriceTotal = durationPrice * duration * durationPercentage;
+            var durationPriceTotal = duration * durationPercentage;
+            var insurantsTotal = numOfInsurants * insurantsPercentage;
 
-            var totalPrice = durationPriceTotal + regionPrice + agePrice + sportPrice + valuePrice;
+            var totalPrice = durationPriceTotal * (regionPrice + agePrice + sportPrice + valuePrice) * insurantsTotal;
 
-            var insurantPrice = service.GetPricelistItemByRiskItemId(19).First().Price * service.GetPricelistItemByRiskItemId(19).First().Coefficient;
-            var insurantsTotal = insurantPrice * numOfInsurants * insurantsPercentage;
-
-            return totalPrice * insurantsTotal;
+            return totalPrice;
         }
     }
 }

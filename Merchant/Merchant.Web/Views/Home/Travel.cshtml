@@ -84,7 +84,7 @@
             </div>
             <div ng-if="price != 0.0">
                 <h3 translate="total">: {{price}} <span translate="currency"></span></h3>
-                <a ng-disabled="form.$invalid" translate="buy" ng-click="addTravelInsurance()" ui-sref="insurance.insurants"></a>
+                <a class="btn" ng-disabled="form.$invalid" translate="buy" ng-click="addTravelInsurance()" ui-sref="insurance.insurants"></a>
                 <button translate="cancel"></button>
             </div>
         </form>
