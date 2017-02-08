@@ -217,10 +217,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
-    <Content Include="lib\scripts\concatAngularJs.min.js" />
-    <Content Include="lib\scripts\concatBsJs.min.js" />
-    <Content Include="lib\scripts\concatJqueryJs.min.js" />
-    <Content Include="lib\scripts\concatOtherJs.min.js" />
     <Content Include="scripts\angular\angular-sanitize.js" />
     <Content Include="scripts\angular\angular.js" />
     <Content Include="scripts\angular\angular.min.js" />
@@ -297,7 +293,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
-    <Content Include="Views\Home\TravelOLD.cshtml" />
     <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Insurants.cshtml" />
     <Content Include="Views\Home\Others1.cshtml" />
@@ -311,9 +306,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="lib\scripts\" />
     <Folder Include="Models\" />
     <Folder Include="node_modules\" />
-    <Folder Include="Views\Calculator\" />
     <Folder Include="Views\Risk\" />
   </ItemGroup>
   <ItemGroup>

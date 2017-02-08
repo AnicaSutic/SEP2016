@@ -83,9 +83,10 @@
                 <button @*ng-disabled="form.$invalid"*@ translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
             </div>
             <div ng-if="price != 0.0">
-                <h3 translate="total">: {{price}} <span translate="currency"></span></h3>
+                <h3 translate="total"></h3>
+                <div>{{price}}<span translate="currency"></span></div>
                 <a class="btn" ng-disabled="form.$invalid" translate="buy" ng-click="addTravelInsurance()" ui-sref="insurance.insurants"></a>
-                <button translate="cancel"></button>
+                <button class="btn" translate="cancel"></button>
             </div>
         </form>
     </div>

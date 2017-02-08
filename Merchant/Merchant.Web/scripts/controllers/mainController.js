@@ -34,19 +34,34 @@
 
     $scope.initializeHomeInsurance = function () {
         $scope.HomeInsurance = {
-            Area: "",
-            Age: "",
-            Value: "",
-            InsuredBy: 0
+            StartDate: "",
+            EndDate: "",
+            Address: "",
+            SurfaceArea: "",
+            BuildingAge: "",
+            EstimatedValue: "",
+            //InsuredFrom: 0,
+            OwnerName: "",
+            OwnerSurname: "",
+            OwnerIdentificationNumber: "",
+            OwnerAddress: ""
         };
     };
 
     $scope.initializeVehicleInsurance = function () {
         $scope.VehicleInsurance = {
+            StartDate: "",
+            EndDate: "",
+            Brand: "",
+            Type: "",
+            YearOfProduction: "",
+            LicensePlateNumber: "",
+            ChassisNumber: "",
             //Package: 0,
-            Towing: "",
-            Repair: "",
-            Accomodation: ""
+            OwnerName: "",
+            OwnerSurname: "",
+            OwnerIdentificationNumber: "",
+            OwnerAddress: ""
         };
     };
 
@@ -54,16 +69,14 @@
     $scope.initializeHomeInsurance();
     $scope.initializeVehicleInsurance();
 
-
     function translateSelectOptions() {
         $scope.regions = getSelectOptions($scope.regionsResponseData, $rootScope.currentLanguage);
         $scope.sports = getSelectOptions($scope.sportsResponseData, $rootScope.currentLanguage);
         $scope.ages = getSelectOptions($scope.agesResponseData, $rootScope.currentLanguage);
         $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
-        $scope.insuredBy = getSelectOptions($scope.insuredByResponseData, $rootScope.currentLanguage);
-        $scope.categories = getSelectOptions($scope.categoriesResponseData, $rootScope.currentLanguage);
+        $scope.insuredFrom = getSelectOptions($scope.insuredFromResponseData, $rootScope.currentLanguage);
         $scope.packages = getSelectOptions($scope.packagesResponseData, $rootScope.currentLanguage);
-    }
+    };
 
     function getSelectOptions(data, language) {
         var collection = [];
@@ -79,14 +92,10 @@
             collection.push(option);
         }
         return collection;
-    }
+    };
 
     $rootScope.$on('languageChanged', function () {
         translateSelectOptions();
-    });
-
-    RiskService.getRisksByCategory(1).then(function (response) {
-        $scope.travelRisks = response.data;
     });
 
     /** GET OPTION ITEMS **/
@@ -96,9 +105,9 @@
         $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
-    RiskService.getRiskItemsForRisk("InsuredBy").then(function (response) {
-        $scope.insuredByResponseData = response.data;
-        $scope.insuredBy = getSelectOptions(response.data, $rootScope.currentLanguage);
+    RiskService.getRiskItemsForRisk("Insured from").then(function (response) {
+        $scope.insuredFromResponseData = response.data;
+        $scope.insuredFrom = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
     RiskService.getRiskItemsForRisk("Region").then(function (response) {
@@ -111,7 +120,7 @@
         $scope.ages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
-    RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
+    RiskService.getRiskItemsForRisk("Insured value").then(function (response) {
         $scope.valuesResponseData = response.data;
         $scope.values = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
@@ -123,12 +132,9 @@
 
     $scope.pickNumber = function () {
         $scope.num = document.getElementById('number').value;
-        console.log($scope.num)
     };
 
     /** OTHER INSURANCES **/
-
-    $scope.initialize
 
     $scope.showVehicleIns = function () {
         $scope.showVehicleForm = true;
@@ -167,16 +173,6 @@
                 $scope.dateStart = false;
             }
         }
-    };
-   
-    $scope.cancelOther = function () {
-        $scope.showAnotherInsurance = false;
-        $rootScope.showHomeForm = false;
-        $rootScope.showVehicleForm = false;
-        $scope.HomeInsurance.Area = "";
-        $scope.HomeInsurance.Age = "";
-        $scope.HomeInsurance.Value = "";
-        $scope.HomeInsurance.insuredBy = 0;
     };
    
     $scope.onPackageChange = function () {
