@@ -135,7 +135,7 @@ CREATE TABLE dbo.ResidentalBuilding (
     SurfaceArea decimal(10,2)  NOT NULL,
     BuildingAge decimal(10,2)  NOT NULL,
     EstimatedValue decimal(12,2)  NOT NULL,
-    InsuredFor varchar(50)  NOT NULL,
+    InsuredFrom varchar(50)  NOT NULL,
     OwnerId int  NOT NULL,
     CONSTRAINT PK_ResidentalBuilding PRIMARY KEY  (Id)
 );
