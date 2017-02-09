@@ -3,21 +3,28 @@
     Layout = null;
 }
 
-<div ng-if="!areTermsAccepted">
-    Please accept the <a ui-sref="terms">Terms&Conditions</a> before continuing with the purchase.
+<div class="row">
+    <div class="col-lg-6">
+        <div class="alert alert-dismissible alert-danger" ng-if="!areAccepted">
+            Please accept the Terms&Conditions before continuing with the purchase.
+        </div>
+    </div>
 </div>
 
 
 
 <div ng-if="areTermsAccepted">
-    insurance
-    <div>
-        <ul>
-            <li><a ui-sref="insurance.travel">Travel insurance</a></li>
-            <li><a ui-sref="insurance.insurants">Insurants</a></li>
-            <li><a ui-sref="insurance.others">Other insurances</a></li>
-        </ul>
+    <div class="row">
+        <div class="col-lg-3">
+            <h2>Insurance</h2>
+            <div class="list-group">
+                <a ui-sref="insurance.travel" class="list-group-item active">Travel insurance</a>
+                <a ui-sref="insurance.insurants" class="list-group-item">Insurants</a>
+                <a ui-sref="insurance.others" class="list-group-item">Other insurances</a>
+            </div>
+        </div>
     </div>
-    <div ui-view>
-    </div>
+    <br/>
+    <div ui-view></div>
 </div>
+

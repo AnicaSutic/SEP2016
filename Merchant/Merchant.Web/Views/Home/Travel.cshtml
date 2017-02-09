@@ -1,93 +1,111 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-    <h1>Calculate the price of your travel insurance before buying it.</h1>
 
-    <div>
-        <form name="travelForm">
-            <div class="form-group">
-                <label translate="duration"></label>
-                <br />
+<div class="row">
+    <div class="col-lg-12">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Calculate the price of your travel insurance before buying it.</legend>
+                @*<label translate="duration"></label>*@
                 <div class="form-group">
-                    <label translate="startDate"></label>
-                    <input ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="Insurance.StartDate"
-                           is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
-                    <div ng-show="travelForm.startDate.$touched">
-                        <span ng-show="travelForm.startDate.$error.required" translate="errStart"></span>
+                    <label for="startDate" class="col-lg-2 control-label" translate="startDate"></label>
+                    <div class="col-lg-6">
+                        <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="Insurance.StartDate"
+                               is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
+                        <div ng-show="form.startDate.$touched">
+                            <span ng-show="form.startDate.$error.required" translate="errStart"></span>
+                        </div>
                     </div>
-                    <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openSd()" translate="openCal"></button>
                 </div>
                 <div class="form-group">
-                    <label translate="endDate"></label>
-                    <input ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="Insurance.EndDate"
-                           is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
-                    <div ng-show="travelForm.endDate.$touched">
-                        <span ng-show="travelForm.endDate.$error.required" translate="errEnd"></span>
-                    </div>
-                    <div ng-show="dateEnd">
-                        <span translate="errDateEnd"></span>
-                    </div>
-                    <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openEd()" translate="openCal"></button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label translate="region"></label>
-                <select id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
-                    <option value="" translate="selReg"></option>
-                </select>
-                <div ng-show="travelForm.region.$touched && region.$error.required">
-                    <span translate="errReg"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label translate="number"></label>
-                <input type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" />
-                <div ng-show="travelForm.number.$touched">
-                    <span ng-show="travelForm.number.$error.required" style="color:red; display: block" translate="errNumReq"></span>
-                    <span ng-show="travelForm.number.$error.min" style="color:red; display: block" translate="errNumMin"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label translate="age"></label>
-                <select name="age" ng-model="Insurance.Age" required ng-options="a.Id as a.Name for a in ages">
-                    <option value="" translate="selAge"></option>
-                </select>
-                <div ng-show="travelForm.age.$touched && travelForm.age.$error.required">
-                    <span translate="errAge"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label translate="sport">?</label>
-                <input type="checkbox" ng-model="isChecked" />
-                {{isChecked}}
-                <div class="form-group" ng-if="isChecked">
-                    <select name="sport" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
-                        <option value="" translate="selSport"></option>
-                    </select>
-                    <div ng-show="isChecked && travelForm.sport.$touched && travelForm.sport.$error.required">
-                        <span translate="errSport"></span>
+                    <label for="endDate" class="col-lg-2 control-label" translate="endDate"></label>
+                    <div class="col-lg-6">
+                        <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="Insurance.EndDate"
+                               is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
+                        <div ng-show="form.endDate.$touched">
+                            <span ng-show="form.endDate.$error.required" translate="errEnd"></span>
+                        </div>
+                        <div ng-show="dateEnd">
+                            <span translate="errDateEnd"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label translate="value"></label>
-                <select name="value" ng-model="Insurance.InsuredValue" required ng-options="v.Id as v.Name for v in values">
-                    <option value="" translate="selValue"></option>
-                </select>
-                <div ng-show="travelForm.value.$touched && travelForm.value.$error.required">
-                    <span translate="errValue"></span>
+                <div class="form-group">
+                    <label for="region" class="col-lg-2 control-label" translate="region"></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
+                            <option value="" translate="selReg"></option>
+                        </select>
+                        <div ng-show="form.region.$touched && region.$error.required">
+                            <span translate="errReg"></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button ng-disabled="travelForm.$invalid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
-            </div>
-            <div ng-if="travelPrice != 0.0">
-                <h3 translate="total"></h3>
-                <div>{{travelPrice}}<span translate="currency"></span></div>
-                <a class="btn" ng-disabled="travelForm.$invalid" translate="buy" ng-click="addTravelInsurance()" ui-sref="insurance.insurants"></a>
-                <button class="btn" ng-click="cancelTravelInsurance()" translate="cancel"></button>
-            </div>
+                <div class="form-group">
+                    <label for="number" class="col-lg-2 control-label" translate="number"></label>
+                    <div class="col-lg-6">
+                        <input class="form-control" type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" />
+                        <div ng-show="form.number.$touched">
+                            <span ng-show="form.number.$error.required" style="color: red; display: block" translate="errNumReq"></span>
+                            <span ng-show="form.number.$error.min" style="color: red; display: block" translate="errNumMin"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="col-lg-2 control-label" translate="age"></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" name="age" id="age" ng-model="Insurance.Age" required ng-options="a.Id as a.Name for a in ages">
+                            <option value="" translate="selAge"></option>
+                        </select>
+                        <div ng-show="form.age.$touched && form.age.$error.required">
+                            <span translate="errAge"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" translate="sport">?</label>
+                    <div class="col-lg-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="isChecked" />@*<span translate="sport">?</span>*@
+                            </label>
+                        </div>
+                        <label class="col-lg-2 control-label"></label>
+                        <select class="form-control " name="sport" ng-if="isChecked" required ng-model="Insurance.Sport" ng-options="s.Id as s.Name for s in sports">
+                            <option value="" translate="selSport"></option>
+                        </select>
+                        <div ng-show="isChecked && form.sport.$touched && form.sport.$error.required">
+                            <span translate="errSport"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="value" class="col-lg-2 control-label" translate="value"></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" id="value" name="value" ng-model="Insurance.InsuredValue" required ng-options="v.Id as v.Name for v in values">
+                            <option value="" translate="selValue"></option>
+                        </select>
+                        <div ng-show="form.value.$touched && form.value.$error.required">
+                            <span translate="errValue"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button @*ng-disabled="form.$invalid"*@ translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
+                    </div>
+                </div>
+
+                <div ng-if="price != 0.0">
+                    <h3 translate="total"></h3>
+                    <div>{{price}}<span translate="currency"></span></div>
+                    <a class="btn" ng-disabled="form.$invalid" translate="buy" ng-click="addTravelInsurance()" ui-sref="insurance.insurants"></a>
+                    <button class="btn" translate="cancel"></button>
+                </div>
+            </fieldset>
         </form>
     </div>
+</div>
