@@ -87,7 +87,6 @@ CREATE TABLE Owner (
     Name varchar(150)  NOT NULL,
     Surname varchar(150)  NOT NULL,
     IdentificationNumber char(13)  NOT NULL,
-    Address varchar(150)  NOT NULL,
     CONSTRAINT Owner_pk PRIMARY KEY  (Id)
 );
 
