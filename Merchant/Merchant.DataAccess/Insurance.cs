@@ -19,8 +19,8 @@ namespace Merchant.DataAccess
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public decimal Price { get; set; }
-        public int VehicleId { get; set; }
-        public int ResidentalBuildingId { get; set; }
+        public Nullable<int> VehicleId { get; set; }
+        public Nullable<int> ResidentalBuildingId { get; set; }
         public int VoyageId { get; set; }
         public int InsurancesId { get; set; }
     

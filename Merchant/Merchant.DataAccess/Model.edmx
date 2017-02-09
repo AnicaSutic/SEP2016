@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Buyer">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,8 +27,8 @@
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="EndDate" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="VehicleId" Type="int" Nullable="false" />
-          <Property Name="ResidentalBuildingId" Type="int" Nullable="false" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="ResidentalBuildingId" Type="int" />
           <Property Name="VoyageId" Type="int" Nullable="false" />
           <Property Name="InsurancesId" Type="int" Nullable="false" />
         </EntityType>
@@ -74,7 +74,6 @@
           <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Surname" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="IdentificationNumber" Type="char" MaxLength="13" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Pricelist">
           <Key>
@@ -191,7 +190,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Insurance_ResidentalBuilding">
-          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="1" />
+          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ResidentalBuilding">
@@ -203,7 +202,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Insurance_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -453,8 +452,7 @@
             <End Role="Voyage" EntitySet="Voyage" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerchantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -480,8 +478,8 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Price" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="VehicleId" Type="Int32" Nullable="false" />
-          <Property Name="ResidentalBuildingId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="ResidentalBuildingId" Type="Int32" />
           <Property Name="VoyageId" Type="Int32" Nullable="false" />
           <Property Name="InsurancesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RiskCategory" Relationship="Self.FK_Insurance_InsuranceCategory" FromRole="Insurance" ToRole="RiskCategory" />
@@ -535,7 +533,6 @@
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Pricelist">
           <Key>
@@ -578,7 +575,7 @@
           <Property Name="SurfaceArea" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="BuildingAge" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="EstimatedValue" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
-          <Property Name="InsuredFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InsuredFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OwnerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Owner" Relationship="Self.ResidentalBuilding_Owner" FromRole="ResidentalBuilding" ToRole="Owner" />
         </EntityType>
@@ -672,7 +669,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Insurance_ResidentalBuilding">
-          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="1" />
+          <End Role="ResidentalBuilding" Type="Self.ResidentalBuilding" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ResidentalBuilding">
@@ -684,7 +681,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Insurance_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -1002,7 +999,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1046,7 +1042,7 @@
                 <ScalarProperty Name="SurfaceArea" ColumnName="SurfaceArea" />
                 <ScalarProperty Name="BuildingAge" ColumnName="BuildingAge" />
                 <ScalarProperty Name="EstimatedValue" ColumnName="EstimatedValue" />
-                <ScalarProperty Name="InsuredFor" ColumnName="InsuredFor" />
+                <ScalarProperty Name="InsuredFrom" ColumnName="InsuredFor" />
                 <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
               </MappingFragment>
             </EntityTypeMapping>

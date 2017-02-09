@@ -27,6 +27,9 @@
                 <div class="form-group">
                     <label translate="surname"></label>
                     <input type="text" name="surname"ng-model="CurrentInsurant.Surname" required="required">
+                    <div ng-show="insurantForm.surname.$touched">
+                        <span ng-show="insurantForm.name.$error.required" translate="errSurname"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label translate="jmbg"></label>

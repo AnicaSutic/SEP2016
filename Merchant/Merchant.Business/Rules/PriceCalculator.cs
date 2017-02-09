@@ -1,4 +1,5 @@
 ﻿using Common;
+using System;
 using System.Linq;
 
 namespace Merchant.Business.Rules
@@ -22,27 +23,45 @@ namespace Merchant.Business.Rules
             else
                 durationPercentage = 0.75M;
 
-            var numOfInsurants = int.Parse(insurance.NumberOfInsurants);
-            decimal insurantsPercentage = 0;
-
-            if (numOfInsurants < 5)
-                insurantsPercentage = 1;
-            else if (numOfInsurants > 4 && numOfInsurants < 10)
-                insurantsPercentage = 0.9M;
-            else
-                insurantsPercentage = 0.85M;
-            
-            var regionPrice = insurance.Region != 0 ? service.GetPricelistItemByRiskItemId(insurance.Region).First().Price * service.GetPricelistItemByRiskItemId(insurance.Region).First().Coefficient : 0.0M;
-            var agePrice = insurance.Age != 0 ? service.GetPricelistItemByRiskItemId(insurance.Age).First().Price * service.GetPricelistItemByRiskItemId(insurance.Age).First().Coefficient : 0.0M;
-            var sportPrice = insurance.Sport != 0 ? service.GetPricelistItemByRiskItemId(insurance.Sport).First().Price * service.GetPricelistItemByRiskItemId(insurance.Sport).First().Coefficient : 0.0M;
-            var valuePrice = insurance.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(insurance.InsuredValue).First().Price * service.GetPricelistItemByRiskItemId(insurance.InsuredValue).First().Coefficient : 0.0M;
-
             var durationPriceTotal = duration * durationPercentage;
-            var insurantsTotal = numOfInsurants * insurantsPercentage;
 
-            var totalPrice = durationPriceTotal * (regionPrice + agePrice + sportPrice + valuePrice) * insurantsTotal;
+            var totalPrice = 0.0M;
 
-            return totalPrice;
+            if (insurance is TravelInsuranceDto)
+            {
+                TravelInsuranceDto travelIns = (TravelInsuranceDto)insurance;
+
+                var numOfInsurants = int.Parse(travelIns.NumberOfInsurants);
+                decimal insurantsPercentage = 0;
+
+                if (numOfInsurants < 5)
+                    insurantsPercentage = 1;
+                else if (numOfInsurants > 4 && numOfInsurants < 10)
+                    insurantsPercentage = 0.9M;
+                else
+                    insurantsPercentage = 0.85M;
+
+                var regionPrice = travelIns.Region != 0 ? service.GetPricelistItemByRiskItemId(travelIns.Region).First().Price * service.GetPricelistItemByRiskItemId(travelIns.Region).First().Coefficient : 0.0M;
+                var agePrice = travelIns.Age != 0 ? service.GetPricelistItemByRiskItemId(travelIns.Age).First().Price * service.GetPricelistItemByRiskItemId(travelIns.Age).First().Coefficient : 0.0M;
+                var sportPrice = travelIns.Sport != 0 ? service.GetPricelistItemByRiskItemId(travelIns.Sport).First().Price * service.GetPricelistItemByRiskItemId(travelIns.Sport).First().Coefficient : 0.0M;
+                var valuePrice = travelIns.InsuredValue != 0 ? service.GetPricelistItemByRiskItemId(travelIns.InsuredValue).First().Price * service.GetPricelistItemByRiskItemId(travelIns.InsuredValue).First().Coefficient : 0.0M;
+
+                var insurantsTotal = numOfInsurants * insurantsPercentage;
+
+                totalPrice = durationPriceTotal * (regionPrice + agePrice + sportPrice + valuePrice) * insurantsTotal;
+            }
+
+            if(insurance is VehicleInsuranceDto)
+            {
+                VehicleInsuranceDto vehicleIns = (VehicleInsuranceDto)insurance;
+            }
+
+            if(insurance is HomeInsuranceDto)
+            {
+                HomeInsuranceDto homeIns = (HomeInsuranceDto)insurance;
+            }
+
+            return Math.Round(totalPrice, 2);
         }
     }
 }

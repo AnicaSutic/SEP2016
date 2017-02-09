@@ -19,7 +19,7 @@ namespace Merchant.DataAccess
         public decimal SurfaceArea { get; set; }
         public decimal BuildingAge { get; set; }
         public decimal EstimatedValue { get; set; }
-        public string InsuredFor { get; set; }
+        public string InsuredFrom { get; set; }
         public int OwnerId { get; set; }
     
         public virtual Owner Owner { get; set; }

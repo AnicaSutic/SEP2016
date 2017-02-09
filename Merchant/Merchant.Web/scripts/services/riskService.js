@@ -12,8 +12,8 @@
         getRiskItemsForRisk: function (name) {
             return $http.get('/Risk/GetRiskItemsForRisk/'+ name);
         },
-        calculatePrice: function (ins) {
-            return $http.post('/Risk/Calculate', ins);
+        calculatePrice: function (obj) {
+            return $http.post('/Risk/Calculate', obj);
         }
     });
 });

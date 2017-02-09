@@ -6,22 +6,19 @@
     $scope.isChecked = false;
     $scope.dateStart = false;
     $scope.dateEnd = false;
-    $scope.towing = false;
-    $scope.repair = false;
-    $scope.accomodation = false;
-    $scope.transport = false;
 
-    $scope.price = 0.0;
+    $scope.travelPrice = 0.0;
+    $scope.vehiclePrice = 0.0;
+    $scope.homePrice = 0.0;
 
-    $scope.areTermsAccepted = sessionStorage.getItem("areTermsAccepted");
-    $scope.purchaseStep = sessionStorage.getItem("purchaseStep");
+    $rootScope.areTermsAccepted = sessionStorage.getItem("areTermsAccepted");
+    $rootScope.purchaseStep1 = sessionStorage.getItem("purchaseStep1");
 
     $scope.showVehicleForm = false;
     $scope.showHomeForm = false;
 
     $scope.initializeInsurance = function () {
         $scope.Insurance = {
-            Duration: "",
             //Region: 0,
             NumberOfInsurants: 0,
             //InsuredValue: 0,
@@ -43,8 +40,7 @@
             //InsuredFrom: 0,
             OwnerName: "",
             OwnerSurname: "",
-            OwnerIdentificationNumber: "",
-            OwnerAddress: ""
+            OwnerIdentificationNumber: ""
         };
     };
 
@@ -54,20 +50,31 @@
             EndDate: "",
             Brand: "",
             Type: "",
-            YearOfProduction: "",
+            YearOfProduction: 0,
             LicensePlateNumber: "",
             ChassisNumber: "",
             //Package: 0,
             OwnerName: "",
             OwnerSurname: "",
             OwnerIdentificationNumber: "",
-            OwnerAddress: ""
+            OwnerAddress: "",
+            TowingKm: 0,
+            RepairPrice: 0,
+            AccommodationDays: 0
+        };
+    };
+
+    $scope.initializeInsuranceDetails = function () {
+        $scope.InsuranceDetailsDto = {
+            Data: "",
+            Type: ""
         };
     };
 
     $scope.initializeInsurance();
     $scope.initializeHomeInsurance();
     $scope.initializeVehicleInsurance();
+    $scope.initializeInsuranceDetails();
 
     function translateSelectOptions() {
         $scope.regions = getSelectOptions($scope.regionsResponseData, $rootScope.currentLanguage);
@@ -138,10 +145,12 @@
 
     $scope.showVehicleIns = function () {
         $scope.showVehicleForm = true;
+        $scope.showHomeForm = false;
     };
     
     $scope.showHomeIns = function () {
         $scope.showHomeForm = true;
+        $scope.showVehicleForm = false;
     };
 
     $scope.cancelHomeIns = function () {
@@ -152,6 +161,59 @@
     $scope.cancelVehicleIns = function () {
         $scope.showVehicleForm = false;
         $scope.initializeVehicleInsurance();
+    };
+
+    $scope.calculateVehicleInsurance = function () {
+        RiskService.calculatePrice($scope.VehicleInsurance).then(function (response) {
+            $scope.vehiclePrice = response.data;
+        });
+    };
+
+    $scope.calculateHomeInsurance = function () {
+        RiskService.calculatePrice($scope.HomeInsurance).then(function (response) {
+            $scope.homePrice = response.data;
+        });
+    };
+
+    $scope.onPackageChange = function () {
+
+        if ($scope.VehicleInsurance.Package == 23) {
+            $('#towing').show();
+            $('#repair').hide();
+            $('#accommodation').hide();
+            $scope.VehicleInsurance.RepairPrice = 0;
+            $scope.VehicleInsurance.AccommodationDays = 0;
+        }
+        else if ($scope.VehicleInsurance.Package == 24) {
+            $('#repair').show();
+            $('#accommodation').hide();
+            $('#towing').hide();
+            $scope.VehicleInsurance.TowingKm = 0;
+            $scope.VehicleInsurance.AccommodationDays = 0;
+        }
+        else if ($scope.VehicleInsurance.Package == 25) {
+            $('#accommodation').show();
+            $('#repair').hide();
+            $('#towing').hide();
+            $scope.VehicleInsurance.TowingKm = 0;
+            $scope.VehicleInsurance.RepairPrice = 0;
+        }
+        else {
+            $('#accommodation').hide();
+            $('#repair').hide();
+            $('#towing').hide();
+            $scope.VehicleInsurance.RepairPrice = 0;
+            $scope.VehicleInsurance.AccommodationDays = 0;
+            $scope.VehicleInsurance.TowingKm = 0;
+        }
+    };
+
+    $scope.addVehicleInsurance = function () {
+
+    };
+
+    $scope.addHomeInsurance = function () {
+
     };
 
     /***/
@@ -174,57 +236,55 @@
             }
         }
     };
-   
-    $scope.onPackageChange = function () {
        
-        for (var i = 0; i < $scope.packages.length; i++) {
-            if ($scope.VehicleInsurance.Package == $scope.packages[i].Id) {
-                if ($scope.packages[i].Name == "Towing" || $scope.packages[i].Name == "Slepovanje") {
-                    $scope.towing = true;
-                    $scope.repair = false;
-                    $scope.accomodation = false;
-                    $scope.transport = false;
-                    $scope.VehicleInsurance.Repair = "";
-                    $scope.VehicleInsurance.Accomodation = "";
-                    $scope.form.repair.$touched = false;
-                    $scope.form.accomodation.$touched = false;
-                }
-                if ($scope.packages[i].Name == "Repair" || $scope.packages[i].Name == "Popravka") {
-                    $scope.repair = true;
-                    $scope.towing = false;
-                    $scope.accomodation = false;
-                    $scope.transport = false;
-                    $scope.VehicleInsurance.Towing = "";
-                    $scope.VehicleInsurance.Accomodation = "";
-                    $scope.form.towing.$touched = false;
-                    $scope.form.accomodation.$touched = false;
-                }
-                if ($scope.packages[i].Name == "Accomodation" || $scope.packages[i].Name == "Smestaj u hotelu") {
-                    $scope.accomodation = true;
-                    $scope.repair = false;
-                    $scope.towing = false;
-                    $scope.transport = false;
-                    $scope.VehicleInsurance.Towing = "";
-                    $scope.VehicleInsurance.Repair = "";
-                    $scope.form.towing.$touched = false;
-                    $scope.form.repair.$touched = false;
-                }
-                if ($scope.packages[i].Name == "Transport" || $scope.packages[i].Name == "Alternativni prevoz") {
-                    $scope.transport = true;
-                    $scope.accomodation = false;
-                    $scope.repair = false;
-                    $scope.towing = false;
-                    $scope.VehicleInsurance.Towing = "";
-                    $scope.VehicleInsurance.Repair = "";
-                    $scope.VehicleInsurance.Accomodation = "";
-                    $scope.form.towing.$touched = false;
-                    $scope.form.repair.$touched = false;
-                    $scope.form.accomodation.$touched = false;
-                }
-            }
-        }
+        //for (var i = 0; i < $scope.packages.length; i++) {
+        //    //if ($scope.VehicleInsurance.Package == $scope.packages[i].Id) {
+        //        if ($scope.packages[i].Id == 23) {
+        //            $scope.towing = true;
+        //            $scope.repair = false;
+        //            $scope.accomodation = false;
+        //            $scope.transport = false;
+        //            $scope.VehicleInsurance.Repair = "";
+        //            $scope.VehicleInsurance.Accomodation = "";
+        //            $scope.form.repair.$touched = false;
+        //            $scope.form.accomodation.$touched = false;
+        //        }
+        //        if ($scope.packages[i].Name == 24) {
+        //            $scope.repair = true;
+        //            $scope.towing = false;
+        //            $scope.accomodation = false;
+        //            $scope.transport = false;
+        //            $scope.VehicleInsurance.Towing = "";
+        //            $scope.VehicleInsurance.Accomodation = "";
+        //            $scope.form.towing.$touched = false;
+        //            $scope.form.accomodation.$touched = false;
+        //        }
+        //        if ($scope.packages[i].Name == "Accomodation" || $scope.packages[i].Name == "Smeštaj u hotelu") {
+        //            $scope.accomodation = true;
+        //            $scope.repair = false;
+        //            $scope.towing = false;
+        //            $scope.transport = false;
+        //            $scope.VehicleInsurance.Towing = "";
+        //            $scope.VehicleInsurance.Repair = "";
+        //            $scope.form.towing.$touched = false;
+        //            $scope.form.repair.$touched = false;
+        //        }
+        //        if ($scope.packages[i].Name == "Transport" || $scope.packages[i].Name == "Alternativni prevoz") {
+        //            $scope.transport = true;
+        //            $scope.accomodation = false;
+        //            $scope.repair = false;
+        //            $scope.towing = false;
+        //            $scope.VehicleInsurance.Towing = "";
+        //            $scope.VehicleInsurance.Repair = "";
+        //            $scope.VehicleInsurance.Accomodation = "";
+        //            $scope.form.towing.$touched = false;
+        //            $scope.form.repair.$touched = false;
+        //            $scope.form.accomodation.$touched = false;
+        //        }
+        //    //}
+        //}
         
-    };
+    
      
     /** INSURANTS **/
 
@@ -278,8 +338,6 @@
     };
 
     $scope.deleteInsurant = function (insurant, index) {
-        alert(insurant.IsBuyer);
-        alert(index);
         $scope.addedInsurants.splice(index, 1);
         $scope.insurantsCounter -= 1;
         if(insurant.IsBuyer)
@@ -290,16 +348,26 @@
 
     $scope.calculate = function () {
 
-        if (!$scope.isChecked)
-            $scope.Insurance.Sport = 0;
+        console.log(JSON.stringify($scope.Insurance));
 
-        RiskService.calculatePrice($scope.Insurance).then(function (response) {
-            $scope.price = response.data;
+        $scope.InsuranceDetailsDto.Data = JSON.stringify($scope.Insurance);
+        $scope.InsuranceDetailsDto.Type = "Travel";
+
+        console.log($scope.InsuranceDetailsDto);
+
+        RiskService.calculatePrice($scope.InsuranceDetailsDto).then(function (response) {
+            $scope.travelPrice = response.data;
         });
     };
 
+    $scope.cancelTravelInsurance = function () {
+        $scope.initializeInsurance();
+        $state.go('home');
+    };
+
     $scope.addTravelInsurance = function () {
-        sessionStorage.setItem("purchaseStep", 2);
+        sessionStorage.setItem("purchaseStep1", 0);
+        sessionStorage.setItem("purchaseStep2", 2);
     };
 
     /** DATEPICKER **/

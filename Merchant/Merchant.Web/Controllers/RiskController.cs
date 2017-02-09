@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using Merchant.Business.Rules;
+using System.Web.Script.Serialization;
 
 namespace Merchant.Web.Controllers
 {
@@ -58,12 +59,28 @@ namespace Merchant.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Calculate(InsuranceDto ins)
+        public ActionResult Calculate(InsuranceDetailsDto obj)
         {
             decimal price = 0.0M;
             var calculator = new PriceCalculator();
-            
-            price = calculator.CalculatePrice(ins);
+            var serializer = new JavaScriptSerializer();
+
+            if (obj.Type == "Travel")
+            {
+                price = calculator.CalculatePrice(serializer.Deserialize<TravelInsuranceDto>(obj.Data));
+            }
+
+            if (obj.Type == "Home")
+            {
+                price = calculator.CalculatePrice(serializer.Deserialize<HomeInsuranceDto>(obj.Data));
+            }
+
+            if (obj.Type == "Vehicle")
+            {
+                price = calculator.CalculatePrice(serializer.Deserialize<VehicleInsuranceDto>(obj.Data));
+            }
+
+            //Session["TravelInsurance"] = insurance;
 
             return Json(price);
         }

@@ -1,7 +1,9 @@
 ﻿app.controller('HomeController', function ($scope, $state) {
 
     sessionStorage.setItem("areTermsAccepted", false);
-    sessionStorage.setItem("purchaseStep", 0);
+    sessionStorage.setItem("purchaseStep1", 0);
+    sessionStorage.setItem("purchaseStep2", 0);
+    sessionStorage.setItem("purchaseStep3", 0);
     $scope.error = "";
 
     $scope.accept = function () {
@@ -10,7 +12,7 @@
         else {
             $scope.error = "";
             sessionStorage.setItem("areTermsAccepted", true);
-            sessionStorage.setItem("purchaseStep", 1);
+            sessionStorage.setItem("purchaseStep1", 1);
             $state.go('insurance');
         }
     };
