@@ -22,8 +22,8 @@ CREATE TABLE dbo.Insurance (
     StartDate datetime  NOT NULL,
     EndDate datetime  NOT NULL,
     Price decimal(20,2)  NOT NULL,
-    VehicleId int  NOT NULL,
-    ResidentalBuildingId int  NOT NULL,
+    VehicleId int  NULL,
+    ResidentalBuildingId int  NULL,
     VoyageId int  NOT NULL,
     InsurancesId int  NOT NULL,
     CONSTRAINT PK_Insurance PRIMARY KEY  (Id)
