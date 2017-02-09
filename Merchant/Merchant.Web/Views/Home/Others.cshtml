@@ -3,14 +3,14 @@
 }
 
 <div>
-    <h1>Do you wish to buy another insurance?</h1>
+    <h1 translate="otherInsurance"></h1>
     <div>
-        <button ng-click="showVehicleIns()">Buy vehicle insurance</button>
-        <button ng-click="showHomeIns()">Buy home insurance</button>
+        <button ng-click="showVehicleIns() translate="buyVehicle">Buy vehicle insurance</button>
+        <button ng-click="showHomeIns()" translate="buyHome">Buy home insurance</button>
     </div>
 
     <div ng-if="showVehicleForm">
-        <h2>Vehicle Insurance</h2>
+        <h2 translate="vehicleInsurance"></h2>
         <form name="vehicleForm">
             <div class="form-group">
                 <label translate="duration"></label>
@@ -145,9 +145,99 @@
     </div>
 
     <div ng-if="showHomeForm">
-        <h2>Home Insurance</h2>
-        <form>
-
+        <h2 translate="homeInsurance"></h2>
+        <form name="homeForm">
+            <div class="form-group">
+                <label translate="duration"></label>
+                <br />
+                <div class="form-group">
+                    <label translate="startDate"></label>
+                    <input ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.StartDate"
+                           is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
+                    <div ng-show="homeForm.startDate.$touched">
+                        <span ng-show="homeForm.startDate.$error.required" translate="errStart"></span>
+                    </div>
+                    <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openSd()" translate="openCal"></button>
+                </div>
+                <div class="form-group">
+                    <label translate="endDate"></label>
+                    <input ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.EndDate"
+                           is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" />
+                    <div ng-show="homeForm.endDate.$touched">
+                        <span ng-show="homeForm.endDate.$error.required" translate="errEnd"></span>
+                    </div>
+                    <div ng-show="dateEnd">
+                        <span translate="errDateEnd"></span>
+                    </div>
+                    <button style="margin:0.3em 0em 0.3em 0em" type="button" class="btn btn-link" ng-click="openEd()" translate="openCal"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label translate="address"></label>
+                <input type="text" required ng-model="HomeInsurance.Address" name="address" />
+                <div ng-show="homeForm.address.$touched">
+                    <span ng-show="homeForm.address.$error.required" translate="errAddress"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label translate="homeArea"></label>
+                <input type="number" required ng-model="HomeInsurance.SurfaceArea" min="1" name="surfaceArea" step="0.01" />
+                <div ng-show="homeForm.surfaceArea.$touched">
+                    <span ng-show="homeForm.surfaceArea.$error.required" translate="errHomeArea"></span>
+                    <span ng-show="homeForm.surfaceArea.$error.min" translate="errHomeAreaMin"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label translate="homeAge"></label>
+                <input type="number" required ng-model="HomeInsurance.BuildingAge" min="1" name="buildingAge" step="0.01" />
+                <div ng-show="homeForm.buildingAge.$touched">
+                    <span ng-show="homeForm.buildingAge.$error.required" translate="errHomeAge"></span>
+                    <span ng-show="homeForm.buildingAge.$error.min" translate="errHomeAgeMin"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label translate="homeValue"></label>
+                <input type="number" required ng-model="HomeInsurance.EstimatedValue" min="1" name="estimatedValue" step="0.01" />
+                <div ng-show="homeForm.estimatedValue.$touched">
+                    <span ng-show="homeForm.estimatedValue.$error.required" translate="errHomeValue"></span>
+                    <span ng-show="homeForm.estimatedValue.$error.min" translate="errHomeValueMin"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label translate="insuredFrom"></label>
+                <select class="form-control" id="insuredFrom" name="insuredFrom" required ng-model="HomeInsurance.InsuredFrom" ng-options="r.Id as r.Name for r in insuredFrom">
+                    <option value="" translate="selEnsured"></option>
+                </select>
+                <div ng-show="homeForm.insuredFrom.$touched">
+                    <span ng-show="homeForm.insuredFrom.$error.required" translate="errEnsured"></span>
+                </div>
+            </div>
+            <div>
+                <p translate="ownerDetails"></p>
+                <div class="form-group">
+                    <label translate="name"></label>
+                    <input type="text" name="name" ng-model="HomeInsurance.OwnerName" required="required">
+                    <div ng-show="homeForm.name.$touched && homeForm.name.$error.required">
+                        <span translate="errName"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label translate="surname"></label>
+                    <input type="text" name="surname" ng-model="HomeInsurance.OwnerSurname" required="required">
+                    <div ng-show="homeForm.surname.$touched">
+                        <span ng-show="homeForm.surname.$error.required" translate="errSurname"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label translate="jmbg"></label>
+                    <input type="number" name="jmbg" ng-model="HomeInsurance.OwnerIdentificationNumber" minlength="13" maxlength="13" required="required">
+                    <div ng-show="homeForm.jmbg.$touched">
+                        <span ng-show="homeForm.jmbg.$error.required" translate="errJmbg"></span>
+                        <span ng-show="homeForm.jmbg.$error.minlength" translate="errJmbgL"></span>
+                        <span ng-show="homeForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                    </div>
+                </div>
+            </div>
         </form>
         <div>
             <button ng-click="calculateHomeInsurance()" ng-disabled="homeForm.$invalid" translate="calc"></button>

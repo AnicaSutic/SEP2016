@@ -293,7 +293,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
-    <Content Include="Views\Home\OthersOLD.cshtml" />
     <Content Include="Views\Home\Insurants.cshtml" />
     <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Travel.cshtml" />

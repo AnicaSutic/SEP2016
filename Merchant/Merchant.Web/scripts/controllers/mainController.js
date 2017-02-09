@@ -57,7 +57,6 @@
             OwnerName: "",
             OwnerSurname: "",
             OwnerIdentificationNumber: "",
-            OwnerAddress: "",
             TowingKm: 0,
             RepairPrice: 0,
             AccommodationDays: 0
