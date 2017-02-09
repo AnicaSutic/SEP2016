@@ -1,6 +1,7 @@
 ﻿var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var htmlreplace = require('gulp-html-replace');
 
 var scriptPaths = {
     root: "scripts/"
@@ -11,23 +12,29 @@ var stylePaths = {
 };
 
 /* JQUERY */
-scriptPaths.jquery = scriptPaths.root + "/jquery/*.js";
-scriptPaths.jqueryMin = scriptPaths.root + "/jquery/*.min.js";
+scriptPaths.jquery = scriptPaths.root + "jquery/*.js";
+scriptPaths.jqueryMin = scriptPaths.root + "jquery/*.min.js";
 scriptPaths.concatJqueryJsDest = scriptPaths.root + "concatJqueryJs.min.js";
 
 /* BOOTSTRAP */
-scriptPaths.bootstrap = scriptPaths.root + "/bootstrap/*.js";
+scriptPaths.bootstrap = scriptPaths.root + "bootstrap/*.js";
+scriptPaths.bootstrapMin = scriptPaths.root + "bootstrap/*.min.js";
 scriptPaths.concatBsJsDest = scriptPaths.root + "concatBsJs.min.js";
 
 /* OTHER */
-scriptPaths.other = scriptPaths.root + "*.js";
+scriptPaths.other = scriptPaths.root ;
+scriptPaths.otherMin = scriptPaths.root ;
 scriptPaths.concatOtherJsDest = scriptPaths.root + "concatOtherJs.min.js";
 
 /* ANGULAR JS */
+
+scriptPaths.angular = scriptPaths.root + "angular/*.js";
+scriptPaths.angularMin = scriptPaths.root + "angular/angular.min.js";
 scriptPaths.angularControllers = scriptPaths.root + "controllers/*.js";
-scriptPaths.angularModules = scriptPaths.root + "modules/";
+scriptPaths.angularModules = scriptPaths.root + "modules/*.js";
 scriptPaths.angularServices = scriptPaths.root + "services/*.js";
 scriptPaths.concatAngularDest = scriptPaths.root + "concatAngularJs.min.js";
+scriptPaths.concatAngularModDest = scriptPaths.root + "concatAngularModJs.min.js";
 
 /* CSS */
 stylePaths.css = stylePaths.root + "*.css";
@@ -42,6 +49,12 @@ gulp.task("jquery:js", function () {
         .pipe(gulp.dest("lib"))
 });
 
+gulp.task("concatJquery", function () {
+    return gulp.src([scriptPaths.jqueryMin, scriptPaths.concatJqueryJsDest])
+        .pipe(concat((scriptPaths.concatJqueryJsDest)))
+        .pipe(gulp.dest("lib"))
+});
+
 gulp.task("bootstrap:js", function () {
     return gulp.src([scriptPaths.bootstrap])
         .pipe(concat(scriptPaths.concatBsJsDest))
@@ -49,23 +62,50 @@ gulp.task("bootstrap:js", function () {
         .pipe(gulp.dest("lib"))
 });
 
+gulp.task("concatBootstrap", function () {
+    return gulp.src([scriptPaths.bootstrapMin,scriptPaths.concatBsJsDest])
+        .pipe(concat((scriptPaths.concatBsJsDest)))
+        .pipe(gulp.dest("lib"))
+});
+
 gulp.task("other:js", function () {
-    return gulp.src([scriptPaths.other])
+    return gulp.src([scriptPaths.other + "scripts.js"])
         .pipe(concat(scriptPaths.concatOtherJsDest))
         .pipe(uglify())
         .pipe(gulp.dest("lib"))
 });
 
+gulp.task("concatOther", function () {
+    return gulp.src([scriptPaths.concatOtherJsDest, scriptPaths.otherMin + "waypoints.min.js"])
+        .pipe(concat((scriptPaths.concatOtherJsDest)))
+        .pipe(gulp.dest("lib"))
+});
+
 gulp.task("angular:js", function () {
     return gulp.src([
-            scriptPaths.angularModules + "app.js",
-            scriptPaths.angularControllers,
-            scriptPaths.angularServices
-        ])
+            scriptPaths.angular,
+            ])
         .pipe(concat(scriptPaths.concatAngularDest))
         .pipe(uglify())
         .pipe(gulp.dest("lib"))
 });
+gulp.task("concatAngular", function () {
+    return gulp.src([scriptPaths.angularMin, scriptPaths.concatAngularDest])
+        .pipe(concat((scriptPaths.concatAngularDest)))
+        .pipe(gulp.dest("lib"))
+});
+
+
+gulp.task("angularMod:js", function () {
+    return gulp.src([
+            scriptPaths.angularModules,
+            scriptPaths.angularControllers,
+            scriptPaths.angularServices])
+        .pipe(concat(scriptPaths.concatAngularModDest))
+        .pipe(uglify())
+        .pipe(gulp.dest("lib"))
+});
+
 
 gulp.task("min:css", function () {
     return gulp.src([stylePaths.css])
@@ -73,8 +113,18 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("lib"))
 });
 
+gulp.task('html-replace', function () {
+    return gulp.src('Views/Shared/_Layout.cshtml')
+      .pipe(
+          htmlreplace({
+              'js': ['../lib/scripts/concatJqueryJs.min.js', '../lib/scripts/concatAngularJs.min.js','../lib/scripts/concatAngularModJs.min.js', '../lib/scripts/concatOtherJs.min.js', '../lib/scripts/concatBsJs.min.js']
+          })
+      )
+      .pipe(gulp.dest("lib"));
+});
+
 /* MAIN TASK */
-gulp.task("maintask", ["jquery:js", "bootstrap:js", "angular:js", "other:js", "min:css"]);
+gulp.task("maintask", ["jquery:js", "concatJquery", "bootstrap:js", "concatBootstrap", "angular:js", "concatAngular", "angularMod:js", "other:js", "concatOther", "min:css", "html-replace"]);
 
 // concat and uglify all bower components
 //gulp.task('allBower', function () {

@@ -87,7 +87,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
         $scope.sports = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
-    RiskService.getRiskItemsForRisk("InsuredBy").then(function (response) {
+    RiskService.getRiskItemsForRisk("Insured From").then(function (response) {
         $scope.insuredByResponseData = response.data;
         $scope.insuredBy = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
@@ -102,7 +102,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
         $scope.ages = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
 
-    RiskService.getRiskItemsForRisk("InsuredValue").then(function (response) {
+    RiskService.getRiskItemsForRisk("Insured value").then(function (response) {
         $scope.valuesResponseData = response.data;
         $scope.values = getSelectOptions(response.data, $rootScope.currentLanguage);
     });
@@ -164,7 +164,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
 
 
     $scope.showInsuranceByCategory = function (c) {
-        if(c == "Home" || c == "Stambeno") {
+        if(c == "Home" || c == "Stambeno osiguranje") {
             $rootScope.showHomeForm = true;
         }
         if(c  == "Vehicle" || c == "Osiguranje vozila") {
@@ -188,7 +188,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
        
         for (var i = 0; i < $scope.packages.length; i++) {
             if ($scope.VehicleInsurance.Package == $scope.packages[i].Id) {
-                if ($scope.packages[i].Name == "Towing" || $scope.packages[i].Name == "Slepovanje") {
+                if ($scope.packages[i].Name == "Towing" || $scope.packages[i].Name == "Šlepovanje") {
                     $scope.towing = true;
                     $scope.repair = false;
                     $scope.accomodation = false;
@@ -208,7 +208,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
                     $scope.form.towing.$touched = false;
                     $scope.form.accomodation.$touched = false;
                 }
-                if ($scope.packages[i].Name == "Accomodation" || $scope.packages[i].Name == "Smestaj u hotelu") {
+                if ($scope.packages[i].Name == "Accommodation" || $scope.packages[i].Name == "Smeštaj u hotelu") {
                     $scope.accomodation = true;
                     $scope.repair = false;
                     $scope.towing = false;
@@ -218,7 +218,7 @@ app.controller('MainController', function ($scope, $rootScope, $state, $filter, 
                     $scope.form.towing.$touched = false;
                     $scope.form.repair.$touched = false;
                 }
-                if ($scope.packages[i].Name == "Transport" || $scope.packages[i].Name == "Alternativni prevoz") {
+                if ($scope.packages[i].Name == "Transportation" || $scope.packages[i].Name == "Alternativni prevoz") {
                     $scope.transport = true;
                     $scope.accomodation = false;
                     $scope.repair = false;

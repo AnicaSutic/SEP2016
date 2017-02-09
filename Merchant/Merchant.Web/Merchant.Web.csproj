@@ -201,6 +201,7 @@
     <Content Include="Content\images\team\3.jpg" />
     <Content Include="Content\images\team\4.jpg" />
     <Content Include="Content\images\twitter-bg.jpg" />
+    <Content Include="scripts\angular\angular.js" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\jquery.fancybox.css" />
@@ -219,22 +220,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
-    <Content Include="lib\angular-mocks\angular-mocks.js" />
-    <Content Include="lib\angular\angular-csp.css" />
-    <Content Include="lib\angular\angular.js" />
-    <Content Include="lib\angular\angular.min.js" />
-    <Content Include="lib\angular\index.js" />
-    <Content Include="lib\scripts\concatAngularJs.min.js" />
-    <Content Include="lib\scripts\concatBsJs.min.js" />
-    <Content Include="lib\scripts\concatJqueryJs.min.js" />
-    <Content Include="lib\scripts\concatOtherJs.min.js" />
     <Content Include="scripts\angular\angular-mocks.js" />
-    <Content Include="lib\angular-mocks\ngAnimateMock.js" />
-    <Content Include="lib\angular-mocks\ngMock.js" />
-    <Content Include="lib\angular-mocks\ngMockE2E.js" />
     <Content Include="scripts\angular\angular-resource.js" />
     <Content Include="scripts\angular\angular-sanitize.js" />
-    <Content Include="scripts\angular\angular.js" />
     <Content Include="scripts\angular\angular.min.js" />
     <Content Include="scripts\controllers\mainController.js" />
     <Content Include="scripts\controllers\homeController.js" />
@@ -259,7 +247,6 @@
     <Content Include="scripts\modernizr.js" />
     <Content Include="scripts\modules\app.js" />
     <Content Include="scripts\bootstrap\bootstrap.js" />
-    <Content Include="scripts\bootstrap\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -272,11 +259,6 @@
     <None Include=".bin\bower.cmd" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\node.cmd" />
-    <Content Include="lib\angular-mocks\.bower.json" />
-    <Content Include="lib\angular-mocks\bower.json" />
-    <Content Include="lib\angular-mocks\LICENSE.md" />
-    <Content Include="lib\angular-mocks\package.json" />
-    <Content Include="lib\angular-mocks\README.md" />
     <Content Include="scripts\jquery\jquery-1.10.2.js" />
     <Content Include="scripts\jquery\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
@@ -329,13 +311,6 @@
     <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Insurants.cshtml" />
     <Content Include="Views\Home\Others1.cshtml" />
-    <Content Include="lib\angular\.bower.json" />
-    <Content Include="lib\angular\angular.min.js.gzip" />
-    <Content Include="lib\angular\angular.min.js.map" />
-    <Content Include="lib\angular\bower.json" />
-    <Content Include="lib\angular\LICENSE.md" />
-    <Content Include="lib\angular\package.json" />
-    <Content Include="lib\angular\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -345,10 +320,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="lib\" />
     <Folder Include="Models\" />
     <Folder Include="node_modules\" />
     <Folder Include="Views\Calculator\" />
-    <Folder Include="Views\Risk\" />
+    <Folder Include="Views\Home\Risk\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Merchant.Common.csproj">
