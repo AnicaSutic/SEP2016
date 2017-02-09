@@ -24,13 +24,18 @@
                         <label for="name" class="col-lg-2 control-label" translate="name"></label>
                         <div class="col-lg-6">
                             <input class="form-control" type="text" name="name" id="name" ng-model="CurrentInsurant.Name" required="required">
-                            <span ng-show="insurantForm.name.$touched && insurantForm.name.$error.required" translate="errName"></span>
+                            <div ng-show="insurantForm.name.$touched && insurantForm.name.$error.required">
+                                <span translate="errName"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
                         <div class="col-lg-6">
                             <input class="form-control" type="text" name="surname" id="surname" ng-model="CurrentInsurant.Surname" required="required">
+                            <div ng-show="insurantForm.surname.$touched && insurantForm.surname.$error.required">
+                                <span translate="errSurname"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
