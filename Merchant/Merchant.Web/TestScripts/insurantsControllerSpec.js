@@ -39,8 +39,12 @@ describe("InsurantsController", function () {
             expect(added.length).toBe(2);
         });
 
-        it('counter sholud change depending of function', function () {
+        it('counter sholud be defined', function () {
             expect(scope.counterForInsurants).toBeDefined();
+        });
+
+        it('number of insurants must be more then zero', function () {
+            expect(scope.numOfInsurants).notToEqual(0);
         });
 
     });

@@ -48,7 +48,7 @@ describe("MainController", function () {
             expect(collS).toEqual(resultSrp);
         });
 
-        it('choose another insurance and the form sholud show', function () {
+        it('choose another insurance and the form should show', function () {
             scope.chooseAnother();
             expect(scope.showAnotherInsurance).toEqual(true);
         });
