@@ -296,6 +296,7 @@
     <Content Include="Views\Home\Insurants.cshtml" />
     <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Travel.cshtml" />
+    <Content Include="Views\Home\OthersNew.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
