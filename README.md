@@ -6,15 +6,8 @@ This project is implemented as a web application that represents an insurance co
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
+### Deployment
 
 To install all components you need to have installed git and node.js. 
 
@@ -49,25 +42,9 @@ path : Merchant/Merchant.Web
 gulp
 ```
 
-### Break down into end to end tests
+### How to start up this application
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+This is explained in our [Wiki](https://github.com/AnicaSutic/SEP2016/wiki) page.
 
 ## Built With
 
@@ -85,7 +62,7 @@ See also the list of [contributors](https://github.com/AnicaSutic/SEP2016/contri
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 

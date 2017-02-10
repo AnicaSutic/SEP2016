@@ -201,6 +201,9 @@
     <Content Include="Content\images\team\3.jpg" />
     <Content Include="Content\images\team\4.jpg" />
     <Content Include="Content\images\twitter-bg.jpg" />
+    <Content Include="scripts\angular\angular.js" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\main.css" />
@@ -217,8 +220,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
+    <Content Include="scripts\angular\angular-mocks.js" />
+    <Content Include="scripts\angular\angular-resource.js" />
     <Content Include="scripts\angular\angular-sanitize.js" />
-    <Content Include="scripts\angular\angular.js" />
     <Content Include="scripts\angular\angular.min.js" />
     <Content Include="scripts\controllers\mainController.js" />
     <Content Include="scripts\controllers\homeController.js" />
@@ -227,6 +231,10 @@
     <Content Include="scripts\controllers\insurantsController.js" />
     <Content Include="scripts\controllers\navbarController.js" />
     <Content Include="scripts\html5shiv.js" />
+    <Content Include="scripts\jasmine\boot.js" />
+    <Content Include="scripts\jasmine\console.js" />
+    <Content Include="scripts\jasmine\jasmine-html.js" />
+    <Content Include="scripts\jasmine\jasmine.js" />
     <Content Include="scripts\jquery\jquery.countTo.js" />
     <Content Include="scripts\jquery\jquery.fancybox.pack.js" />
     <Content Include="scripts\jquery\jquery.fitvids.js" />
@@ -239,7 +247,6 @@
     <Content Include="scripts\modernizr.js" />
     <Content Include="scripts\modules\app.js" />
     <Content Include="scripts\bootstrap\bootstrap.js" />
-    <Content Include="scripts\bootstrap\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -252,7 +259,6 @@
     <None Include=".bin\bower.cmd" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\node.cmd" />
-    <None Include="scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery\jquery-1.10.2.js" />
     <Content Include="scripts\jquery\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
@@ -266,6 +272,12 @@
     <Content Include="scripts\bootstrap\ui-bootstrap-tpls-2.1.3.min.js" />
     <Content Include="scripts\waypoints.min.js" />
     <Content Include="scripts\wow.min.js" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="TestScripts\DefaultTest.js" />
+    <Content Include="karma.conf.js" />
+    <Content Include="TestScripts\insurantsControllerSpec.js" />
+    <Content Include="TestScripts\mainControllerSpec.js" />
+    <Content Include="TestScripts\navbarControllerSpec.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="lib\" />
     <Folder Include="lib\scripts\" />
     <Folder Include="Models\" />
     <Folder Include="node_modules\" />

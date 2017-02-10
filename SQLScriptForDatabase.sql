@@ -14,8 +14,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Insurants]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Insurants];
 GO
-IF OBJECT_ID(N'[dbo].[Insurant]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Insurant];
+IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Person];
 GO
 IF OBJECT_ID(N'[dbo].[Pricelist]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Pricelist];
@@ -85,8 +85,8 @@ CREATE TABLE [dbo].[Insurants] (
 );
 GO
 
--- Creating table 'Insurant'
-CREATE TABLE [dbo].[Insurant] (
+-- Creating table 'Person'
+CREATE TABLE [dbo].[Person] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [InsurantsId] int  NOT NULL,
     [Name] int  NOT NULL,
@@ -215,9 +215,9 @@ ADD CONSTRAINT [PK_Insurants]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Insurant'
-ALTER TABLE [dbo].[Insurant]
-ADD CONSTRAINT [PK_Insurant]
+-- Creating primary key on [Id] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [PK_Person]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -326,15 +326,15 @@ GO
 
 -- Creating foreign key on [InsurantsId] in table 'Insurance'
 ALTER TABLE [dbo].[Insurance]
-ADD CONSTRAINT [FK_Insurance_Insurants]
+ADD CONSTRAINT [FK_Insurance_Persons]
     FOREIGN KEY ([InsurantsId])
     REFERENCES [dbo].[Insurants]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_Insurance_Insurants'
-CREATE INDEX [IX_FK_Insurance_Insurants]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Insurance_Persons'
+CREATE INDEX [IX_FK_Insurance_Persons]
 ON [dbo].[Insurance]
     ([InsurantsId]);
 GO
@@ -369,18 +369,18 @@ ON [dbo].[Insurance]
     ([VehicleId]);
 GO
 
--- Creating foreign key on [InsurantsId] in table 'Insurant'
-ALTER TABLE [dbo].[Insurant]
-ADD CONSTRAINT [FK_Insurant_Insurants]
+-- Creating foreign key on [InsurantsId] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [FK_Person_Persons]
     FOREIGN KEY ([InsurantsId])
     REFERENCES [dbo].[Insurants]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_Insurant_Insurants'
-CREATE INDEX [IX_FK_Insurant_Insurants]
-ON [dbo].[Insurant]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Person_Persons'
+CREATE INDEX [IX_FK_Person_Persons]
+ON [dbo].[Person]
     ([InsurantsId]);
 GO
 
