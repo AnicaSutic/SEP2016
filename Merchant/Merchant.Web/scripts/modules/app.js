@@ -147,7 +147,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "I accept the Terms&Conditions.",
             proceed: "Proceed",
             termsError: "You have to accept the Terms&Conditions!",
-            terms: "Terms&Conditions"
+            terms: "Terms&Conditions",
+            errCompleteStep: "You need to complete the previous step before you can continue with the purchase here."
         };
     var ser =
         {
@@ -263,7 +264,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "Prihvatam uslove korišćenja.",
             proceed: "Nastavi",
             termsError: "Morate prihvatiti uslove korišćenja!",
-            terms: "Uslovi korišćenja"
+            terms: "Uslovi korišćenja",
+            errCompleteStep: "Morate završiti prethodni korak ukoliko želite da ovde nastavite sa kupovinom."
         };
 
     $.ajax({
