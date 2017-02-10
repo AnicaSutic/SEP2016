@@ -37,7 +37,7 @@
                         <select class="form-control" id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
                             <option value="" translate="selReg"></option>
                         </select>
-                        <div ng-show="travelForm.region.$touched && region.$error.required">
+                        <div ng-show="travelForm.region.$touched && travelForm.region.$error.required">
                             <span translate="errReg"></span>
                         </div>
                     </div>
