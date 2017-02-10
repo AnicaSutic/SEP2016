@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-<h1>Terms & Conditions</h1>
+<h1 translate="terms"></h1>
 
 <div class="row">
     <div class="col-lg-6">
@@ -13,19 +13,19 @@
                     <div class="col-lg-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="areAccepted"> Before you proceed, please read and accept the Terms&Conditions.
+                                <input type="checkbox" ng-model="areAccepted"><span translate="haveAccepted"></span>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary" ng-click="accept()">Proceed</button>
+                        <button type="submit" class="btn btn-primary" ng-click="accept()" translate="proceed"></button>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10">
-                        <p class="text-danger">{{error}}</p>
+                        <p class="text-danger" ng-if="hasError" translate="termsError"></p>
                     </div>
                 </div>
             </fieldset>

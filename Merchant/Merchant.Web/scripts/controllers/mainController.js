@@ -365,8 +365,10 @@
     };
 
     $scope.addTravelInsurance = function () {
+        
         sessionStorage.setItem("purchaseStep1", 0);
         sessionStorage.setItem("purchaseStep2", 2);
+        $state.go('insurance.insurants');
     };
 
     /** DATEPICKER **/

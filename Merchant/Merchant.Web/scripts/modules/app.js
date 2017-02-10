@@ -41,7 +41,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             startNow: "Buy insurance",
             welcome: "Welcome",
             okina: "CareTravel",
-            insurance: "Insurance packages",
+            insurance: "Insurance",
+            insurants: "Insurants",
+            other: "Other insurances",
             calculate: "Calculate the price",
             duration: "Insurance duration",
             region: "Region",
@@ -54,7 +56,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             openCal: "Open calendar",
             chooseAnother: "Choose another insurance",
             cancel: "Cancel",
-            calculatePrice: "Calculate the price of your insurance",
+            calculatePrice: "Calculate the price of your insurance before buying it.",
             travelInsurance: "Travel insurance",
             vehicleInsurance: "Vehicle insurance",
             homeInsurance: "Home insurance",
@@ -140,7 +142,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             ownerDetails: "Details about the owner",
             otherInsurance: "Do you wish to buy another insurance?",
             buyVehicle: "Buy vehicle insurance",
-            buyHome: "Buy home insurance"
+            buyHome: "Buy home insurance",
+            acceptTerms: "Please accept the Terms&Conditions before continuing with the purchase.",
+            haveAccepted: "I accept the Terms&Conditions.",
+            proceed: "Proceed",
+            termsError: "You have to accept the Terms&Conditions!",
+            terms: "Terms&Conditions"
         };
     var ser =
         {
@@ -151,6 +158,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             welcome: "Dobrodošli",
             okina: "CareTravel",
             insurance: "Osiguranje",
+            insurants: "Osiguranici",
+            other: "Druga osiguranja",
             calculate: "Izračunajte cenu osiguranja",
             duration: "Trajanje osiguranja",
             region: "Region",
@@ -161,7 +170,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             calc: "Izračunaj",
             total: "Ukupna cena",
             openCal: "Otvori kalendar",
-            calculatePrice: "Izračunajte cenu vašeg osiguranja",
+            calculatePrice: "Izračunajte cenu vašeg osiguranja pre kupovine.",
             chooseAnother: "Izaberite druga osiguranja",
             cancel: "Otkaži",
             travelInsurance: "Putno osiguranje",
@@ -171,12 +180,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             selAge: "Izaberite starost",
             selSport: "Izaberite sport",
             selValue: "Izaberite vrednost",
-            errReg: "Morate selektovati region!",
+            errReg: "Morate odabrati region!",
             errNumReq: "Unesite broj osoba!",
             errNumMin: "Minimalan broj osoba 1!",
-            errAge: "Morate selektovati starost!",
-            errSport: "Morate selektovati sport!",
-            errValue: "Morate selektovati vrednost",
+            errAge: "Morate odabrati starost!",
+            errSport: "Morate odabrati sport!",
+            errValue: "Morate odabrati vrednost!",
             next: "Nastavi dalje",
             previous: "Povratak na prethodnu stranu",
             details: "Podaci o osiguranicima",
@@ -249,7 +258,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             ownerDetails: "Detalji o vlasniku",
             otherInsurance: "Da li želite da kupite drugo osiguranje?",
             buyVehicle: "Kupi osiguranje vozila",
-            buyHome: "Kupi stambeno osiguranje"
+            buyHome: "Kupi stambeno osiguranje",
+            acceptTerms: "Molimo Vas da prihvatite uslove korišćenja pre nego što nastavite sa kupovinom.",
+            haveAccepted: "Prihvatam uslove korišćenja.",
+            proceed: "Nastavi",
+            termsError: "Morate prihvatiti uslove korišćenja!",
+            terms: "Uslovi korišćenja"
         };
 
     $.ajax({

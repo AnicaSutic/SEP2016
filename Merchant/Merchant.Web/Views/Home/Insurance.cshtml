@@ -6,21 +6,19 @@
 <div class="row">
     <div class="col-lg-6">
         <div class="alert alert-dismissible alert-danger" ng-if="!areTermsAccepted">
-            Please accept the Terms&Conditions before continuing with the purchase.
+            <span translate="acceptTerms"></span>
         </div>
     </div>
 </div>
 
-
-
 <div ng-if="areTermsAccepted">
     <div class="row">
         <div class="col-lg-3">
-            <h2>Insurance</h2>
+            <h2 translate="insurance"></h2>
             <div class="list-group">
-                <a ui-sref="insurance.travel" class="list-group-item active">Travel insurance</a>
-                <a ui-sref="insurance.insurants" class="list-group-item">Insurants</a>
-                <a ui-sref="insurance.others" class="list-group-item">Other insurances</a>
+                <a ui-sref="insurance.travel" class="list-group-item active" translate="travelInsurance"></a>
+                <a ui-sref="insurance.insurants" class="list-group-item" translate="insurants"></a>
+                <a ui-sref="insurance.others" class="list-group-item" translate="other"></a>
             </div>
         </div>
     </div>
