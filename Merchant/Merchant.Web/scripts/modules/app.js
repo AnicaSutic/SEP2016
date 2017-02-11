@@ -127,7 +127,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errTowingMin: "Distance must be greater than zero!",
             errRepair: "You must enter the price!",
             errRepairMin: "Price must be greater than zero!",
-            errAccomodation: "You must enter the number of days!",
+            errAccommodation: "You must enter the number of days!",
             errAccommodationMin: "Number of days must be greater than zero!",
             addInsurant: "Add new insurant",
             deleteInsurant: "Delete insurant",
@@ -147,7 +147,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "I accept the Terms&Conditions.",
             proceed: "Proceed",
             termsError: "You have to accept the Terms&Conditions!",
-            terms: "Terms&Conditions"
+            terms: "Terms&Conditions",
+            noOtherInsurance: "If you don't want to buy another insurace, you can finish the purchase by clicking the button below.",
+            finishPurchase: "Finish purchase"
         };
     var ser =
         {
@@ -263,7 +265,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "Prihvatam uslove korišćenja.",
             proceed: "Nastavi",
             termsError: "Morate prihvatiti uslove korišćenja!",
-            terms: "Uslovi korišćenja"
+            terms: "Uslovi korišćenja",
+            noOtherInsurance: "Ukoliko ne želite da kupite drugo osiguranje, možete završiti kupovinu klikom na dugme ispod.",
+            finishPurchase: "Završi kupovinu"
         };
 
     $.ajax({
