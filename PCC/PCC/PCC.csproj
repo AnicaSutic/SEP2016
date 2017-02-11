@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CreditCardController.cs" />
+    <Compile Include="Controllers\PaymentUrlController.cs" />
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
