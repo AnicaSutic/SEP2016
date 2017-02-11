@@ -11,6 +11,9 @@
   "dependencies": {
     "bootstrap": "3.0.0",
     "jquery": "1.10.2",
+    "jquery-fancyBox": "2.1.6",
+    "flexslider": "2.6.3",
+    "jquery-waypoints": "4.0.1",
     "modernizer": "2.6.2",
     "angular": "1.2.16",
     "angular-ui-router": "0.4.2",
@@ -22,5 +25,8 @@
     "angular-resource": "1.4.8",
     "angular-bootstrap": "0.14.3",
     "angular-mocks": "1.6.1"
+  },
+  "resolutions": {
+    "jquery": "~1.10.2"
   }
 }
