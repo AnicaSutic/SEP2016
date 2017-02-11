@@ -27,7 +27,7 @@ namespace PCC.Controllers
         }
 
         // POST: api/Payment
-        public PaymentResponse Post(PaymentDetails paymentDetails)
+        public PaymentResponse Post(PaymentDetailsOld paymentDetails)
         {
             var creditCard = new CreditCard
             {

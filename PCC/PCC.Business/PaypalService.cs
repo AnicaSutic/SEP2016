@@ -14,10 +14,9 @@ namespace PCC.Business
 {
     public class PaypalService
     {
+        private readonly APIContext _apiContext = PaypalConfiguration.GetApiContext();
         public string CreatePayment(string orderId, double price)
         {
-            var apiContext = PaypalConfiguration.GetApiContext();
-
             var details = new Details
             {
                 shipping = "0",
@@ -61,7 +60,7 @@ namespace PCC.Business
 
             try
             {
-                var createdPayment = paymet.Create(apiContext);
+                var createdPayment = paymet.Create(_apiContext);
                 var links = createdPayment.links.GetEnumerator();
                 while (links.MoveNext())
                 {
@@ -77,6 +76,30 @@ namespace PCC.Business
                 Debug.WriteLine("Error while creating payment url: " + ex.Message);
             }
             return null;
+        }
+
+        public bool ExecutePayment(string paymentId, string payerId)
+        {
+            var payment = new Payment
+            {
+                id = paymentId
+            };
+
+            var paymentExecution = new PaymentExecution
+            {
+                payer_id = payerId,
+            };
+
+            try
+            {
+                var executedPayment = payment.Execute(_apiContext, paymentExecution);
+                return true;
+            }
+            catch (PayPalException ex)
+            {
+                Debug.WriteLine("Error while payment execution: " + ex.Message);
+                return false;
+            }
         }
     }
 }

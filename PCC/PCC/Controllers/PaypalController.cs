@@ -29,5 +29,23 @@ namespace PCC.Controllers
                 return BadRequest();
             }
         }
+
+        public IHttpActionResult ExecutePayment(PaymentDetails paymentDetails)
+        {
+            try
+            {
+                var transcationSucceessful = _paypalService.ExecutePayment(paymentDetails.PaymentId, paymentDetails.PayerId);
+                if (transcationSucceessful)
+                {
+                    return Ok("Transaction was successful");
+                }
+                return BadRequest("Transaction was not successful");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error while submitting request for payment execution: " + ex.Message);
+                return BadRequest();
+            }
+        }
     }
 }
