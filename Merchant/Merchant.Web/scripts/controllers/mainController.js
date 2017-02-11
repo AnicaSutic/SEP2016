@@ -1,4 +1,4 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService) {
+﻿app.controller('MainController',['$scope','$rootScope','$state','$filter','$window','RiskService','TranslateService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -444,4 +444,4 @@
         return '';
     }
 
-});
+}]);

@@ -1,4 +1,4 @@
-﻿app.controller('HomeController', function ($scope, $state) {
+﻿app.controller('HomeController', ['$scope','$state',function ($scope, $state) {
 
     $scope.accept = function () {
         if (!$scope.areAccepted)
@@ -11,4 +11,4 @@
         }
     };
     
-});
+}]);
