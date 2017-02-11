@@ -1,7 +1,8 @@
 ﻿var app = angular.module('app', ['ui.bootstrap', 'ui.router', 'ngSanitize', 'pascalprecht.translate']);
 
-app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
+app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translateProvider',function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
 
+    $translateProvider.useSanitizeValueStrategy(null);
     $urlRouterProvider.otherwise("/Home/HomePage");
 
     $stateProvider
@@ -312,4 +313,4 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
 
     console.log(eng);
     console.log(ser);
-});
+}]);

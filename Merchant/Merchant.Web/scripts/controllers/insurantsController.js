@@ -1,5 +1,5 @@
 ﻿'use-strict';
-app.controller('InsurantsController', function ($scope, $stateParams) {
+app.controller('InsurantsController', ['$scope','$stateParams',function ($scope, $stateParams) {
 
   
     $scope.numOfInsurants = $stateParams.numOfInsurants;
@@ -50,4 +50,4 @@ app.controller('InsurantsController', function ($scope, $stateParams) {
     $scope.finish = function () {
     };
 
-});
+}]);
