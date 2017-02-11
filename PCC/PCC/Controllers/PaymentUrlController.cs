@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PayPal.Api;
+using PCC.Business;
 using PCC.Models;
 
 namespace PCC.Controllers
@@ -32,7 +33,7 @@ namespace PCC.Controllers
         // POST: api/PaymentUrl
         public Links Post(TestData data)
         {
-            var apiContext = Models.Configuration.GetApiContext();
+            var apiContext = PaypalConfiguration.GetApiContext();
 
             var details = new Details
             {
