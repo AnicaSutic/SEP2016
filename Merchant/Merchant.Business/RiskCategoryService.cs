@@ -24,5 +24,10 @@ namespace Merchant.Business
             return _repository.Get().ToList();
         }
 
+        public RiskCategory GetById(int id)
+        {
+            return _repository.GetById(id);
+        }
+
     }
 }

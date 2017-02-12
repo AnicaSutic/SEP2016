@@ -28,6 +28,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             url: '/Insurants',
             templateUrl: '/Home/Insurants'
         })
+        .state('insurance.buyer', {
+            url: '/Buyer',
+            templateUrl: '/Home/Buyer'
+        })
         .state('insurance.others', {
             url: '/Others',
             templateUrl: '/Home/Others'
@@ -137,7 +141,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             add: "Add",
             noInsurants: "You haven't added any insurants yet.",
             isBuyer: "Choose as a buyer of the insurance",
-            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment.",
+            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment by clicking the button below.",
             buy: "Buy",
             ownerDetails: "Details about the owner",
             otherInsurance: "Do you wish to buy another insurance?",
@@ -149,7 +153,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             termsError: "You have to accept the Terms&Conditions!",
             terms: "Terms&Conditions",
             noOtherInsurance: "If you don't want to buy another insurace, you can finish the purchase by clicking the button below.",
-            finishPurchase: "Finish purchase"
+            finishPurchase: "Finish purchase",
+            buyerDetails: "Buyer's details",
+            buyer: "Buyer",
+            insurantsDetails: "Insurants' details"
         };
     var ser =
         {
@@ -255,7 +262,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             add: "Dodaj",
             noInsurants: "Još uvek niste dodali nijednog osiguranika.",
             isBuyer: "Odabrati kao kupca osiguranja",
-            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom.",
+            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom klikom na dugme ispod.",
             buy: "Kupi",
             ownerDetails: "Detalji o vlasniku",
             otherInsurance: "Da li želite da kupite drugo osiguranje?",
@@ -267,7 +274,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             termsError: "Morate prihvatiti uslove korišćenja!",
             terms: "Uslovi korišćenja",
             noOtherInsurance: "Ukoliko ne želite da kupite drugo osiguranje, možete završiti kupovinu klikom na dugme ispod.",
-            finishPurchase: "Završi kupovinu"
+            finishPurchase: "Završi kupovinu",
+            buyerDetails: "Detalji o kupcu",
+            buyer: "Kupac",
+            insurantsDetails: "Detalji o osiguranicima"
         };
 
     $.ajax({

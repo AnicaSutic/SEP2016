@@ -248,6 +248,7 @@
     <Content Include="Views\Home\Travel.cshtml" />
     <Content Include="Views\Home\OthersNew.cshtml" />
     <Content Include="package.json" />
+    <Content Include="Views\Home\Buyer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
