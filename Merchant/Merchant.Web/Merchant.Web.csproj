@@ -217,9 +217,9 @@
     <Content Include="scripts\ui-bootstrap-tpls-2.1.3.min.js" />
     <Content Include="scripts\waypoints.min.js" />
     <Content Include="scripts\wow.min.js" />
-    <Content Include="TestScripts\insurantsControllerSpec.js" />
-    <Content Include="TestScripts\mainControllerSpec.js" />
-    <Content Include="TestScripts\navbarControllerSpec.js" />
+    <Content Include="TestScripts\insurantsController.spec.js" />
+    <Content Include="TestScripts\mainController.spec.js" />
+    <Content Include="TestScripts\navbarController.spec.js" />
     <Content Include="tests\karma.conf.js" />
     <Content Include="Web.config" />
   </ItemGroup>
