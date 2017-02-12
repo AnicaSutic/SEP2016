@@ -1,4 +1,4 @@
-﻿'use-strict';
+﻿'use strict';
 app.controller('InsurantsController', ['$scope','$stateParams',function ($scope, $stateParams) {
 
   

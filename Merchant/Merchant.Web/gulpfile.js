@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var htmlreplace = require('gulp-html-replace');
 var rename = require('gulp-rename');
+var karma = require('gulp-karma');
 
 var scriptPaths = {
     root: "scripts/"
@@ -106,6 +107,45 @@ gulp.task('html-replace', function () {
 gulp.task("maintask", ["minAll:js", "html-replace"]);
 
 
+//karma
+gulp.task('test', function () {
+    var testFiles = [
+            "lib/jquery/dist/jquery.js",
+            "lib/jquery-fancyBox/source/jquery.fancybox.pack.js",
+            "lib/flexslider/jquery.flexslider.js",
+            "lib/angular/angular.js",
+            "lib/angular-ui-router/release/angular-ui-router.js",
+            "scripts/angular-ui-module.js",
+            "lib/angular-resource/angular-resource.js",
+             "lib/angular-mocks/angular-mocks.js",
+            "lib/angular-sanitize/angular-sanitize.js",
+            "lib/angular-translate/angular-translate.js",
+            "node_modules/jasmine-core/lib/jasmine-core/jasmine.js",
+            "lib/bootstrap/dist/js/bootstrap.js",
+            "lib/angular-bootstrap/ui-bootstrap-tpls.js",
+            "scripts/modules/app.js",
+            "scripts/services/riskService.js",
+            "scripts/services/translateService.js",
+            "scripts/services/purchaseService.js",
+            "scripts/controllers/homeController.js",
+            "scripts/controllers/insurantsController.js",
+            "scripts/controllers/mainController.js",
+            "scripts/controllers/navbarController.js",
+            "TestScripts/mainControllerSpec.js",
+            "TestScripts/insurantsControllerSpec.js",
+            "TestScripts/navbarControllerSpec.js"
+    ];
+    // Be sure to return the stream 
+    return gulp.src(testFiles)
+       .pipe(karma({
+           configFile: 'tests/karma.conf.js',
+           action: 'watch'
+       }))
+     .on('error', function (err) {
+         // Make sure failed tests cause gulp to exit non-zero 
+         throw err;
+     });
+});
 
 
 /*gulp.task("jquery:js", function () {

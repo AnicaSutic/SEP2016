@@ -44,7 +44,7 @@ describe("InsurantsController", function () {
         });
 
         it('number of insurants must be more then zero', function () {
-            expect(scope.numOfInsurants).notToEqual(0);
+            expect(scope.numOfInsurants).not.toBe(0);
         });
 
     });

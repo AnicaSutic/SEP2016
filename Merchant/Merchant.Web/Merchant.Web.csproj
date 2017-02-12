@@ -218,6 +218,7 @@
     <Content Include="TestScripts\insurantsControllerSpec.js" />
     <Content Include="TestScripts\mainControllerSpec.js" />
     <Content Include="TestScripts\navbarControllerSpec.js" />
+    <Content Include="tests\karma.conf.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
