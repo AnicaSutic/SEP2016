@@ -14,7 +14,7 @@
                         <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="Insurance.StartDate"
                                is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
                         <div ng-show="travelForm.startDate.$touched">
-                            <span ng-show="travelForm.startDate.$error.required" translate="errStart"></span>
+                            <span ng-show="travelForm.startDate.$error.required" class="text-danger" translate="errStart"></span>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="Insurance.EndDate"
                                is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
                         <div ng-show="travelForm.endDate.$touched">
-                            <span ng-show="travelForm.endDate.$error.required" translate="errEnd"></span>
+                            <span ng-show="travelForm.endDate.$error.required" class="text-danger" translate="errEnd"></span>
                         </div>
                         <div ng-show="dateEnd">
                             <span translate="errDateEnd"></span>
@@ -38,7 +38,7 @@
                             <option value="" translate="selReg"></option>
                         </select>
                         <div ng-show="travelForm.region.$touched && travelForm.region.$error.required">
-                            <span translate="errReg"></span>
+                            <span class="text-danger" translate="errReg"></span>
                         </div>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                     <div class="col-lg-6">
                         <input class="form-control" type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" />
                         <div ng-show="travelForm.number.$touched">
-                            <span ng-show="travelForm.number.$error.required" style="color: red; display: block" translate="errNumReq"></span>
-                            <span ng-show="travelForm.number.$error.min" style="color: red; display: block" translate="errNumMin"></span>
+                            <span ng-show="travelForm.number.$error.required" class="text-danger" translate="errNumReq"></span>
+                            <span ng-show="travelForm.number.$error.min" class="text-danger" translate="errNumMin"></span>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             <option value="" translate="selAge"></option>
                         </select>
                         <div ng-show="travelForm.age.$touched && travelForm.age.$error.required">
-                            <span translate="errAge"></span>
+                            <span class="text-danger" translate="errAge"></span>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <option value="" translate="selSport"></option>
                         </select>
                         <div ng-show="isChecked && travelForm.sport.$touched && travelForm.sport.$error.required">
-                            <span translate="errSport"></span>
+                            <span class="text-danger" translate="errSport"></span>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             <option value="" translate="selValue"></option>
                         </select>
                         <div ng-show="travelForm.value.$touched && travelForm.value.$error.required">
-                            <span translate="errValue"></span>
+                            <span class="text-danger" translate="errValue"></span>
                         </div>
                     </div>
                 </div>
