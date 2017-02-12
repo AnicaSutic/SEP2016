@@ -190,9 +190,9 @@ CREATE TABLE Voyage (
     Id int  NOT NULL IDENTITY(1, 1),
     Region varchar(50)  NOT NULL,
     NumberOfInsurants int  NOT NULL,
-    InsurantAge int  NOT NULL,
+    InsurantAge varchar(50)  NOT NULL,
     Sport varchar(50)  NOT NULL,
-    InsuredValue int  NOT NULL,
+    InsuredValue varchar(50)  NOT NULL,
     InsurantsId int  NOT NULL,
     CONSTRAINT Voyage_pk PRIMARY KEY  (Id)
 );

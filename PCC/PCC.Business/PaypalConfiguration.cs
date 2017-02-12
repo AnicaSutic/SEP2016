@@ -1,17 +1,14 @@
-﻿using PayPal.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using PayPal.Api;
 
-namespace PCC.Models
+namespace PCC.Business
 {
-    public static class Configuration
+    public static class PaypalConfiguration
     {
         public static readonly string ClientId;
         public static readonly string ClientSecret;
 
-        static Configuration()
+        static PaypalConfiguration()
         {
             var config = GetConfig();
             ClientId = config["clientId"];

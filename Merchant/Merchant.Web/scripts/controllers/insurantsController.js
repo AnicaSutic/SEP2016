@@ -1,5 +1,5 @@
-﻿'use-strict';
-app.controller('InsurantsController', function ($scope, $stateParams) {
+﻿'use strict';
+app.controller('InsurantsController', ['$scope','$stateParams',function ($scope, $stateParams) {
 
   
     $scope.numOfInsurants = $stateParams.numOfInsurants;
@@ -16,6 +16,7 @@ app.controller('InsurantsController', function ($scope, $stateParams) {
         Email: ""
     };
    
+    
     $scope.addInsurant = function () {
         
         $scope.addedInsurants.push($scope.Insurant);
@@ -50,4 +51,4 @@ app.controller('InsurantsController', function ($scope, $stateParams) {
     $scope.finish = function () {
     };
 
-});
+}]);

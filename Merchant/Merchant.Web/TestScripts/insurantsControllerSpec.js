@@ -14,6 +14,7 @@ describe("InsurantsController", function () {
 
         }));
 
+       
         it('it should be able to add insurant', function () {
             var Insurant1 = {
                 Name: "Anica",
@@ -44,7 +45,7 @@ describe("InsurantsController", function () {
         });
 
         it('number of insurants must be more then zero', function () {
-            expect(scope.numOfInsurants).notToEqual(0);
+            expect(scope.numOfInsurants).not.toBe(0);
         });
 
     });

@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using PCC.Business;
 
 namespace PCC.Controllers
 {
@@ -26,7 +27,7 @@ namespace PCC.Controllers
         }
 
         // POST: api/Payment
-        public PaymentResponse Post(PaymentDetails paymentDetails)
+        public PaymentResponse Post(PaymentDetailsOld paymentDetails)
         {
             var creditCard = new CreditCard
             {
@@ -78,7 +79,7 @@ namespace PCC.Controllers
 
             try
             {
-                var apiContext = Models.Configuration.GetApiContext();
+                var apiContext = PaypalConfiguration.GetApiContext();
                 var createPayment = paymet.Create(apiContext);
 
                 if (createPayment.state.ToLower() != "approved")
@@ -114,5 +115,23 @@ namespace PCC.Controllers
         public void Delete(int id)
         {
         }
+        
+        [HttpGet]
+        public string Test()
+        {
+            return "success";
+        }
+
+        [HttpPost]
+        public string TestPost(TestDto test)
+        {
+            return "success";
+        }
+    }
+
+    public class TestDto
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
 }
