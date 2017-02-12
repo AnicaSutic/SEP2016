@@ -1,6 +1,7 @@
 ﻿using Common;
 using Merchant.Business;
 using Merchant.DataAccess;
+using Microsoft.Security.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Merchant.Web.Controllers
         [HttpPost]
         public ActionResult BuyInsurance(InsuranceDetailsDto insurance)
         {
+
+            insurance.Data = Sanitizer.GetSafeHtmlFragment(insurance.Data);
             var serializer = new JavaScriptSerializer();
 
             if (insurance.Type == "Travel")
@@ -71,7 +74,7 @@ namespace Merchant.Web.Controllers
             {
                 InsurantAge = riskItemService.GetRiskItemNameById(travelInsurance.Age),
                 InsuredValue = riskItemService.GetRiskItemNameById(travelInsurance.InsuredValue),
-                NumberOfInsurants = int.Parse(travelInsurance.NumberOfInsurants),
+                NumberOfInsurants = int.Parse(Sanitizer.GetSafeHtmlFragment(travelInsurance.NumberOfInsurants)),
                 Region = riskItemService.GetRiskItemNameById(travelInsurance.Region),
                 Sport = travelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(travelInsurance.Sport) : ""
             };
@@ -87,23 +90,23 @@ namespace Merchant.Web.Controllers
                 RiskCategory = riskCategoryService.GetById(1),
                 StartDate = travelInsurance.StartDate
             };
-
+           
             service.AddInsurance(insuranceTravel);
 
             if (homeInsurance != null)
             { 
                 ResidentalBuilding building = new ResidentalBuilding
                 {
-                    Address = homeInsurance.Address,
-                    BuildingAge = decimal.Parse(homeInsurance.BuildingAge),
-                    EstimatedValue = decimal.Parse(homeInsurance.EstimatedValue),
+                    Address = Sanitizer.GetSafeHtmlFragment(homeInsurance.Address),
+                    BuildingAge = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.BuildingAge)),
+                    EstimatedValue = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.EstimatedValue)),
                     InsuredFrom = riskItemService.GetRiskItemNameById(homeInsurance.InsuredFrom),
-                    SurfaceArea = decimal.Parse(homeInsurance.SurfaceArea),
+                    SurfaceArea = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.SurfaceArea)),
                     Owner = new Owner
                     {
-                        Name = homeInsurance.OwnerName,
-                        Surname = homeInsurance.OwnerSurname,
-                        IdentificationNumber = homeInsurance.OwnerIdentificationNumber
+                        Name = Sanitizer.GetSafeHtmlFragment(homeInsurance.OwnerName),
+                        Surname = Sanitizer.GetSafeHtmlFragment(homeInsurance.OwnerSurname),
+                        IdentificationNumber = Sanitizer.GetSafeHtmlFragment(homeInsurance.OwnerIdentificationNumber)
                     }
                 };
 
@@ -126,17 +129,17 @@ namespace Merchant.Web.Controllers
             {
                 Vehicle vehicle = new Vehicle
                 {
-                    Brand = vehicleInsurance.Brand,
-                    ChassisNumber = vehicleInsurance.ChassisNumber,
-                    LicensePlateNumber = vehicleInsurance.LicensePlateNumber,
+                    Brand = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Brand),
+                    ChassisNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.ChassisNumber),
+                    LicensePlateNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.LicensePlateNumber),
                     YearOfProduction = vehicleInsurance.YearOfProduction,
-                    Type = vehicleInsurance.Type,
+                    Type = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Type),
                     Package = riskItemService.GetRiskItemNameById(vehicleInsurance.Package),
                     Owner = new Owner
                     {
-                        Name = vehicleInsurance.OwnerName,
-                        Surname = vehicleInsurance.OwnerSurname,
-                        IdentificationNumber = vehicleInsurance.OwnerIdentificationNumber
+                        Name = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.OwnerName),
+                        Surname = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.OwnerSurname),
+                        IdentificationNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.OwnerIdentificationNumber)
                     }
                 };
 
@@ -163,13 +166,13 @@ namespace Merchant.Web.Controllers
                 {
                     buyer = new Buyer
                     {
-                        Address = ins.Address,
-                        Email = ins.Email,
-                        IdentificationNumber = ins.IdentificationNumber,
-                        Name = ins.Name,
-                        PassportNumber = ins.PassportNumber,
-                        Surname = ins.Surname,
-                        TelephoneNumber = ins.TelephoneNumber
+                        Address = Sanitizer.GetSafeHtmlFragment(ins.Address),
+                        Email = Sanitizer.GetSafeHtmlFragment(ins.Email),
+                        IdentificationNumber = Sanitizer.GetSafeHtmlFragment(ins.IdentificationNumber),
+                        Name = Sanitizer.GetSafeHtmlFragment(ins.Name),
+                        PassportNumber = Sanitizer.GetSafeHtmlFragment(ins.PassportNumber),
+                        Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
+                        TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber)
                     };
 
                     service.AddBuyer(buyer);
@@ -177,12 +180,12 @@ namespace Merchant.Web.Controllers
 
                 Insurant insurant = new Insurant
                 {
-                    IdentificationNumber = ins.IdentificationNumber,
-                    Address = ins.Address,
-                    Name = ins.Name,
-                    PassportNumber = ins.PassportNumber,
-                    Surname = ins.Surname,
-                    TelephoneNumber = ins.TelephoneNumber,
+                    IdentificationNumber = Sanitizer.GetSafeHtmlFragment(ins.IdentificationNumber),
+                    Address = Sanitizer.GetSafeHtmlFragment(ins.Address),
+                    Name = Sanitizer.GetSafeHtmlFragment(ins.Name),
+                    PassportNumber = Sanitizer.GetSafeHtmlFragment(ins.PassportNumber),
+                    Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
+                    TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber),
                     InsurancePolicy = policy
                 };
 

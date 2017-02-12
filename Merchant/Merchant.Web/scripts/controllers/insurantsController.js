@@ -51,4 +51,8 @@ app.controller('InsurantsController', ['$scope','$stateParams',function ($scope,
     $scope.finish = function () {
     };
 
+    function sum(x, y) {
+        return x + y;
+    }
+
 }]);

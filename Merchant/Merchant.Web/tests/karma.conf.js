@@ -29,13 +29,13 @@ module.exports = function (config) {
             "lib/bootstrap/dist/js/bootstrap.js",
             "lib/angular-bootstrap/ui-bootstrap-tpls.js",
             "scripts/modules/app.js",
-            "scripts/services/riskService.js",
-            "scripts/services/translateService.js",
-            "scripts/services/purchaseService.js",
             "scripts/controllers/homeController.js",
             "scripts/controllers/insurantsController.js",
             "scripts/controllers/mainController.js",
-            "scripts/controllers/navbarController.js"
+            "scripts/controllers/navbarController.js",
+            "scripts/services/riskService.js",
+            "scripts/services/translateService.js",
+            "scripts/services/purchaseService.js"   
         ],
 
 

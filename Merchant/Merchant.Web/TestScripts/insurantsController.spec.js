@@ -14,7 +14,6 @@ describe("InsurantsController", function () {
 
         }));
 
-       
         it('it should be able to add insurant', function () {
             var Insurant1 = {
                 Name: "Anica",
