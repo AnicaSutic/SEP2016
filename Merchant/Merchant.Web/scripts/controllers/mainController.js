@@ -222,7 +222,6 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
 
     $scope.addVehicleInsurance = function () {
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle")).then(function (response) {
-
         });
     };
 

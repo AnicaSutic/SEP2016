@@ -131,9 +131,7 @@ gulp.task('test', function () {
             "scripts/controllers/insurantsController.js",
             "scripts/controllers/mainController.js",
             "scripts/controllers/navbarController.js",
-            "TestScripts/mainControllerSpec.js",
-            "TestScripts/insurantsControllerSpec.js",
-            "TestScripts/navbarControllerSpec.js"
+            "TestScripts/*.js"
     ];
     // Be sure to return the stream 
     return gulp.src(testFiles)

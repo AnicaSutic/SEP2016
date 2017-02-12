@@ -16,6 +16,7 @@ app.controller('InsurantsController', ['$scope','$stateParams',function ($scope,
         Email: ""
     };
    
+    
     $scope.addInsurant = function () {
         
         $scope.addedInsurants.push($scope.Insurant);

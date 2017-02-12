@@ -35,10 +35,7 @@ module.exports = function (config) {
             "scripts/controllers/homeController.js",
             "scripts/controllers/insurantsController.js",
             "scripts/controllers/mainController.js",
-            "scripts/controllers/navbarController.js",
-            "TestScripts/mainControllerSpec.js",
-            "TestScripts/insurantsControllerSpec.js",
-            "TestScripts/navbarControllerSpec.js"
+            "scripts/controllers/navbarController.js"
         ],
 
 
