@@ -36,6 +36,11 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
         .state('insurance.others', {
             url: '/Others',
             templateUrl: '/Home/Others'
+        })
+        .state('payment', {
+            url: '/Payment',
+            templateUrl: '/Home/Payment',
+            controller: "PaymentController"
         });
 
     var eng =
