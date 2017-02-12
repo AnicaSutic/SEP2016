@@ -6,33 +6,46 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
     $urlRouterProvider.otherwise("/Home/HomePage");
 
     $stateProvider
-        .state('home', {
+        .state('home',
+        {
             url: '/Home/HomePage',
             templateUrl: '/Home/HomePage',
             controller: 'HomeController'
         })
-        .state('terms', {
+        .state('terms',
+        {
             url: '/Home/TermsAndConditions',
             templateUrl: '/Home/TermsAndConditions',
             controller: 'HomeController'
         })
-        .state('insurance', {
+        .state('insurance',
+        {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
             controller: 'MainController'
         })
-        .state('insurance.travel', {
+        .state('insurance.travel',
+        {
             url: '/Travel',
             templateUrl: '/Home/Travel'
         })
-        .state('insurance.insurants', {
+        .state('insurance.insurants',
+        {
             url: '/Insurants',
             templateUrl: '/Home/Insurants'
         })
-        .state('insurance.others', {
+        .state('insurance.others',
+        {
             url: '/Others',
             templateUrl: '/Home/Others'
+        })
+        .state('payment',
+        {
+            url: '/Payment',
+            templateUrl: '/Home/Payment',
+            controller: "PaymentController"
         });
+
 
     var eng =
         {
