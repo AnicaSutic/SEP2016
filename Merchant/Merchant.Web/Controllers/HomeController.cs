@@ -52,5 +52,10 @@ namespace Merchant.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult OthersNew()
+        {
+            return View();
+        }
     }
 }

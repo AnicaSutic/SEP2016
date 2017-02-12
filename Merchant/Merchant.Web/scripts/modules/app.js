@@ -37,6 +37,10 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             url: '/Others',
             templateUrl: '/Home/Others'
         })
+        .state('insurance.othersNew', {
+            url: '/OthersNew',
+            templateUrl: '/Home/OthersNew'
+        })
         .state('payment', {
             url: '/Payment',
             templateUrl: '/Home/Payment',

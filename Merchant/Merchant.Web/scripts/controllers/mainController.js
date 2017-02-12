@@ -460,4 +460,13 @@
         return '';
     }
 
+    $scope.setSelectedItem = function (item) {
+        $scope.travelSelected = item === "travel" ? true : false;
+        $scope.insurantsSelected = item === "insurants" ? true : false;
+        $scope.buyerSelected = item === "buyer" ? true : false;
+        $scope.othersSelected = item === "others" ? true : false;
+        $scope.othersNewSelected = item === "othersNew" ? true : false;
+    }
+
+
 });
