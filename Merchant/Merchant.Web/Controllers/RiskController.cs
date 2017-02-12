@@ -80,8 +80,6 @@ namespace Merchant.Web.Controllers
                 price = calculator.CalculatePrice(serializer.Deserialize<VehicleInsuranceDto>(obj.Data));
             }
 
-            //Session["TravelInsurance"] = insurance;
-
             return Json(price);
         }
     }

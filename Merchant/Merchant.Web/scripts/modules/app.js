@@ -6,46 +6,37 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
     $urlRouterProvider.otherwise("/Home/HomePage");
 
     $stateProvider
-        .state('home',
-        {
+        .state('home', {
             url: '/Home/HomePage',
             templateUrl: '/Home/HomePage',
             controller: 'HomeController'
         })
-        .state('terms',
-        {
+        .state('terms', {
             url: '/Home/TermsAndConditions',
             templateUrl: '/Home/TermsAndConditions',
             controller: 'HomeController'
         })
-        .state('insurance',
-        {
+        .state('insurance', {
             url: '/Home/Insurance',
             templateUrl: '/Home/Insurance',
             controller: 'MainController'
         })
-        .state('insurance.travel',
-        {
+        .state('insurance.travel', {
             url: '/Travel',
             templateUrl: '/Home/Travel'
         })
-        .state('insurance.insurants',
-        {
+        .state('insurance.insurants', {
             url: '/Insurants',
             templateUrl: '/Home/Insurants'
         })
-        .state('insurance.others',
-        {
+        .state('insurance.buyer', {
+            url: '/Buyer',
+            templateUrl: '/Home/Buyer'
+        })
+        .state('insurance.others', {
             url: '/Others',
             templateUrl: '/Home/Others'
-        })
-        .state('payment',
-        {
-            url: '/Payment',
-            templateUrl: '/Home/Payment',
-            controller: "PaymentController"
         });
-
 
     var eng =
         {
@@ -151,7 +142,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             add: "Add",
             noInsurants: "You haven't added any insurants yet.",
             isBuyer: "Choose as a buyer of the insurance",
-            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment.",
+            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment by clicking the button below.",
             buy: "Buy",
             ownerDetails: "Details about the owner",
             otherInsurance: "Do you wish to buy another insurance?",
@@ -163,7 +154,10 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             termsError: "You have to accept the Terms&Conditions!",
             terms: "Terms&Conditions",
             noOtherInsurance: "If you don't want to buy another insurace, you can finish the purchase by clicking the button below.",
-            finishPurchase: "Finish purchase"
+            finishPurchase: "Finish purchase",
+            buyerDetails: "Buyer's details",
+            buyer: "Buyer",
+            insurantsDetails: "Insurants' details"
         };
     var ser =
         {
@@ -269,7 +263,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             add: "Dodaj",
             noInsurants: "Još uvek niste dodali nijednog osiguranika.",
             isBuyer: "Odabrati kao kupca osiguranja",
-            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom.",
+            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom klikom na dugme ispod.",
             buy: "Kupi",
             ownerDetails: "Detalji o vlasniku",
             otherInsurance: "Da li želite da kupite drugo osiguranje?",
@@ -281,7 +275,10 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             termsError: "Morate prihvatiti uslove korišćenja!",
             terms: "Uslovi korišćenja",
             noOtherInsurance: "Ukoliko ne želite da kupite drugo osiguranje, možete završiti kupovinu klikom na dugme ispod.",
-            finishPurchase: "Završi kupovinu"
+            finishPurchase: "Završi kupovinu",
+            buyerDetails: "Detalji o kupcu",
+            buyer: "Kupac",
+            insurantsDetails: "Detalji o osiguranicima"
         };
 
     $.ajax({

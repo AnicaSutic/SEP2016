@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MerchantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Buyer">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,8 +29,8 @@
           <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="VehicleId" Type="int" />
           <Property Name="ResidentalBuildingId" Type="int" />
-          <Property Name="VoyageId" Type="int" Nullable="false" />
-          <Property Name="InsurancesId" Type="int" Nullable="false" />
+          <Property Name="VoyageId" Type="int" />
+          <Property Name="InsurancePolicyId" Type="int" />
         </EntityType>
         <EntityType Name="InsurancePolicy">
           <Key>
@@ -38,33 +38,22 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="BuyerId" Type="int" Nullable="false" />
-          <Property Name="InsurancesId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Insurances">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BuyerId" Type="int" />
+          <Property Name="IsPaymentSuccessful" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Insurant">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InsurantsId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Surname" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="IdentificationNumber" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="PassportNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="TelephoneNumber" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="Insurants">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsurancePolicyId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Owner">
           <Key>
@@ -113,7 +102,7 @@
           <Property Name="SurfaceArea" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="BuildingAge" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="EstimatedValue" Type="decimal" Precision="12" Scale="2" Nullable="false" />
-          <Property Name="InsuredFor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsuredFrom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="OwnerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Risk">
@@ -160,7 +149,7 @@
           <Property Name="Package" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Brand" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="YearOfProduction" Type="datetime" Nullable="false" />
+          <Property Name="YearOfProduction" Type="int" Nullable="false" />
           <Property Name="LicensePlateNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ChassisNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="OwnerId" Type="int" Nullable="false" />
@@ -172,10 +161,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Region" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NumberOfInsurants" Type="int" Nullable="false" />
-          <Property Name="InsurantAge" Type="int" Nullable="false" />
+          <Property Name="InsurantAge" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Sport" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="InsuredValue" Type="int" Nullable="false" />
-          <Property Name="InsurantsId" Type="int" Nullable="false" />
+          <Property Name="InsuredValue" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Insurance_InsuranceCategory">
           <End Role="RiskCategory" Type="Self.RiskCategory" Multiplicity="1" />
@@ -214,7 +202,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InsurancePolicy_Buyer">
-          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="0..1" />
           <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Buyer">
@@ -222,18 +210,6 @@
             </Principal>
             <Dependent Role="InsurancePolicy">
               <PropertyRef Name="BuyerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Insurant_Insurants">
-          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
-          <End Role="Insurant" Type="Self.Insurant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurants">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Insurant">
-              <PropertyRef Name="InsurantsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -297,20 +273,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Insurance_Insurants">
-          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+        <Association Name="Insurance_InsurancePolicy">
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Insurances">
+            <Principal Role="InsurancePolicy">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Insurance">
-              <PropertyRef Name="InsurancesId" />
+              <PropertyRef Name="InsurancePolicyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="Insurance_Voyage">
-          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Voyage">
@@ -321,15 +297,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="InsurancePolicy_Insurances">
-          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
-          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
+        <Association Name="Insurant_InsurancePolicy">
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="1" />
+          <End Role="Insurant" Type="Self.Insurant" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Insurances">
+            <Principal Role="InsurancePolicy">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="InsurancePolicy">
-              <PropertyRef Name="InsurancesId" />
+            <Dependent Role="Insurant">
+              <PropertyRef Name="InsurancePolicyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,25 +333,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Voyage_Insurants">
-          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
-          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurants">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Voyage">
-              <PropertyRef Name="InsurantsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MerchantDBModelStoreContainer">
           <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Insurance" EntityType="Self.Insurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsurancePolicy" EntityType="Self.InsurancePolicy" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Insurances" EntityType="Self.Insurances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Insurant" EntityType="Self.Insurant" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Insurants" EntityType="Self.Insurants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pricelist" EntityType="Self.Pricelist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PricelistItem" EntityType="Self.PricelistItem" Schema="dbo" store:Type="Tables" />
@@ -403,10 +365,6 @@
             <End Role="Buyer" EntitySet="Buyer" />
             <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
           </AssociationSet>
-          <AssociationSet Name="FK_Insurant_Insurants" Association="Self.FK_Insurant_Insurants">
-            <End Role="Insurants" EntitySet="Insurants" />
-            <End Role="Insurant" EntitySet="Insurant" />
-          </AssociationSet>
           <AssociationSet Name="FK_PricelistItem_PricelistItems" Association="Self.FK_PricelistItem_PricelistItems">
             <End Role="PricelistItems" EntitySet="PricelistItems" />
             <End Role="PricelistItem" EntitySet="PricelistItem" />
@@ -427,17 +385,17 @@
             <End Role="Risk" EntitySet="Risk" />
             <End Role="RiskItem" EntitySet="RiskItem" />
           </AssociationSet>
-          <AssociationSet Name="Insurance_Insurants" Association="Self.Insurance_Insurants">
-            <End Role="Insurances" EntitySet="Insurances" />
+          <AssociationSet Name="Insurance_InsurancePolicy" Association="Self.Insurance_InsurancePolicy">
+            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
           <AssociationSet Name="Insurance_Voyage" Association="Self.Insurance_Voyage">
             <End Role="Voyage" EntitySet="Voyage" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="InsurancePolicy_Insurances" Association="Self.InsurancePolicy_Insurances">
-            <End Role="Insurances" EntitySet="Insurances" />
+          <AssociationSet Name="Insurant_InsurancePolicy" Association="Self.Insurant_InsurancePolicy">
             <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
+            <End Role="Insurant" EntitySet="Insurant" />
           </AssociationSet>
           <AssociationSet Name="ResidentalBuilding_Owner" Association="Self.ResidentalBuilding_Owner">
             <End Role="Owner" EntitySet="Owner" />
@@ -447,12 +405,9 @@
             <End Role="Owner" EntitySet="Owner" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
-          <AssociationSet Name="Voyage_Insurants" Association="Self.Voyage_Insurants">
-            <End Role="Insurants" EntitySet="Insurants" />
-            <End Role="Voyage" EntitySet="Voyage" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MerchantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -480,12 +435,12 @@
           <Property Name="Price" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="VehicleId" Type="Int32" />
           <Property Name="ResidentalBuildingId" Type="Int32" />
-          <Property Name="VoyageId" Type="Int32" Nullable="false" />
-          <Property Name="InsurancesId" Type="Int32" Nullable="false" />
+          <Property Name="VoyageId" Type="Int32" />
+          <Property Name="InsurancePolicyId" Type="Int32" />
           <NavigationProperty Name="RiskCategory" Relationship="Self.FK_Insurance_InsuranceCategory" FromRole="Insurance" ToRole="RiskCategory" />
           <NavigationProperty Name="ResidentalBuilding" Relationship="Self.FK_Insurance_ResidentalBuilding" FromRole="Insurance" ToRole="ResidentalBuilding" />
           <NavigationProperty Name="Vehicle" Relationship="Self.FK_Insurance_Vehicle" FromRole="Insurance" ToRole="Vehicle" />
-          <NavigationProperty Name="Insurances" Relationship="Self.Insurance_Insurants" FromRole="Insurance" ToRole="Insurances" />
+          <NavigationProperty Name="InsurancePolicy" Relationship="Self.Insurance_InsurancePolicy" FromRole="Insurance" ToRole="InsurancePolicy" />
           <NavigationProperty Name="Voyage" Relationship="Self.Insurance_Voyage" FromRole="Insurance" ToRole="Voyage" />
         </EntityType>
         <EntityType Name="InsurancePolicy">
@@ -494,36 +449,24 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Price" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="BuyerId" Type="Int32" Nullable="false" />
-          <Property Name="InsurancesId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BuyerId" Type="Int32" />
+          <Property Name="IsPaymentSuccessful" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Buyer" Relationship="Self.FK_InsurancePolicy_Buyer" FromRole="InsurancePolicy" ToRole="Buyer" />
-          <NavigationProperty Name="Insurances" Relationship="Self.InsurancePolicy_Insurances" FromRole="InsurancePolicy" ToRole="Insurances" />
-        </EntityType>
-        <EntityType Name="Insurances">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Insurant">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Insurants" Relationship="Self.FK_Insurant_Insurants" FromRole="Insurant" ToRole="Insurants" />
-        </EntityType>
-        <EntityType Name="Insurants">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsurancePolicyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsurancePolicy" Relationship="Self.Insurant_InsurancePolicy" FromRole="Insurant" ToRole="InsurancePolicy" />
         </EntityType>
         <EntityType Name="Owner">
           <Key>
@@ -533,7 +476,7 @@
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdentificationNumber" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Pricelist">
           <Key>
             <PropertyRef Name="Id" />
@@ -596,7 +539,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name_Srb" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="RiskItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -625,7 +568,7 @@
           <Property Name="Package" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Brand" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="YearOfProduction" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="YearOfProduction" Type="Int32" Nullable="false" />
           <Property Name="LicensePlateNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ChassisNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OwnerId" Type="Int32" Nullable="false" />
@@ -638,14 +581,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NumberOfInsurants" Type="Int32" Nullable="false" />
-          <Property Name="InsurantAge" Type="Int32" Nullable="false" />
+          <Property Name="InsurantAge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="InsuredValue" Type="Int32" Nullable="false" />
-          <Property Name="InsurantsId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Insurants" Relationship="Self.Voyage_Insurants" FromRole="Voyage" ToRole="Insurants" />
+          <Property Name="InsuredValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK_InsurancePolicy_Buyer">
-          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="0..1" />
           <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Buyer">
@@ -692,20 +633,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Insurance_Insurants">
-          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
+        <Association Name="Insurance_InsurancePolicy">
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Insurances">
+            <Principal Role="InsurancePolicy">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Insurance">
-              <PropertyRef Name="InsurancesId" />
+              <PropertyRef Name="InsurancePolicyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="Insurance_Voyage">
-          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="0..1" />
           <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Voyage">
@@ -716,39 +657,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="InsurancePolicy_Insurances">
-          <End Role="Insurances" Type="Self.Insurances" Multiplicity="1" />
-          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurances">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="InsurancePolicy">
-              <PropertyRef Name="InsurancesId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Insurant_Insurants">
-          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
+        <Association Name="Insurant_InsurancePolicy">
+          <End Role="InsurancePolicy" Type="Self.InsurancePolicy" Multiplicity="1" />
           <End Role="Insurant" Type="Self.Insurant" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Insurants">
+            <Principal Role="InsurancePolicy">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Insurant">
-              <PropertyRef Name="InsurantsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Voyage_Insurants">
-          <End Role="Insurants" Type="Self.Insurants" Multiplicity="1" />
-          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Insurants">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Voyage">
-              <PropertyRef Name="InsurantsId" />
+              <PropertyRef Name="InsurancePolicyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -840,9 +757,7 @@
           <EntitySet Name="Buyer" EntityType="Self.Buyer" />
           <EntitySet Name="Insurance" EntityType="Self.Insurance" />
           <EntitySet Name="InsurancePolicy" EntityType="Self.InsurancePolicy" />
-          <EntitySet Name="Insurances" EntityType="Self.Insurances" />
           <EntitySet Name="Insurant" EntityType="Self.Insurant" />
-          <EntitySet Name="Insurants" EntityType="Self.Insurants" />
           <EntitySet Name="Owner" EntityType="Self.Owner" />
           <EntitySet Name="Pricelist" EntityType="Self.Pricelist" />
           <EntitySet Name="PricelistItem" EntityType="Self.PricelistItem" />
@@ -870,25 +785,17 @@
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="Insurance_Insurants" Association="Self.Insurance_Insurants">
-            <End Role="Insurances" EntitySet="Insurances" />
+          <AssociationSet Name="Insurance_InsurancePolicy" Association="Self.Insurance_InsurancePolicy">
+            <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
           <AssociationSet Name="Insurance_Voyage" Association="Self.Insurance_Voyage">
             <End Role="Voyage" EntitySet="Voyage" />
             <End Role="Insurance" EntitySet="Insurance" />
           </AssociationSet>
-          <AssociationSet Name="InsurancePolicy_Insurances" Association="Self.InsurancePolicy_Insurances">
-            <End Role="Insurances" EntitySet="Insurances" />
+          <AssociationSet Name="Insurant_InsurancePolicy" Association="Self.Insurant_InsurancePolicy">
             <End Role="InsurancePolicy" EntitySet="InsurancePolicy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Insurant_Insurants" Association="Self.FK_Insurant_Insurants">
-            <End Role="Insurants" EntitySet="Insurants" />
             <End Role="Insurant" EntitySet="Insurant" />
-          </AssociationSet>
-          <AssociationSet Name="Voyage_Insurants" Association="Self.Voyage_Insurants">
-            <End Role="Insurants" EntitySet="Insurants" />
-            <End Role="Voyage" EntitySet="Voyage" />
           </AssociationSet>
           <AssociationSet Name="ResidentalBuilding_Owner" Association="Self.ResidentalBuilding_Owner">
             <End Role="Owner" EntitySet="Owner" />
@@ -950,7 +857,7 @@
                 <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
                 <ScalarProperty Name="ResidentalBuildingId" ColumnName="ResidentalBuildingId" />
                 <ScalarProperty Name="VoyageId" ColumnName="VoyageId" />
-                <ScalarProperty Name="InsurancesId" ColumnName="InsurancesId" />
+                <ScalarProperty Name="InsurancePolicyId" ColumnName="InsurancePolicyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -959,15 +866,9 @@
               <MappingFragment StoreEntitySet="InsurancePolicy">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
-                <ScalarProperty Name="InsurancesId" ColumnName="InsurancesId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Insurances">
-            <EntityTypeMapping TypeName="MerchantDBModel.Insurances">
-              <MappingFragment StoreEntitySet="Insurances">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsPaymentSuccessful" ColumnName="IsPaymentSuccessful" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -975,20 +876,13 @@
             <EntityTypeMapping TypeName="MerchantDBModel.Insurant">
               <MappingFragment StoreEntitySet="Insurant">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Insurants">
-            <EntityTypeMapping TypeName="MerchantDBModel.Insurants">
-              <MappingFragment StoreEntitySet="Insurants">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InsurancePolicyId" ColumnName="InsurancePolicyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1042,7 +936,7 @@
                 <ScalarProperty Name="SurfaceArea" ColumnName="SurfaceArea" />
                 <ScalarProperty Name="BuildingAge" ColumnName="BuildingAge" />
                 <ScalarProperty Name="EstimatedValue" ColumnName="EstimatedValue" />
-                <ScalarProperty Name="InsuredFrom" ColumnName="InsuredFor" />
+                <ScalarProperty Name="InsuredFrom" ColumnName="InsuredFrom" />
                 <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1110,7 +1004,6 @@
                 <ScalarProperty Name="InsurantAge" ColumnName="InsurantAge" />
                 <ScalarProperty Name="Sport" ColumnName="Sport" />
                 <ScalarProperty Name="InsuredValue" ColumnName="InsuredValue" />
-                <ScalarProperty Name="InsurantsId" ColumnName="InsurantsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

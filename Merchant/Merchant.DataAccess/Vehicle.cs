@@ -18,7 +18,7 @@ namespace Merchant.DataAccess
         public string Package { get; set; }
         public string Brand { get; set; }
         public string Type { get; set; }
-        public System.DateTime YearOfProduction { get; set; }
+        public int YearOfProduction { get; set; }
         public string LicensePlateNumber { get; set; }
         public string ChassisNumber { get; set; }
         public int OwnerId { get; set; }

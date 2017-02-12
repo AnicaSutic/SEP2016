@@ -5,8 +5,8 @@
 <div>
     <h1 translate="otherInsurance"></h1>
     <div>
-        <button ng-click="showVehicleIns()" translate="buyVehicle">Buy vehicle insurance</button>
-        <button ng-click="showHomeIns()" translate="buyHome">Buy home insurance</button>
+        <button ng-click="showVehicleIns()" ng-disabled="vehicleInsExists" translate="buyVehicle">Buy vehicle insurance</button>
+        <button ng-click="showHomeIns()" ng-disabled="homeInsExists" translate="buyHome">Buy home insurance</button>
     </div>
 
     <div ng-if="showVehicleForm">
@@ -132,8 +132,6 @@
                     </div>
                 </div>
             </div>
-            {{forms.vehicleForm.repair.$touched}}
-            {{forms.vehicleForm.repair.$error.required}}
         </form>
         <div>
             <button class="btn" ng-click="calculateVehicleInsurance()" ng-disabled="forms.vehicleForm.$invalid" translate="calc"></button>
@@ -254,7 +252,7 @@
 
     <div>
         <span translate="noOtherInsurance"></span>
-        <button translate="finishPurchase"></button>
+        <button class="btn" ng-click="addOthers()" translate="proceed"></button>
     </div>
 
 </div>

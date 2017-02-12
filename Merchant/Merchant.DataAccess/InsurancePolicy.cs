@@ -16,10 +16,10 @@ namespace Merchant.DataAccess
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
-        public int BuyerId { get; set; }
-        public int InsurancesId { get; set; }
+        public string OrderId { get; set; }
+        public Nullable<int> BuyerId { get; set; }
+        public bool IsPaymentSuccessful { get; set; }
     
         public virtual Buyer Buyer { get; set; }
-        public virtual Insurances Insurances { get; set; }
     }
 }

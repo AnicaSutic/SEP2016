@@ -14,13 +14,16 @@ describe("MainController", function () {
        
         }));
 
-        it('it should be able to return sum', function() {
-            var result = scope.sum(10,20);
-            expect(result).toEqual(30);
-        });
 
         it('price should be defined', function () {
-            expect(scope.price).toBeDefined();
+            expect(scope.travelPrice).toBeDefined();
+            expect(scope.vehiclePrice).toBeDefined();
+            expect(scope.homePrice).toBeDefined();
+        });
+
+        it('it should show insurance form', function () {
+            scope.showInsurantForm();
+            expect(scope.showInsForm).not.toBe(false);
         });
 
         it('should return collection by language', function () {
@@ -46,11 +49,6 @@ describe("MainController", function () {
             
             expect(collE).toEqual(resultEng);
             expect(collS).toEqual(resultSrp);
-        });
-
-        it('choose another insurance and the form should show', function () {
-            scope.chooseAnother();
-            expect(scope.showAnotherInsurance).toEqual(true);
         });
 
     });

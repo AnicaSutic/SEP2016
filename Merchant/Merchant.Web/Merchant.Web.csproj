@@ -182,7 +182,6 @@
     <Content Include="scripts\angular\angular-ui-router.js" />
     <Content Include="scripts\controllers\insurantsController.js" />
     <Content Include="scripts\controllers\navbarController.js" />
-    <Content Include="scripts\controllers\paymentController.js" />
     <Content Include="scripts\html5shiv.js" />
     <Content Include="scripts\jquery.waypoints.js" />
     <Content Include="scripts\jquery\jquery.fancybox.pack.js" />
@@ -209,7 +208,6 @@
     <Content Include="scripts\respond.min.js" />
     <Content Include="scripts\scripts.js" />
     <Content Include="scripts\angular\angular-translate.js" />
-    <Content Include="scripts\services\paypalService.js" />
     <Content Include="scripts\services\purchaseService.js" />
     <Content Include="scripts\services\riskService.js" />
     <Content Include="scripts\services\translateService.js" />
@@ -220,6 +218,7 @@
     <Content Include="TestScripts\insurantsControllerSpec.js" />
     <Content Include="TestScripts\mainControllerSpec.js" />
     <Content Include="TestScripts\navbarControllerSpec.js" />
+    <Content Include="tests\karma.conf.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -252,7 +249,7 @@
     <Content Include="Views\Home\Travel.cshtml" />
     <Content Include="Views\Home\OthersNew.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\Home\Buyer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

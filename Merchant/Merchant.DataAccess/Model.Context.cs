@@ -28,9 +28,7 @@ namespace Merchant.DataAccess
         public virtual DbSet<Buyer> Buyer { get; set; }
         public virtual DbSet<Insurance> Insurance { get; set; }
         public virtual DbSet<InsurancePolicy> InsurancePolicy { get; set; }
-        public virtual DbSet<Insurances> Insurances { get; set; }
         public virtual DbSet<Insurant> Insurant { get; set; }
-        public virtual DbSet<Insurants> Insurants { get; set; }
         public virtual DbSet<Owner> Owner { get; set; }
         public virtual DbSet<Pricelist> Pricelist { get; set; }
         public virtual DbSet<PricelistItem> PricelistItem { get; set; }

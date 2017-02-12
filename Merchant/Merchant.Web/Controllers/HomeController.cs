@@ -43,7 +43,7 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
-        public ActionResult Payment()
+        public ActionResult Buyer()
         {
             return View();
         }
