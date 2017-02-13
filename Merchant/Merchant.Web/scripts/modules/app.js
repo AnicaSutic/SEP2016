@@ -342,4 +342,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
 
     console.log(eng);
     console.log(ser);
+
+    
 }]);
+

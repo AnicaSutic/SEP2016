@@ -32,7 +32,7 @@
                                 <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.StartDate"
                                        is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
                                 <div ng-show="forms.vehicleForm.startDate.$touched">
-                                    <span ng-show="forms.vehicleForm.startDate.$error.required" translate="errStart"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.startDate.$error.required" translate="errStart"></span>
                                 </div>
                             </div>
                         </div>
@@ -42,97 +42,97 @@
                                 <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.EndDate"
                                        is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
                                 <div ng-show="forms.vehicleForm.endDate.$touched">
-                                    <span ng-show="forms.vehicleForm.endDate.$error.required" translate="errEnd"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.endDate.$error.required" translate="errEnd"></span>
                                 </div>
                                 <div ng-show="dateEnd">
                                     <span translate="errDateEnd"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
                             <label class="col-lg-2 control-label" for="package" translate="packageV"></label>
                             <div class="col-lg-6">
                                 <select class="form-control" id="package" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
                                     <option value="" translate="selPackage"></option>
                                 </select>
                                 <div ng-show="forms.vehicleForm.package.$touched">
-                                    <span ng-show="forms.vehicleForm.package.$error.required" translate="errPackage"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.package.$error.required" translate="errPackage"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" ng-if="towing">
+                        <div class="form-group" ng-if="towing" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
                             <label class="col-lg-2 control-label" for="towing" translate="towing"></label>
                             <div class="col-lg-6">
                                 <input id="towing" class="form-control" type="number" name="towing" required min="1" ng-model="VehicleInsurance.TowingKm" />
                                 <div ng-show="forms.vehicleForm.towing.$touched">
-                                    <span ng-show="forms.vehicleForm.towing.$error.required" translate="errTowing"></span>
-                                    <span ng-show="forms.vehicleForm.towing.$error.min" translate="errTowingMin"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.towing.$error.required" translate="errTowing"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.towing.$error.min" translate="errTowingMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" ng-if="repair">
+                        <div class="form-group" ng-if="repair" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
                             <label class="col-lg-2 control-label" for="repair" translate="repair"></label>
                             <div class="col-lg-6">
                                 <input id="repair" class="form-control" type="number" name="towing" required min="1" ng-model="VehicleInsurance.TowingKm" />
                                 <div ng-show="forms.vehicleForm.repair.$touched">
-                                    <span ng-show="forms.vehicleForm.repair.$error.required" translate="errRepair"></span>
-                                    <span ng-show="forms.vehicleForm.repair.$error.min" translate="errRepairMin"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.repair.$error.required" translate="errRepair"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.repair.$error.min" translate="errRepairMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" ng-if="accommodation">
+                        <div class="form-group" ng-if="accommodation" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
                             <label class="col-lg-2 control-label" for="accommodation" translate="accommodation"></label>
                             <div class="col-lg-6">
                                 <input id="accommodation" class="form-control" type="number" name="accommodation" required min="1" ng-model="VehicleInsurance.AccommodationDays" />
                                 <div ng-show="forms.vehicleForm.accommodation.$touched">
-                                    <span ng-show="forms.vehicleForm.accommodation.$error.required" translate="errAccommodation"></span>
-                                    <span ng-show="forms.vehicleForm.accommodation.$error.min" translate="errAccommodationMin"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.accommodation.$error.required" translate="errAccommodation"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.accommodation.$error.min" translate="errAccommodationMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.brand.$invalid && forms.vehicleForm.brand.$touched}">
                             <label class="col-lg-2 control-label" for="brand" translate="brand"></label>
                             <div class="col-lg-6">
                                 <input id="brand" class="form-control" type="text" required name="brand" ng-model="VehicleInsurance.Brand" />
                                 <div ng-show="forms.vehicleForm.brand.$touched">
-                                    <span ng-show="forms.vehicleForm.brand.$error.required" translate="errBrand"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.brand.$error.required" translate="errBrand"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.type.$invalid && forms.vehicleForm.type.$touched}">
                             <label class="col-lg-2 control-label" for="type" translate="type"></label>
                             <div class="col-lg-6">
                                 <input id="type" class="form-control" type="text" required name="type" ng-model="VehicleInsurance.Type" />
                                 <div ng-show="forms.vehicleForm.type.$touched">
-                                    <span ng-show="forms.vehicleForm.type.$error.required" translate="errType"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.type.$error.required" translate="errType"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.year.$invalid && forms.vehicleForm.year.$touched}">
                             <label class="col-lg-2 control-label" for="year" translate="year"></label>
                             <div class="col-lg-6">
-                                <input class="form-control" id="year" type="number" required min="1" name="year" ng-model="VehicleInsurance.YearOfProduction" />
+                                <input class="form-control" id="year" type="number" required minlength="4" name="year" ng-model="VehicleInsurance.YearOfProduction" />
                                 <div ng-show="forms.vehicleForm.year.$touched">
-                                    <span ng-show="forms.vehicleForm.year.$error.required" translate="errYear"></span>
-                                    <span ng-show="forms.vehicleForm.year.$error.min" translate="errYearMin"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.year.$error.required" translate="errYear"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.year.$error.minlength" translate="errYearMinLength"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.licence.$invalid && forms.vehicleForm.licence.$touched}">
                             <label class="col-lg-2 control-label" for="licence" translate="licence"></label>
                             <div class="col-lg-6">
                                 <input id="licence" class="form-control" type="text" required name="licence" ng-model="VehicleInsurance.LicensePlateNumber" />
                                 <div ng-show="forms.vehicleForm.licence.$touched">
-                                    <span ng-show="forms.vehicleForm.licence.$error.required" translate="errLicence"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.licence.$error.required" translate="errLicence"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.chassis.$invalid && forms.vehicleForm.chassis.$touched}">
                             <label class="col-lg-2 control-label" for="chassis" translate="chassis"></label>
                             <div class="col-lg-6">
                                 <input id="chassis" class="form-control" type="text" required name="chassis" ng-model="VehicleInsurance.ChassisNumber" />
                                 <div ng-show="forms.vehicleForm.chassis.$touched">
-                                    <span ng-show="forms.vehicleForm.chassis.$error.required" translate="errChassis"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.chassis.$error.required" translate="errChassis"></span>
                                 </div>
                             </div>
                         </div>
@@ -140,34 +140,34 @@
                         <br />
                         <legend translate="ownerDetails"></legend>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.name.$invalid && forms.vehicleForm.name.$touched}">
                             <label class="col-lg-2 control-label" for="name" translate="name"></label>
                             <div class="col-lg-6">
                                 <input id="name" class="form-control" type="text" name="name" ng-model="VehicleInsurance.OwnerName" required="required">
                                 <div ng-show="forms.vehicleForm.name.$touched && forms.vehicleForm.name.$error.required">
-                                    <span translate="errName"></span>
+                                    <span class="text-danger" translate="errName"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.surname.$invalid && forms.vehicleForm.surname.$touched}">
                             <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
                             <div class="col-lg-6">
                                 <input id="surname" class="form-control" type="text" name="surname" ng-model="VehicleInsurance.OwnerSurname" required="required">
                                 <div ng-show="forms.vehicleForm.surname.$touched">
-                                    <span ng-show="forms.vehicleForm.surname.$error.required" translate="errSurname"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.surname.$error.required" translate="errSurname"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.jmbg.$invalid && forms.vehicleForm.jmbg.$touched}">
                             <label class="col-lg-2 control-label" for="jmbg" translate="jmbg"></label>
                             <div class="col-lg-6">
                                 <input id="jmbg" class="form-control" type="number" name="jmbg" ng-model="VehicleInsurance.OwnerIdentificationNumber" minlength="13" maxlength="13" required="required">
                                 <div ng-show="forms.vehicleForm.jmbg.$touched">
-                                    <span ng-show="forms.vehicleForm.jmbg.$error.required" translate="errJmbg"></span>
-                                    <span ng-show="forms.vehicleForm.jmbg.$error.minlength" translate="errJmbgL"></span>
-                                    <span ng-show="forms.vehicleForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.jmbg.$error.required" translate="errJmbg"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.jmbg.$error.minlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="forms.vehicleForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                                 <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.StartDate"
                                        is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
                                 <div ng-show="homeForm.startDate.$touched">
-                                    <span ng-show="homeForm.startDate.$error.required" translate="errStart"></span>
+                                    <span class="text-danger" ng-show="homeForm.startDate.$error.required" translate="errStart"></span>
                                 </div>
                             </div>
                         </div>
@@ -212,91 +212,91 @@
                                 <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.EndDate"
                                        is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
                                 <div ng-show="homeForm.endDate.$touched">
-                                    <span ng-show="homeForm.endDate.$error.required" translate="errEnd"></span>
+                                    <span class="text-danger" ng-show="homeForm.endDate.$error.required" translate="errEnd"></span>
                                 </div>
                                 <div ng-show="dateEnd">
-                                    <span translate="errDateEnd"></span>
+                                    <span class="text-danger" translate="errDateEnd"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.address.$invalid && homeForm.address.$touched}">
                             <label for="address" class="col-lg-2 control-label" translate="address"></label>
                             <div class="col-lg-6">
                                 <input id="address" class="form-control" type="text" required ng-model="HomeInsurance.Address" name="address" />
                                 <div ng-show="homeForm.address.$touched">
-                                    <span ng-show="homeForm.address.$error.required" translate="errAddress"></span>
+                                    <span class="text-danger" ng-show="homeForm.address.$error.required" translate="errAddress"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.surfaceArea.$invalid && homeForm.surfaceArea.$touched}">
                             <label for="homeArea" class="col-lg-2 control-label" translate="homeArea"></label>
                             <div class="col-lg-6">
                                 <input id="homeArea" class="form-control" type="number" required ng-model="HomeInsurance.SurfaceArea" min="1" name="surfaceArea" step="0.01" />
                                 <div ng-show="homeForm.surfaceArea.$touched">
-                                    <span ng-show="homeForm.surfaceArea.$error.required" translate="errHomeArea"></span>
-                                    <span ng-show="homeForm.surfaceArea.$error.min" translate="errHomeAreaMin"></span>
+                                    <span class="text-danger" ng-show="homeForm.surfaceArea.$error.required" translate="errHomeArea"></span>
+                                    <span class="text-danger" ng-show="homeForm.surfaceArea.$error.min" translate="errHomeAreaMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.buildingAge.$invalid && homeForm.buildingAge.$touched}">
                             <label for="homeAge" class="col-lg-2 control-label" translate="homeAge"></label>
                             <div class="col-lg-6">
                                 <input id="homeAge" class="form-control" type="number" required ng-model="HomeInsurance.BuildingAge" min="1" name="buildingAge" step="0.01" />
                                 <div ng-show="homeForm.buildingAge.$touched">
-                                    <span ng-show="homeForm.buildingAge.$error.required" translate="errHomeAge"></span>
-                                    <span ng-show="homeForm.buildingAge.$error.min" translate="errHomeAgeMin"></span>
+                                    <span class="text-danger" ng-show="homeForm.buildingAge.$error.required" translate="errHomeAge"></span>
+                                    <span class="text-danger" ng-show="homeForm.buildingAge.$error.min" translate="errHomeAgeMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.estimatedValue.$invalid && homeForm.estimatedValue.$touched}">
                             <label for="homeValue" class="col-lg-2 control-label" translate="homeValue"></label>
                             <div class="col-lg-6">
                                 <input id="homeValue" class="form-control" type="number" required ng-model="HomeInsurance.EstimatedValue" min="1" name="estimatedValue" step="0.01" />
                                 <div ng-show="homeForm.estimatedValue.$touched">
-                                    <span ng-show="homeForm.estimatedValue.$error.required" translate="errHomeValue"></span>
-                                    <span ng-show="homeForm.estimatedValue.$error.min" translate="errHomeValueMin"></span>
+                                    <span class="text-danger" ng-show="homeForm.estimatedValue.$error.required" translate="errHomeValue"></span>
+                                    <span class="text-danger" ng-show="homeForm.estimatedValue.$error.min" translate="errHomeValueMin"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.insuredFrom.$invalid && homeForm.insuredFrom.$touched}">
                             <label for="insuredFrom" class="col-lg-2 control-label" translate="insuredFrom"></label>
                             <div class="col-lg-6">
                                 <select class="form-control" id="insuredFrom" name="insuredFrom" required ng-model="HomeInsurance.InsuredFrom" ng-options="r.Id as r.Name for r in insuredFrom">
                                     <option value="" translate="selEnsured"></option>
                                 </select>
                                 <div ng-show="homeForm.insuredFrom.$touched">
-                                    <span ng-show="homeForm.insuredFrom.$error.required" translate="errEnsured"></span>
+                                    <span class="text-danger" ng-show="homeForm.insuredFrom.$error.required" translate="errEnsured"></span>
                                 </div>
                             </div>
                         </div>
                         <br />
                         <legend translate="ownerDetails"></legend>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.name.$invalid && homeForm.name.$touched}">
                             <label class="col-lg-2 control-label" for="name" translate="name"></label>
                             <div class="col-lg-6">
                                 <input id="name" class="form-control" type="text" name="name" ng-model="HomeInsurance.OwnerName" required="required">
                                 <div ng-show="homeForm.name.$touched && homeForm.name.$error.required">
-                                    <span translate="errName"></span>
+                                    <span class="text-danger" translate="errName"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.surname.$invalid && homeForm.surname.$touched}">
                             <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
                             <div class="col-lg-6">
                                 <input id="surname" class="form-control" type="text" name="surname" ng-model="HomeInsurance.OwnerSurname" required="required">
                                 <div ng-show="homeForm.surname.$touched">
-                                    <span ng-show="homeForm.surname.$error.required" translate="errSurname"></span>
+                                    <span class="text-danger" ng-show="homeForm.surname.$error.required" translate="errSurname"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.jmbg.$invalid && homeForm.jmbg.$touched}">
                             <label class="col-lg-2 control-label" for="jmbg" translate="jmbg"></label>
                             <div class="col-lg-6">
                                 <input id="jmbg" class="form-control" type="number" name="jmbg" ng-model="HomeInsurance.OwnerIdentificationNumber" minlength="13" maxlength="13" required="required">
                                 <div ng-show="homeForm.jmbg.$touched">
-                                    <span ng-show="homeForm.jmbg.$error.required" translate="errJmbg"></span>
-                                    <span ng-show="homeForm.jmbg.$error.minlength" translate="errJmbgL"></span>
-                                    <span ng-show="homeForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="homeForm.jmbg.$error.required" translate="errJmbg"></span>
+                                    <span class="text-danger" ng-show="homeForm.jmbg.$error.minlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="homeForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
                                 </div>
                             </div>
                         </div>

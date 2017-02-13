@@ -31,7 +31,7 @@
             <div ng-if="showInsForm">
                 <form name="insurantForm" class="form-horizontal">
                     <fieldset>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.name.$invalid && insurantForm.name.$touched}">
                             <label for="name" class="col-lg-2 control-label" translate="name"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="name" id="name" ng-model="CurrentInsurant.Name" required="required">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.surname.$invalid && insurantForm.surname.$touched}">
                             <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="surname" id="surname" ng-model="CurrentInsurant.Surname" required="required">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.jmbg.$invalid && insurantForm.jmbg.$touched}">
                             <label for="jmbg" class="col-lg-2 control-label" translate="jmbg"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="number" name="jmbg" id="jmbg" ng-model="CurrentInsurant.IdentificationNumber" minlength="13" maxlength="13" required="required">
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.passport.$invalid && insurantForm.passport.$touched}">
                             <label for="passport" class="col-lg-2 control-label" translate="passport"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="passport" id="passport" ng-model="CurrentInsurant.PassportNumber" ng-pattern="passportNumberPattern" required="required">
@@ -70,14 +70,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.address.$invalid && insurantForm.address.$touched}">
                             <label for="address" class="col-lg-2 control-label" translate="address"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="address" id="address" ng-model="CurrentInsurant.Address" required="required">
                                 <span class="text-danger" ng-show="insurantForm.address.$touched && insurantForm.address.$error.required" translate="errAddress"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{ 'has-error': insurantForm.telNumber.$invalid && insurantForm.telNumber.$touched}">
                             <label for="telNumber" class="col-lg-2 control-label" translate="telNumber"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="telNumber" id="telNumber" ng-model="CurrentInsurant.TelephoneNumber" required="required">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-if="CurrentInsurant.IsBuyer" class="form-group">
+                        <div ng-if="CurrentInsurant.IsBuyer" class="form-group" ng-class="{ 'has-error': insurantForm.email.$invalid && insurantForm.email.$touched}">
                             <label for="email" class="col-lg-2 control-label" translate="email"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="email" name="email" id="email" ng-model="CurrentInsurant.Email" required="required">
