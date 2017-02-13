@@ -385,17 +385,17 @@
 
     $scope.calculate = function () {
         var token = $("#antiForgeryToken").val();
-        $http({
-            method: 'POST',
-            url: '/Risk/Calculate',
-            data: $scope.getInsuranceDetails($scope.Insurance, "Travel"),
-            headers: {
-                'RequestVerificationToken': token
-            }
-        });
-        //RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
-        //    $scope.travelPrice = response.data;
+        //$http({
+        //    method: 'POST',
+        //    url: '/Risk/Calculate',
+        //    data: $scope.getInsuranceDetails($scope.Insurance, "Travel"),
+        //    headers: {
+        //        'RequestVerificationToken': token
+        //    }
         //});
+        RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel"), token).then(function (response) {
+            $scope.travelPrice = response.data;
+        });
     };
 
     $scope.cancelTravelInsurance = function () {

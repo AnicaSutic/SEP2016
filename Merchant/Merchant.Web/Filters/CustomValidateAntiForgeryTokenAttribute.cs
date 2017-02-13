@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -31,14 +29,7 @@ namespace Merchant.Web.Filters
         {
             try
             {
-                if (filterContext.HttpContext.Request.IsAjaxRequest())
-                {
-                    ValidateRequestHeader(filterContext.HttpContext.Request);
-                }
-                else
-                {
-                    AntiForgery.Validate();
-                }
+                ValidateRequestHeader(filterContext.HttpContext.Request);
             }
             catch (HttpAntiForgeryException e)
             {
