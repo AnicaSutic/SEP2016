@@ -1,7 +1,8 @@
 ﻿var app = angular.module('app', ['ui.bootstrap', 'ui.router', 'ngSanitize', 'pascalprecht.translate']);
 
-app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
+app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translateProvider',function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
 
+    $translateProvider.useSanitizeValueStrategy(null);
     $urlRouterProvider.otherwise("/Home/HomePage");
 
     $stateProvider
@@ -28,9 +29,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             url: '/Insurants',
             templateUrl: '/Home/Insurants'
         })
+        .state('insurance.buyer', {
+            url: '/Buyer',
+            templateUrl: '/Home/Buyer'
+        })
         .state('insurance.others', {
             url: '/Others',
             templateUrl: '/Home/Others'
+        })
+        .state('insurance.othersNew', {
+            url: '/OthersNew',
+            templateUrl: '/Home/OthersNew'
+        })
+        .state('payment', {
+            url: '/Payment',
+            templateUrl: '/Home/Payment',
+            controller: "PaymentController"
         });
 
     var eng =
@@ -127,7 +141,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             errTowingMin: "Distance must be greater than zero!",
             errRepair: "You must enter the price!",
             errRepairMin: "Price must be greater than zero!",
-            errAccomodation: "You must enter the number of days!",
+            errAccommodation: "You must enter the number of days!",
             errAccommodationMin: "Number of days must be greater than zero!",
             addInsurant: "Add new insurant",
             deleteInsurant: "Delete insurant",
@@ -137,7 +151,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             add: "Add",
             noInsurants: "You haven't added any insurants yet.",
             isBuyer: "Choose as a buyer of the insurance",
-            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment.",
+            noMoreInsurants: "You finished adding the insurants. You can proceed with your payment by clicking the button below.",
             buy: "Buy",
             ownerDetails: "Details about the owner",
             otherInsurance: "Do you wish to buy another insurance?",
@@ -147,6 +161,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "I accept the Terms&Conditions.",
             proceed: "Proceed",
             termsError: "You have to accept the Terms&Conditions!",
+            terms: "Terms&Conditions",
+            noOtherInsurance: "If you don't want to buy another insurace, you can finish the purchase by clicking the button below.",
+            finishPurchase: "Finish purchase",
+            buyerDetails: "Buyer's details",
+            buyer: "Buyer",
+            insurantsDetails: "Insurants' details"
             terms: "Terms&Conditions",
             errCompleteStep: "You need to complete the previous step before you can continue with the purchase here."
         };
@@ -254,7 +274,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             add: "Dodaj",
             noInsurants: "Još uvek niste dodali nijednog osiguranika.",
             isBuyer: "Odabrati kao kupca osiguranja",
-            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom.",
+            noMoreInsurants: "Završili ste sa dodavanjem osiguranika. Možete nastaviti dalje sa kupovinom klikom na dugme ispod.",
             buy: "Kupi",
             ownerDetails: "Detalji o vlasniku",
             otherInsurance: "Da li želite da kupite drugo osiguranje?",
@@ -264,6 +284,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             haveAccepted: "Prihvatam uslove korišćenja.",
             proceed: "Nastavi",
             termsError: "Morate prihvatiti uslove korišćenja!",
+            terms: "Uslovi korišćenja",
+            noOtherInsurance: "Ukoliko ne želite da kupite drugo osiguranje, možete završiti kupovinu klikom na dugme ispod.",
+            finishPurchase: "Završi kupovinu",
+            buyerDetails: "Detalji o kupcu",
+            buyer: "Kupac",
+            insurantsDetails: "Detalji o osiguranicima"
             terms: "Uslovi korišćenja",
             errCompleteStep: "Morate završiti prethodni korak ukoliko želite da ovde nastavite sa kupovinom."
         };
@@ -310,4 +336,4 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
 
     console.log(eng);
     console.log(ser);
-});
+}]);

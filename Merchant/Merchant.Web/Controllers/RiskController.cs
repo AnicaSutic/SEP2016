@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Linq;
 using Merchant.Business.Rules;
 using System.Web.Script.Serialization;
+using Microsoft.Security.Application;
 
 namespace Merchant.Web.Controllers
 {
@@ -64,7 +65,7 @@ namespace Merchant.Web.Controllers
             decimal price = 0.0M;
             var calculator = new PriceCalculator();
             var serializer = new JavaScriptSerializer();
-
+            obj.Data = Sanitizer.GetSafeHtmlFragment(obj.Data);
             if (obj.Type == "Travel")
             {
                 price = calculator.CalculatePrice(serializer.Deserialize<TravelInsuranceDto>(obj.Data));
@@ -79,8 +80,6 @@ namespace Merchant.Web.Controllers
             {
                 price = calculator.CalculatePrice(serializer.Deserialize<VehicleInsuranceDto>(obj.Data));
             }
-
-            //Session["TravelInsurance"] = insurance;
 
             return Json(price);
         }

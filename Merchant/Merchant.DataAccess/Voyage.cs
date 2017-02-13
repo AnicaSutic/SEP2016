@@ -17,11 +17,8 @@ namespace Merchant.DataAccess
         public int Id { get; set; }
         public string Region { get; set; }
         public int NumberOfInsurants { get; set; }
-        public int InsurantAge { get; set; }
+        public string InsurantAge { get; set; }
         public string Sport { get; set; }
-        public int InsuredValue { get; set; }
-        public int InsurantsId { get; set; }
-    
-        public virtual Insurants Insurants { get; set; }
+        public string InsuredValue { get; set; }
     }
 }

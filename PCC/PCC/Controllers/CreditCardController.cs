@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PayPal.Api;
+using PCC.Business;
 using PCC.Models;
 
 namespace PCC.Controllers
@@ -26,7 +27,7 @@ namespace PCC.Controllers
         // POST: api/CreditCard
         public CreditCard Post(CreditCardDetails creditCardDetails)
         {
-            var apiContext = Models.Configuration.GetApiContext();
+            var apiContext = PaypalConfiguration.GetApiContext();
 
             // A resource representing a credit card that can be used to fund a payment.
             var card = new CreditCard()

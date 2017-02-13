@@ -1,4 +1,4 @@
-﻿app.factory('RiskService', function ($http) {
+﻿app.factory('RiskService',['$http', function ($http) {
     return ({
         getRisksByCategory : function(id) {
             return $http.get('/Risk/GetRisksByCategory/' + id);
@@ -16,4 +16,4 @@
             return $http.post('/Risk/Calculate', obj);
         }
     });
-});
+}]);

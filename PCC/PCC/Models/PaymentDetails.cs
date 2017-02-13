@@ -5,8 +5,9 @@ using System.Web;
 
 namespace PCC.Models
 {
-    public class PaymentDetails : CreditCardDetails
+    public class PaymentDetails
     {
-        public string Amount { get; set; }
+        public string PaymentId { get; set; }
+        public string PayerId { get; set; }
     }
 }

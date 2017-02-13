@@ -17,7 +17,13 @@ namespace Merchant.Tests.DataAccess
             var newBuyer = new Buyer
             {
                 Name = "Testname",
-                Surname = "Testsurname"
+                Surname = "Testsurname",
+                IdentificationNumber = "1234567890987",
+                PassportNumber = "7654345",
+                Address = "Testaddress",
+                TelephoneNumber = "065443332",
+                Email = "test@email"
+
             };
             try
             {
@@ -40,6 +46,24 @@ namespace Merchant.Tests.DataAccess
             var unitOfWork = new UnitOfWork();
             var buyers = unitOfWork.BuyerRepository.Get();
             Assert.AreNotEqual(0, buyers.Count());
+        }
+
+        [TestMethod]
+        public void GetBuyerbyIdTest()
+        {
+            var unitOfWork = new UnitOfWork();
+            var buyer = unitOfWork.BuyerRepository.GetById(1);
+            Assert.AreEqual("Testname", buyer.Name);
+        }
+
+        [TestMethod]
+        public void DeleteByuerTest()
+        {
+            var unitOfWork = new UnitOfWork();
+            var buyers = unitOfWork.BuyerRepository.Get();
+            unitOfWork.BuyerRepository.Delete(1);
+            var noBuyers = unitOfWork.BuyerRepository.Get();
+            Assert.AreEqual(buyers.Count(), noBuyers.Count());
         }
     }
 }
