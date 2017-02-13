@@ -39,7 +39,7 @@
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="name" id="name" ng-model="CurrentInsurant.Name" required="required">
                                 <div ng-show="insurantForm.name.$touched && insurantForm.name.$error.required">
-                                    <span translate="errName"></span>
+                                    <span class="text-danger" translate="errName"></span>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="surname" id="surname" ng-model="CurrentInsurant.Surname" required="required">
                                 <div ng-show="insurantForm.surname.$touched && insurantForm.surname.$error.required">
-                                    <span translate="errSurname"></span>
+                                    <span class="text-danger" translate="errSurname"></span>
                                 </div>
                             </div>
                         </div>
@@ -57,9 +57,9 @@
                             <div class="col-lg-6">
                                 <input class="form-control" type="number" name="jmbg" id="jmbg" ng-model="CurrentInsurant.IdentificationNumber" minlength="13" maxlength="13" required="required">
                                 <div ng-show="insurantForm.jmbg.$touched">
-                                    <span ng-show="insurantForm.jmbg.$error.required" translate="errJmbg"></span>
-                                    <span ng-show="insurantForm.jmbg.$error.minlength" translate="errJmbgL"></span>
-                                    <span ng-show="insurantForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="insurantForm.jmbg.$error.required" translate="errJmbg"></span>
+                                    <span class="text-danger" ng-show="insurantForm.jmbg.$error.minlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="insurantForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +68,8 @@
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="passport" id="passport" ng-model="CurrentInsurant.PassportNumber" ng-pattern="passportNumberPattern" required="required">
                                 <div ng-show="insurantForm.passport.$touched">
-                                    <span ng-show="insurantForm.passport.$error.required" translate="errPassport"></span>
-                                    <span ng-show="insurantForm.passport.$error.pattern" translate="errPassportPattern"></span>
+                                    <span class="text-danger" ng-show="insurantForm.passport.$error.required" translate="errPassport"></span>
+                                    <span class="text-danger" ng-show="insurantForm.passport.$error.pattern" translate="errPassportPattern"></span>
                                 </div>
                             </div>
                         </div>
@@ -77,14 +77,14 @@
                             <label for="address" class="col-lg-2 control-label" translate="address"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="address" id="address" ng-model="CurrentInsurant.Address" required="required">
-                                <span ng-show="insurantForm.address.$touched && insurantForm.address.$error.required" translate="errAddress"></span>
+                                <span class="text-danger" ng-show="insurantForm.address.$touched && insurantForm.address.$error.required" translate="errAddress"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="telNumber" class="col-lg-2 control-label" translate="telNumber"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="text" name="telNumber" id="telNumber" ng-model="CurrentInsurant.TelephoneNumber" required="required">
-                                <span ng-show="insurantForm.telNumber.$touched && insurantForm.telNumber.$error.required" translate="errTelNum"></span>
+                                <span class="text-danger" ng-show="insurantForm.telNumber.$touched && insurantForm.telNumber.$error.required" translate="errTelNum"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -101,8 +101,8 @@
                             <label for="email" class="col-lg-2 control-label" translate="email"></label>
                             <div class="col-lg-6">
                                 <input class="form-control" type="email" name="email" id="email" ng-model="CurrentInsurant.Email" required="required">
-                                <span ng-show="insurantForm.email.$touched && insurantForm.email.$error.required" translate="errEmail"></span>
-                                <span ng-show="insurantForm.email.$error.email" translate="errEmailValidate"></span>
+                                <span class="text-danger" ng-show="insurantForm.email.$touched && insurantForm.email.$error.required" translate="errEmail"></span>
+                                <span class="text-danger" ng-show="insurantForm.email.$error.email" translate="errEmailValidate"></span>
                             </div>
                         </div>
                         <div class="form-group">

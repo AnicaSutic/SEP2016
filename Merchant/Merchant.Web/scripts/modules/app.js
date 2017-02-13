@@ -123,6 +123,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             year: "Year od production",
             errYear: "You must enter year of production!",
             errYearMin: "Year of production must be greater than zero!",
+            errYearMinLength: "Year of production is not valid! Must contain 4 numbers!",
             licence: "License plate number",
             errLicence: "You must enter license plate number!",
             chassis: "Chassis number",
@@ -166,7 +167,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             finishPurchase: "Finish purchase",
             buyerDetails: "Buyer's details",
             buyer: "Buyer",
-            insurantsDetails: "Insurants' details"
+            insurantsDetails: "Insurants' details",
             terms: "Terms&Conditions",
             errCompleteStep: "You need to complete the previous step before you can continue with the purchase here."
         };
@@ -246,6 +247,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             year: "Godina proizvodnje",
             errYear: "Morate uneti godinu proizvodnje!",
             errYearMin: "Godina proizvodnje mora biti veća od nule!",
+            errYearMinLength: "Godina proizvodnje nije validna! Mora sadržati 4 cifre!",
             licence: "Broj registarske tablice",
             errLicence: "Morate uneti broj registarske tablice!",
             chassis: "Broj šasije",
@@ -289,7 +291,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             finishPurchase: "Završi kupovinu",
             buyerDetails: "Detalji o kupcu",
             buyer: "Kupac",
-            insurantsDetails: "Detalji o osiguranicima"
+            insurantsDetails: "Detalji o osiguranicima",
             terms: "Uslovi korišćenja",
             errCompleteStep: "Morate završiti prethodni korak ukoliko želite da ovde nastavite sa kupovinom."
         };
