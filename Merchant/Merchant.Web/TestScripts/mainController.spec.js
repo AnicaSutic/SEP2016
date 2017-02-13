@@ -1,14 +1,14 @@
 ﻿'use strict';
 describe("MainController", function () {
     //pre svakog testa učitavamo app modul
-    beforeEach(module("app"));
+    beforeEach(angular.mock.module("app"));
 
     describe('MainController', function () {
        
         var scope, ctrl;
-        beforeEach(inject(function($rootScope, $controller) {
+        beforeEach(angular.mock.inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            ctrl = $controller('MainController', {
+            ctrl = $controller("MainController", {
                 $scope: scope
             });
        
@@ -54,7 +54,7 @@ describe("MainController", function () {
             expect(scope.showInsForm).not.toBe(false);
         });
 
-        /*it('should return collection by language', function () {
+        it('should return collection by language', inject(function () {
             var sports = [];
             var obj1 = { Id: '1', Name: 'Volyball', Name_Srb: 'Odbojka' };
             var obj2 = { Id: '2', Name: 'Basketball', Name_Srb: 'Kosarka' };
@@ -77,7 +77,7 @@ describe("MainController", function () {
             
             expect(collE).toEqual(resultEng);
             expect(collS).toEqual(resultSrp);
-        });*/
+        }));
 
     });
 });
