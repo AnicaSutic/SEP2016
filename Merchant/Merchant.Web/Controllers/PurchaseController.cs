@@ -72,11 +72,11 @@ namespace Merchant.Web.Controllers
 
             Voyage voyage = new Voyage
             {
-                InsurantAge = riskItemService.GetRiskItemNameById(travelInsurance.Age),
+                InsurantAge = (riskItemService.GetRiskItemNameById(travelInsurance.Age)),
                 InsuredValue = riskItemService.GetRiskItemNameById(travelInsurance.InsuredValue),
                 NumberOfInsurants = int.Parse(Sanitizer.GetSafeHtmlFragment(travelInsurance.NumberOfInsurants)),
-                Region = riskItemService.GetRiskItemNameById(travelInsurance.Region),
-                Sport = travelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(travelInsurance.Sport) : ""
+                Region = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(travelInsurance.Region)),
+                Sport = travelInsurance.Sport != 0 ? Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(travelInsurance.Sport)) : ""
             };
 
             service.AddVoyage(voyage);
@@ -100,7 +100,7 @@ namespace Merchant.Web.Controllers
                     Address = Sanitizer.GetSafeHtmlFragment(homeInsurance.Address),
                     BuildingAge = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.BuildingAge)),
                     EstimatedValue = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.EstimatedValue)),
-                    InsuredFrom = riskItemService.GetRiskItemNameById(homeInsurance.InsuredFrom),
+                    InsuredFrom = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(homeInsurance.InsuredFrom)),
                     SurfaceArea = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.SurfaceArea)),
                     Owner = new Owner
                     {
@@ -132,9 +132,9 @@ namespace Merchant.Web.Controllers
                     Brand = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Brand),
                     ChassisNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.ChassisNumber),
                     LicensePlateNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.LicensePlateNumber),
-                    YearOfProduction = vehicleInsurance.YearOfProduction,
+                    YearOfProduction = int.Parse(Sanitizer.GetSafeHtmlFragment(vehicleInsurance.YearOfProduction.ToString())),
                     Type = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Type),
-                    Package = riskItemService.GetRiskItemNameById(vehicleInsurance.Package),
+                    Package = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(vehicleInsurance.Package)),
                     Owner = new Owner
                     {
                         Name = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.OwnerName),
