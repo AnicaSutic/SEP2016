@@ -77,13 +77,23 @@ namespace Merchant.Web.Controllers
 
             if (obj.Type == "Home")
             {
+                TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
                 HomeInsuranceDto newHomeIns = Serializer.SerializeAndConvert(serializer.Deserialize<HomeInsuranceDto>(obj.Data)) as HomeInsuranceDto;
+
+                newHomeIns.StartDate = travelInsurance.StartDate;
+                newHomeIns.EndDate = travelInsurance.EndDate;
+
                 price = calculator.CalculatePrice(newHomeIns);
             }
 
             if (obj.Type == "Vehicle")
             {
+                TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
                 VehicleInsuranceDto newVehicleIns = Serializer.SerializeAndConvert(serializer.Deserialize<VehicleInsuranceDto>(obj.Data)) as VehicleInsuranceDto;
+
+                newVehicleIns.StartDate = travelInsurance.StartDate;
+                newVehicleIns.EndDate = travelInsurance.EndDate;
+
                 price = calculator.CalculatePrice(newVehicleIns);
             }
 
