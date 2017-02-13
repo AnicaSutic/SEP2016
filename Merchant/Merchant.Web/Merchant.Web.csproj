@@ -166,10 +166,6 @@
     <Content Include="Content\images\homeimage.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\rsz_capture.png" />
-    <Content Include="Content\images\team\1.jpg" />
-    <Content Include="Content\images\team\2.jpg" />
-    <Content Include="Content\images\team\3.jpg" />
-    <Content Include="Content\images\team\4.jpg" />
     <Content Include="Content\images\travelwallpaper.jpeg" />
     <Content Include="Content\images\twitter-bg.jpg" />
     <Content Include="scripts\angular.js" />
