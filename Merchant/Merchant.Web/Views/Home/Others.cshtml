@@ -24,32 +24,10 @@
         <div class="col-lg-12">
             <div ng-if="showVehicleForm">
                 <form class="form-horizontal" name="forms.vehicleForm">
+                    @Html.AntiForgeryToken()
                     <fieldset>
                         <legend translate="vehicleInsurance"></legend>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" for="startDate" translate="startDate"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.StartDate"
-                                       is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
-                                <div ng-show="forms.vehicleForm.startDate.$touched">
-                                    <span class="text-danger" ng-show="forms.vehicleForm.startDate.$error.required" translate="errStart"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" for="endDate" translate="endDate"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.EndDate"
-                                       is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
-                                <div ng-show="forms.vehicleForm.endDate.$touched">
-                                    <span class="text-danger" ng-show="forms.vehicleForm.endDate.$error.required" translate="errEnd"></span>
-                                </div>
-                                <div ng-show="dateEnd">
-                                    <span translate="errDateEnd"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
                             <label class="col-lg-2 control-label" for="package" translate="packageV"></label>
                             <div class="col-lg-6">
                                 <select class="form-control" id="package" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
@@ -197,29 +175,6 @@
                 <form name="homeForm" class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" for="startDate" translate="startDate"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.StartDate"
-                                       is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
-                                <div ng-show="homeForm.startDate.$touched">
-                                    <span class="text-danger" ng-show="homeForm.startDate.$error.required" translate="errStart"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" for="endDate" translate="endDate"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.EndDate"
-                                       is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
-                                <div ng-show="homeForm.endDate.$touched">
-                                    <span class="text-danger" ng-show="homeForm.endDate.$error.required" translate="errEnd"></span>
-                                </div>
-                                <div ng-show="dateEnd">
-                                    <span class="text-danger" translate="errDateEnd"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error': homeForm.address.$invalid && homeForm.address.$touched}">
                             <label for="address" class="col-lg-2 control-label" translate="address"></label>
                             <div class="col-lg-6">
                                 <input id="address" class="form-control" type="text" required ng-model="HomeInsurance.Address" name="address" />

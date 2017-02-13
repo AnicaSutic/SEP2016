@@ -8,6 +8,7 @@ using Merchant.Business.Rules;
 using System.Web.Script.Serialization;
 using Microsoft.Security.Application;
 using Merchant.Web.Helpers;
+using Merchant.Web.Filters;
 
 namespace Merchant.Web.Controllers
 {
@@ -61,6 +62,7 @@ namespace Merchant.Web.Controllers
         }
 
         [HttpPost]
+        [CustomValidateAntiForgeryToken]
         public ActionResult Calculate(InsuranceDetailsDto obj)
         {
             decimal price = 0.0M;

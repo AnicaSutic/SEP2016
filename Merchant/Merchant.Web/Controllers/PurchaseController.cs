@@ -7,8 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Web.WebPages;
 
 namespace Merchant.Web.Controllers
 {
@@ -20,6 +22,7 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult BuyInsurance(InsuranceDetailsDto insurance)
         {
@@ -28,27 +31,30 @@ namespace Merchant.Web.Controllers
             if (insurance.Type == "Travel")
             {
                 TravelInsuranceDto travelInsurance = serializer.Deserialize<TravelInsuranceDto>(insurance.Data);
-                TravelInsuranceDto newTravelInsurance = Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
+                TravelInsuranceDto newTravelInsurance =
+                    Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
                 Session["travelInsurance"] = newTravelInsurance;
             }
 
-            if(insurance.Type == "Home")
+            if (insurance.Type == "Home")
             {
                 HomeInsuranceDto homeInsurance = serializer.Deserialize<HomeInsuranceDto>(insurance.Data);
                 HomeInsuranceDto newHomeInsurance = Serializer.SerializeAndConvert(homeInsurance) as HomeInsuranceDto;
                 Session["homeInsurance"] = newHomeInsurance;
             }
 
-            if(insurance.Type == "Vehicle")
+            if (insurance.Type == "Vehicle")
             {
                 VehicleInsuranceDto vehicleInsurance = serializer.Deserialize<VehicleInsuranceDto>(insurance.Data);
-                VehicleInsuranceDto newVehicleInsurance = Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto;
+                VehicleInsuranceDto newVehicleInsurance =
+                    Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto;
                 Session["vehicleInsurance"] = newVehicleInsurance;
             }
 
             return null;
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult AddInsurants(List<InsurantDto> insurantsDto)
         {
@@ -57,13 +63,18 @@ namespace Merchant.Web.Controllers
             RiskCategoryService riskCategoryService = new RiskCategoryService();
 
             TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
-            TravelInsuranceDto newTravelInsurance = Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
+            TravelInsuranceDto newTravelInsurance =
+                Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
 
             VehicleInsuranceDto vehicleInsurance = Session["vehicleInsurance"] as VehicleInsuranceDto;
-            VehicleInsuranceDto newVehicleInsurance = Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto;
+            VehicleInsuranceDto newVehicleInsurance = vehicleInsurance != null
+                ? Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto
+                : null;
 
             HomeInsuranceDto homeInsurance = Session["homeInsurance"] as HomeInsuranceDto;
-            HomeInsuranceDto newHomeInsurance = Serializer.SerializeAndConvert(homeInsurance) as HomeInsuranceDto;
+            HomeInsuranceDto newHomeInsurance = homeInsurance != null
+                ? Serializer.SerializeAndConvert(homeInsurance) as HomeInsuranceDto
+                : null;
 
             decimal travelPrice = newTravelInsurance != null ? newTravelInsurance.Price : 0.0M;
             decimal vehiclePrice = newVehicleInsurance != null ? newVehicleInsurance.Price : 0.0M;
@@ -86,7 +97,7 @@ namespace Merchant.Web.Controllers
                 InsuredValue = riskItemService.GetRiskItemNameById(newTravelInsurance.InsuredValue),
                 NumberOfInsurants = int.Parse(newTravelInsurance.NumberOfInsurants),
                 Region = riskItemService.GetRiskItemNameById(newTravelInsurance.Region),
-                Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : ""
+                Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : string.Empty
             };
 
             service.AddVoyage(voyage);
@@ -100,11 +111,11 @@ namespace Merchant.Web.Controllers
                 RiskCategory = riskCategoryService.GetById(1),
                 StartDate = newTravelInsurance.StartDate
             };
-           
+
             service.AddInsurance(insuranceTravel);
 
             if (newHomeInsurance != null)
-            { 
+            {
                 ResidentalBuilding building = new ResidentalBuilding
                 {
                     Address = newHomeInsurance.Address,
@@ -135,7 +146,7 @@ namespace Merchant.Web.Controllers
                 service.AddInsurance(insuranceHome);
             }
 
-            if(newVehicleInsurance != null)
+            if (newVehicleInsurance != null)
             {
                 Vehicle vehicle = new Vehicle
                 {
@@ -172,7 +183,7 @@ namespace Merchant.Web.Controllers
 
             foreach (InsurantDto ins in insurantsDto)
             {
-                if(ins.IsBuyer)
+                if (ins.IsBuyer)
                 {
                     buyer = new Buyer
                     {
@@ -202,12 +213,19 @@ namespace Merchant.Web.Controllers
                 service.AddInsurant(insurant);
             }
 
-            if(buyer != null) { 
+            if (buyer != null)
+            {
                 policy.Buyer = buyer;
                 service.UpdatePolicy(policy);
             }
 
-            return null;
+            return Json(new
+            {
+                isSuccessful = true,
+                orderId = policy.OrderId,
+                price = policy.Price
+            });
+
         }
     }
 }

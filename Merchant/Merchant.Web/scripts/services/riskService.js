@@ -1,4 +1,5 @@
-﻿app.factory('RiskService',['$http', function ($http) {
+﻿app.factory('RiskService', ['$http', function ($http) {
+    $http.defaults.headers.common['X-XSRF-Token'] = angular.element('input[name="__RequestVerificationToken"]').attr('value');
     return ({
         getRisksByCategory : function(id) {
             return $http.get('/Risk/GetRisksByCategory/' + id);
