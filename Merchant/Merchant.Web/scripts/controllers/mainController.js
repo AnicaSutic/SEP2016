@@ -1,4 +1,4 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, $http, RiskService, TranslateService, PurchaseService) {
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -360,6 +360,22 @@
         PurchaseService.addInsurants($scope.addedInsurants).then(function (response) {
             //ovde se salje zahtev za dobijanje payment url-a
             //i redirekcija na njega
+            console.log("dodao");
+            console.log(response);
+            if (response.data.isSuccessful) {
+                console.log("uspesno");
+                var data = {
+                    OrderId: response.data.orderId,
+                    Price: response.data.price
+                };
+                PaypalService.createPayment(data)
+                    .then(
+                        function(response) {
+                            $window.location.href = response.data;
+                        }, function(error) {
+                            console.log(error.message);
+                        });
+            }
         });
     };
 

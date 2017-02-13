@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/12/2017 20:02:52
--- Generated from EDMX file: E:\Faks\Master\sep\new\git\git\Merchant\Merchant.DataAccess\Model.edmx
+-- Date Created: 02/13/2017 17:45:03
+-- Generated from EDMX file: C:\Users\n.rad\Desktop\sep\git\Merchant\Merchant.DataAccess\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,6 +17,9 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_InsurancePolicy_Buyer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InsurancePolicy] DROP CONSTRAINT [FK_InsurancePolicy_Buyer];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Insurance_InsuranceCategory]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Insurance] DROP CONSTRAINT [FK_Insurance_InsuranceCategory];
 GO
@@ -25,24 +28,6 @@ IF OBJECT_ID(N'[dbo].[FK_Insurance_ResidentalBuilding]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Insurance_Vehicle]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Insurance] DROP CONSTRAINT [FK_Insurance_Vehicle];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InsurancePolicy_Buyer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InsurancePolicy] DROP CONSTRAINT [FK_InsurancePolicy_Buyer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PricelistItem_PricelistItems]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_PricelistItems];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PricelistItem_RiskItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_RiskItem];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PricelistItems_Pricelist]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PricelistItems] DROP CONSTRAINT [FK_PricelistItems_Pricelist];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Risk_InsuranceCategory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Risk] DROP CONSTRAINT [FK_Risk_InsuranceCategory];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RiskItem_Risk]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RiskItem] DROP CONSTRAINT [FK_RiskItem_Risk];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Insurance_InsurancePolicy]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Insurance] DROP CONSTRAINT [FK_Insurance_InsurancePolicy];
@@ -58,6 +43,21 @@ IF OBJECT_ID(N'[dbo].[FK_ResidentalBuilding_Owner]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Vehicle_Owner]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Vehicle] DROP CONSTRAINT [FK_Vehicle_Owner];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PricelistItems_Pricelist]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PricelistItems] DROP CONSTRAINT [FK_PricelistItems_Pricelist];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PricelistItem_PricelistItems]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_PricelistItems];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PricelistItem_RiskItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PricelistItem] DROP CONSTRAINT [FK_PricelistItem_RiskItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Risk_InsuranceCategory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Risk] DROP CONSTRAINT [FK_Risk_InsuranceCategory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RiskItem_Risk]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RiskItem] DROP CONSTRAINT [FK_RiskItem_Risk];
 GO
 
 -- --------------------------------------------------

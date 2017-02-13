@@ -16,7 +16,7 @@
             <fieldset>
                 <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
                 <h1 translate="calculatePrice"></h1>
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="startDate" class="col-lg-2 control-label" translate="startDate"></label>
                     <div class="col-lg-6">
                         <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="Insurance.StartDate"
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': travelForm.region.$invalid && travelForm.region.$touched}">
                     <label for="region" class="col-lg-2 control-label" translate="region"></label>
                     <div class="col-lg-6">
                         <select class="form-control" id="region" name="region" required ng-model="Insurance.Region" ng-options="r.Id as r.Name for r in regions">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': travelForm.number.$invalid && travelForm.number.$touched}">
                     <label for="number" class="col-lg-2 control-label" translate="number"></label>
                     <div class="col-lg-6">
                         <input class="form-control" type="number" id="number" name="number" ng-change="pickNumber()" required min="1" ng-model="Insurance.NumberOfInsurants" />
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': travelForm.age.$invalid && travelForm.age.$touched}">
                     <label for="age" class="col-lg-2 control-label" translate="age"></label>
                     <div class="col-lg-6">
                         <select class="form-control" name="age" id="age" ng-model="Insurance.Age" required ng-options="a.Id as a.Name for a in ages">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': travelForm.sport.$invalid && travelForm.sport.$touched}">
                     <label class="col-lg-2 control-label" translate="sport">?</label>
                     <div class="col-lg-6">
                         <div class="checkbox">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': travelForm.value.$invalid && travelForm.value.$touched}">
                     <label for="value" class="col-lg-2 control-label" translate="value"></label>
                     <div class="col-lg-6">
                         <select class="form-control" id="value" name="value" ng-model="Insurance.InsuredValue" required ng-options="v.Id as v.Name for v in values">
