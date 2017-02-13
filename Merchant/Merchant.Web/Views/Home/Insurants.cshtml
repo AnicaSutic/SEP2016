@@ -11,12 +11,17 @@
 </div>
 
 <div ng-if="purchaseStep2 == 2">
-    <h1>Who do you wish to insure?</h1>
+    <<h1 translate="insurantsDetails"></h1>
 
     <div ng-if="insurantsCounter != 0">
         <ul ng-repeat="i in addedInsurants">
             <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant(i, $index)">X</button></li>
         </ul>
+    </div>
+
+    <div ng-if="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants">
+        <p class="alert alert-info" translate="noMoreInsurants"></p>
+        <button class="btn btn-primary" ng-click="addBuyer()" translate="proceed"></button>
     </div>
 
     <p class="alert alert-info" ng-if="insurantsCounter == 0" translate="noInsurants"></p>
@@ -103,6 +108,12 @@
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
                                 <button class="btn btn-primery" ng-click="addInsurant()" ng-disabled="insurantForm.$invalid" translate="add"></button>
+                                <button class="btn btn-default" ng-click="cancelInsurant()" translate="cancel"></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button class="btn btn-primary" ng-click="addInsurant()" ng-disabled="insurantForm.$invalid" translate="add"></button>
                                 <button class="btn btn-default" ng-click="cancelInsurant()" translate="cancel"></button>
                             </div>
                         </div>
