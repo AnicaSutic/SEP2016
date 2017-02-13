@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Results;
 using PCC.Business;
 using PCC.Models;
 
 namespace PCC.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PaypalController : ApiController
     {
         private readonly PaypalService _paypalService = new PaypalService();

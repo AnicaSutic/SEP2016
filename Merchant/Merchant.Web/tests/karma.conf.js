@@ -15,27 +15,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            "lib/jquery/dist/jquery.js",
-            "lib/jquery-fancyBox/source/jquery.fancybox.pack.js",
-            "lib/flexslider/jquery.flexslider.js",
-            "lib/angular/angular.js",
-            "lib/angular-ui-router/release/angular-ui-router.js",
-            "scripts/angular-ui-module.js",
-            "lib/angular-resource/angular-resource.js",
-             "lib/angular-mocks/angular-mocks.js",
-            "lib/angular-sanitize/angular-sanitize.js",
-            "lib/angular-translate/angular-translate.js",
-            "node_modules/jasmine-core/lib/jasmine-core/jasmine.js",
-            "lib/bootstrap/dist/js/bootstrap.js",
-            "lib/angular-bootstrap/ui-bootstrap-tpls.js",
-            "scripts/modules/app.js",
-            "scripts/services/riskService.js",
-            "scripts/services/translateService.js",
-            "scripts/services/purchaseService.js",
-            "scripts/controllers/homeController.js",
-            "scripts/controllers/insurantsController.js",
-            "scripts/controllers/mainController.js",
-            "scripts/controllers/navbarController.js"
+           
         ],
 
 

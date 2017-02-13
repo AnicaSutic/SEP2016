@@ -46,8 +46,8 @@ namespace PCC.Business
 
             var redirUrls = new RedirectUrls()
             {
-                cancel_url = "https://localhost:44398/index.html",
-                return_url = "https://localhost:44398/index.html"
+                return_url = PaypalConfiguration.RedirectUrl,
+                cancel_url = PaypalConfiguration.CancelUrl
             };
 
             var paymet = new Payment

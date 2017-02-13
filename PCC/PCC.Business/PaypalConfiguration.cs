@@ -7,12 +7,16 @@ namespace PCC.Business
     {
         public static readonly string ClientId;
         public static readonly string ClientSecret;
+        public static readonly string RedirectUrl;
+        public static readonly string CancelUrl;
 
         static PaypalConfiguration()
         {
             var config = GetConfig();
             ClientId = config["clientId"];
             ClientSecret = config["clientSecret"];
+            RedirectUrl = config["redirectUrl"];
+            CancelUrl = config["cancelUrl"];
         }
 
         private static Dictionary<string, string> GetConfig()

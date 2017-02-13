@@ -1,5 +1,5 @@
 ﻿'use strict'
-app.controller('NavbarController', ['$scope', '$rootScope', '$state', '$translate', 'TranslateService', function ($scope, $rootScope, $state, $translate) {
+app.controller('NavbarController', ['$scope', '$rootScope', '$state', '$translate', function ($scope, $rootScope, $state, $translate) {
 
     $rootScope.currentLanguage = "en";
 

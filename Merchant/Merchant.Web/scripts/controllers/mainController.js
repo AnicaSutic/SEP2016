@@ -1,5 +1,4 @@
-﻿'use strict'
-app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService) {
+﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -7,8 +6,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
     $scope.forms = {};
 
     $scope.isChecked = false;
-    $scope.dateStart = false;
-    $scope.dateEnd = false;
+
+    $scope.areDatesValid = false;
 
     $scope.travelPrice = 0.0;
     $scope.vehiclePrice = 0.0;
@@ -17,7 +16,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
     $rootScope.areTermsAccepted = sessionStorage.getItem("areTermsAccepted");
     $rootScope.purchaseStep1 = sessionStorage.getItem("purchaseStep1");
     $rootScope.purchaseStep2 = sessionStorage.getItem("purchaseStep2");
-    $rootScope.purchaseStep3 = sessionStorage.getItem("purchaseStep2");
+    $rootScope.purchaseStep3 = sessionStorage.getItem("purchaseStep3");
+    $rootScope.purchaseStep4 = sessionStorage.getItem("purchaseStep4");
 
     $scope.showVehicleForm = false;
     $scope.showHomeForm = false;
@@ -230,6 +230,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
 
     $scope.addVehicleInsurance = function () {
         $scope.VehicleInsurance.Price = $scope.vehiclePrice;
+        $scope.VehicleInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.VehicleInsurance.EndDate = sessionStorage.getItem("EndDate");
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle")).then(function() {
             $scope.vehicleInsExists = true;        
         });
@@ -238,6 +240,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
 
     $scope.addHomeInsurance = function () {
         $scope.HomeInsurance.Price = $scope.homePrice;
+        $scope.HomeInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.HomeInsurance.EndDate = sessionStorage.getItem("EndDate");
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.HomeInsurance, "Home")).then(function () {
             $scope.homeInsExists = true;
         });
@@ -245,26 +249,18 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
     };
 
     $scope.addOthers = function () {
+        sessionStorage.setItem("purchaseStep3", 3);
         $state.go('insurance.insurants');
     };
 
     /***/
   
     $scope.checkDate = function () {
-        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
-            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
-                $scope.dateEnd = true;
+        if ($scope.Insurance.StartDate != "" && $scope.Insurance.EndDate != "") {
+            if ($scope.Insurance.StartDate < $scope.Insurance.EndDate) {
+                $scope.areDatesValid = true;
             } else {
-                $scope.dateEnd = false;
-            }
-        }
-    };
-
-    $scope.checkDateEnd = function () {
-        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
-            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
-                $scope.dateEnd = true;
-                $scope.dateStart = false;
+                $scope.areDatesValid = false;
             }
         }
     };
@@ -353,7 +349,9 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
     };
 
     $scope.addBuyer = function () {
+        sessionStorage.setItem("purchaseStep4", 4);
         $state.go('insurance.buyer');
+        
     };
 
     $scope.addInsurants = function () {
@@ -362,15 +360,42 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
         PurchaseService.addInsurants($scope.addedInsurants).then(function (response) {
             //ovde se salje zahtev za dobijanje payment url-a
             //i redirekcija na njega
+            console.log("dodao");
+            console.log(response);
+            if (response.data.isSuccessful) {
+                console.log("uspesno");
+                var data = {
+                    OrderId: response.data.orderId,
+                    Price: response.data.price
+                };
+                PaypalService.createPayment(data)
+                    .then(
+                        function(response) {
+                            $window.location.href = response.data;
+                        }, function(error) {
+                            console.log(error.message);
+                        });
+            }
         });
     };
 
     /** CALCULATOR **/
 
+    $scope.Token = {};
+
     $scope.calculate = function () {
-        RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
-            $scope.travelPrice = response.data;
+        var token = $("#antiForgeryToken").val();
+        $http({
+            method: 'POST',
+            url: '/Risk/Calculate',
+            data: $scope.getInsuranceDetails($scope.Insurance, "Travel"),
+            headers: {
+                'RequestVerificationToken': token
+            }
         });
+        //RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
+        //    $scope.travelPrice = response.data;
+        //});
     };
 
     $scope.cancelTravelInsurance = function () {
@@ -379,13 +404,13 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
     };
 
     $scope.addTravelInsurance = function () {
-        //na ono osiguranje koje se salje na backend se mora podesiti price!
-        //znaci napraviti neki novi dto objekat koji ce sadrzati osiguranje, tip i cenu
-        //ili iskoristiti vec postojece, samo dodati - treba istestirati
         $scope.Insurance.Price = $scope.travelPrice;
-        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel"));
-        //sessionStorage.setItem("purchaseStep2", 2);
-        $state.go('insurance.others');
+        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
+            sessionStorage.setItem("purchaseStep2", 2);
+            sessionStorage.setItem("StartDate", $scope.Insurance.StartDate);
+            sessionStorage.setItem("EndDate", $scope.Insurance.EndDate);
+            $state.go('insurance.others');
+        });
     };
 
     /** DATEPICKER **/
@@ -460,5 +485,14 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$filter', '
         }
         return '';
     }
+
+    $scope.setSelectedItem = function (item) {
+        $scope.travelSelected = item === "travel" ? true : false;
+        $scope.insurantsSelected = item === "insurants" ? true : false;
+        $scope.buyerSelected = item === "buyer" ? true : false;
+        $scope.othersSelected = item === "others" ? true : false;
+        $scope.othersNewSelected = item === "othersNew" ? true : false;
+    }
+
 
 }]);
