@@ -1,6 +1,14 @@
 ﻿@{
     Layout = null;
 }
+@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;
+    }
+}
 
 @*<div class="row">
     <div class="col-lg-6">
@@ -30,8 +38,8 @@
             <button class="btn btn-primary" ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
             <div ng-if="showInsForm">
                 <form name="insurantForm" class="form-horizontal">
-                    @Html.AntiForgeryToken()
                     <fieldset>
+                        <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
                         <div class="form-group" ng-class="{ 'has-error': insurantForm.name.$invalid && insurantForm.name.$touched}">
                             <label for="name" class="col-lg-2 control-label" translate="name"></label>
                             <div class="col-lg-6">

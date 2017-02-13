@@ -1,6 +1,7 @@
 ﻿using Common;
 using Merchant.Business;
 using Merchant.DataAccess;
+using Merchant.Web.Filters;
 using Merchant.Web.Helpers;
 using Microsoft.Security.Application;
 using System;
@@ -16,7 +17,7 @@ namespace Merchant.Web.Controllers
 {
     public class PurchaseController : Controller
     {
-        bool isSuccessfull = true;
+        bool isSuccessful = true;
 
         // GET: Purchase
         public ActionResult Index()
@@ -24,8 +25,8 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [CustomValidateAntiForgeryToken]
         public ActionResult BuyInsurance(InsuranceDetailsDto insurance)
         {
             var serializer = new JavaScriptSerializer();
@@ -34,8 +35,7 @@ namespace Merchant.Web.Controllers
             if (insurance.Type == "Travel")
             {
                 TravelInsuranceDto travelInsurance = serializer.Deserialize<TravelInsuranceDto>(insurance.Data);
-                TravelInsuranceDto newTravelInsurance =
-                    Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
+                TravelInsuranceDto newTravelInsurance = Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
                 Session["travelInsurance"] = newTravelInsurance;
             }
 
@@ -43,22 +43,31 @@ namespace Merchant.Web.Controllers
             {
                 HomeInsuranceDto homeInsurance = serializer.Deserialize<HomeInsuranceDto>(insurance.Data);
                 HomeInsuranceDto newHomeInsurance = Serializer.SerializeAndConvert(homeInsurance) as HomeInsuranceDto;
+
+                TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
+                newHomeInsurance.StartDate = travelInsurance.StartDate;
+                newHomeInsurance.EndDate = travelInsurance.EndDate;
+
                 Session["homeInsurance"] = newHomeInsurance;
             }
 
             if (insurance.Type == "Vehicle")
             {
                 VehicleInsuranceDto vehicleInsurance = serializer.Deserialize<VehicleInsuranceDto>(insurance.Data);
-                VehicleInsuranceDto newVehicleInsurance =
-                    Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto;
+                VehicleInsuranceDto newVehicleInsurance = Serializer.SerializeAndConvert(vehicleInsurance) as VehicleInsuranceDto;
+
+                TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
+                newVehicleInsurance.StartDate = travelInsurance.StartDate;
+                newVehicleInsurance.EndDate = travelInsurance.EndDate;
+
                 Session["vehicleInsurance"] = newVehicleInsurance;
             }
 
             return null;
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [CustomValidateAntiForgeryToken]
         public ActionResult AddInsurants(List<InsurantDto> insurantsDto)
         {
             InsuranceService service = new InsuranceService();
@@ -66,8 +75,9 @@ namespace Merchant.Web.Controllers
             RiskCategoryService riskCategoryService = new RiskCategoryService();
 
             TravelInsuranceDto travelInsurance = Session["travelInsurance"] as TravelInsuranceDto;
-            TravelInsuranceDto newTravelInsurance =
-                Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto;
+            TravelInsuranceDto newTravelInsurance = travelInsurance != null
+                ? Serializer.SerializeAndConvert(travelInsurance) as TravelInsuranceDto
+                : null;
 
             VehicleInsuranceDto vehicleInsurance = Session["vehicleInsurance"] as VehicleInsuranceDto;
             VehicleInsuranceDto newVehicleInsurance = vehicleInsurance != null
@@ -98,7 +108,7 @@ namespace Merchant.Web.Controllers
             }
             catch (Exception e)
             {
-                isSuccessfull = false;
+                isSuccessful = false;
             }
 
             Voyage voyage = new Voyage
@@ -116,8 +126,9 @@ namespace Merchant.Web.Controllers
             }
             catch (Exception e)
             {
-                isSuccessfull = false;
+                isSuccessful = false;
             }
+
             Insurance insuranceTravel = new Insurance
             {
                 EndDate = newTravelInsurance.EndDate,
@@ -127,13 +138,14 @@ namespace Merchant.Web.Controllers
                 RiskCategory = riskCategoryService.GetById(1),
                 StartDate = newTravelInsurance.StartDate
             };
+
             try
             {
                 service.AddInsurance(insuranceTravel);
             }
             catch (Exception e)
             {
-                isSuccessfull = false;
+                isSuccessful = false;
             }
 
             if (newHomeInsurance != null)
@@ -152,13 +164,14 @@ namespace Merchant.Web.Controllers
                         IdentificationNumber = newHomeInsurance.OwnerIdentificationNumber
                     }
                 };
+
                 try
                 {
                     service.AddResidentalBuilding(building);
                 }
                 catch (Exception e)
                 {
-                    isSuccessfull = false;
+                    isSuccessful = false;
                 }
 
                 Insurance insuranceHome = new Insurance
@@ -170,13 +183,14 @@ namespace Merchant.Web.Controllers
                     StartDate = newHomeInsurance.StartDate,
                     ResidentalBuilding = building
                 };
+
                 try
                 {
                     service.AddInsurance(insuranceHome);
                 }
                 catch (Exception e)
                 {
-                    isSuccessfull = false;
+                    isSuccessful = false;
                 }
             }
 
@@ -197,13 +211,14 @@ namespace Merchant.Web.Controllers
                         IdentificationNumber = newVehicleInsurance.OwnerIdentificationNumber
                     }
                 };
+
                 try
                 {
                     service.AddVehicle(vehicle);
                 }
                 catch (Exception e)
                 {
-                    isSuccessfull = false;
+                    isSuccessful = false;
                 }
 
                 Insurance insuranceVehicle = new Insurance
@@ -215,13 +230,14 @@ namespace Merchant.Web.Controllers
                     StartDate = newVehicleInsurance.StartDate,
                     Vehicle = vehicle
                 };
+
                 try
                 {
                     service.AddInsurance(insuranceVehicle);
                 }
                 catch (Exception e)
                 {
-                    isSuccessfull = false;
+                    isSuccessful = false;
                 }
             }
 
@@ -241,13 +257,14 @@ namespace Merchant.Web.Controllers
                         Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
                         TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber)
                     };
+
                     try
                     {
                         service.AddBuyer(buyer);
                     }
                     catch (Exception e)
                     {
-                        isSuccessfull = false;
+                        isSuccessful = false;
                     }
                 }
 
@@ -261,13 +278,14 @@ namespace Merchant.Web.Controllers
                     TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber),
                     InsurancePolicy = policy
                 };
+
                 try
                 {
                     service.AddInsurant(insurant);
                 }
                 catch (Exception e)
                 {
-                    isSuccessfull = false;
+                    isSuccessful = false;
                 }
             }
 
@@ -279,7 +297,7 @@ namespace Merchant.Web.Controllers
 
             return Json(new
             {
-                isSuccessful = true,
+                isSuccessful = isSuccessful,
                 orderId = policy.OrderId,
                 price = policy.Price
             });
