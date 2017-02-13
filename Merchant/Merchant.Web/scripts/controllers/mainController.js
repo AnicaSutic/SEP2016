@@ -1,4 +1,4 @@
-﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService) {
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, $http, RiskService, TranslateService, PurchaseService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -6,8 +6,8 @@
     $scope.forms = {};
 
     $scope.isChecked = false;
-    $scope.dateStart = false;
-    $scope.dateEnd = false;
+
+    $scope.areDatesValid = false;
 
     $scope.travelPrice = 0.0;
     $scope.vehiclePrice = 0.0;
@@ -230,6 +230,8 @@
 
     $scope.addVehicleInsurance = function () {
         $scope.VehicleInsurance.Price = $scope.vehiclePrice;
+        $scope.VehicleInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.VehicleInsurance.EndDate = sessionStorage.getItem("EndDate");
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle")).then(function() {
             $scope.vehicleInsExists = true;        
         });
@@ -238,6 +240,8 @@
 
     $scope.addHomeInsurance = function () {
         $scope.HomeInsurance.Price = $scope.homePrice;
+        $scope.HomeInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.HomeInsurance.EndDate = sessionStorage.getItem("EndDate");
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.HomeInsurance, "Home")).then(function () {
             $scope.homeInsExists = true;
         });
@@ -252,20 +256,11 @@
     /***/
   
     $scope.checkDate = function () {
-        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
-            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
-                $scope.dateEnd = true;
+        if ($scope.Insurance.StartDate != "" && $scope.Insurance.EndDate != "") {
+            if ($scope.Insurance.StartDate < $scope.Insurance.EndDate) {
+                $scope.areDatesValid = true;
             } else {
-                $scope.dateEnd = false;
-            }
-        }
-    };
-
-    $scope.checkDateEnd = function () {
-        if ($scope.Insurance.StartDate != "" && ($scope.Insurance.EndDate != "")) {
-            if ($scope.Insurance.StartDate > $scope.Insurance.EndDate) {
-                $scope.dateEnd = true;
-                $scope.dateStart = false;
+                $scope.areDatesValid = false;
             }
         }
     };
@@ -370,10 +365,21 @@
 
     /** CALCULATOR **/
 
+    $scope.Token = {};
+
     $scope.calculate = function () {
-        RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
-            $scope.travelPrice = response.data;
+        var token = $("#antiForgeryToken").val();
+        $http({
+            method: 'POST',
+            url: '/Risk/Calculate',
+            data: $scope.getInsuranceDetails($scope.Insurance, "Travel"),
+            headers: {
+                'RequestVerificationToken': token
+            }
         });
+        //RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
+        //    $scope.travelPrice = response.data;
+        //});
     };
 
     $scope.cancelTravelInsurance = function () {
@@ -385,7 +391,9 @@
         $scope.Insurance.Price = $scope.travelPrice;
         PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
             sessionStorage.setItem("purchaseStep2", 2);
-            $state.go('insurance.othersNew');
+            sessionStorage.setItem("StartDate", $scope.Insurance.StartDate);
+            sessionStorage.setItem("EndDate", $scope.Insurance.EndDate);
+            $state.go('insurance.others');
         });
     };
 

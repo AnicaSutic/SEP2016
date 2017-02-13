@@ -65,9 +65,9 @@ namespace Merchant.Web.Controllers
             HomeInsuranceDto homeInsurance = Session["homeInsurance"] as HomeInsuranceDto;
             HomeInsuranceDto newHomeInsurance = Serializer.SerializeAndConvert(homeInsurance) as HomeInsuranceDto;
 
-            decimal travelPrice = travelInsurance != null ? travelInsurance.Price : 0.0M;
-            decimal vehiclePrice = vehicleInsurance != null ? vehicleInsurance.Price : 0.0M;
-            decimal homePrice = homeInsurance != null ? homeInsurance.Price : 0.0M;
+            decimal travelPrice = newTravelInsurance != null ? newTravelInsurance.Price : 0.0M;
+            decimal vehiclePrice = newVehicleInsurance != null ? newVehicleInsurance.Price : 0.0M;
+            decimal homePrice = newHomeInsurance != null ? newHomeInsurance.Price : 0.0M;
 
             decimal policyPrice = travelPrice + vehiclePrice + homePrice;
 
@@ -82,41 +82,57 @@ namespace Merchant.Web.Controllers
 
             Voyage voyage = new Voyage
             {
-                InsurantAge = riskItemService.GetRiskItemNameById(travelInsurance.Age),
+<<<<<<< HEAD
+                InsurantAge = riskItemService.GetRiskItemNameById(newTravelInsurance.Age),
+                InsuredValue = riskItemService.GetRiskItemNameById(newTravelInsurance.InsuredValue),
+                NumberOfInsurants = int.Parse(newTravelInsurance.NumberOfInsurants),
+                Region = riskItemService.GetRiskItemNameById(newTravelInsurance.Region),
+                Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : ""
+=======
+                InsurantAge = (riskItemService.GetRiskItemNameById(travelInsurance.Age)),
                 InsuredValue = riskItemService.GetRiskItemNameById(travelInsurance.InsuredValue),
-                NumberOfInsurants = int.Parse(travelInsurance.NumberOfInsurants),
-                Region = riskItemService.GetRiskItemNameById(travelInsurance.Region),
-                Sport = travelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(travelInsurance.Sport) : ""
+                NumberOfInsurants = int.Parse(Sanitizer.GetSafeHtmlFragment(travelInsurance.NumberOfInsurants)),
+                Region = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(travelInsurance.Region)),
+                Sport = travelInsurance.Sport != 0 ? Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(travelInsurance.Sport)) : ""
+>>>>>>> d519803953e075dc7ddadc7cb68adf9c10d69f06
             };
 
             service.AddVoyage(voyage);
 
             Insurance insuranceTravel = new Insurance
             {
-                EndDate = travelInsurance.EndDate,
-                Price = travelInsurance.Price,
+                EndDate = newTravelInsurance.EndDate,
+                Price = newTravelInsurance.Price,
                 Voyage = voyage,
                 InsurancePolicy = policy,
                 RiskCategory = riskCategoryService.GetById(1),
-                StartDate = travelInsurance.StartDate
+                StartDate = newTravelInsurance.StartDate
             };
            
             service.AddInsurance(insuranceTravel);
 
-            if (homeInsurance != null)
+            if (newHomeInsurance != null)
             { 
                 ResidentalBuilding building = new ResidentalBuilding
                 {
-                    Address = homeInsurance.Address,
-                    BuildingAge = decimal.Parse(homeInsurance.BuildingAge),
-                    EstimatedValue = decimal.Parse(homeInsurance.EstimatedValue),
-                    InsuredFrom = riskItemService.GetRiskItemNameById(homeInsurance.InsuredFrom),
-                    SurfaceArea = decimal.Parse(homeInsurance.SurfaceArea),
+<<<<<<< HEAD
+                    Address = newHomeInsurance.Address,
+                    BuildingAge = decimal.Parse(newHomeInsurance.BuildingAge),
+                    EstimatedValue = decimal.Parse(newHomeInsurance.EstimatedValue),
+                    InsuredFrom = riskItemService.GetRiskItemNameById(newHomeInsurance.InsuredFrom),
+                    SurfaceArea = decimal.Parse(newHomeInsurance.SurfaceArea),
+=======
+                    Address = Sanitizer.GetSafeHtmlFragment(homeInsurance.Address),
+                    BuildingAge = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.BuildingAge)),
+                    EstimatedValue = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.EstimatedValue)),
+                    InsuredFrom = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(homeInsurance.InsuredFrom)),
+                    SurfaceArea = decimal.Parse(Sanitizer.GetSafeHtmlFragment(homeInsurance.SurfaceArea)),
+>>>>>>> d519803953e075dc7ddadc7cb68adf9c10d69f06
                     Owner = new Owner
                     {
-                        Name = homeInsurance.OwnerName,
-                        Surname = homeInsurance.OwnerSurname,
-                        IdentificationNumber = homeInsurance.OwnerIdentificationNumber
+                        Name = newHomeInsurance.OwnerName,
+                        Surname = newHomeInsurance.OwnerSurname,
+                        IdentificationNumber = newHomeInsurance.OwnerIdentificationNumber
                     }
                 };
 
@@ -124,32 +140,41 @@ namespace Merchant.Web.Controllers
 
                 Insurance insuranceHome = new Insurance
                 {
-                    EndDate = homeInsurance.EndDate,
-                    Price = homeInsurance.Price,
+                    EndDate = newHomeInsurance.EndDate,
+                    Price = newHomeInsurance.Price,
                     InsurancePolicy = policy,
                     RiskCategory = riskCategoryService.GetById(2),
-                    StartDate = homeInsurance.StartDate,
+                    StartDate = newHomeInsurance.StartDate,
                     ResidentalBuilding = building
                 };
 
                 service.AddInsurance(insuranceHome);
             }
 
-            if(vehicleInsurance != null)
+            if(newVehicleInsurance != null)
             {
                 Vehicle vehicle = new Vehicle
                 {
-                    Brand = vehicleInsurance.Brand,
-                    ChassisNumber = vehicleInsurance.ChassisNumber,
-                    LicensePlateNumber = vehicleInsurance.LicensePlateNumber,
-                    YearOfProduction = int.Parse(vehicleInsurance.YearOfProduction.ToString()),
-                    Type = vehicleInsurance.Type,
-                    Package = riskItemService.GetRiskItemNameById(vehicleInsurance.Package),
+<<<<<<< HEAD
+                    Brand = newVehicleInsurance.Brand,
+                    ChassisNumber = newVehicleInsurance.ChassisNumber,
+                    LicensePlateNumber = newVehicleInsurance.LicensePlateNumber,
+                    YearOfProduction = int.Parse(newVehicleInsurance.YearOfProduction.ToString()),
+                    Type = newVehicleInsurance.Type,
+                    Package = riskItemService.GetRiskItemNameById(newVehicleInsurance.Package),
+=======
+                    Brand = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Brand),
+                    ChassisNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.ChassisNumber),
+                    LicensePlateNumber = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.LicensePlateNumber),
+                    YearOfProduction = int.Parse(Sanitizer.GetSafeHtmlFragment(vehicleInsurance.YearOfProduction.ToString())),
+                    Type = Sanitizer.GetSafeHtmlFragment(vehicleInsurance.Type),
+                    Package = Sanitizer.GetSafeHtmlFragment(riskItemService.GetRiskItemNameById(vehicleInsurance.Package)),
+>>>>>>> d519803953e075dc7ddadc7cb68adf9c10d69f06
                     Owner = new Owner
                     {
-                        Name = vehicleInsurance.OwnerName,
-                        Surname = vehicleInsurance.OwnerSurname,
-                        IdentificationNumber = vehicleInsurance.OwnerIdentificationNumber
+                        Name = newVehicleInsurance.OwnerName,
+                        Surname = newVehicleInsurance.OwnerSurname,
+                        IdentificationNumber = newVehicleInsurance.OwnerIdentificationNumber
                     }
                 };
 
@@ -157,11 +182,11 @@ namespace Merchant.Web.Controllers
 
                 Insurance insuranceVehicle = new Insurance
                 {
-                    EndDate = vehicleInsurance.EndDate,
-                    Price = vehicleInsurance.Price,
+                    EndDate = newVehicleInsurance.EndDate,
+                    Price = newVehicleInsurance.Price,
                     InsurancePolicy = policy,
                     RiskCategory = riskCategoryService.GetById(3),
-                    StartDate = vehicleInsurance.StartDate,
+                    StartDate = newVehicleInsurance.StartDate,
                     Vehicle = vehicle
                 };
 

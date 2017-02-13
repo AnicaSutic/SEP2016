@@ -20,6 +20,7 @@ namespace Merchant.Web.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult BuyInsurance(InsuranceDetailsDto insurance)
         {
@@ -49,6 +50,7 @@ namespace Merchant.Web.Controllers
             return null;
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult AddInsurants(List<InsurantDto> insurantsDto)
         {
@@ -86,7 +88,7 @@ namespace Merchant.Web.Controllers
                 InsuredValue = riskItemService.GetRiskItemNameById(newTravelInsurance.InsuredValue),
                 NumberOfInsurants = int.Parse(newTravelInsurance.NumberOfInsurants),
                 Region = riskItemService.GetRiskItemNameById(newTravelInsurance.Region),
-                Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : ""
+                Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : string.Empty
             };
 
             service.AddVoyage(voyage);

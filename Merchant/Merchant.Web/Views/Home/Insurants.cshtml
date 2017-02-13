@@ -15,7 +15,7 @@
 
     <div ng-if="insurantsCounter != 0">
         <ul ng-repeat="i in addedInsurants">
-            <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
+            <li>{{i.Name}} {{i.Surname}} <button class="btn btn-default" ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
         </ul>
     </div>
 
@@ -24,8 +24,6 @@
         <button class="btn btn-success" ng-click="addBuyer()" translate="proceed"></button>
     </div>
 
-    <p class="alert alert-info" ng-if="insurantsCounter == 0" translate="noInsurants"></p>
-
     <p class="alert alert-info" ng-show="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants" translate="noMoreInsurants"></p>
 
     <div class="row">
@@ -33,6 +31,7 @@
             <button class="btn btn-primary" ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
             <div ng-if="showInsForm">
                 <form name="insurantForm" class="form-horizontal">
+                    @Html.AntiForgeryToken()
                     <fieldset>
                         <div class="form-group">
                             <label for="name" class="col-lg-2 control-label" translate="name"></label>
@@ -108,12 +107,6 @@
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
                                 <button class="btn btn-primery" ng-click="addInsurant()" ng-disabled="insurantForm.$invalid" translate="add"></button>
-                                <button class="btn btn-default" ng-click="cancelInsurant()" translate="cancel"></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
-                                <button class="btn btn-primary" ng-click="addInsurant()" ng-disabled="insurantForm.$invalid" translate="add"></button>
                                 <button class="btn btn-default" ng-click="cancelInsurant()" translate="cancel"></button>
                             </div>
                         </div>

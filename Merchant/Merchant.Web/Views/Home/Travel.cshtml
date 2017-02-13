@@ -1,11 +1,20 @@
 ﻿@{
     Layout = null;
 }
+@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;
+    }
+}
 
 <div class="row">
     <div class="col-lg-12">
         <form name="travelForm" class="form-horizontal">
             <fieldset>
+                <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
                 <h1 translate="calculatePrice"></h1>
                 <div class="form-group">
                     <label for="startDate" class="col-lg-2 control-label" translate="startDate"></label>
@@ -25,8 +34,8 @@
                         <div ng-show="travelForm.endDate.$touched">
                             <span class="text-danger" ng-show="travelForm.endDate.$error.required" class="text-danger" translate="errEnd"></span>
                         </div>
-                        <div ng-show="dateEnd">
-                            <span translate="errDateEnd"></span>
+                        <div ng-show="travelForm.endDate.$touched && travelForm.startDate.$touched && !areDatesValid">
+                            <span class="text-danger" translate="errDateEnd"></span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +106,7 @@
             <fieldset>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button ng-disabled="travelForm.$invalid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
+                        <button ng-disabled="travelForm.$invalid || !areDatesValid" translate="calc" class="btn btn-primary" ng-click="calculate()"></button>
                     </div>
 
                     <div class="col-lg-10" ng-if="travelPrice != 0.0">
