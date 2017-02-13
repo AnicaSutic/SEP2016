@@ -17,6 +17,8 @@ namespace Merchant.Web.Controllers
 {
     public class PurchaseController : Controller
     {
+        bool isSuccessfull = true;
+
         // GET: Purchase
         public ActionResult Index()
         {
@@ -28,6 +30,7 @@ namespace Merchant.Web.Controllers
         public ActionResult BuyInsurance(InsuranceDetailsDto insurance)
         {
             var serializer = new JavaScriptSerializer();
+            
 
             if (insurance.Type == "Travel")
             {
@@ -99,7 +102,14 @@ namespace Merchant.Web.Controllers
                 OrderId = Guid.NewGuid().ToString()
             };
 
-            service.AddPolicy(policy);
+            try
+            {
+                service.AddPolicy(policy);
+            }
+            catch (Exception e)
+            {
+                isSuccessfull = false;
+            }
 
             Voyage voyage = new Voyage
             {
@@ -110,8 +120,14 @@ namespace Merchant.Web.Controllers
                 Sport = newTravelInsurance.Sport != 0 ? riskItemService.GetRiskItemNameById(newTravelInsurance.Sport) : string.Empty
             };
 
-            service.AddVoyage(voyage);
-
+            try
+            {
+                service.AddVoyage(voyage);
+            }
+            catch (Exception e)
+            {
+                isSuccessfull = false;
+            }
             Insurance insuranceTravel = new Insurance
             {
                 EndDate = newTravelInsurance.EndDate,
@@ -121,8 +137,14 @@ namespace Merchant.Web.Controllers
                 RiskCategory = riskCategoryService.GetById(1),
                 StartDate = newTravelInsurance.StartDate
             };
-
-            service.AddInsurance(insuranceTravel);
+            try
+            {
+                service.AddInsurance(insuranceTravel);
+            }
+            catch (Exception e)
+            {
+                isSuccessfull = false;
+            }
 
             if (newHomeInsurance != null)
             {
@@ -140,8 +162,14 @@ namespace Merchant.Web.Controllers
                         IdentificationNumber = newHomeInsurance.OwnerIdentificationNumber
                     }
                 };
-
-                service.AddResidentalBuilding(building);
+                try
+                {
+                    service.AddResidentalBuilding(building);
+                }
+                catch (Exception e)
+                {
+                    isSuccessfull = false;
+                }
 
                 Insurance insuranceHome = new Insurance
                 {
@@ -152,8 +180,14 @@ namespace Merchant.Web.Controllers
                     StartDate = newHomeInsurance.StartDate,
                     ResidentalBuilding = building
                 };
-
-                service.AddInsurance(insuranceHome);
+                try
+                {
+                    service.AddInsurance(insuranceHome);
+                }
+                catch (Exception e)
+                {
+                    isSuccessfull = false;
+                }
             }
 
             if (newVehicleInsurance != null)
@@ -173,8 +207,14 @@ namespace Merchant.Web.Controllers
                         IdentificationNumber = newVehicleInsurance.OwnerIdentificationNumber
                     }
                 };
-
-                service.AddVehicle(vehicle);
+                try
+                {
+                    service.AddVehicle(vehicle);
+                }
+                catch (Exception e)
+                {
+                    isSuccessfull = false;
+                }
 
                 Insurance insuranceVehicle = new Insurance
                 {
@@ -185,8 +225,14 @@ namespace Merchant.Web.Controllers
                     StartDate = newVehicleInsurance.StartDate,
                     Vehicle = vehicle
                 };
-
-                service.AddInsurance(insuranceVehicle);
+                try
+                {
+                    service.AddInsurance(insuranceVehicle);
+                }
+                catch (Exception e)
+                {
+                    isSuccessfull = false;
+                }
             }
 
             Buyer buyer = null;
@@ -205,8 +251,14 @@ namespace Merchant.Web.Controllers
                         Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
                         TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber)
                     };
-
-                    service.AddBuyer(buyer);
+                    try
+                    {
+                        service.AddBuyer(buyer);
+                    }
+                    catch (Exception e)
+                    {
+                        isSuccessfull = false;
+                    }
                 }
 
                 Insurant insurant = new Insurant
@@ -219,8 +271,14 @@ namespace Merchant.Web.Controllers
                     TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber),
                     InsurancePolicy = policy
                 };
-
-                service.AddInsurant(insurant);
+                try
+                {
+                    service.AddInsurant(insurant);
+                }
+                catch (Exception e)
+                {
+                    isSuccessfull = false;
+                }
             }
 
             if (buyer != null)
