@@ -7,6 +7,7 @@ using System.Linq;
 using Merchant.Business.Rules;
 using System.Web.Script.Serialization;
 using Microsoft.Security.Application;
+using Merchant.Web.Helpers;
 
 namespace Merchant.Web.Controllers
 {
@@ -65,20 +66,23 @@ namespace Merchant.Web.Controllers
             decimal price = 0.0M;
             var calculator = new PriceCalculator();
             var serializer = new JavaScriptSerializer();
-            obj.Data = Sanitizer.GetSafeHtmlFragment(obj.Data);
+
             if (obj.Type == "Travel")
             {
-                price = calculator.CalculatePrice(serializer.Deserialize<TravelInsuranceDto>(obj.Data));
+                TravelInsuranceDto newTravelIns = Serializer.SerializeAndConvert(serializer.Deserialize<TravelInsuranceDto>(obj.Data)) as TravelInsuranceDto;
+                price = calculator.CalculatePrice(newTravelIns);
             }
 
             if (obj.Type == "Home")
             {
-                price = calculator.CalculatePrice(serializer.Deserialize<HomeInsuranceDto>(obj.Data));
+                HomeInsuranceDto newHomeIns = Serializer.SerializeAndConvert(serializer.Deserialize<HomeInsuranceDto>(obj.Data)) as HomeInsuranceDto;
+                price = calculator.CalculatePrice(newHomeIns);
             }
 
             if (obj.Type == "Vehicle")
             {
-                price = calculator.CalculatePrice(serializer.Deserialize<VehicleInsuranceDto>(obj.Data));
+                VehicleInsuranceDto newVehicleIns = Serializer.SerializeAndConvert(serializer.Deserialize<VehicleInsuranceDto>(obj.Data)) as VehicleInsuranceDto;
+                price = calculator.CalculatePrice(newVehicleIns);
             }
 
             return Json(price);

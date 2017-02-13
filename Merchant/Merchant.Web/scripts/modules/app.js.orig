@@ -162,15 +162,13 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             proceed: "Proceed",
             termsError: "You have to accept the Terms&Conditions!",
             terms: "Terms&Conditions",
-            noOtherInsurance: "If you finished buying other insurances or you don't want to buy them, you can finish the purchase by clicking the button below.",
+            noOtherInsurance: "If you don't want to buy another insurace, you can finish the purchase by clicking the button below.",
             finishPurchase: "Finish purchase",
             buyerDetails: "Buyer's details",
             buyer: "Buyer",
             insurantsDetails: "Insurants' details",
             terms: "Terms&Conditions",
-            errCompleteStep: "You currently cannot acces this step of the insurance purchase.",
-            welcomeText: "Welcome to CareTravel website for online insurance purchase.",
-            welcomeText2: "Get started by clicking the button!"
+            errCompleteStep: "You need to complete the previous step before you can continue with the purchase here."
         };
     var ser =
         {
@@ -287,15 +285,13 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             proceed: "Nastavi",
             termsError: "Morate prihvatiti uslove korišćenja!",
             terms: "Uslovi korišćenja",
-            noOtherInsurance: "Ukoliko ste završili sa kupovinom drugih osiguranja ili ih ne želite kupiti, možete završiti kupovinu klikom na dugme ispod.",
+            errCompleteStep: "Morate završiti prethodni korak ukoliko želite da ovde nastavite sa kupovinom.",
+            terms: "Uslovi korišćenja",
+            noOtherInsurance: "Ukoliko ne želite da kupite drugo osiguranje, možete završiti kupovinu klikom na dugme ispod.",
             finishPurchase: "Završi kupovinu",
             buyerDetails: "Detalji o kupcu",
             buyer: "Kupac",
-            insurantsDetails: "Detalji o osiguranicima",
-            terms: "Uslovi korišćenja",
-            errCompleteStep: "Trenutno ne možete pristupiti ovom koraku u kupovini osiguranja.",
-            welcomeText: "Dobrodošli na CareTravel sajt za onlajn kupovinu osiguranja.",
-            welcomeText2: "Započnite klikom na dugme!"
+            insurantsDetails: "Detalji o osiguranicima"
         };
 
     $.ajax({

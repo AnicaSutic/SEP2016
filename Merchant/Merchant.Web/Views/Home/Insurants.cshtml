@@ -2,26 +2,26 @@
     Layout = null;
 }
 
-<div class="row">
+@*<div class="row">
     <div class="col-lg-6">
-        <div class="alert alert-dismissible alert-danger" ng-if="purchaseStep2 != 2">
+        <div class="alert alert-dismissible alert-danger" ng-if="purchaseStep3 != 3">
             <span translate="errCompleteStep"></span>
         </div>
     </div>
-</div>
+</div>*@
 
-<div ng-if="purchaseStep2 == 2">
-    <<h1 translate="insurantsDetails"></h1>
+<div class="row" @*ng-if="purchaseStep3 == 3"*@>
+    <h1 translate="insurantsDetails"></h1>
 
     <div ng-if="insurantsCounter != 0">
         <ul ng-repeat="i in addedInsurants">
-            <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant(i, $index)">X</button></li>
+            <li>{{i.Name}} {{i.Surname}} <button ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
         </ul>
     </div>
 
     <div ng-if="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants">
         <p class="alert alert-info" translate="noMoreInsurants"></p>
-        <button class="btn btn-primary" ng-click="addBuyer()" translate="proceed"></button>
+        <button class="btn btn-success" ng-click="addBuyer()" translate="proceed"></button>
     </div>
 
     <p class="alert alert-info" ng-if="insurantsCounter == 0" translate="noInsurants"></p>

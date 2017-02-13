@@ -16,7 +16,8 @@
     $rootScope.areTermsAccepted = sessionStorage.getItem("areTermsAccepted");
     $rootScope.purchaseStep1 = sessionStorage.getItem("purchaseStep1");
     $rootScope.purchaseStep2 = sessionStorage.getItem("purchaseStep2");
-    $rootScope.purchaseStep3 = sessionStorage.getItem("purchaseStep2");
+    $rootScope.purchaseStep3 = sessionStorage.getItem("purchaseStep3");
+    $rootScope.purchaseStep4 = sessionStorage.getItem("purchaseStep4");
 
     $scope.showVehicleForm = false;
     $scope.showHomeForm = false;
@@ -244,6 +245,7 @@
     };
 
     $scope.addOthers = function () {
+        sessionStorage.setItem("purchaseStep3", 3);
         $state.go('insurance.insurants');
     };
 
@@ -352,7 +354,9 @@
     };
 
     $scope.addBuyer = function () {
+        sessionStorage.setItem("purchaseStep4", 4);
         $state.go('insurance.buyer');
+        
     };
 
     $scope.addInsurants = function () {
@@ -378,13 +382,11 @@
     };
 
     $scope.addTravelInsurance = function () {
-        //na ono osiguranje koje se salje na backend se mora podesiti price!
-        //znaci napraviti neki novi dto objekat koji ce sadrzati osiguranje, tip i cenu
-        //ili iskoristiti vec postojece, samo dodati - treba istestirati
         $scope.Insurance.Price = $scope.travelPrice;
-        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel"));
-        //sessionStorage.setItem("purchaseStep2", 2);
-        $state.go('insurance.others');
+        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
+            sessionStorage.setItem("purchaseStep2", 2);
+            $state.go('insurance.othersNew');
+        });
     };
 
     /** DATEPICKER **/

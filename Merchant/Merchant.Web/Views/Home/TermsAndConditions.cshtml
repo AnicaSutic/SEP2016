@@ -3,32 +3,33 @@
     Layout = null;
 }
 
-<h1 translate="terms"></h1>
-
-<div class="row" >
-    <div class="col-lg-6">
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="areAccepted"><span translate="haveAccepted"></span>
-                            </label>
+<div class="container" >
+    <h1 translate="terms"></h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-lg-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="areAccepted"><span translate="haveAccepted"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary" ng-click="accept()" translate="proceed"></button>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" ng-click="accept()" translate="proceed"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <p class="text-danger" ng-if="hasError" translate="termsError"></p>
+                    <div class="form-group">
+                        <div class="col-lg-10">
+                            <p class="text-danger" ng-if="hasError" translate="termsError"></p>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>

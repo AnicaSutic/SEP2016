@@ -11,16 +11,15 @@
     </div>
 </div>
 
-<div ng-if="areTermsAccepted">
+<div ng-if="areTermsAccepted" class="container">
     <div class="row">
         <div class="col-lg-3">
             <h2 translate="insurance"></h2>
             <div class="list-group">
                 <a ng-click="setSelectedItem('travel')" ui-sref="insurance.travel" class="list-group-item" ng-class="travelSelected ? 'list-group-item active' : 'list-group-item'" translate="travelInsurance"></a>
+                <a ng-click="setSelectedItem('others')" ui-sref="insurance.others" class="list-group-item" ng-class="othersSelected ? 'list-group-item active' : 'list-group-item'" translate="other"></a>
                 <a ng-click="setSelectedItem('insurants')" ui-sref="insurance.insurants" class="list-group-item" ng-class="insurantsSelected ? 'list-group-item active' : 'list-group-item'" translate="insurants"></a>
                 <a ng-click="setSelectedItem('buyer')" ui-sref="insurance.buyer" class="list-group-item" ng-class="buyerSelected ? 'list-group-item active' : 'list-group-item'" translate="buyer"></a>
-                <a ng-click="setSelectedItem('others')" ui-sref="insurance.others" class="list-group-item" ng-class="othersSelected ? 'list-group-item active' : 'list-group-item'" translate="other"></a>
-                <a ng-click="setSelectedItem('othersNew')" ui-sref="insurance.othersNew" class="list-group-item" ng-class="othersNewSelected ? 'list-group-item active' : 'list-group-item'">OthersNew</a>
             </div>
         </div>
     </div>

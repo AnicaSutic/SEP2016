@@ -2,81 +2,90 @@
     Layout = null;
 }
 
-<h1 translate="buyerDetails"></h1>
+@*<div class="row">
+    <div class="col-lg-6">
+        <div class="alert alert-dismissible alert-danger" ng-if="purchaseStep4 != 4">
+            <span translate="errCompleteStep"></span>
+        </div>
+    </div>
+</div>*@
 
-<div class="row">
-    <div class="col-lg-12">
-        <div>
-            <form name="buyerForm" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label for="name" class="col-lg-2 control-label" translate="name"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" name="name" id="name" ng-model="Buyer.Name" required="required">
-                            <div ng-show="buyerForm.name.$touched && buyerForm.name.$error.required">
-                                <span class="text-danger" translate="errName"></span>
+<div class="row" @*ng-if="purchaseStep4 == 4"*@>
+    <h1 translate="buyerDetails"></h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <form name="buyerForm" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="name" class="col-lg-2 control-label" translate="name"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="name" id="name" ng-model="Buyer.Name" required="required">
+                                <div ng-show="buyerForm.name.$touched && buyerForm.name.$error.required">
+                                    <span class="text-danger" translate="errName"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" name="surname" id="surname" ng-model="Buyer.Surname" required="required">
-                            <div ng-show="buyerForm.surname.$touched && buyerForm.surname.$error.required">
-                                <span class="text-danger" translate="errSurname"></span>
+                        <div class="form-group">
+                            <label for="surname" class="col-lg-2 control-label" translate="surname"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="surname" id="surname" ng-model="Buyer.Surname" required="required">
+                                <div ng-show="buyerForm.surname.$touched && buyerForm.surname.$error.required">
+                                    <span class="text-danger" translate="errSurname"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="jmbg" class="col-lg-2 control-label" translate="jmbg"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="number" name="jmbg" id="jmbg" ng-model="Buyer.IdentificationNumber" minlength="13" maxlength="13" required="required">
-                            <div ng-show="buyerForm.jmbg.$touched">
-                                <span class="text-danger" ng-show="buyerForm.jmbg.$error.required" translate="errJmbg"></span>
-                                <span class="text-danger" ng-show="buyerForm.jmbg.$error.minlength" translate="errJmbgL"></span>
-                                <span class="text-danger" ng-show="buyerForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                        <div class="form-group">
+                            <label for="jmbg" class="col-lg-2 control-label" translate="jmbg"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="number" name="jmbg" id="jmbg" ng-model="Buyer.IdentificationNumber" minlength="13" maxlength="13" required="required">
+                                <div ng-show="buyerForm.jmbg.$touched">
+                                    <span class="text-danger" ng-show="buyerForm.jmbg.$error.required" translate="errJmbg"></span>
+                                    <span class="text-danger" ng-show="buyerForm.jmbg.$error.minlength" translate="errJmbgL"></span>
+                                    <span class="text-danger" ng-show="buyerForm.jmbg.$error.maxlength" translate="errJmbgL"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="passport" class="col-lg-2 control-label" translate="passport"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" name="passport" id="passport" ng-model="Buyer.PassportNumber" ng-pattern="passportNumberPattern" required="required">
-                            <div ng-show="buyerForm.passport.$touched">
-                                <span class="text-danger" ng-show="buyerForm.passport.$error.required" translate="errPassport"></span>
-                                <span class="text-danger" ng-show="buyerForm.passport.$error.pattern" translate="errPassportPattern"></span>
+                        <div class="form-group">
+                            <label for="passport" class="col-lg-2 control-label" translate="passport"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="passport" id="passport" ng-model="Buyer.PassportNumber" ng-pattern="passportNumberPattern" required="required">
+                                <div ng-show="buyerForm.passport.$touched">
+                                    <span class="text-danger" ng-show="buyerForm.passport.$error.required" translate="errPassport"></span>
+                                    <span class="text-danger" ng-show="buyerForm.passport.$error.pattern" translate="errPassportPattern"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address" class="col-lg-2 control-label" translate="address"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" name="address" id="address" ng-model="Buyer.Address" required="required">
-                            <span class="text-danger" ng-show="buyerForm.address.$touched && buyerForm.address.$error.required" translate="errAddress"></span>
+                        <div class="form-group">
+                            <label for="address" class="col-lg-2 control-label" translate="address"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="address" id="address" ng-model="Buyer.Address" required="required">
+                                <span class="text-danger" ng-show="buyerForm.address.$touched && buyerForm.address.$error.required" translate="errAddress"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="telNumber" class="col-lg-2 control-label" translate="telNumber"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" name="telNumber" id="telNumber" ng-model="Buyer.TelephoneNumber" required="required">
-                            <span class="text-danger" ng-show="buyerForm.telNumber.$touched && buyerForm.telNumber.$error.required" translate="errTelNum"></span>
+                        <div class="form-group">
+                            <label for="telNumber" class="col-lg-2 control-label" translate="telNumber"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="telNumber" id="telNumber" ng-model="Buyer.TelephoneNumber" required="required">
+                                <span class="text-danger" ng-show="buyerForm.telNumber.$touched && buyerForm.telNumber.$error.required" translate="errTelNum"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label" translate="email"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="email" name="email" id="email" ng-model="Buyer.Email" required="required">
-                            <span class="text-danger" ng-show="buyerForm.email.$touched && buyerForm.email.$error.required" translate="errEmail"></span>
-                            <span class="text-danger" ng-show="buyerForm.email.$error.email" translate="errEmailValidate"></span>
+                        <div class="form-group">
+                            <label for="email" class="col-lg-2 control-label" translate="email"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="email" name="email" id="email" ng-model="Buyer.Email" required="required">
+                                <span class="text-danger" ng-show="buyerForm.email.$touched && buyerForm.email.$error.required" translate="errEmail"></span>
+                                <span class="text-danger" ng-show="buyerForm.email.$error.email" translate="errEmailValidate"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button class="btn btn-primary" ng-click="addInsurants()" ng-disabled="buyerForm.$invalid" translate="finishPurchase"></button>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button class="btn btn-success" ng-click="addInsurants()" ng-disabled="buyerForm.$invalid" translate="finishPurchase"></button>
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
-            </form>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
 </div>

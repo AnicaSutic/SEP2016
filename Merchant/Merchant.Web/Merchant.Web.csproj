@@ -159,6 +159,7 @@
     <Content Include="Content\images\about-bg.jpg" />
     <Content Include="Content\images\button.png" />
     <Content Include="Content\images\Capture.PNG" />
+    <Content Include="Content\images\car.jpg" />
     <Content Include="Content\images\contact-bg.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\features-bg.jpg" />
@@ -169,6 +170,7 @@
     <Content Include="Content\images\team\2.jpg" />
     <Content Include="Content\images\team\3.jpg" />
     <Content Include="Content\images\team\4.jpg" />
+    <Content Include="Content\images\travelwallpaper.jpeg" />
     <Content Include="Content\images\twitter-bg.jpg" />
     <Content Include="scripts\angular.js" />
     <Content Include="Content\jquery.fancybox.css" />
@@ -183,12 +185,12 @@
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular\angular-resource.js" />
     <Content Include="scripts\angular\angular-sanitize.js" />
+    <Content Include="scripts\bootstrap\bootstrap.js" />
     <Content Include="scripts\bootstrap\ui-bootstrap-tpls.js" />
     <Content Include="scripts\controllers\mainController.js" />
     <Content Include="scripts\controllers\homeController.js" />
     <Content Include="scripts\angular-ui-module.js" />
     <Content Include="scripts\angular\angular-ui-router.js" />
-    <Content Include="scripts\controllers\insurantsController.js" />
     <Content Include="scripts\controllers\navbarController.js" />
     <Content Include="scripts\controllers\paymentController.js" />
     <Content Include="scripts\html5shiv.js" />
@@ -200,7 +202,6 @@
     <Content Include="scripts\main.js" />
     <Content Include="scripts\modernizr.js" />
     <Content Include="scripts\modules\app.js" />
-    <Content Include="scripts\bootstrap\bootstrap.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -239,6 +240,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Serializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,9 +257,8 @@
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
     <Content Include="Views\Home\Insurance.cshtml" />
     <Content Include="Views\Home\Insurants.cshtml" />
-    <Content Include="Views\Home\Others.cshtml" />
     <Content Include="Views\Home\Travel.cshtml" />
-    <Content Include="Views\Home\OthersNew.cshtml" />
+    <Content Include="Views\Home\Others.cshtml" />
     <Content Include="package.json" />
     <Content Include="Views\Home\Buyer.cshtml" />
     <Content Include="Views\Home\Payment.cshtml" />
