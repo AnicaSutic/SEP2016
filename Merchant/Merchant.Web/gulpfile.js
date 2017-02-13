@@ -129,6 +129,7 @@ gulp.task('test', function () {
             "scripts/services/riskService.js",
             "scripts/services/translateService.js",
             "scripts/services/purchaseService.js",
+            "scripts/services/paypalService.js",
             "TestScripts/*.js"
     ];
     // Be sure to return the stream 

@@ -54,7 +54,7 @@ describe("MainController", function () {
             expect(scope.showInsForm).not.toBe(false);
         });
 
-        it('should return collection by language', function () {
+        /*it('should return collection by language', function () {
             var sports = [];
             var obj1 = { Id: '1', Name: 'Volyball', Name_Srb: 'Odbojka' };
             var obj2 = { Id: '2', Name: 'Basketball', Name_Srb: 'Kosarka' };
@@ -77,7 +77,7 @@ describe("MainController", function () {
             
             expect(collE).toEqual(resultEng);
             expect(collS).toEqual(resultSrp);
-        });
+        });*/
 
     });
 });
