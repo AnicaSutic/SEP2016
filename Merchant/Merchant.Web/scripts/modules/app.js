@@ -186,7 +186,13 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             notSuccess: "Unfortunately, purchase insurance is not successful!",
             success: "Purchase insurance end successful! Have a travel safe!",
             back: "Back to start",
-            delete: "Delete"
+            btnDelete: "Delete",
+            policyDetails: "Policy details",
+            policyPrice: "Policy price",
+            executePayment: "Confirm payment",
+            canceledPayment: "The payment has been canceled.",
+            returnToHome: "Return to ",
+            homePage: "home page"
         };
     var ser =
         {
@@ -320,7 +326,13 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             notSuccess: "Nažalost,kupovina osiguranja nije uspešna!",
             success: "Kupovina uspešno obavljena! Putujte bezbedno!",
             back: "Nazad na početak",
-            delete: "Obriši"
+            btnDelete: "Obriši",
+            policyDetails: "Detalji o polisi",
+            policyPrice: "Cena polise",
+            executePayment: "Potvrdi plaćanje",
+            canceledPayment: "Kupovina je otkazana.",
+            returnToHome: "Vrati se na ",
+            homePage: "početnu stranu"
         };
 
     $.ajax({

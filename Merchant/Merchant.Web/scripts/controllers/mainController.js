@@ -356,10 +356,11 @@
 
     $scope.addBuyer = function () {
         var token = $("#antiForgeryToken").val();
-        PurchaseService.addInsurantsToSession($scope.addedInsurants, token).then(function (response) {
-            sessionStorage.setItem("purchaseStep4", 4);
-            //$state.go('insurance.buyer');
-        });
+        //PurchaseService.addInsurantsToSession($scope.addedInsurants, token).then(function (response) {
+        //    sessionStorage.setItem("purchaseStep4", 4);
+        //    //$state.go('insurance.buyer');
+        //});
+        $state.go('insurance.buyer');
     };
 
     $scope.addInsurants = function () {
