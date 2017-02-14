@@ -22,6 +22,16 @@
         },
         getPolicyByOrderId: function(orderId) {
             return $http.get("/Purchase/GetPolicyByOrderId/" + orderId);
+        },
+        addInsurantsToSession: function (insurants) {
+            return $http({
+                method: 'POST',
+                url: '/Purchase/AddInsurantsToSession',
+                data: insurants,
+                headers: {
+                    'RequestVerificationToken': token
+                }
+            });
         }
     });
 }]);

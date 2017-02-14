@@ -1,4 +1,8 @@
-﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
+<<<<<<< HEAD
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, $http, RiskService, TranslateService, PurchaseService) {
+=======
+﻿app.controller('MainController', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -177,15 +181,13 @@
     };
 
     $scope.calculateVehicleInsurance = function () {
-        var token = $("#antiForgeryTokenVehicle").val();
-        RiskService.calculatePrice($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle"), token).then(function (response) {
+        RiskService.calculatePrice($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle")).then(function (response) {
             $scope.vehiclePrice = response.data;
         });
     };
 
     $scope.calculateHomeInsurance = function () {
-        var token = $("#antiForgeryTokenHome").val();
-        RiskService.calculatePrice($scope.getInsuranceDetails($scope.HomeInsurance, "Home"), token).then(function (response) {
+        RiskService.calculatePrice($scope.getInsuranceDetails($scope.HomeInsurance, "Home")).then(function (response) {
             $scope.homePrice = response.data;
         });
     };
@@ -232,8 +234,9 @@
 
     $scope.addVehicleInsurance = function () {
         $scope.VehicleInsurance.Price = $scope.vehiclePrice;
-        var token = $("#antiForgeryTokenVehicle").val();
-        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle"), token).then(function() {
+        $scope.VehicleInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.VehicleInsurance.EndDate = sessionStorage.getItem("EndDate");
+        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.VehicleInsurance, "Vehicle")).then(function() {
             $scope.vehicleInsExists = true;        
         });
         $scope.showVehicleForm = false;
@@ -241,8 +244,9 @@
 
     $scope.addHomeInsurance = function () {
         $scope.HomeInsurance.Price = $scope.homePrice;
-        var token = $("#antiForgeryTokenHome").val();
-        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.HomeInsurance, "Home"), token).then(function () {
+        $scope.HomeInsurance.StartDate = sessionStorage.getItem("StartDate");
+        $scope.HomeInsurance.EndDate = sessionStorage.getItem("EndDate");
+        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.HomeInsurance, "Home")).then(function () {
             $scope.homeInsExists = true;
         });
         $scope.showHomeForm = false;
@@ -251,16 +255,6 @@
     $scope.addOthers = function () {
         sessionStorage.setItem("purchaseStep3", 3);
         $state.go('insurance.insurants');
-    };
-
-    $scope.deleteVehicleIns = function () {
-        $scope.initializeVehicleInsurance();
-        $scope.vehicleInsExists = false;
-    };
-
-    $scope.deleteHomeIns = function () {
-        $scope.initializeHomeInsurance();
-        $scope.homeInsExists = false;
     };
 
     /***/
@@ -295,10 +289,16 @@
             Address: "",
             TelephoneNumber: "",
             Email: "",
-            IsBuyer: false,
-            IsInsurant: true
+            IsBuyer: false
         };
         $scope.showInsForm = false;
+        //$scope.insurantForm.name.$touched = false;
+        //$scope.insurantForm.surname.$touched = false;
+        //$scope.insurantForm.jmbg.$touched = false;
+        //$scope.insurantForm.email.$touched = false;
+        //$scope.insurantForm.address.$touched = false;
+        //$scope.insurantForm.telNumber.$touched = false;
+        //$scope.insurantForm.passport.$touched = false;
     };
 
     $scope.initializeBuyer = function () {
@@ -310,8 +310,7 @@
             Address: "",
             TelephoneNumber: "",
             Email: "",
-            IsBuyer: true,
-            IsInsurant: false
+            IsBuyer: true
         };
     };
 
@@ -332,7 +331,6 @@
             $scope.Buyer.Address = $scope.CurrentInsurant.Address;
             $scope.Buyer.TelephoneNumber = $scope.CurrentInsurant.TelephoneNumber;
             $scope.Buyer.Email = $scope.CurrentInsurant.Email;
-            $scope.Buyer.IsInsurant = true;
         }
         $scope.addedInsurants.push($scope.CurrentInsurant);
         $scope.initializeCurrentInsurant();
@@ -355,18 +353,17 @@
     };
 
     $scope.addBuyer = function () {
-        var token = $("#antiForgeryToken").val();
-        PurchaseService.addInsurantsToSession($scope.addedInsurants, token).then(function (response) {
-            sessionStorage.setItem("purchaseStep4", 4);
-            //$state.go('insurance.buyer');
-        });
+        sessionStorage.setItem("purchaseStep4", 4);
+        $state.go('insurance.buyer');
+        
     };
 
     $scope.addInsurants = function () {
-        var token = $("#antiForgeryToken").val();
         if(!$scope.buyerExists)
             $scope.addedInsurants.push($scope.Buyer);
-        PurchaseService.addInsurants($scope.addedInsurants, token).then(function (response) {
+        PurchaseService.addInsurants($scope.addedInsurants).then(function (response) {
+            //ovde se salje zahtev za dobijanje payment url-a
+            //i redirekcija na njega
             console.log("dodao");
             console.log(response);
             if (response.data.isSuccessful) {
@@ -377,12 +374,8 @@
                 };
                 PaypalService.createPayment(data)
                     .then(
-                        function (response) {
-                            if (response != null && response.data != null) {
-                                $window.location.href = response.data;
-                            } else {
-                                console.log("no url");
-                            }
+                        function(response) {
+                            $window.location.href = response.data;
                         }, function(error) {
                             console.log(error.message);
                         });
@@ -396,9 +389,17 @@
 
     $scope.calculate = function () {
         var token = $("#antiForgeryToken").val();
-        RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel"), token).then(function (response) {
-            $scope.travelPrice = response.data;
+        $http({
+            method: 'POST',
+            url: '/Risk/Calculate',
+            data: $scope.getInsuranceDetails($scope.Insurance, "Travel"),
+            headers: {
+                'RequestVerificationToken': token
+            }
         });
+        //RiskService.calculatePrice($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
+        //    $scope.travelPrice = response.data;
+        //});
     };
 
     $scope.cancelTravelInsurance = function () {
@@ -408,11 +409,13 @@
 
     $scope.addTravelInsurance = function () {
         $scope.Insurance.Price = $scope.travelPrice;
-        var token = $("#antiForgeryToken").val();
-        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel"), token).then(function (response) {
+        PurchaseService.buyInsurance($scope.getInsuranceDetails($scope.Insurance, "Travel")).then(function (response) {
             sessionStorage.setItem("purchaseStep2", 2);
+<<<<<<< HEAD
             sessionStorage.setItem("StartDate", $scope.Insurance.StartDate);
             sessionStorage.setItem("EndDate", $scope.Insurance.EndDate);
+=======
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
             $state.go('insurance.others');
         });
     };
@@ -499,4 +502,4 @@
     }
 
 
-}]);
+});

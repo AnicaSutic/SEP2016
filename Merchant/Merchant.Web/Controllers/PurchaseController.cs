@@ -70,6 +70,15 @@ namespace Merchant.Web.Controllers
 
         [HttpPost]
         [CustomValidateAntiForgeryToken]
+        public ActionResult AddInsurantsToSession(List<InsurantDto> insurantsDto)
+        {
+            Session["insurants"] = insurantsDto;
+
+            return null;
+        }
+
+        [HttpPost]
+        [CustomValidateAntiForgeryToken]
         public ActionResult AddInsurants(List<InsurantDto> insurantsDto)
         {
             InsuranceService service = new InsuranceService();
@@ -137,7 +146,7 @@ namespace Merchant.Web.Controllers
                 Price = newTravelInsurance.Price,
                 Voyage = voyage,
                 InsurancePolicy = policy,
-                RiskCategory = riskCategoryService.GetById(1),
+                RiskCategoryId = 1,
                 StartDate = newTravelInsurance.StartDate
             };
 
@@ -152,6 +161,22 @@ namespace Merchant.Web.Controllers
 
             if (newHomeInsurance != null)
             {
+                Owner owner = new Owner
+                {
+                    Name = newHomeInsurance.OwnerName,
+                    Surname = newHomeInsurance.OwnerSurname,
+                    IdentificationNumber = newHomeInsurance.OwnerIdentificationNumber
+                };
+
+                try
+                {
+                    service.AddOwner(owner);
+                }
+                catch (Exception e)
+                {
+                    isSuccessful = false;
+                }
+
                 ResidentalBuilding building = new ResidentalBuilding
                 {
                     Address = newHomeInsurance.Address,
@@ -159,12 +184,7 @@ namespace Merchant.Web.Controllers
                     EstimatedValue = decimal.Parse(newHomeInsurance.EstimatedValue),
                     InsuredFrom = riskItemService.GetRiskItemNameById(newHomeInsurance.InsuredFrom),
                     SurfaceArea = decimal.Parse(newHomeInsurance.SurfaceArea),
-                    Owner = new Owner
-                    {
-                        Name = newHomeInsurance.OwnerName,
-                        Surname = newHomeInsurance.OwnerSurname,
-                        IdentificationNumber = newHomeInsurance.OwnerIdentificationNumber
-                    }
+                    Owner = owner
                 };
 
                 try
@@ -181,7 +201,7 @@ namespace Merchant.Web.Controllers
                     EndDate = newHomeInsurance.EndDate,
                     Price = newHomeInsurance.Price,
                     InsurancePolicy = policy,
-                    RiskCategory = riskCategoryService.GetById(2),
+                    RiskCategoryId = 2,
                     StartDate = newHomeInsurance.StartDate,
                     ResidentalBuilding = building
                 };
@@ -198,6 +218,22 @@ namespace Merchant.Web.Controllers
 
             if (newVehicleInsurance != null)
             {
+                Owner owner = new Owner
+                {
+                    Name = newVehicleInsurance.OwnerName,
+                    Surname = newVehicleInsurance.OwnerSurname,
+                    IdentificationNumber = newVehicleInsurance.OwnerIdentificationNumber
+                };
+
+                try
+                {
+                    service.AddOwner(owner);
+                }
+                catch (Exception e)
+                {
+                    isSuccessful = false;
+                }
+
                 Vehicle vehicle = new Vehicle
                 {
                     Brand = newVehicleInsurance.Brand,
@@ -206,12 +242,7 @@ namespace Merchant.Web.Controllers
                     YearOfProduction = int.Parse(newVehicleInsurance.YearOfProduction.ToString()),
                     Type = newVehicleInsurance.Type,
                     Package = riskItemService.GetRiskItemNameById(newVehicleInsurance.Package),
-                    Owner = new Owner
-                    {
-                        Name = newVehicleInsurance.OwnerName,
-                        Surname = newVehicleInsurance.OwnerSurname,
-                        IdentificationNumber = newVehicleInsurance.OwnerIdentificationNumber
-                    }
+                    Owner = owner
                 };
 
                 try
@@ -228,7 +259,7 @@ namespace Merchant.Web.Controllers
                     EndDate = newVehicleInsurance.EndDate,
                     Price = newVehicleInsurance.Price,
                     InsurancePolicy = policy,
-                    RiskCategory = riskCategoryService.GetById(3),
+                    RiskCategoryId = 3,
                     StartDate = newVehicleInsurance.StartDate,
                     Vehicle = vehicle
                 };
@@ -270,24 +301,27 @@ namespace Merchant.Web.Controllers
                     }
                 }
 
-                Insurant insurant = new Insurant
+                if(ins.IsInsurant)
                 {
-                    IdentificationNumber = Sanitizer.GetSafeHtmlFragment(ins.IdentificationNumber),
-                    Address = Sanitizer.GetSafeHtmlFragment(ins.Address),
-                    Name = Sanitizer.GetSafeHtmlFragment(ins.Name),
-                    PassportNumber = Sanitizer.GetSafeHtmlFragment(ins.PassportNumber),
-                    Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
-                    TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber),
-                    InsurancePolicy = policy
-                };
+                    Insurant insurant = new Insurant
+                    {
+                        IdentificationNumber = Sanitizer.GetSafeHtmlFragment(ins.IdentificationNumber),
+                        Address = Sanitizer.GetSafeHtmlFragment(ins.Address),
+                        Name = Sanitizer.GetSafeHtmlFragment(ins.Name),
+                        PassportNumber = Sanitizer.GetSafeHtmlFragment(ins.PassportNumber),
+                        Surname = Sanitizer.GetSafeHtmlFragment(ins.Surname),
+                        TelephoneNumber = Sanitizer.GetSafeHtmlFragment(ins.TelephoneNumber),
+                        InsurancePolicy = policy
+                    };
 
-                try
-                {
-                    service.AddInsurant(insurant);
-                }
-                catch (Exception e)
-                {
-                    isSuccessful = false;
+                    try
+                    {
+                        service.AddInsurant(insurant);
+                    }
+                    catch (Exception e)
+                    {
+                        isSuccessful = false;
+                    }
                 }
             }
 

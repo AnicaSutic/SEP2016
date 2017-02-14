@@ -1,14 +1,6 @@
 ﻿@{
     Layout = null;
 }
-@functions{
-    public string GetAntiForgeryToken()
-    {
-        string cookieToken, formToken;
-        AntiForgery.GetTokens(null, out cookieToken, out formToken);
-        return cookieToken + ":" + formToken;
-    }
-}
 
 @*<div class="row">
         <div class="col-lg-6">
@@ -21,16 +13,10 @@
 <div class="row" @*ng-if="purchaseStep2 == 2"*@>
     <div class="row" style="margin-bottom:1em;">
         <div class="col-lg-10">
-            <h2 translate="otherInsurance"></h2>
-            <div ng-if="vehicleInsExists || homeInsExists" style="margin-bottom:0.5em;">
-                <ul class="nav nav-pills nav-stacked">
-                    <li ng-if="vehicleInsExists"><label translate="vehicleInsurance"></label> | {{VehicleInsurance.Brand}} - {{VehicleInsurance.Type}} - {{VehicleInsurance.LicensePlateNumber}} <button class="btn btn-xs" ng-click="deleteVehicleIns()" translate="delete"></button></li>
-                    <li ng-if="homeInsExists"><label translate="homeInsurance"></label> | {{HomeInsurance.Address}} - {{HomeInsurance.SurfaceArea}} m<sup>2</sup> <button class="btn btn-xs" ng-click="deleteHomeIns" translate="delete"></button></li>
-                </ul>
-            </div>
+            <h1 translate="otherInsurance"></h1>
             <div>
-                <button class="btn btn-primary" ng-click="showVehicleIns()" ng-disabled="vehicleInsExists" translate="buyVehicle"></button>
-                <button class="btn btn-primary" ng-click="showHomeIns()" ng-disabled="homeInsExists" translate="buyHome"></button>
+                <button class="btn btn-primary" ng-click="showVehicleIns()" @*ng-disabled="vehicleInsExists"*@ translate="buyVehicle"></button>
+                <button class="btn btn-primary" ng-click="showHomeIns()" @*ng-disabled="homeInsExists"*@ translate="buyHome"></button>
             </div>
         </div>
     </div>
@@ -38,10 +24,36 @@
         <div class="col-lg-12">
             <div ng-if="showVehicleForm">
                 <form class="form-horizontal" name="forms.vehicleForm">
+                    @Html.AntiForgeryToken()
                     <fieldset>
-                        <input id="antiForgeryTokenVehicle" type="hidden" value="@GetAntiForgeryToken()" />
                         <legend translate="vehicleInsurance"></legend>
                         <div class="form-group">
+<<<<<<< HEAD
+=======
+                            <label class="col-lg-2 control-label" for="startDate" translate="startDate"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.StartDate"
+                                       is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
+                                <div ng-show="forms.vehicleForm.startDate.$touched">
+                                    <span class="text-danger" ng-show="forms.vehicleForm.startDate.$error.required" translate="errStart"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="endDate" translate="endDate"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="VehicleInsurance.EndDate"
+                                       is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
+                                <div ng-show="forms.vehicleForm.endDate.$touched">
+                                    <span class="text-danger" ng-show="forms.vehicleForm.endDate.$error.required" translate="errEnd"></span>
+                                </div>
+                                <div ng-show="dateEnd">
+                                    <span translate="errDateEnd"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': forms.vehicleForm.package.$invalid && forms.vehicleForm.package.$touched}">
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
                             <label class="col-lg-2 control-label" for="package" translate="packageV"></label>
                             <div class="col-lg-6">
                                 <select class="form-control" id="package" name="package" required ng-change="onPackageChange()" ng-model="VehicleInsurance.Package" ng-options="p.Id as p.Name for p in packages">
@@ -176,8 +188,8 @@
 
                             <div class="col-lg-10" ng-if="vehiclePrice != 0.0">
                                 <h3 translate="total"></h3>
-                                <div>{{vehiclePrice}} <span translate="currency"></span></div>
-                                <a class="btn btn-success" ng-disabled="forms.vehicleForm.$invalid" translate="buy" ng-click="addVehicleInsurance()"></a>
+                                <div>{{vehiclePrice}}<span translate="currency"></span></div>
+                                <a class="btn btn-primary" ng-disabled="forms.vehicleForm.$invalid" translate="buy" ng-click="addVehicleInsurance()"></a>
                                 <button class="btn btn-primary" translate="cancel" ng-click="cancelVehicleIns()"></button>
                             </div>
                         </div>
@@ -188,8 +200,33 @@
             <div ng-if="showHomeForm">
                 <form name="homeForm" class="form-horizontal">
                     <fieldset>
-                        <input id="antiForgeryTokenHome" type="hidden" value="@GetAntiForgeryToken()" />
                         <div class="form-group">
+<<<<<<< HEAD
+=======
+                            <label class="col-lg-2 control-label" for="startDate" translate="startDate"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" ng-readonly="true" id="startDate" name="startDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.StartDate"
+                                       is-open="sd.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openSd()" />
+                                <div ng-show="homeForm.startDate.$touched">
+                                    <span class="text-danger" ng-show="homeForm.startDate.$error.required" translate="errStart"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="endDate" translate="endDate"></label>
+                            <div class="col-lg-6">
+                                <input class="form-control" ng-readonly="true" name="endDate" type="text" uib-datepicker-popup ng-model="HomeInsurance.EndDate"
+                                       is-open="ed.opened" datepicker-options="dateOptions" required ng-change="checkDate()" ng-click="openEd()" />
+                                <div ng-show="homeForm.endDate.$touched">
+                                    <span class="text-danger" ng-show="homeForm.endDate.$error.required" translate="errEnd"></span>
+                                </div>
+                                <div ng-show="dateEnd">
+                                    <span class="text-danger" translate="errDateEnd"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': homeForm.address.$invalid && homeForm.address.$touched}">
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
                             <label for="address" class="col-lg-2 control-label" translate="address"></label>
                             <div class="col-lg-6">
                                 <input id="address" class="form-control" type="text" required ng-model="HomeInsurance.Address" name="address" />
@@ -282,8 +319,8 @@
                             </div>
                             <div class="col-lg-10" ng-if="homePrice != 0.0">
                                 <h3 translate="total"></h3>
-                                <div>{{homePrice}} <span translate="currency"></span></div>
-                                <a class="btn btn-success" ng-disabled="homeForm.$invalid" translate="buy" ng-click="addHomeInsurance()"></a>
+                                <div>{{homePrice}}<span translate="currency"></span></div>
+                                <a class="btn btn-primary" ng-disabled="homeForm.$invalid" translate="buy" ng-click="addHomeInsurance()"></a>
                                 <button class="btn btn-primary" translate="cancel" ng-click="cancelHomeIns()"></button>
                             </div>
                         </div>

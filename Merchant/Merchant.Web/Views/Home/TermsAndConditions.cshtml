@@ -2,18 +2,21 @@
 @{
     Layout = null;
 }
-<div align="center" class="jumbotron"  style="background-image: url(../../Content/images/about-bg.jpg); background-size:cover; color:white">
-    <div class="container">
-        <h1 align="center" translate="terms"></h1>
-        <br />
-        <br />
+
+<div class="container">
+     
+         <h1 align="center" translate="terms"></h1>
+         <br />
+         <br />
+    <blockquote>
         <p style="font-size:larger" translate="conditions1"></p>
         <p style="font-size:larger" translate="conditions2"></p>
         <br />
         <p style="font-size:larger" translate="conditions3"></p>
         <br />
         <p style="font-size:larger" translate="conditions4"></p>
-        <div class="row">
+    </blockquote>
+        <div class="row" style="font-size:x-large">
             <div class="col-lg-6">
                 <form class="form-horizontal">
                     <fieldset>
@@ -21,13 +24,13 @@
                             <div class="col-lg-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" ng-model="areAccepted"><span translate="haveAccepted"></span>
+                                        <input style="transform:scale(1.5)" type="checkbox" ng-model="areAccepted"><span translate="haveAccepted"></span>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
+                            <div class="col-lg-10">
                                 <button type="submit" class="btn btn-primary" ng-click="accept()" translate="proceed"></button>
                             </div>
                         </div>
@@ -40,5 +43,6 @@
                 </form>
             </div>
         </div>
-    </div>
+    
 </div>
+

@@ -91,7 +91,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             selValue: "Select insured value",
             errReg: "You must select a region!",
             errNumReq: "You must enter a number!",
-            errNumMin: "Number of persons must be greater than zero!",
+            errNumMin: "Number of insurants must be greater than zero!",
             errAge: "You must select an age!",
             errSport: "You must select a sport!",
             errValue: "You must select an insured value!",
@@ -141,7 +141,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             errChassis: "You must enter chassis number!",
             startDate: "From",
             endDate: "To",
-            currency: "euros",
+            currency: "&euro;",
             errStart: "You must enter a start date!",
             errEnd: "You must enter an end date!",
             errDateEnd: "Dates are not valid!",
@@ -185,7 +185,8 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             welcomeText2: "Get started by clicking the button!",
             notSuccess: "Unfortunately, purchase insurance is not successful!",
             success: "Purchase insurance end successful! Have a travel safe!",
-            back: "Back to start"
+            back: "Back to start",
+            delete: "Delete"
         };
     var ser =
         {
@@ -223,8 +224,8 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             selSport: "Izaberite sport",
             selValue: "Izaberite vrednost",
             errReg: "Morate odabrati region!",
-            errNumReq: "Unesite broj osoba!",
-            errNumMin: "Minimalan broj osoba 1!",
+            errNumReq: "Morate uneti broj osiguranika!",
+            errNumMin: "Broj osiguranika mora biti veći od nule!",
             errAge: "Morate odabrati starost!",
             errSport: "Morate odabrati sport!",
             errValue: "Morate odabrati vrednost!",
@@ -274,7 +275,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             errChassis: "Morate uneti broj šasije!",
             startDate: "Od",
             endDate: "Do",
-            currency: "eura",
+            currency: "&euro;",
             errStart: "Morate uneti datum početka!",
             errEnd: "Morate uneti datum završetka!",
             errDateEnd: "Datum završetka nije validan! Proverite početni datum!",
@@ -318,7 +319,8 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             welcomeText2: "Započnite klikom na dugme!",
             notSuccess: "Nažalost,kupovina osiguranja nije uspešna!",
             success: "Kupovina uspešno obavljena! Putujte bezbedno!",
-            back: "Nazad na početak"
+            back: "Nazad na početak",
+            delete: "Obriši"
         };
 
     $.ajax({
