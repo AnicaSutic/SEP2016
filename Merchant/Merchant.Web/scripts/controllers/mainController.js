@@ -1,4 +1,4 @@
-﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
+﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function MainController($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
@@ -90,6 +90,10 @@
         $scope.values = getSelectOptions($scope.valuesResponseData, $rootScope.currentLanguage);
         $scope.insuredFrom = getSelectOptions($scope.insuredFromResponseData, $rootScope.currentLanguage);
         $scope.packages = getSelectOptions($scope.packagesResponseData, $rootScope.currentLanguage);
+    };
+
+    function sum() {
+        return 3;
     };
 
     function getSelectOptions(data, language) {

@@ -22,6 +22,9 @@
     "karma-jasmine": "^1.1.0"
   },
   "devDependencies": {
+    "angular": "^1.6.2",
+    "angular-mocks": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
     "grunt": "^0.4.5",
     "grunt-karma": "^0.8.3"
   },

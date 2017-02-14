@@ -1,42 +1,23 @@
 ﻿'use strict';
 describe("MainController", function () {
+   
+    var scope, ctrl, state;
     //pre svakog testa učitavamo app modul
-    beforeEach(angular.mock.module("app"));
+    beforeEach(module('app'));
 
-    describe('MainController', function () {
-       
-        var scope, ctrl;
-        beforeEach(angular.mock.inject(function($rootScope, $controller) {
+        beforeEach(inject(function ($rootScope,$controller,$state) {
             scope = $rootScope.$new();
-            ctrl = $controller("MainController", {
-                $scope: scope
+            state = $state;
+            ctrl = $controller('MainController', {
+                $scope: scope,
+                $state: state
             });
        
         }));
+ 
 
-        it('it should be able to add insurant', function () {
-            var Insurant1 = {
-                Name: "Anica",
-                Surname: "Sutic",
-                IdentNumber: "1111111111111",
-                Address: "aaaa",
-                TelNumber: "1111",
-                Email: "a@gmail.com"
-            };
-            var Insurant2 = {
-                Name: "Ivana",
-                Surname: "Tesanovic",
-                IdentNumber: "1111111111111",
-                Address: "aaaa",
-                TelNumber: "1111",
-                Email: "a@gmail.com"
-            };
-
-            var added = [];
-            added.push(Insurant1);
-            added.push(Insurant2);
-
-            expect(added.length).toBe(2);
+        it('controller should not be null', function () {
+            expect(ctrl).not.toBe(null);
         });
 
         it('counter sholud be defined', function () {
@@ -54,7 +35,55 @@ describe("MainController", function () {
             expect(scope.showInsForm).not.toBe(false);
         });
 
-        it('should return collection by language', inject(function () {
+        it('on package change', function () {
+            scope.VehicleInsurance.Package = 23;
+            scope.onPackageChange();
+            expect(scope.towing).toBe(true);
+            expect(scope.repair).toBe(false);
+        });
+
+        it('it sholud check dates', function () {
+            scope.Insurance.StartDate = "13.02.2017";
+            scope.Insurance.EndDate = "15.02.2014";
+            scope.checkDate();
+            expect(scope.areDatesValid).toBe(true);
+
+            scope.Insurance.StartDate = "13.02.2017";
+            scope.Insurance.EndDate = "11.02.2014";
+            scope.checkDate();
+            expect(scope.areDatesValid).not.toBe(true);
+            
+        });
+
+        it('it sholud add and delete insurant', function () {
+            scope.CurrentInsurant = {
+                Name: "Anica",
+                Surname: "Sutic",
+                IdentificationNumber: "2233445566776",
+                PassportNumber: "2222",
+                Address: "Novi Sad",
+                TelephoneNumber: "1223",
+                Email: "a@gmail",
+                IsBuyer: false
+            };
+            scope.addInsurant();
+            expect(scope.addedInsurants.length).toBe(1);
+            expect(scope.insurantsCounter).toBe(1);
+
+            scope.deleteInsurant(scope.CurrentInsurant,1);
+            expect(scope.insurantsCounter).toBe(0);
+        });
+
+        it('it sholud go to home state', function () {
+            spyOn(state, 'go');
+            expect(state.go).not.toHaveBeenCalled();
+            scope.cancelTravelInsurance();
+            expect(state.go).toHaveBeenCalledWith('home');
+        });
+
+
+    /*
+        it('should return collection by language', function () {
             var sports = [];
             var obj1 = { Id: '1', Name: 'Volyball', Name_Srb: 'Odbojka' };
             var obj2 = { Id: '2', Name: 'Basketball', Name_Srb: 'Kosarka' };
@@ -77,7 +106,6 @@ describe("MainController", function () {
             
             expect(collE).toEqual(resultEng);
             expect(collS).toEqual(resultSrp);
-        }));
+        });*/
 
     });
-});
