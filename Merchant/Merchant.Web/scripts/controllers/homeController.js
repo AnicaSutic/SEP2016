@@ -10,6 +10,5 @@
             $state.go('insurance');
         }
     };
-
     
 }]);

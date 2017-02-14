@@ -3,14 +3,19 @@
     Layout = null;
 }
 
-
-<html>
-<head>
-    <title>Payment</title>
-</head>
-<body>
-<div>
-    <button class="btn btn-primary btn-lg" ng-show="showExecuteButton" value="Confirm" ng-click="executePayment()">Execute Payment</button>
+<div class="container">
+    <div ng-if="!isCanceled">
+        <h1 style="text-decoration:underline;" translate="policyDetails"></h1>
+        <ul class="nav nav-pills nav-stacked" style="font-size:x-large;margin:0.5em 0 0.5em 0">
+            <li><label translate="policyPrice"></label>: {{policy.Price}} <span translate="currency"></span></li>
+            <li><label translate="buyer"></label>: {{policy.Buyer.Name}} {{policy.Buyer.Surname}}</li>
+        </ul>
+        <div>
+            <button class="btn btn-primary" ng-show="showExecuteButton" ng-click="executePayment()" translate="executePayment"></button>
+        </div>
+    </div>
+    <div ng-if="isCanceled">
+        <h2 translate="canceledPayment"></h2>
+        <h2 translate="returnToHome"><a ui-sref="home" translate="homePage"></a>.</h2>
+    </div>
 </div>
-</body>
-</html>

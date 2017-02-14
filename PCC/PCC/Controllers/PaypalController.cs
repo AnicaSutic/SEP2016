@@ -32,21 +32,21 @@ namespace PCC.Controllers
             }
         }
 
-        public IHttpActionResult ExecutePayment(PaymentDetails paymentDetails)
+        public PaymentResponse ExecutePayment(PaymentDetails paymentDetails)
         {
             try
             {
                 var transcationSucceessful = _paypalService.ExecutePayment(paymentDetails.PaymentId, paymentDetails.PayerId);
                 if (transcationSucceessful)
                 {
-                    return Ok("Transaction was successful");
+                    return new PaymentResponse { TransactionSuccessful = true, Message = "Transaction was successful" };
                 }
-                return BadRequest("Transaction was not successful");
+                return new PaymentResponse { TransactionSuccessful = false, Message = "Transaction was not successful" };
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error while submitting request for payment execution: " + ex.Message);
-                return BadRequest();
+                return new PaymentResponse { TransactionSuccessful = false, Message = "Transaction was not successful" };
             }
         }
     }

@@ -19,6 +19,7 @@ namespace Merchant.Business
         private readonly GenericRepository<InsurancePolicy> _policyRepository;
         private readonly GenericRepository<ResidentalBuilding> _buildingRepository;
         private readonly GenericRepository<Vehicle> _vehicleRepository;
+        private readonly GenericRepository<Owner> _ownerRepository;
 
         public InsuranceService()
         {
@@ -29,6 +30,7 @@ namespace Merchant.Business
             _policyRepository = _unitOfWork.InsurancePolicyRepository;
             _buildingRepository = _unitOfWork.ResidentialBuildingRepository;
             _vehicleRepository = _unitOfWork.VehicleRepository;
+            _ownerRepository = _unitOfWork.OwnerRepository;
         }
 
         public void AddPolicy(InsurancePolicy policy)
@@ -87,6 +89,12 @@ namespace Merchant.Business
         public InsurancePolicy GetPolicyByOrderId(string orderId)
         {
             return _policyRepository.Get(p => p.OrderId == orderId).FirstOrDefault();
+        }
+
+        public void AddOwner(Owner owner)
+        {
+            _ownerRepository.Insert(owner);
+            _unitOfWork.Save();
         }
     }
 }

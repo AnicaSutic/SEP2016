@@ -1,11 +1,11 @@
 ﻿app.controller('PaymentController',
 [
-    '$scope', '$location', '$window', 'PurchaseService', 'PaypalService',function($scope, $location, $window, PurchaseService, PaypalService) {
+    '$scope', '$location', '$window', '$state', 'PurchaseService', 'PaypalService',function($scope, $location, $window, $state, PurchaseService, PaypalService) {
 
         $scope.showExecuteButton = false;
 
-        var isCanceled = $location.search().cancel;
-        console.log(isCanceled);
+        $scope.isCanceled = $location.search().cancel;
+        console.log($scope.isCanceled);
 
         $scope.paymentId = $location.search().paymentId;
         $scope.payerId = $location.search().PayerID;
@@ -28,13 +28,19 @@
 
             PaypalService.executePayment(paymentDetails)
                 .then(
-                    function(response) {
+                    function (response) {
+                        console.log(response);
                         if (response.data.TransactionSuccessful) {
                             console.log("success");
+                            $state.go('insurance.success');
+                        }
+                        else {
+                            $state.go('insurance.error');
                         }
                     },
                     function(error) {
                         console.log(error);
+                        $state.go('insurance.error');
                     });
         }
 
@@ -43,6 +49,7 @@
                 .then(
                     function(response) {
                         console.log(response.data);
+                        $scope.policy = response.data;
                     },
                     function(error) {
                         console.log(error.message);

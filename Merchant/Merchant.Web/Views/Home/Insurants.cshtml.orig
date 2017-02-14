@@ -1,14 +1,6 @@
 ﻿@{
     Layout = null;
 }
-@functions{
-    public string GetAntiForgeryToken()
-    {
-        string cookieToken, formToken;
-        AntiForgery.GetTokens(null, out cookieToken, out formToken);
-        return cookieToken + ":" + formToken;
-    }
-}
 
 @*<div class="row">
     <div class="col-lg-6">
@@ -19,30 +11,35 @@
 </div>*@
 
 <div class="row" @*ng-if="purchaseStep3 == 3"*@>
-    <h2 translate="insurantsDetails"></h2>
+    <h1 translate="insurantsDetails"></h1>
 
     <div ng-if="insurantsCounter != 0">
+<<<<<<< HEAD
+        <ul ng-repeat="i in addedInsurants">
+            <li>{{i.Name}} {{i.Surname}} <button class="btn btn-default" ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
+=======
         <ul class="nav nav-pills nav-stacked" ng-repeat="i in addedInsurants">
-            <li>{{i.Name}} {{i.Surname}} <button class="btn btn-xs" ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
+            <li>{{i.Name}} {{i.Surname}} <button class ="btn btn-default "ng-click="deleteInsurant(i, $index)" translate="deleteInsurant"></button></li>
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
         </ul>
     </div>
 
-    <div style="margin-top:0.5em" ng-if="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants">
-        <p class="text-info" translate="noMoreInsurants"></p>
+    <div ng-if="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants">
+        <p class="alert alert-info" translate="noMoreInsurants"></p>
         <button class="btn btn-success" ng-click="addBuyer()" translate="proceed"></button>
     </div>
 
-    <form hidden>
-        <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
-    </form>
+<<<<<<< HEAD
+    <p class="alert alert-info" ng-show="insurantsCounter != 0 && insurantsCounter == Insurance.NumberOfInsurants" translate="noMoreInsurants"></p>
+=======
+>>>>>>> 2083e7bb75c0461bbfcd49a9388089957ab48bba
 
     <div class="row">
         <div class="col-lg-12">
-            <div>
-                <button class="btn btn-primary" ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
-            </div>
+            <button class="btn btn-primary" ng-hide="insurantsCounter == Insurance.NumberOfInsurants" ng-if="!showInsForm" ng-click="showInsurantForm()" translate="addInsurant"></button>
             <div ng-if="showInsForm">
                 <form name="insurantForm" class="form-horizontal">
+                    @Html.AntiForgeryToken()
                     <fieldset>
                         <div class="form-group" ng-class="{ 'has-error': insurantForm.name.$invalid && insurantForm.name.$touched}">
                             <label for="name" class="col-lg-2 control-label" translate="name"></label>

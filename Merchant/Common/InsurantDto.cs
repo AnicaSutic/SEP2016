@@ -16,5 +16,6 @@ namespace Common
         public string TelephoneNumber { get; set; }
         public string Email { get; set; }
         public bool IsBuyer { get; set; }
+        public bool IsInsurant { get; set; }
     }
 }
