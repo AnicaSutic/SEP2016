@@ -112,8 +112,8 @@
                     <div class="col-lg-10" ng-if="travelPrice != 0.0">
                         <h3 translate="total"></h3>
                         <div>{{travelPrice}} <span translate="currency"></span></div>
-                        <button class="btn" ng-disabled="travelForm.$invalid" translate="buy" ng-click="addTravelInsurance()"></button>
-                        <button class="btn" ng-click="cancelTravelInsurance()" translate="cancel"></button>
+                        <button class="btn btn-success" ng-disabled="travelForm.$invalid" translate="buy" ng-click="addTravelInsurance()"></button>
+                        <button class="btn btn-primary" ng-click="cancelTravelInsurance()" translate="cancel"></button>
                     </div>
                 </div>
             </fieldset>

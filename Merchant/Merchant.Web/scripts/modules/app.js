@@ -45,8 +45,15 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             url: '/Payment',
             templateUrl: '/Home/Payment',
             controller: "PaymentController"
+        })
+        .state('insurance.error', {
+            url: '/ErrorPage',
+            templateUrl: '/Home/ErrorPage'
+        })
+        .state('insurance.success', {
+            url: '/SuccessPage',
+            templateUrl: '/Home/SuccessPage'
         });
-
     var eng =
         {
             english: "English",
@@ -175,7 +182,10 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             terms: "Terms&Conditions",
             errCompleteStep: "You currently cannot acces this step of the insurance purchase.",
             welcomeText: "Welcome to CareTravel website for online insurance purchase.",
-            welcomeText2: "Get started by clicking the button!"
+            welcomeText2: "Get started by clicking the button!",
+            notSuccess: "Unfortunately, purchase insurance is not successful!",
+            success: "Purchase insurance end successful! Have a travel safe!",
+            back: "Back to start"
         };
     var ser =
         {
@@ -305,7 +315,10 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','$translat
             terms: "Uslovi korišćenja",
             errCompleteStep: "Trenutno ne možete pristupiti ovom koraku u kupovini osiguranja.",
             welcomeText: "Dobrodošli na CareTravel sajt za onlajn kupovinu osiguranja.",
-            welcomeText2: "Započnite klikom na dugme!"
+            welcomeText2: "Započnite klikom na dugme!",
+            notSuccess: "Nažalost,kupovina osiguranja nije uspešna!",
+            success: "Kupovina uspešno obavljena! Putujte bezbedno!",
+            back: "Nazad na početak"
         };
 
     $.ajax({

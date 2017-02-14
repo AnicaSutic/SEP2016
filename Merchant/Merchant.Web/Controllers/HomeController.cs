@@ -57,5 +57,13 @@ namespace Merchant.Web.Controllers
         {
             return View();
         }
+        public ActionResult ErrorPage()
+        {
+            return View();
+        }
+        public ActionResult SuccessPage()
+        {
+            return View();
+        }
     }
 }
