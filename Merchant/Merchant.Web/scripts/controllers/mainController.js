@@ -1,4 +1,4 @@
-﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function MainController($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
+﻿app.controller('MainController',['$scope', '$rootScope', '$state', '$filter', '$window', 'RiskService', 'TranslateService', 'PurchaseService', 'PaypalService', function ($scope, $rootScope, $state, $filter, $window, RiskService, TranslateService, PurchaseService, PaypalService) {
 
     $scope.travelRisks = {};
     $scope.homeRisks = {};
