@@ -46,8 +46,8 @@ namespace PCC.Business
 
             var redirUrls = new RedirectUrls()
             {
-                return_url = PaypalConfiguration.RedirectUrl,
-                cancel_url = PaypalConfiguration.CancelUrl
+                return_url = PaypalConfiguration.RedirectUrl+"?orderId="+orderId,
+                cancel_url = PaypalConfiguration.CancelUrl+"&orderId="+orderId
             };
 
             var paymet = new Payment

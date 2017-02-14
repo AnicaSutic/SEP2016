@@ -6,6 +6,8 @@ using Merchant.Web.Helpers;
 using Microsoft.Security.Application;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -302,6 +304,21 @@ namespace Merchant.Web.Controllers
                 price = policy.Price
             });
 
+        }
+
+        [HttpGet]
+        public ActionResult GetPolicyByOrderId(string id)
+        {
+            var service  = new InsuranceService();
+            try
+            {
+                return Json(service.GetPolicyByOrderId(id), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

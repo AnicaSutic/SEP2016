@@ -4,7 +4,7 @@
 }
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="alert alert-dismissible alert-danger" ng-if="!areTermsAccepted">
             <span translate="acceptTerms"></span>
         </div>
@@ -13,17 +13,16 @@
 
 <div ng-if="areTermsAccepted" class="container">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-12" align="center">
             <h2 translate="insurance"></h2>
-            <div class="list-group">
-                <a ng-click="setSelectedItem('travel')" ui-sref="insurance.travel" class="list-group-item" ng-class="travelSelected ? 'list-group-item active' : 'list-group-item'" translate="travelInsurance"></a>
-                <a ng-click="setSelectedItem('others')" ui-sref="insurance.others" class="list-group-item" ng-class="othersSelected ? 'list-group-item active' : 'list-group-item'" translate="other"></a>
-                <a ng-click="setSelectedItem('insurants')" ui-sref="insurance.insurants" class="list-group-item" ng-class="insurantsSelected ? 'list-group-item active' : 'list-group-item'" translate="insurants"></a>
-                <a ng-click="setSelectedItem('buyer')" ui-sref="insurance.buyer" class="list-group-item" ng-class="buyerSelected ? 'list-group-item active' : 'list-group-item'" translate="buyer"></a>
-            </div>
+            <ul class="pagination pagination-lg">
+                <li ng-click="setSelectedItem('travel')" ng-class="travelSelected ? 'active' : ''"><a ui-sref="insurance.travel" translate="travelInsurance"></a></li>
+                <li ng-click="setSelectedItem('others')" ng-class="othersSelected ? 'active' : ''"><a ui-sref="insurance.others" translate="other"></a></li>
+                <li ng-click="setSelectedItem('insurants')" ng-class="insurantsSelected ? 'active' : ''"><a ui-sref="insurance.insurants" translate="insurants"></a></li>
+                <li ng-click="setSelectedItem('buyer')" ng-class="buyerSelected ? 'active' : ''"><a ui-sref="insurance.buyer" translate="buyer"></a></li>
+            </ul>
         </div>
     </div>
-    <br/>
+    <br />
     <div ui-view></div>
 </div>
- 

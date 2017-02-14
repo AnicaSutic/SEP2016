@@ -19,6 +19,9 @@
                     'RequestVerificationToken': token
                 }
             });
+        },
+        getPolicyByOrderId: function(orderId) {
+            return $http.get("/Purchase/GetPolicyByOrderId/" + orderId);
         }
     });
 }]);

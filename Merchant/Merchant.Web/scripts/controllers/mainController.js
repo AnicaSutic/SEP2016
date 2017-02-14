@@ -374,8 +374,12 @@
                 };
                 PaypalService.createPayment(data)
                     .then(
-                        function(response) {
-                            $window.location.href = response.data;
+                        function (response) {
+                            if (response != null && response.data != null) {
+                                $window.location.href = response.data;
+                            } else {
+                                console.log("no url");
+                            }
                         }, function(error) {
                             console.log(error.message);
                         });

@@ -83,5 +83,10 @@ namespace Merchant.Business
             _policyRepository.Update(policy);
             _unitOfWork.Save();
         }
+
+        public InsurancePolicy GetPolicyByOrderId(string orderId)
+        {
+            return _policyRepository.Get(p => p.OrderId == orderId).FirstOrDefault();
+        }
     }
 }
